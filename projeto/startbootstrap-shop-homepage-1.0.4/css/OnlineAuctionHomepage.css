@@ -1,0 +1,123 @@
+body {
+   /* padding-top: 70px;*/ /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.navbar{
+	padding:1%;
+}
+
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 230px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+	//border: 1px solid #C0C0C0; 
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {	
+	border: 3px solid #C0C0C0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+#price_tag h4{
+	font-size:35px;
+	font-family:"Arial Black", Gadget, sans-serif;
+	border-radius:5px;
+	background-color:yellow;
+}
+#price_tag p{
+	color:red;
+	font-family:"Arial Black", Gadget, sans-serif;
+	border-radius:5px;
+}
+
+#price_tag{
+	//border: 2px solid;
+}
+
+#action_buttons{
+	padding-bottom:5px;
+}
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,1);
+}
+#login-dp .help-block{
+    font-size:12px    
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0    
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc 
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+
+
+
+
+
+
+
+
+
+
+footer {
+    margin: 50px 0;
+}
