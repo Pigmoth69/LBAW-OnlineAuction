@@ -1,1 +1,5 @@
 https://silviomoreto.github.io/bootstrap-select/
+
+-Fazer o FAQ
+-contactos 
+-Pagina moderador
