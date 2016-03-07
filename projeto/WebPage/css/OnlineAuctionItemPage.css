@@ -12,6 +12,11 @@ body {
 	padding:1%;
 }
 
+#ItemName{
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size:170%;
+}
+
 
 .thumbnail img {
     width: 100%;
@@ -34,6 +39,10 @@ body {
 
 footer {
     margin: 50px 0;
+}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+	width:100%;
 }
 
 #login-dp{
