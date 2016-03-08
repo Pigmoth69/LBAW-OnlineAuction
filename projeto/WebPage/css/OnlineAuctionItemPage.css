@@ -85,3 +85,16 @@ footer {
     color: #fff;
     background-color:#59b5fa;
 }
+
+.list-group-item .ratings p{
+    margin:0;
+}
+
+.list-group-item p:first-child{
+    padding:auto;  
+}
+
+.list-group-item a+a{
+    font-size: 20px;
+}
+/*#d17581*/
