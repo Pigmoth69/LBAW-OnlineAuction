@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>Bootstrap 3 Admin</title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="css/OnlineAuctionUserPage.css" rel="stylesheet">
-	</head>
-	<body>
-
- <!-- Navigation -->
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>Online Auction- Where business happens!</title>
+      <!-- Bootstrap Core CSS -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom CSS -->
+      <link href="css/OnlineAuctionUserPage.css" rel="stylesheet">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+      <link rel="icon" href="images/bidme.png"/>
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      <style>
+      </style>
+   </head>
+   <body>
+      <!-- Navigation -->
       <nav class="navbar navbar-default" role="navigation">
          <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -136,136 +146,133 @@
          </div>
          <!-- /.container -->
       </nav>
-
-<!-- Main -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <hr>
-            <ul class="nav nav-stacked">
-                <a href="#"><strong><i class="glyphicon glyphicon-list"></i> Options </strong></a>
-                    <ul class="nav nav-stacked collapse in" id="userMenu">
-                        <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Options</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Shoutbox</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
-                    </ul>
-                </li>
-        </div>
-        <!-- /col-3 -->
-        <div class="col-sm-9">
-
-            <div class="row">
-                <!-- center left-->
-                <div class="col-md-6">
-                   
-                    <hr>
-
-                    <div class="btn-group btn-group-justified">
-                        <a href="#" class="btn btn-primary col-sm-3">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            <br> New auction
-                        </a>
-                        <a href="#" class="btn btn-primary col-sm-3">
-                            <i class="glyphicon glyphicon-cog"></i>
-                            <br> Edit profile
-                        </a>
-                        <a href="#" class="btn btn-primary col-sm-3">
-                            <i class="glyphicon glyphicon-question-sign"></i>
-                            <br> Help
-                        </a>
-                    </div>
-
-                     <div class="well">Inbox Messages <span class="badge pull-right">3</span></div>
-
-
-                    <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4>Featured auctions</h4></div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-xs-4 text-center"><img src="http://placehold.it/80/BBBBBB/FFF" class="img-circle img-responsive"></div>
-                            <div class="col-xs-4 text-center"><img src="http://placehold.it/80/EFEFEF/555" class="img-circle img-responsive"></div>
-                            <div class="col-xs-4 text-center"><img src="http://placehold.it/80/EEEEEE/222" class="img-circle img-responsive"></div>
-                        </div>
-
-                    <!--/tabs-->
-
-                    <hr>
-                   
-                </div>
-                <!--/col-->
-                <div class="col-md-6">
-                <hr>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4>About you</h4></div>
-                        <div class="panel-body">
-                            <h4> Name </h4>
-                            <p> user_name <p>
-                            <h4> Country </h4>
-                            <p> country </p>
-                            <h4> Signing year </h4>
-                            <p> 2010</p>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Auction</th>
-                                    <th>Participants</th>
-                                    <th>State</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1. iphone</td>
-                                    <td>20</td>
-                                    <td>sold</td>
-                                </tr>
-                                <tr>
-                                    <td>2. gun</td>
-                                    <td>56</td>
-                                    <td>sold</td>
-                                </tr>
-                                <tr>
-                                    <td>3. poop</td>
-                                    <td>25</td>
-                                    <td>not sold</td>
-                                </tr>
-                                <tr>
-                                    <td>..</td>
-                                    <td>..</td>
-                                    <td>..</td>
-                                </tr>
-                                <tr>
-                                    <td>..</td>
-                                    <td>..</td>
-                                    <td>..</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!--/col-span-6-->
-
+      <!-- Main -->
+      <div class="container">
+         <div class="row">
+            <div class="col-md-3">
+               <hr>
+               <ul class="nav nav-stacked">
+               <a href="#"><strong><i class="glyphicon glyphicon-list"></i> Options </strong></a>
+               <ul class="nav nav-stacked collapse in" id="userMenu">
+                  <!-- <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li> -->
+                  <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
+                  <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Options</a></li>
+                  <!-- <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Shoutbox</a></li> -->
+                  <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
+                  <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
+                  <li><a href="#"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
+                  <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+               </ul>
+               </ul>
             </div>
-            <!--/row-->
-        </div>
-        <!--/col-span-9-->
-    </div>
-</div>
-<!-- /Main -->
-
-<!-- /.modal -->
-	<!-- script references -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/scripts.js"></script>
-	</body>
+            <!-- /col-3 -->
+            <div class="col-sm-9">
+               <div class="row">
+                  <!-- center left-->
+                  <div class="col-md-6">
+                     <hr>
+                     <div class="btn-group btn-group-justified">
+                        <a href="#" class="btn btn-primary col-sm-3">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <br> New auction
+                        </a>
+                        <a href="#" class="btn btn-primary col-sm-3">
+                        <i class="glyphicon glyphicon-cog"></i>
+                        <br> Edit profile
+                        </a>
+                        <a href="#" class="btn btn-primary col-sm-3">
+                        <i class="glyphicon glyphicon-question-sign"></i>
+                        <br> Help
+                        </a>
+                     </div>
+                     <!-- <div class="well">Inbox Messages <span class="badge pull-right">3</span></div> -->
+                     <div class="panel-heading">
+                        <div class="panel-title">
+                           <h4>Featured auctions</h4>
+                        </div>
+                     </div>
+                     <div class="panel-body">
+                        <div class="col-xs-4 text-center"><img src="http://placehold.it/80/BBBBBB/FFF" class="img-circle img-responsive" alt="Error"></div>
+                        <div class="col-xs-4 text-center"><img src="http://placehold.it/80/EFEFEF/555" class="img-circle img-responsive" alt="Error"></div>
+                        <div class="col-xs-4 text-center"><img src="http://placehold.it/80/EEEEEE/222" class="img-circle img-responsive" alt="Error"></div>
+                     </div>
+                     <!--/tabs-->
+                     <hr>
+                  </div>
+                  <!--/col-->
+                  <div class="col-md-6">
+                     <hr>
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <h4>About you</h4>
+                        </div>
+                        <div class="panel-body">
+                           <h4> Name </h4>
+                           <p> user_name 
+                           <p>
+                           <h4> Country </h4>
+                           <p> country </p>
+                           <h4> Signing year </h4>
+                           <p> 2010</p>
+                        </div>
+                     </div>
+                     <div class="table-responsive">
+                        <table class="table table-striped">
+                           <thead>
+                              <tr>
+                                 <th>Auction</th>
+                                 <th>Participants</th>
+                                 <th>State</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>1. iphone</td>
+                                 <td>20</td>
+                                 <td>sold</td>
+                              </tr>
+                              <tr>
+                                 <td>2. gun</td>
+                                 <td>56</td>
+                                 <td>sold</td>
+                              </tr>
+                              <tr>
+                                 <td>3. poop</td>
+                                 <td>25</td>
+                                 <td>not sold</td>
+                              </tr>
+                              <tr>
+                                 <td>..</td>
+                                 <td>..</td>
+                                 <td>..</td>
+                              </tr>
+                              <tr>
+                                 <td>..</td>
+                                 <td>..</td>
+                                 <td>..</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+                  <!--/col-span-6-->
+               </div>
+               <!--/row-->
+            </div>
+            <!--/col-span-9-->
+         </div>
+      </div>
+      <!-- /Main -->
+      <!-- /.modal -->
+      <!-- script references -->
+      <script src="js/scripts.js"></script> 
+      <!-- jQuery -->
+      <script src="js/jquery.js"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="js/bootstrap.min.js"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+      <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
+   </body>
 </html>
