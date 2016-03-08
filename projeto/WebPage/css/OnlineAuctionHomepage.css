@@ -48,23 +48,23 @@ body {
     padding: 9px;
     color: #333;
 }
-#price_tag h4{
+.price_tag h4{
 	font-size:35px;
 	font-family:"Arial Black", Gadget, sans-serif;
 	border-radius:5px;
 	background-color:yellow;
 }
-#price_tag p{
+.price_tag p{
 	color:red;
 	font-family:"Arial Black", Gadget, sans-serif;
 	border-radius:5px;
 }
 
-#price_tag{
+.price_tag{
 	//border: 2px solid;
 }
 
-#action_buttons{
+.text-center .form-inline{
 	padding-bottom:5px;
 }
 
