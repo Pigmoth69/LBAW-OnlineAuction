@@ -9,8 +9,10 @@
       <title>Online Auction- Where business happens!</title>
       <!-- Bootstrap Core CSS -->
       <link href="css/bootstrap.min.css" rel="stylesheet">
+      <!-- Font Awesome CSS -->
+      <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
       <!-- Custom CSS -->
-      <link href="css/OnlineAuctionUserPage.css" rel="stylesheet">
+      <link href="css/OnlineAuctionFAQ.css" rel="stylesheet">
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
       <link rel="icon" href="images/bidme.png"/>
@@ -146,151 +148,126 @@
          </div>
          <!-- /.container -->
       </nav>
-      <!-- Main -->
-      <div class="container">
-         <div class="row">
-            <div class="col-md-3">
-               <hr>
-               <ul class="nav nav-stacked">
-               <a href="#"><strong><i class="glyphicon glyphicon-list"></i> Options </strong></a>
-               <ul class="nav nav-stacked collapse in" id="userMenu">
-                  <!-- <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li> -->
-                  <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
-                  <!-- <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Shoutbox</a></li> -->
-                  <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
-                  <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
-                  <li><a href="#"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
-                  <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
-               </ul>
-               </ul>
-            </div>
-            <!-- /col-3 -->
-            <div class="col-sm-9">
-               <div class="row">
-                  <!-- center left-->
-                  <div class="col-md-6">
-                     <hr>
-                     <div class="btn-group btn-group-justified">
-                        <a href="#" class="btn btn-primary col-sm-3">
-                        <i class="glyphicon glyphicon-plus"></i>
-                        <br> New auction
-                        </a>
-                        <a href="#" class="btn btn-primary col-sm-3">
-                        <i class="glyphicon glyphicon-cog"></i>
-                        <br> Edit profile
-                        </a>
-                        <a href="#" class="btn btn-primary col-sm-3">
-                        <i class="glyphicon glyphicon-question-sign"></i>
-                        <br> Help
-                        </a>
-                     </div>
-                     <!-- <div class="well">Inbox Messages <span class="badge pull-right">3</span></div> -->
-                     <hr>
-                     <div class="panel-heading">
-                        <div class="panel-title">
-                           <h4>Featured auctions</h4>
-                        </div>
-                     </div>
-                     <div class="panel-body">
-                        <div class="col-xs-4 text-center"><img src="http://thumbs.buscape.com.br/celular-e-smartphone/smartphone-apple-iphone-5s-16gb-desbloqueado_200x200-PU85fdd_1.jpg" class="img-circle img-responsive" alt="Error">
-                        <label> iphone </label>
-                        </div>
-                        
-                        <div class="col-xs-4 text-center"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSQvtC5fy47I3QvTGmTCf_Ihhpi2mAYw6ZwOfZylFrfc4nu-vxr" class="img-circle img-responsive" alt="Error">
-
-                        <label> ps3 slim </label> </div>
-                        <div class="col-xs-4 text-center"><img src="http://i57.tinypic.com/35i6n3o.png" class="img-circle img-responsive" alt="Error"> 
-                        <label> pineapple </label> </div>
-                     </div>
-                     <!--/tabs-->
-                     <hr>
-                  </div>
-                  <!--/col-->
-                  <div class="col-md-6">
-                     <hr>
-                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                           <h4>About you</h4>
-                        </div>
-                        <div class="panel-body">
-                           <h4> Name </h4>
-                           <p> user_name 
-                           <p>
-                           <h4> Country </h4>
-                           <p> country </p>
-                           <h4> Signing year </h4>
-                           <p> 2010</p>
-                        </div>
-                     </div>
-                     <div class="table-responsive">
-                        <table class="table table-striped">
-                           <thead>
-                              <tr>
-                                 <th>Auction</th>
-                                 <th>Participants</th>
-                                 <th>State</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              <tr>
-                                 <td>1. iphone</td>
-                                 <td>70</td>
-                                 <td>sold</td>
-                              </tr>
-                              <tr>
-                                 <td>2. ps3 slim</td>
-                                 <td>56</td>
-                                 <td>sold</td>
-                              </tr>
-                              <tr>
-                                 <td>3. pineapple </td>
-                                 <td>4</td>
-                                 <td>not sold</td>
-                              </tr>
-                              <tr>
-                                 <td>..</td>
-                                 <td>..</td>
-                                 <td>..</td>
-                              </tr>
-                              <tr>
-                                 <td>..</td>
-                                 <td>..</td>
-                                 <td>..</td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-                  <!--/col-span-6-->
-               </div>
-               <!--/row-->
-            </div>
-            <!--/col-span-9-->
-         </div>
-      </div>
       
-      <div class="container">
-         <hr>
-         <!-- Footer -->
-         <footer>
-            <div class="row">
-               <div class="col-lg-12">
-                  <p>Copyright &copy; BidMe-OnlineAuction Limited &reg; </p>
-               </div>
+    <div class="container">
+        <div class="panel-group" id="accordion">
+            <div class="faqHeader">Questões Gerais</div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Login no site</a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Apenas utilizadores autenticados podem criar ou licitar em leilões.
+                    </div>
+                </div>
             </div>
-         </footer>
-      </div>
-      <!-- /Main -->
-      <!-- /.modal -->
-      <!-- script references -->
-      <script src="js/scripts.js"></script> 
-      <!-- jQuery -->
-      <script src="js/jquery.js"></script>
-      <!-- Bootstrap Core JavaScript -->
-      <script src="js/bootstrap.min.js"></script>
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-      <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
-   </body>
+
+            <div class="faqHeader">Vendedores</div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Editar Leilões</a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Um vendedor só pode editar o seu leilão até à primeira licitação. Depois disso só um moderador é que pode editar o leilão a pedido do vendedor.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">Cancelar Leilões</a>
+                    </h4>
+                </div>
+                <div id="collapseSeven" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Um vendedor não pode cancelar um leilão após o término do mesmo.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faqHeader">Licitadores</div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Licitação</a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        O licitador com a licitação de valor mais elevado num determinado leilão é considerado o vencedor do leilão.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faqHeader">Leilões</div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Licitação Fora do Tempo</a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Não são aceites licitações após o leilão terminar.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Leilão Terminado</a>
+                    </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        O leilão termina quando o tempo de duração do leilão é ultrapassado.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">Licitação final</a>
+                    </h4>
+                </div>
+                <div id="collapseSix" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Se nos últimos 30 segundos houver uma licitação superior à anterior, estender o prazo durante mais 1 minuto gerando assim uma nova ronda de licitações.
+                        Só quem tenha licitado na ronda anterior pode voltar a licitar.
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="container">
+            <hr>
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; BidMe-OnlineAuction Limited &reg; </p>
+                </div>
+                </div>
+            </footer>
+        </div>
+        <!-- /.container -->
+        <!-- Scripts -->
+        <script src="js/jquery_script.js"></script>
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+        <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
+    </body>
 </html>
