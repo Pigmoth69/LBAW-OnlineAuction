@@ -38,7 +38,9 @@
          function startTimer(duration, display) {
          var timer = duration, minutes, seconds;
          setInterval(function () {
-            if( i<=100){
+        if( i<=100){
+            if(i >= 90 && i <=94)
+                $("#AlertStyle").removeClass("alert alert-success").addClass("alert alert-warning");
          minutes = parseInt(timer / 60, 10)
          seconds = parseInt(timer % 60, 10);
          
@@ -52,8 +54,8 @@
          }
      }else if(i>100 && i<=104){
         i = 105; //codigo todo trolha mas depois vai ser mudado! ;)
-        $("#AlertStyle").removeClass("alert alert-success").addClass("alert alert-danger");
-        $("#AlertStyle p").text("Auction closed!");
+        $("#AlertStyle").removeClass("alert alert-warning").addClass("alert alert-danger");
+        $("#AlertStyle").text("Auction closed!");
         $("#AlertStyle#timer").text("");
 
      }
@@ -228,7 +230,7 @@
                      <p class="glyphicon glyphicon-earphone"> 919856475</p>
                   </a>
                   <a href="#" class="list-group-item">
-                     <p class="text-center">Total sales: 10</p>
+                     <p>Total sales: 10</p>
                   </a>
                </div>
                <!--<div class="list-group">
@@ -281,24 +283,9 @@
                   </div>
                   <div class="caption-full">
                      <!-- <h4 class="pull-
-                        right">92.75€</h4> -->                      
-                     <p>The iPhone 6S and iPhone 6S
-                        Plus (stylized as iPhone 6s and iPhone 6s Plus) are smartphones designed by
-                        Apple Inc. The devices are part of the iPhone series and were announced on
-                        September 9, 2015, at the Bill Graham Civic Auditorium in San Francisco by
-                        Apple Inc. CEO Tim Cook. The iPhone 6S and iPhone 6S Plus jointly serve as
-                        successors to the iPhone 6 and iPhone 6 Plus of 2014.
-                        The iPhone 6S and iPhone 6S Plus are the performance versions over their
-                        respective predecessors, featuring improved hardware specifications, including
-                        3D Touch, a force-sensitive touchscreen; upgraded rear-facing and front-facing
-                        cameras; a faster processor; a new chassis made of a stronger 7000 series
-                        aluminium alloy;second-generation fingerprint recognition Touch ID; improved
-                        LTE and Wi-Fi connectivity; and a new rose gold finish in addition to the
-                        space gray, silver, and gold finishes found on the previous models, while
-                        maintaining an identical design. The devices ship with iOS 9 preinstalled.
-                        As of September 28, 2015, 13 million iPhone 6S and 6S Plus models have been
-                        sold, setting a new first-weekend sales record, up from the 10 million iPhone
-                        6 and 6 Plus units sold the previous year.                      
+                        right">92.75€</h4> --> 
+                    <strong>Item description:</strong><br>                  
+                     <p>The iPhone 6S and iPhone 6S Plus (stylized as iPhone 6s and iPhone 6s Plus) are smartphones designed by Apple Inc. The devices are part of the iPhone series and were announced on September 9, 2015, at the Bill Graham Civic Auditorium in San Francisco by Apple Inc. CEO Tim Cook. The iPhone 6S and iPhone 6S Plus jointly serve as successors to the iPhone 6 and iPhone 6 Plus of 2014. The iPhone 6S and iPhone 6S Plus are the performance versions over their respective predecessors, featuring improved hardware specifications, including 3D Touch, a force-sensitive touchscreen; upgraded rear-facing and front-facing cameras; a faster processor; a new chassis made of a stronger 7000 series aluminium alloy;second-generation fingerprint recognition Touch ID; improved LTE and Wi-Fi connectivity; and a new rose gold finish in addition to the space gray, silver, and gold finishes found on the previous models, while maintaining an identical design. The devices ship with iOS 9 preinstalled. As of September 28, 2015, 13 million iPhone 6S and 6S Plus models have been sold, setting a new first-weekend sales record, up from the 10 million iPhone 6 and 6 Plus units sold the previous year.                      
                      </p>
                   </div>
                </div>
@@ -314,8 +301,13 @@
                            <p id="ProgressStatus">0</p><!-- Auction closes in <span id="time">00:30</span> minutes!-->
                      </div>
                   </div>
+                  <div class="text-center" id="CurrentBid">
+                    <strong>Current bid: 98.75€</strong>
+                  </div>
                   <div class="text-center">
                     <form class="form-inline">
+                    <div class="pull-left">
+                    </div>
                         <div class="form-group">
                             <label class="sr-only" for="AmountInput">Amount</label>
                             <div class="input-group">
@@ -326,51 +318,6 @@
                         <button type="submit" class="btn btn-primary">Make Bid!</button>
                     </form>
                  </div>
-
-               <!--<div class="well">
-                  <div class="text-right">
-                     <a class="btn btn-success">Leave a Review</a>
-                  </div>
-                  <hr>
-                  <div class="row">
-                     <div class="col-md-12">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        Anonymous
-                        <span class="pull-right">10 days ago</span>
-                        <p>This product was great in terms of quality. I would definitely buy another!</p>
-                     </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                     <div class="col-md-12">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        Anonymous
-                        <span class="pull-right">12 days ago</span>
-                        <p>I've alredy ordered another one!</p>
-                     </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                     <div class="col-md-12">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        Anonymous
-                        <span class="pull-right">15 days ago</span>
-                        <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                     </div>
-                  </div>
-                  </div>-->
             </div>
          </div>
       </div>
