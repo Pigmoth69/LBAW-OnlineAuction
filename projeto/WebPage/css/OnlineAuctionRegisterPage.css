@@ -1,5 +1,7 @@
 body{
     background-color: #fff;
+    width: 100%;
+    min-height: 100;
 }
 .centered{
 
@@ -52,4 +54,8 @@ body{
 .btn-tw:hover{
     color: #fff;
     background-color:#59b5fa;
+}
+
+#sign_title{
+    text-align: center;
 }
