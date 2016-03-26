@@ -39,8 +39,9 @@
          var timer = duration, minutes, seconds;
          setInterval(function () {
         if( i<=100){
-            if(i >= 90 && i <=94)
-                $("#AlertStyle").removeClass("alert alert-success").addClass("alert alert-warning");
+            if(i >= 90 && i <=94){
+                $("#AlertStyle").removeClass("panel panel-success").addClass("panel panel-warning");
+				$(".panel-body").css('background-color','#fdfaee');}
          minutes = parseInt(timer / 60, 10)
          seconds = parseInt(timer % 60, 10);
          
@@ -54,10 +55,10 @@
          }
      }else if(i>100 && i<=104){
         i = 105; //codigo todo trolha mas depois vai ser mudado! ;)
-        $("#AlertStyle").removeClass("alert alert-warning").addClass("alert alert-danger");
-        $("#AlertStyle").text("Auction closed!");
-        $("#AlertStyle#timer").text("");
-
+        $("#AlertStyle").removeClass("panel panel-warning").addClass("panel panel-danger");
+        $(".panel-heading").text("Auction closed!");
+		$(".panel-body").css('background-color','#f7ebeb');
+		$("#bidAction").css('display','none');
      }
          }, 1000);
          }
@@ -287,38 +288,49 @@
                     <strong>Item description:</strong><br>                  
                      <p>The iPhone 6S and iPhone 6S Plus (stylized as iPhone 6s and iPhone 6s Plus) are smartphones designed by Apple Inc. The devices are part of the iPhone series and were announced on September 9, 2015, at the Bill Graham Civic Auditorium in San Francisco by Apple Inc. CEO Tim Cook. The iPhone 6S and iPhone 6S Plus jointly serve as successors to the iPhone 6 and iPhone 6 Plus of 2014. The iPhone 6S and iPhone 6S Plus are the performance versions over their respective predecessors, featuring improved hardware specifications, including 3D Touch, a force-sensitive touchscreen; upgraded rear-facing and front-facing cameras; a faster processor; a new chassis made of a stronger 7000 series aluminium alloy;second-generation fingerprint recognition Touch ID; improved LTE and Wi-Fi connectivity; and a new rose gold finish in addition to the space gray, silver, and gold finishes found on the previous models, while maintaining an identical design. The devices ship with iOS 9 preinstalled. As of September 28, 2015, 13 million iPhone 6S and 6S Plus models have been sold, setting a new first-weekend sales record, up from the 10 million iPhone 6 and 6 Plus units sold the previous year.                      
                      </p>
-                  </div>
-               </div>
-               <!-- Código para fazer as bids-->
-                  <!-- <p> Auction closes in <span id="time">00:30</span> minutes!</p> -->
-                  <div class="alert alert-success" id="AlertStyle">
-                  <div class="inline-form">
-                    <strong>Alert! </strong>Auction closes in <span id="time">00:50</span> minutes!
-                    </div>
-                    </div>
-                  <div class="progress">
-                     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"style="width:0%">
-                           <p id="ProgressStatus">0</p><!-- Auction closes in <span id="time">00:30</span> minutes!-->
-                     </div>
-                  </div>
-                  <div class="text-center" id="CurrentBid">
-                    <strong>Current bid: 98.75€</strong>
-                  </div>
-                  <div class="text-center">
+                  </div> 
+            </div>
+
+			<div class="panel-group">
+					<div class="panel panel-success " id="AlertStyle">
+					<div class="panel-heading">
+						<div class="inline-form">
+							<strong>Alert! </strong>Auction closes in <span id="time">00:50</span> minutes!
+						</div>
+					</div>
+					<div class="panel-body">
+					<div class="form-group">
+						<div class="progress">
+							<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"style="width:0%">
+								<p id="ProgressStatus">0</p><!-- Auction closes in <span id="time">00:30</span> minutes!-->
+							</div>
+						</div>
+                            <!-- Código para fazer as bids-->
+                  <div class="text-center" id="bidAction">
                     <form class="form-inline">
                     <div class="pull-left">
                     </div>
                         <div class="form-group">
                             <label class="sr-only" for="AmountInput">Amount</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">€</div>
-                                <input type="text" class="form-control" id="AmountInput" placeholder="Amount e.g 2.56">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="sizing-addon1">Current bid: 98.75€</span>
+                                <input type="text" class="form-control" id="AmountInput" aria-describedby="sizing-addon1" placeholder="Amount e.g 2.56">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Make Bid!</button>
+                        <button type="submit" class="btn btn-primary btn-lg">Make Bid!</button>
                     </form>
                  </div>
-            </div>
+
+							
+							
+							
+                        </div>
+					</div>
+				</div>
+				  
+				  
+				 
+               </div>
          </div>
       </div>
       <!-- /.container -->

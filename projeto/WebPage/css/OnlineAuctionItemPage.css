@@ -98,16 +98,18 @@ footer {
 .list-group-item a+a{
     font-size: 20px;
 }
-/*#d17581*/
 
-#ProgressStatus{
-    color:white;
-    font-family: "Arial Black", Gadget, sans-serif;
+.progress{
+	background-color:#e5fff2;
+}
+.panel-group{
+	border-radius:3%;
 }
 
-#CurrentBid{
-    font-size: 30px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    background-color:yellow ;
+.panel-body{
+	background-color:#ebf6e7;
+}
+#ProgressStatus{
+    color:#white;
+    font-family: "Arial Black", Gadget, sans-serif;
 }
