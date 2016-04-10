@@ -11,7 +11,7 @@ CREATE TYPE state_auction AS ENUM (
 
 CREATE TABLE "Pais" (
     id_pais SERIAL,
-    nome_pais CHARACTER(256) NOT NULL, UNIQUE  
+    nome_pais CHARACTER(256) NOT NULL  
 );
 
 CREATE TABLE "Utilizador" (
@@ -21,7 +21,7 @@ CREATE TABLE "Utilizador" (
     genero gender DEFAULT 'masculino'::gender,
     imagem_utilizador CHARACTER(256) DEFAULT "img\default_user.png",
     datanasc DATE NOT NULL,
-    e-mail CHARACTER(256) NOT NULL, UNIQUE,
+    e-mail CHARACTER(256) NOT NULL,
     password CHARACTER(256) NOT NULL,
     classificacao NUMERIC DEFAULT 0,
     banido BOOLEAN,
@@ -159,7 +159,13 @@ ALTER TABLE ONLY "Pagamento"
     
 ALTER TABLE ONLY "Pais"
     ADD CONSTRAINT "pais_pkey" PRIMARY KEY (id_pais)
-    
+
+CREATE UNIQUE INDEX "Index_e_mail" ON "Utilizador" USING btree (e_mail)
+
+CREATE UNIQUE INDEX "Index_pais" ON "Pais" USING btree (nome_pais)
+
+CREATE UNIQUE INDEX "Index_categoria" ON "Categoria" USING btree (descricao)
+
 ALTER TABLE ONLY "Utilizador"
     ADD CONSTRAINT "utilizador_fkey" FOREIGN KEY (id_pais) REFERENCES "Pais"(id_pais)
     
