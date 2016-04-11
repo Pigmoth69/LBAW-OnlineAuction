@@ -1,9 +1,4 @@
 -- Queries 
-
-
-
-
-
  
 --Licitacao Maior a partir do id leilao -->CHECKED
  

@@ -109,7 +109,7 @@ CREATE TABLE "Pagamento" (
     morada_envio CHARACTER(256) NOT NULL,
     id_leilao INTEGER,
     id_utilizador INTEGER,
-    CONSTRAINT "maior_licitacao" CHECK (quantia = quantia = (SELECT valor_actual FROM Licitacao WHERE Pagamento.id_leilao = Licitacao.id_leilao AND Pagamento.id_utilizador = Licitacao.id_utilizador AND Licitacao.vencedor = true))
+    CONSTRAINT "maior_licitacao" CHECK (quantia = (SELECT valor_actual FROM Licitacao WHERE Pagamento.id_leilao = Licitacao.id_leilao AND Pagamento.id_utilizador = Licitacao.id_utilizador AND Licitacao.vencedor = true))
 );
 
 ALTER TABLE ONLY "Pais"
