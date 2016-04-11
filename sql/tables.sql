@@ -9,6 +9,19 @@ CREATE TYPE state_auction AS ENUM (
     'fechado'  
 );
 
+DROP TABLE IF EXISTS "Pais";
+DROP TABLE IF EXISTS "Categoria";
+DROP TABLE IF EXISTS "EstadoLeilao";
+DROP TABLE IF EXISTS "UtilizadorAdministrador";
+DROP TABLE IF EXISTS "UtilizadorModerador";
+DROP TABLE IF EXISTS "Utilizador";
+DROP TABLE IF EXISTS "HistoricoBanidos";
+DROP TABLE IF EXISTS "Mensagem";
+DROP TABLE IF EXISTS "ClassificacaoLeilao";
+DROP TABLE IF EXISTS "Licitacao";
+DROP TABLE IF EXISTS "Pagamento";
+DROP TABLE IF EXISTS "Leilao";
+
 CREATE TABLE "Pais" (
     id_pais SERIAL,
     nome_pais CHARACTER(256) NOT NULL  

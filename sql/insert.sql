@@ -1,16 +1,3 @@
-DROP TABLE IF EXISTS "Pais";
-DROP TABLE IF EXISTS "Categoria";
-DROP TABLE IF EXISTS "EstadoLeilao";
-DROP TABLE IF EXISTS "Utilizador";
-DROP TABLE IF EXISTS "HistoricoBanidos";
-DROP TABLE IF EXISTS "Mensagem";
-DROP TABLE IF EXISTS "ClassificacaoLeilao";
-DROP TABLE IF EXISTS "Licitacao";
-DROP TABLE IF EXISTS "Pagamento";
-
-
-DROP TABLE IF EXISTS "Leilao";
-
 INSERT INTO "Pais" (id_pais, nome_pais) VALUES (0, "Portugal");
 INSERT INTO "Pais" (id_pais, nome_pais) VALUES(1, "Senegal");
 INSERT INTO "Pais" (id_pais, nome_pais) VALUES(2, "Franca");
