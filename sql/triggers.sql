@@ -93,6 +93,32 @@ CREATE FUNCTION auction_state_update() RETURNS TRIGGER
       END;
 $auction_state_update$;
 
+CREATE FUNCTION auction_check_privilege_admin() RETURNS TRIGGER
+        LANGUAGE plpgsql
+        AS $auction_check_privilege_admin$
+      BEGIN
+	  IF NEW.id_vendedor = SELECT id_utilizador FROM UtilizadorAdministrador
+	  THEN
+	     RETURN FALSE;
+	  END IF;
+ 
+	  RETURN NEW;
+      END;
+$auction_check_privilege_admin$;
+
+CREATE FUNCTION auction_check_privilege_moderator() RETURNS TRIGGER
+        LANGUAGE plpgsql
+        AS $auction_check_privilege_moderator$
+      BEGIN
+	  IF NEW.id_vendedor = SELECT id_utilizador FROM UtilizadorModerador
+	  THEN
+	     RETURN FALSE;
+	  END IF;
+ 
+	  RETURN NEW;
+      END;
+$auction_check_privilege_moderator$;
+
  
 CREATE TRIGGER can_cancel_auction BEFORE INSERT ON Leilao FOR EACH ROW EXECUTE PROCEDURE can_cancel_auction();
 
@@ -107,3 +133,7 @@ CREATE TRIGGER auction_bid_verify BEFORE INSERT ON Licitacao FOR EACH ROW EXECUT
 CREATE TRIGGER auction_classification_update AFTER INSERT ON ClassificacaoLeilao FOR EACH ROW EXECUTE PROCEDURE auction_classification_update();
 
 CREATE TRIGGER auction_state_update AFTER INSERT ON Leilao FOR EACH ROW EXECUTE PROCEDURE auction_state_update(); /*NOT DONE... WITH ERRORS*/
+
+CREATE TRIGGER auction_check_privilege_admin BEFORE INSERT ON "Leilao" FOR EACH ROW EXECUTE PROCEDURE auction_check_privilege_admin();
+
+CREATE TRIGGER auction_check_privilege_moderator BEFORE INSERT ON "Leilao" FOR EACH ROW EXECUTE PROCEDURE auction_check_privilege_moderator();
