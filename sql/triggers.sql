@@ -40,9 +40,10 @@ CREATE FUNCTION auction_bid_over_max() RETURNS TRIGGER
 	  IF NEW.valor_licitacao > (SELECT MAX(valor_licitacao) FROM Licitacao WHERE Licitacao.id_leilao = Leilao.id_leilao)
 	  THEN 
 		INSERT INTO Licitacao VALUES(NEW.id_licitacao,Leilao.id_leilao,New.id_utilizador,now()::DATE,New.valor_licitacao,FALSE);
-	  ELSE -- ERRO DE ";"
+	  ELSE
 	  	RETURN FALSE;
-       END;
+       END IF;
+      END;
 $auction_bid_over_max$;
 
 CREATE FUNCTION auction_user_ban() RETURNS TRIGGER
@@ -74,10 +75,11 @@ CREATE FUNCTION auction_bid_verify() RETURNS TRIGGER
       END;
 $auction_bid_verify$;
 
+/* ERROS NESTES TRIGGERS
 CREATE FUNCTION auction_classification_update() RETURNS TRIGGER
         LANGUAGE plpgsql
         AS $auction_classification_update$
-      BEGIN
+      BEGIN -- erro no SELECT
       	UPDATE Utilizador SET classificacao = AVG(SELECT valor_classificacao FROM ClassificacaoLeilao WHERE Utilizador.id_utilizador = (SELECT id_vendedor FROM Leilao WHERE ClassificacaoLeilao.id_leilao = Leilao.id_leilao ) );
 	  RETURN NULL;
       END;
@@ -92,8 +94,9 @@ CREATE FUNCTION auction_state_update() RETURNS TRIGGER
 	  RETURN NULL;
       END;
 $auction_state_update$;
+*/
  
-CREATE TRIGGER can_cancel_auction BEFORE INSERT ON "LeilaoCancelado" FOR EACH ROW EXECUTE PROCEDURE can_cancel_auction();
+CREATE TRIGGER can_cancel_auction BEFORE INSERT ON "LeilaoCancelado" FOR EACH ROW EXECUTE PROCEDURE can_cancel_auction(); -- AQUI Não é leilão cancelado
  
 CREATE TRIGGER auction_bid_over_base BEFORE INSERT ON "LicitacaoLeilao" FOR EACH ROW EXECUTE PROCEDURE auction_bid_over_base();
  
@@ -105,4 +108,4 @@ CREATE TRIGGER auction_bid_verify BEFORE INSERT ON "LicitacaoLeilao" FOR EACH RO
  
 CREATE TRIGGER auction_classification_update AFTER INSERT ON "ClassificacaoLeilao" FOR EACH ROW EXECUTE PROCEDURE auction_classification_update();
 
-CREATE TRIGGER auction_state_update AFTER INSERT ON "Leilao" FOR EACH ROW EXECUTE PROCEDURE auction_state_update(); /*NOT DONE... WITH ERRORS*/
+/* CREATE TRIGGER auction_state_update AFTER INSERT ON "Leilao" FOR EACH ROW EXECUTE PROCEDURE auction_state_update(); NOT DONE... WITH ERRORS*/
