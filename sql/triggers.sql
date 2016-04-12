@@ -94,15 +94,15 @@ CREATE FUNCTION auction_state_update() RETURNS TRIGGER
 $auction_state_update$;
 
  
-CREATE TRIGGER can_cancel_auction BEFORE INSERT ON Leilao FOR EACH ROW EXECUTE PROCEDURE can_cancel_auction(); -- AQUI Não é leilão cancelado
+CREATE TRIGGER can_cancel_auction BEFORE INSERT ON Leilao FOR EACH ROW EXECUTE PROCEDURE can_cancel_auction();
+
+CREATE TRIGGER auction_bid_over_base BEFORE INSERT ON Licitacao FOR EACH ROW EXECUTE PROCEDURE auction_bid_over_base();
  
-CREATE TRIGGER auction_bid_over_base BEFORE INSERT ON LicitacaoLeilao FOR EACH ROW EXECUTE PROCEDURE auction_bid_over_base();
- 
-CREATE TRIGGER auction_bid_over_max AFTER INSERT ON LicitacaoLeilao FOR EACH ROW EXECUTE PROCEDURE auction_bid_over_max();
+CREATE TRIGGER auction_bid_over_max AFTER INSERT ON Licitacao FOR EACH ROW EXECUTE PROCEDURE auction_bid_over_max();
  
 CREATE TRIGGER auction_user_ban AFTER INSERT ON HistoricoBanidos FOR EACH ROW EXECUTE PROCEDURE auction_user_ban();
 
-CREATE TRIGGER auction_bid_verify BEFORE INSERT ON LicitacaoLeilao FOR EACH ROW EXECUTE PROCEDURE auction_bid_verify();
+CREATE TRIGGER auction_bid_verify BEFORE INSERT ON Licitacao FOR EACH ROW EXECUTE PROCEDURE auction_bid_verify();
  
 CREATE TRIGGER auction_classification_update AFTER INSERT ON ClassificacaoLeilao FOR EACH ROW EXECUTE PROCEDURE auction_classification_update();
 
