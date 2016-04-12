@@ -10,7 +10,6 @@ CREATE FUNCTION can_cancel_auction() RETURNS TRIGGER
     LANGUAGE plpgsql
     AS $can_cancel_auction$
 	BEGIN
- 
 		IF NEW.data_fim - now()::DATE < 1
 		THEN 
 			RETURN FALSE;
@@ -75,7 +74,6 @@ CREATE FUNCTION auction_bid_verify() RETURNS TRIGGER
       END;
 $auction_bid_verify$;
 
-/* ERROS NESTES TRIGGERS
 CREATE FUNCTION auction_classification_update() RETURNS TRIGGER
         LANGUAGE plpgsql
         AS $auction_classification_update$
@@ -94,18 +92,18 @@ CREATE FUNCTION auction_state_update() RETURNS TRIGGER
 	  RETURN NULL;
       END;
 $auction_state_update$;
-*/
- 
-CREATE TRIGGER can_cancel_auction BEFORE INSERT ON "LeilaoCancelado" FOR EACH ROW EXECUTE PROCEDURE can_cancel_auction(); -- AQUI Não é leilão cancelado
- 
-CREATE TRIGGER auction_bid_over_base BEFORE INSERT ON "LicitacaoLeilao" FOR EACH ROW EXECUTE PROCEDURE auction_bid_over_base();
- 
-CREATE TRIGGER auction_bid_over_max AFTER INSERT ON "LicitacaoLeilao" FOR EACH ROW EXECUTE PROCEDURE auction_bid_over_max();
- 
-CREATE TRIGGER auction_user_ban AFTER INSERT ON "HistoricoBanidos" FOR EACH ROW EXECUTE PROCEDURE auction_user_ban();
 
-CREATE TRIGGER auction_bid_verify BEFORE INSERT ON "LicitacaoLeilao" FOR EACH ROW EXECUTE PROCEDURE auction_bid_verify();
  
-CREATE TRIGGER auction_classification_update AFTER INSERT ON "ClassificacaoLeilao" FOR EACH ROW EXECUTE PROCEDURE auction_classification_update();
+CREATE TRIGGER can_cancel_auction BEFORE INSERT ON Leilao FOR EACH ROW EXECUTE PROCEDURE can_cancel_auction(); -- AQUI Não é leilão cancelado
+ 
+CREATE TRIGGER auction_bid_over_base BEFORE INSERT ON LicitacaoLeilao FOR EACH ROW EXECUTE PROCEDURE auction_bid_over_base();
+ 
+CREATE TRIGGER auction_bid_over_max AFTER INSERT ON LicitacaoLeilao FOR EACH ROW EXECUTE PROCEDURE auction_bid_over_max();
+ 
+CREATE TRIGGER auction_user_ban AFTER INSERT ON HistoricoBanidos FOR EACH ROW EXECUTE PROCEDURE auction_user_ban();
 
-/* CREATE TRIGGER auction_state_update AFTER INSERT ON "Leilao" FOR EACH ROW EXECUTE PROCEDURE auction_state_update(); NOT DONE... WITH ERRORS*/
+CREATE TRIGGER auction_bid_verify BEFORE INSERT ON LicitacaoLeilao FOR EACH ROW EXECUTE PROCEDURE auction_bid_verify();
+ 
+CREATE TRIGGER auction_classification_update AFTER INSERT ON ClassificacaoLeilao FOR EACH ROW EXECUTE PROCEDURE auction_classification_update();
+
+CREATE TRIGGER auction_state_update AFTER INSERT ON Leilao FOR EACH ROW EXECUTE PROCEDURE auction_state_update(); /*NOT DONE... WITH ERRORS*/
