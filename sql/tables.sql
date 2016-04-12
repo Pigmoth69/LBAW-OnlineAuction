@@ -92,7 +92,7 @@ CREATE TABLE Leilao (
 CREATE TABLE ClassificacaoLeilao (
     id_licitador INTEGER, 
     id_leilao INTEGER,
-    valor_classificao DECIMAL DEFAULT 0
+    valor_classificacao DECIMAL DEFAULT 0
 );
 
 CREATE TABLE Licitacao (

@@ -40,7 +40,7 @@ CREATE FUNCTION auction_bid_over_max() RETURNS TRIGGER
 	  IF NEW.valor_licitacao > (SELECT MAX(valor_licitacao) FROM Licitacao WHERE Licitacao.id_leilao = Leilao.id_leilao)
 	  THEN 
 		INSERT INTO Licitacao VALUES(NEW.id_licitacao,Leilao.id_leilao,New.id_utilizador,now()::DATE,New.valor_licitacao,FALSE);
-	  ELSE
+	  ELSE -- ERRO DE ";"
 	  	RETURN FALSE;
        END;
 $auction_bid_over_max$;
