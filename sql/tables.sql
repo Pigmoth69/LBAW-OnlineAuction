@@ -1,27 +1,20 @@
-﻿
-DROP TYPE gender CASCADE ;
-DROP TYPE state_auction CASCADE ;
-DROP TABLE IF EXISTS Pais;
-DROP TABLE IF EXISTS HistoricoBanidos;
-DROP TABLE IF EXISTS Mensagem;
-DROP TABLE IF EXISTS Pagamento;
-DROP TABLE IF EXISTS Licitacao;
+﻿DROP TYPE IF EXISTS gender CASCADE;
+DROP TYPE IF EXISTS state_auction CASCADE;
 
-DROP TABLE IF EXISTS Categoria;
-DROP TABLE IF EXISTS Utilizador;
+DROP TABLE IF EXISTS Pais CASCADE;
+DROP TABLE IF EXISTS HistoricoBanidos CASCADE;
+DROP TABLE IF EXISTS Mensagem CASCADE;
+DROP TABLE IF EXISTS Pagamento CASCADE;
+DROP TABLE IF EXISTS Licitacao CASCADE;
 
-DROP TABLE IF EXISTS ClassificacaoLeilao;
-DROP TABLE IF EXISTS EstadoLeilao;
-DROP TABLE IF EXISTS Leilao;
-DROP TABLE IF EXISTS UtilizadorAdministrador;
-DROP TABLE IF EXISTS UtilizadorModerador;
+DROP TABLE IF EXISTS Categoria CASCADE;
+DROP TABLE IF EXISTS Utilizador CASCADE;
 
-
-
-
-
-
-
+DROP TABLE IF EXISTS ClassificacaoLeilao CASCADE;
+DROP TABLE IF EXISTS EstadoLeilao CASCADE;
+DROP TABLE IF EXISTS Leilao CASCADE;
+DROP TABLE IF EXISTS UtilizadorAdministrador CASCADE;
+DROP TABLE IF EXISTS UtilizadorModerador CASCADE;
 
 CREATE TYPE gender AS ENUM (
     'masculino',
@@ -50,25 +43,23 @@ CREATE TABLE Utilizador (
     password CHARACTER(256) NOT NULL,
     classificacao NUMERIC DEFAULT 0,
     banido BOOLEAN,
-    id_pais INTEGER,
-    CONSTRAINT maior_18 CHECK (now()::DATE - datanasc > 18)
+    id_pais INTEGER
 );
 
 CREATE TABLE UtilizadorModerador (
-    id_utilizador INTEGER REFERENCES Utilizador(id_utilizador)
+    id_utilizador INTEGER
 );
 
 CREATE TABLE UtilizadorAdministrador (
-    id_utilizador INTEGER REFERENCES Utilizador(id_utilizador)
+    id_utilizador INTEGER
 );
 
 CREATE TABLE HistoricoBanidos (
-    id_utilizador INTEGER REFERENCES Utilizador(id_utilizador),
+    id_utilizador INTEGER,
     id_moderador INTEGER,
     data_banicao DATE NOT NULL DEFAULT (now()::DATE),
     data_fim DATE NOT NULL,
-    motivo CHARACTER(256) NOT NULL,
-    CONSTRAINT fim_maior_inicio_banidos CHECK (data_banicao < data_fim)
+    motivo CHARACTER(256) NOT NULL
 );
 
 CREATE TABLE Mensagem (
@@ -76,8 +67,7 @@ CREATE TABLE Mensagem (
     id_emissor INTEGER,
     id_recetor INTEGER,
     conteudo CHARACTER(256) NOT NULL,
-    data_mensagem DATE NOT NULL DEFAULT (now()::DATE),
-    CONSTRAINT emissor_nao_recetor CHECK (id_emissor <> id_recetor)
+    data_mensagem DATE NOT NULL DEFAULT (now()::DATE)
 );
 
 CREATE TABLE Categoria (
@@ -96,14 +86,12 @@ CREATE TABLE Leilao (
     id_vendedor INTEGER,
     id_estado_leilao INTEGER,
     id_categoria INTEGER,
-    id_moderador INTEGER,
-    CONSTRAINT fim_maior_inicio_leilao CHECK (data_inicio < data_fim),
-    CONSTRAINT id_vendedor_diferente_id_licitador CHECK (id_vendedor <> (SELECT id_licitador FROM Licitacao WHERE Licitacao.id_leilao = Leilao.id_leilao))
+    id_moderador INTEGER
 );
 
 CREATE TABLE ClassificacaoLeilao (
-    id_licitador INTEGER REFERENCES Utilizador(id_utilizador), 
-    id_leilao INTEGER REFERENCES Leilao(id_leilao),
+    id_licitador INTEGER, 
+    id_leilao INTEGER,
     valor_classificao DECIMAL DEFAULT 0
 );
 
@@ -113,9 +101,7 @@ CREATE TABLE Licitacao (
     id_utilizador INTEGER,
     data_licitacao DATE NOT NULL DEFAULT (now()::DATE),
     valor_licitacao DECIMAL NOT NULL,
-    vencedor BOOLEAN,
-    CONSTRAINT valor_maior_base CHECK (valor_licitacao > (SELECT valor_base FROM Leilao WHERE Licitacao.id_leilao = Leilao.id_leilao)),
-    CONSTRAINT valor_maior_atual CHECK (valor_licitacao > (SELECT valor_base FROM Leilao WHERE Licitacao.id_leilao = Leilao.id_leilao))
+    vencedor BOOLEAN
 );
 
 CREATE TABLE EstadoLeilao (
@@ -133,57 +119,70 @@ CREATE TABLE Pagamento (
     data_pagamento DATE NOT NULL DEFAULT (now()::DATE),
     morada_envio CHARACTER(256) NOT NULL,
     id_leilao INTEGER,
-    id_utilizador INTEGER,
-    CONSTRAINT maior_licitacao CHECK (quantia = (SELECT valor_actual FROM Licitacao WHERE Pagamento.id_leilao = Licitacao.id_leilao AND Pagamento.id_utilizador = Licitacao.id_utilizador AND Licitacao.vencedor = true))
+    id_utilizador INTEGER
 );
 
-ALTER TABLE ONLY Pais
+ALTER TABLE Pais
     ADD CONSTRAINT pais_pkey PRIMARY KEY (id_pais);
 
-ALTER TABLE ONLY Pais
+ALTER TABLE Pais
     ADD CONSTRAINT pais_unique UNIQUE(nome_pais);
-    
-ALTER TABLE ONLY Utilizador
+
+ALTER TABLE Utilizador
     ADD CONSTRAINT utilizador_pkey PRIMARY KEY (id_utilizador);
     
-ALTER TABLE ONLY Utilizador
+ALTER TABLE Utilizador
     ADD CONSTRAINT utilizador_unique UNIQUE (e_mail);
-   
-ALTER TABLE ONLY UtilizadorModerador
+    
+ALTER TABLE Leilao
+    ADD CONSTRAINT leilao_pkey PRIMARY KEY (id_leilao);
+
+-- references
+ALTER TABLE UtilizadorModerador
     ADD CONSTRAINT utilizador_moderador_pkey PRIMARY KEY (id_utilizador);
     
-ALTER TABLE ONLY UtilizadorAdministrador
+ALTER TABLE UtilizadorAdministrador
     ADD CONSTRAINT utilizador_administrador_pkey PRIMARY KEY (id_utilizador);
     
-ALTER TABLE ONLY HistoricoBanidos
-    ADD CONSTRAINT historico_banidos_pkey PRIMARY KEY (id_utilizador, data_banido);
+ALTER TABLE HistoricoBanidos
+    ADD CONSTRAINT historico_banidos_pkey PRIMARY KEY (id_utilizador, data_banicao);
     
-ALTER TABLE ONLY Mensagem
+ALTER TABLE ClassificacaoLeilao
+    ADD CONSTRAINT class_leilao PRIMARY KEY (id_licitador, id_leilao);
+
+ALTER TABLE UtilizadorModerador
+    ADD CONSTRAINT utilizador_moderador_pkey1 FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id_utilizador);
+    
+ALTER TABLE UtilizadorAdministrador
+    ADD CONSTRAINT utilizador_administrador_pkey1 FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id_utilizador);
+    
+ALTER TABLE HistoricoBanidos
+    ADD CONSTRAINT historico_banidos_pkey1 FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id_utilizador);
+    
+ALTER TABLE ClassificacaoLeilao
+    ADD CONSTRAINT class_leilao1 FOREIGN KEY (id_licitador) REFERENCES Utilizador(id_utilizador);
+    
+ALTER TABLE ClassificacaoLeilao
+    ADD CONSTRAINT class_leilao2 FOREIGN KEY (id_leilao) REFERENCES Leilao(id_leilao);
+    
+--references
+ALTER TABLE Mensagem
     ADD CONSTRAINT mensagem_pkey PRIMARY KEY (id_mensagem);
     
-ALTER TABLE ONLY Categoria
+ALTER TABLE Categoria
     ADD CONSTRAINT categoria_pkey PRIMARY KEY (id_categoria);
     
-ALTER TABLE ONLY Categoria
+ALTER TABLE Categoria
     ADD CONSTRAINT categoria_unique UNIQUE (descricao);
-    
-ALTER TABLE ONLY Leilao
-    ADD CONSTRAINT leilao_pkey PRIMARY KEY (id_leilao);
-    
-ALTER TABLE ONLY ClassificacaoLeilao
-    ADD CONSTRAINT classificacao_leilao_pkey PRIMARY KEY (id_licitador, id_leilao);
-    
-ALTER TABLE ONLY Licitacao
+   
+ALTER TABLE Licitacao
     ADD CONSTRAINT licitacao_pkey PRIMARY KEY (id_licitacao);
     
-ALTER TABLE ONLY EstadoLeilao
+ALTER TABLE EstadoLeilao
     ADD CONSTRAINT estado_leilao_pkey PRIMARY KEY (id_estado_leilao);
     
-ALTER TABLE ONLY Pagamento
+ALTER TABLE Pagamento
     ADD CONSTRAINT pagamento_pkey PRIMARY KEY (id_pagamento);
-    
-ALTER TABLE ONLY Pais
-    ADD CONSTRAINT pais_pkey PRIMARY KEY (id_pais);
 
 CREATE UNIQUE INDEX Index_e_mail ON Utilizador USING btree (e_mail);
 
@@ -191,38 +190,43 @@ CREATE UNIQUE INDEX Index_pais ON Pais USING btree (nome_pais);
 
 CREATE UNIQUE INDEX Index_categoria ON Categoria USING btree (descricao);
 
-ALTER TABLE ONLY Utilizador
+ALTER TABLE Utilizador
     ADD CONSTRAINT utilizador_fkey FOREIGN KEY (id_pais) REFERENCES Pais(id_pais);
     
-ALTER TABLE ONLY HistoricoBanidos
+ALTER TABLE HistoricoBanidos
     ADD CONSTRAINT historico_banidos_fkey FOREIGN KEY (id_moderador) REFERENCES UtilizadorModerador(id_utilizador);
     
-ALTER TABLE ONLY Mensagem
+ALTER TABLE Mensagem
     ADD CONSTRAINT mensagem_fkey1 FOREIGN KEY (id_emissor) REFERENCES Utilizador(id_utilizador);
     
-ALTER TABLE ONLY Mensagem
+ALTER TABLE Mensagem
     ADD CONSTRAINT mensagem_fkey2 FOREIGN KEY (id_recetor) REFERENCES Utilizador(id_utilizador);
     
-ALTER TABLE ONLY Leilao
+ALTER TABLE Leilao
     ADD CONSTRAINT leilao_fkey1 FOREIGN KEY (id_vendedor) REFERENCES Utilizador(id_utilizador);
     
-ALTER TABLE ONLY Leilao
+ALTER TABLE Leilao
     ADD CONSTRAINT leilao_fkey2 FOREIGN KEY (id_moderador) REFERENCES UtilizadorModerador(id_utilizador);
 
-ALTER TABLE ONLY Leilao
+ALTER TABLE Leilao
     ADD CONSTRAINT leilao_fkey3 FOREIGN KEY (id_estado_leilao) REFERENCES EstadoLeilao(id_estado_leilao);
     
-ALTER TABLE ONLY Leilao
+ALTER TABLE Leilao
     ADD CONSTRAINT leilao_fkey4 FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria);
     
-ALTER TABLE ONLY Licitacao
+ALTER TABLE Licitacao
     ADD CONSTRAINT licitacao_fkey1 FOREIGN KEY (id_leilao) REFERENCES Leilao(id_leilao);
     
-ALTER TABLE ONLY Licitacao
+ALTER TABLE Licitacao
     ADD CONSTRAINT licitacao_fkey2 FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id_utilizador);
    
-ALTER TABLE ONLY Pagamento
+ALTER TABLE Pagamento
     ADD CONSTRAINT pagamento_fkey1 FOREIGN KEY (id_leilao) REFERENCES Leilao(id_leilao);
     
-ALTER TABLE ONLY Pagamento
+ALTER TABLE Pagamento
     ADD CONSTRAINT pagamento_fkey2 FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id_utilizador);
+
+ALTER TABLE Utilizador ADD CONSTRAINT maior_18 CHECK (now()::DATE - datanasc > 18);
+ALTER TABLE HistoricoBanidos ADD CONSTRAINT fim_maior_inicio_banidos CHECK (data_banicao < data_fim);
+ALTER TABLE Mensagem ADD CONSTRAINT emissor_nao_recetor CHECK (id_emissor <> id_recetor);
+ALTER TABLE Leilao ADD CONSTRAINT fim_maior_inicio_leilao CHECK (data_inicio < data_fim);
