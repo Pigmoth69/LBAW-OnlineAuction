@@ -37,4 +37,4 @@ descricao LIKE "%iphone6 como novo%";
 -- pesquisar leiloes a partir de categoria --> CHECKED
 SELECT id_leilao FROM Leilao WHERE Leilao.nome_produto LIKE "%iphone6%" OR ProdutoLeilao.descricao LIKE "%iphone6 como novo%"
 		 Leilao.id_produto IN ( SELECT id_produto FROM Categoria WHERE ( Cetegoria.id_categoria IN ( SELECT id_categoria FROM Categoria WHERE Categoria.descricao LIKE "%telemoveis%") ) ) ;
-
+-- AQUI não existe id_produto no leilão tu tás todo CEGO
