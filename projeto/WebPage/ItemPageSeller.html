@@ -41,7 +41,7 @@
         if( i<=100){
             if(i >= 90 && i <=94){
                 $("#AlertStyle").removeClass("panel panel-success").addClass("panel panel-warning");
-				$(".panel-body").css('background-color','#fdfaee');}
+				$("#auctionStatus .panel-body").css('background-color','#fdfaee');}
          minutes = parseInt(timer / 60, 10)
          seconds = parseInt(timer % 60, 10);
          
@@ -57,7 +57,7 @@
         i = 105; //codigo todo trolha mas depois vai ser mudado! ;)
         $("#AlertStyle").removeClass("panel panel-warning").addClass("panel panel-danger");
         $(".panel-heading").text("Auction closed!");
-		$(".panel-body").css('background-color','#f7ebeb');
+		$("#auctionStatus .panel-body").css('background-color','#f7ebeb');
      }
          }, 1000);
          }
@@ -289,8 +289,7 @@
                      </p>
                   </div> 
             </div>
-
-			<div class="panel-group">
+			<div class="panel-group" id="auctionStatus">
 					<div class="panel panel-success " id="AlertStyle">
 					<div class="panel-heading">
 						<div class="inline-form">
@@ -308,8 +307,7 @@
 					</div>
 				</div>
                </div>
-
-<div class="container-fluid" id="auctionInfo">
+               <div class="container-fluid" id="auctionInfo">
     <div class="row">
         <div class="col-lg-5">
             <div  id="latestUsers">
@@ -380,9 +378,9 @@
                      <tr>
                         <th>Position</th>
                         <th>User</th>
-                        <th>Order Date</th>
-                        <th>Order Time</th>
-                        <th>Amount (EUR)</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>EUR</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -442,6 +440,20 @@
                         <td>-</td>
                         <td>-</td>
                      </tr>
+                     <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                     </tr>
+                     <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                     </tr>
                   </tbody>
                </table>
             </div>
@@ -454,6 +466,8 @@
         </div>
     </div>
 </div>
+
+
          </div>
       </div>
       <!-- /.container -->

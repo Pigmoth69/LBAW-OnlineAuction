@@ -106,7 +106,7 @@ footer {
 	border-radius:3%;
 }
 
-.panel-body{
+#AlertStyle .panel-body{
 	background-color:#ebf6e7;
 }
 #ProgressStatus{
@@ -114,9 +114,6 @@ footer {
     font-family: "Arial Black", Gadget, sans-serif;
 }
 
-#auctionInfo .panel-body{
+#auctionInfo{
     padding:0;
-    margin-left:0;
-    margin-right: 0;
-    background-color: #f5f5f5;
 }
