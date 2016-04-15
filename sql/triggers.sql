@@ -19,32 +19,24 @@ CREATE FUNCTION can_cancel_auction() RETURNS TRIGGER
 	END;
 $can_cancel_auction$;
  
-CREATE FUNCTION auction_bid_over_base() RETURNS TRIGGER
+CREATE FUNCTION auction_bid_over() RETURNS TRIGGER
     LANGUAGE plpgsql
     AS $auction_bid_over_base$
 	BEGIN
-		IF NEW.valor_licitacao < (SELECT valorbase FROM Leilao WHERE Leilao.id_leilao = NEW.id_leilao)
+		IF NEW.valor_licitacao < (SELECT valorbase FROM Leilao WHERE Leilao.id_leilao = NEW.id_leilao) 
 		THEN 
 			RETURN FALSE;
 		END IF;
- 
+		IF NEW.valor_licitacao > (SELECT MAX(valor_licitacao) FROM Licitacao WHERE Licitacao.id_leilao = Leilao.id_leilao)
+	    THEN 
+		    INSERT INTO Licitacao VALUES(NEW.id_licitacao,Leilao.id_leilao,New.id_utilizador,now()::DATE,New.valor_licitacao,FALSE);
+	    ELSE
+	  	    RETURN FALSE;
+        END IF;
 		RETURN NEW;
 	END;
-$auction_bid_over_base$;
+$auction_bid_over$;
  
-CREATE FUNCTION auction_bid_over_max() RETURNS TRIGGER
-          LANGUAGE plpgsql
-          AS $auction_bid_over_max$
-      BEGIN
-	  IF NEW.valor_licitacao > (SELECT MAX(valor_licitacao) FROM Licitacao WHERE Licitacao.id_leilao = Leilao.id_leilao)
-	  THEN 
-		INSERT INTO Licitacao VALUES(NEW.id_licitacao,Leilao.id_leilao,New.id_utilizador,now()::DATE,New.valor_licitacao,FALSE);
-	  ELSE
-	  	RETURN FALSE;
-       END IF;
-      END;
-$auction_bid_over_max$;
-
 CREATE FUNCTION auction_user_ban() RETURNS TRIGGER
           LANGUAGE plpgsql
           AS $auction_user_ban$
@@ -77,7 +69,7 @@ $auction_bid_verify$;
 CREATE FUNCTION auction_classification_update() RETURNS TRIGGER
         LANGUAGE plpgsql
         AS $auction_classification_update$
-      BEGIN -- erro no SELECT
+      BEGIN
       	UPDATE Utilizador SET classificacao = AVG(SELECT valor_classificacao FROM ClassificacaoLeilao WHERE Utilizador.id_utilizador = (SELECT id_vendedor FROM Leilao WHERE ClassificacaoLeilao.id_leilao = Leilao.id_leilao ) );
 	  RETURN NULL;
       END;
@@ -119,12 +111,32 @@ CREATE FUNCTION auction_check_privilege_moderator() RETURNS TRIGGER
       END;
 $auction_check_privilege_moderator$;
 
+
+CREATE FUNCTION authorize_ban() RETURNS TRIGGER
+		LANGUAGE plpgsql
+		AS $authorize_ban$
+		BEGIN
+		IF (NEW.id_utilizador = id_utilizador) AND (data_fim > NOW()::date)
+		THEN
+			RETURN FALSE;
+		ENDIF;
+		RETURN NEW;
+		END;
+$authorize_ban$;
+
+CREATE FUNCTION update_winning_auction RETURNS TRIGGER
+		LANGUAGE plpgsql
+		AS $update_winning_auction$
+		BEGIN
+		IF (Licitacao.id_leilao = Leilao.id_leilao) AND (SELECT Leilao.data_fim FROM Leilao >= NOW()::date)
+		THEN
+			UPDATE Licitacao SET vencedor = TRUE WHERE (Licitacao.valor_licitacao AND Licitacao.id_leilao = Leilao.id_leilao) = (SELECT MAX(valor_licitacao) FROM Licitacao WHERE Licitacao.id_leilao = Leilao.id_leilao) 
+		END;
+$update_winning_auction$
  
 CREATE TRIGGER can_cancel_auction BEFORE INSERT ON Leilao FOR EACH ROW EXECUTE PROCEDURE can_cancel_auction();
 
-CREATE TRIGGER auction_bid_over_base BEFORE INSERT ON Licitacao FOR EACH ROW EXECUTE PROCEDURE auction_bid_over_base();
- 
-CREATE TRIGGER auction_bid_over_max AFTER INSERT ON Licitacao FOR EACH ROW EXECUTE PROCEDURE auction_bid_over_max();
+CREATE TRIGGER auction_bid_over BEFORE INSERT ON Licitacao FOR EACH ROW EXECUTE PROCEDURE auction_bid_over();
  
 CREATE TRIGGER auction_user_ban AFTER INSERT ON HistoricoBanidos FOR EACH ROW EXECUTE PROCEDURE auction_user_ban();
 
@@ -134,6 +146,8 @@ CREATE TRIGGER auction_classification_update AFTER INSERT ON ClassificacaoLeilao
 
 CREATE TRIGGER auction_state_update AFTER INSERT ON Leilao FOR EACH ROW EXECUTE PROCEDURE auction_state_update(); /*NOT DONE... WITH ERRORS*/
 
-CREATE TRIGGER auction_check_privilege_admin BEFORE INSERT ON "Leilao" FOR EACH ROW EXECUTE PROCEDURE auction_check_privilege_admin();
+CREATE TRIGGER auction_check_privilege_admin BEFORE INSERT ON Leilao FOR EACH ROW EXECUTE PROCEDURE auction_check_privilege_admin();
 
-CREATE TRIGGER auction_check_privilege_moderator BEFORE INSERT ON "Leilao" FOR EACH ROW EXECUTE PROCEDURE auction_check_privilege_moderator();
+CREATE TRIGGER auction_check_privilege_moderator BEFORE INSERT ON Leilao FOR EACH ROW EXECUTE PROCEDURE auction_check_privilege_moderator();
+
+CREATE TRIGGER authorize_ban BEFORE INSERT ON HistoricoBanidos FOR EACH ROW EXECUTE PROCDEURE authorize_ban();
