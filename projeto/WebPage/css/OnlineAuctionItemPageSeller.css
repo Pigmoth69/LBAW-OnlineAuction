@@ -1,0 +1,125 @@
+/*!
+ * Start Bootstrap - Shop Item HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    /*padding-top: 70px;*/ /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.navbar{
+	padding:1%;
+}
+
+#ItemName{
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size:170%;
+}
+
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+	width:100%;
+}
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,1);
+}
+#login-dp .help-block{
+    font-size:12px    
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0    
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc 
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}""""
+
+.list-group-item .ratings p{
+    margin:0;
+}
+
+.list-group-item p:first-child{
+    padding:auto;  
+}
+
+.list-group-item a+a{
+    font-size: 20px;
+}
+
+.progress{
+	background-color:#e5fff2;
+}
+.panel-group{
+	border-radius:3%;
+}
+
+.panel-body{
+	background-color:#ebf6e7;
+}
+#ProgressStatus{
+    color:#white;
+    font-family: "Arial Black", Gadget, sans-serif;
+}
+
+#latestUsers .panel-body,#biddersTable .panel-body{
+    background-color: #f5f5f5;
+}
+
+#auctionInfo{
+    padding:0;
+    margin-left:0;
+    margin-right: 0;
+}
