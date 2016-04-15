@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS EstadoLeilao CASCADE;
 DROP TABLE IF EXISTS Leilao CASCADE;
 DROP TABLE IF EXISTS UtilizadorAdministrador CASCADE;
 DROP TABLE IF EXISTS UtilizadorModerador CASCADE;
+DROP TABLE IF EXISTS AssociacaoBanidos CASCADE;
 
 CREATE TYPE gender AS ENUM (
     'masculino',
@@ -55,11 +56,18 @@ CREATE TABLE UtilizadorAdministrador (
 );
 
 CREATE TABLE HistoricoBanidos (
+    id_historico_banidos SERIAL,
     id_utilizador INTEGER,
     id_moderador INTEGER,
     data_banicao DATE NOT NULL DEFAULT (now()::DATE),
     data_fim DATE NOT NULL,
     motivo CHARACTER(256) NOT NULL
+);
+
+CREATE TABLE AssociacaoBanidos (
+    id_utilizador INTEGER,
+    id_historico_banidos INTEGER
+      
 );
 
 CREATE TABLE Mensagem (
@@ -122,34 +130,45 @@ CREATE TABLE Pagamento (
     id_utilizador INTEGER
 );
 
+/* Inicio das primary keys */
 ALTER TABLE Pais
     ADD CONSTRAINT pais_pkey PRIMARY KEY (id_pais);
-
-ALTER TABLE Pais
-    ADD CONSTRAINT pais_unique UNIQUE(nome_pais);
 
 ALTER TABLE Utilizador
     ADD CONSTRAINT utilizador_pkey PRIMARY KEY (id_utilizador);
     
-ALTER TABLE Utilizador
-    ADD CONSTRAINT utilizador_unique UNIQUE (e_mail);
-    
 ALTER TABLE Leilao
     ADD CONSTRAINT leilao_pkey PRIMARY KEY (id_leilao);
-
--- references
+    
 ALTER TABLE UtilizadorModerador
     ADD CONSTRAINT utilizador_moderador_pkey PRIMARY KEY (id_utilizador);
     
 ALTER TABLE UtilizadorAdministrador
     ADD CONSTRAINT utilizador_administrador_pkey PRIMARY KEY (id_utilizador);
-    
+   
 ALTER TABLE HistoricoBanidos
-    ADD CONSTRAINT historico_banidos_pkey PRIMARY KEY (id_utilizador, data_banicao);
+    ADD CONSTRAINT historico_banidos_pkey PRIMARY KEY (id_historico_banidos);
     
 ALTER TABLE ClassificacaoLeilao
     ADD CONSTRAINT class_leilao PRIMARY KEY (id_licitador, id_leilao);
+    
+ALTER TABLE Mensagem
+    ADD CONSTRAINT mensagem_pkey PRIMARY KEY (id_mensagem);
+    
+ALTER TABLE Categoria
+    ADD CONSTRAINT categoria_pkey PRIMARY KEY (id_categoria);
+    
+ALTER TABLE Licitacao
+    ADD CONSTRAINT licitacao_pkey PRIMARY KEY (id_licitacao);
+    
+ALTER TABLE EstadoLeilao
+    ADD CONSTRAINT estado_leilao_pkey PRIMARY KEY (id_estado_leilao);
+    
+ALTER TABLE Pagamento
+    ADD CONSTRAINT pagamento_pkey PRIMARY KEY (id_pagamento);
+/* Fim das primary keys */
 
+/* Inicio das foreign keys */
 ALTER TABLE UtilizadorModerador
     ADD CONSTRAINT utilizador_moderador_pkey1 FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id_utilizador);
     
@@ -165,30 +184,11 @@ ALTER TABLE ClassificacaoLeilao
 ALTER TABLE ClassificacaoLeilao
     ADD CONSTRAINT class_leilao2 FOREIGN KEY (id_leilao) REFERENCES Leilao(id_leilao);
     
---references
-ALTER TABLE Mensagem
-    ADD CONSTRAINT mensagem_pkey PRIMARY KEY (id_mensagem);
+ALTER TABLE AssociacaoBanidos
+    ADD CONSTRAINT associacao_banidos_leilao1 FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id_utilizador);
     
-ALTER TABLE Categoria
-    ADD CONSTRAINT categoria_pkey PRIMARY KEY (id_categoria);
-    
-ALTER TABLE Categoria
-    ADD CONSTRAINT categoria_unique UNIQUE (descricao);
-   
-ALTER TABLE Licitacao
-    ADD CONSTRAINT licitacao_pkey PRIMARY KEY (id_licitacao);
-    
-ALTER TABLE EstadoLeilao
-    ADD CONSTRAINT estado_leilao_pkey PRIMARY KEY (id_estado_leilao);
-    
-ALTER TABLE Pagamento
-    ADD CONSTRAINT pagamento_pkey PRIMARY KEY (id_pagamento);
-
-CREATE UNIQUE INDEX Index_e_mail ON Utilizador USING btree (e_mail);
-
-CREATE UNIQUE INDEX Index_pais ON Pais USING btree (nome_pais);
-
-CREATE UNIQUE INDEX Index_categoria ON Categoria USING btree (descricao);
+ALTER TABLE AssociacaoBanidos
+    ADD CONSTRAINT associacao_banidos_leilao2 FOREIGN KEY (id_historico_banidos) REFERENCES HistoricoBanidos(id_historico_banidos);
 
 ALTER TABLE Utilizador
     ADD CONSTRAINT utilizador_fkey FOREIGN KEY (id_pais) REFERENCES Pais(id_pais);
@@ -225,8 +225,30 @@ ALTER TABLE Pagamento
     
 ALTER TABLE Pagamento
     ADD CONSTRAINT pagamento_fkey2 FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id_utilizador);
+/* Fim das foreign keys */
 
+/* Inicio dos uniques */
+ALTER TABLE Pais
+    ADD CONSTRAINT pais_unique UNIQUE(nome_pais);
+  
+ALTER TABLE Utilizador
+    ADD CONSTRAINT utilizador_unique UNIQUE (e_mail);
+    
+ALTER TABLE Categoria
+    ADD CONSTRAINT categoria_unique UNIQUE (descricao);
+/* Fim dos uniques */
+
+/* Inicio dos indexs */
+CREATE UNIQUE INDEX Index_e_mail ON Utilizador USING btree (e_mail);
+
+CREATE UNIQUE INDEX Index_pais ON Pais USING btree (nome_pais);
+
+CREATE UNIQUE INDEX Index_categoria ON Categoria USING btree (descricao);
+/* Fim dos indexs */
+
+/* Inicio dos checks */
 ALTER TABLE Utilizador ADD CONSTRAINT maior_18 CHECK (now()::DATE - datanasc > 18);
 ALTER TABLE HistoricoBanidos ADD CONSTRAINT fim_maior_inicio_banidos CHECK (data_banicao < data_fim);
 ALTER TABLE Mensagem ADD CONSTRAINT emissor_nao_recetor CHECK (id_emissor <> id_recetor);
 ALTER TABLE Leilao ADD CONSTRAINT fim_maior_inicio_leilao CHECK (data_inicio < data_fim);
+/* Fim dos checks */
