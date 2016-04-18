@@ -51,21 +51,44 @@ INSERT INTO EstadoLeilao (id_estado_leilao, valor_atual, estado_leilao, motivo) 
 INSERT INTO Leilao (id_leilao, nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador) VALUES(0, 'Relogio Vintage', 'Um relogio antigo', 'img/relogio.jpg', '2016-04-10', '2016-04-12', 50, 1, 0, 0, 4);
 INSERT INTO Leilao (id_leilao, nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador) VALUES(1, 'PC de 1980', 'Um pc antigo', 'img/pc.jpg', '2016-04-10', '2016-04-12', 100, 2, 1, 1, 5);
 INSERT INTO Leilao (id_leilao, nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador) VALUES(2, 'Quadro de cenas', 'Um quadro antigo', 'img/quadro.jpg', '2016-04-10', '2016-04-20', 9999, 1, 2, 0, 4);
+INSERT INTO Leilao (id_leilao, nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador) VALUES(3, 'Relogio Vintage', 'Um relogio antigo', 'img/relogio.jpg', '2016-04-10', '2016-04-12', 50, 1, 0, 0, 4);
+INSERT INTO Leilao (id_leilao, nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador) VALUES(4, 'PC de 1980', 'Um pc antigo', 'img/pc.jpg', '2016-04-10', '2016-04-12', 100, 2, 1, 1, 5);
+INSERT INTO Leilao (id_leilao, nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador) VALUES(5, 'Quadro de cenas', 'Um quadro antigo', 'img/quadro.jpg', '2016-04-10', '2016-04-20', 9999, 1, 2, 0, 4);
+INSERT INTO Leilao (id_leilao, nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador) VALUES(6, 'Relogio Vintage', 'Um relogio antigo', 'img/relogio.jpg', '2016-04-10', '2016-04-12', 50, 1, 0, 0, 4);
+INSERT INTO Leilao (id_leilao, nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador) VALUES(7, 'PC de 1980', 'Um pc antigo', 'img/pc.jpg', '2016-04-10', '2016-04-12', 100, 2, 1, 1, 5);
+INSERT INTO Leilao (id_leilao, nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador) VALUES(8, 'Quadro de cenas', 'Um quadro antigo', 'img/quadro.jpg', '2016-04-10', '2016-04-20', 9999, 1, 2, 0, 4);
+INSERT INTO Leilao (id_leilao, nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador) VALUES(9, 'Relogio Vintage', 'Um relogio antigo', 'img/relogio.jpg', '2016-04-10', '2016-04-12', 50, 1, 0, 0, 4);
+INSERT INTO Leilao (id_leilao, nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador) VALUES(10, 'PC de 1980', 'Um pc antigo', 'img/pc.jpg', '2016-04-10', '2016-04-12', 100, 2, 1, 1, 5);
+INSERT INTO Leilao (id_leilao, nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador) VALUES(11, 'Quadro de cenas', 'Um quadro antigo', 'img/quadro.jpg', '2016-04-10', '2016-04-20', 9999, 1, 2, 0, 4);
+
 
 INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(0, 1, 5);
 INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(1, 1, 1);
 INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(2, 1, 3);
 INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(3, 1, 2);
-INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(6, 1, 4);
-
-INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(0, 2, 0);
-INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(1, 2, 0);
-INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(2, 2, 0);
-INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(6, 2, 0);
+INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(0, 0, 5);
+INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(1, 0, 1);
+INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(2, 0, 3);
+INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(3, 0, 2);
+INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(0, 2, 5);
+INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(1, 2, 1);
+INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(2, 2, 3);
+INSERT INTO ClassificacaoLeilao (id_licitador, id_leilao, valor_classificacao) VALUES(3, 2, 2);
 
 INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(0, 1, 3, '2015-04-11', 100, FALSE);
 INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(1, 1, 2, '2015-04-11', 200, FALSE);
 INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(2, 1, 1, '2015-04-11', 300, FALSE);
 INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(3, 1, 6, '2015-04-11', 400, TRUE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(0, 2, 3, '2015-04-11', 100, FALSE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(1, 2, 2, '2015-04-11', 200, FALSE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(2, 2, 1, '2015-04-11', 300, FALSE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(3, 2, 6, '2015-04-11', 400, TRUE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(0, 0, 3, '2015-04-11', 100, FALSE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(1, 0, 2, '2015-04-11', 200, FALSE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(2, 0, 1, '2015-04-11', 300, FALSE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(3, 0, 6, '2015-04-11', 400, TRUE);
+
 
 INSERT INTO Pagamento (id_pagamento, quantia, token_confirmacao, token_pagamento, data_pagamento, morada_envio, id_leilao, id_utilizador) VALUES(0, 400, 'adka sdk', 'adnasndkas', '2016-04-12', 'Rua Alfredo Costa Nº 25', 1, 6);
+INSERT INTO Pagamento (id_pagamento, quantia, token_confirmacao, token_pagamento, data_pagamento, morada_envio, id_leilao, id_utilizador) VALUES(0, 400, 'adka sdk', 'adnasndkas', '2016-04-12', 'Rua Alfredo Costa Nº 25', 2, 6);
+INSERT INTO Pagamento (id_pagamento, quantia, token_confirmacao, token_pagamento, data_pagamento, morada_envio, id_leilao, id_utilizador) VALUES(0, 400, 'adka sdk', 'adnasndkas', '2016-04-12', 'Rua Alfredo Costa Nº 25', 0, 6);
