@@ -11,13 +11,13 @@ INSERT INTO Pais (id_pais, nome_pais) VALUES(9, 'Suecia');
 INSERT INTO Pais (id_pais, nome_pais) VALUES(10, 'Dinamarca');
 INSERT INTO Pais (id_pais, nome_pais) VALUES(11, 'Noruega');
 
-INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(0, 'Miguel Botelho', 'LBAW 4 LIFE', 'masculino', 'img/miguel.jpg', '1995-11-06', 'm_botelho8@hotmail.com', '1234pass', 0.0, FALSE, 0);
-INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(1, 'Daniel Reis', 'LBAW 4 LIFE', 'masculino', 'img/reis.jpg', '1995-12-06', 'pigmoth@gmail.com', '1234pass1', 0.0, TRUE, 1);
-INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(2, 'Ricardo Mariz', 'LBAW 4 LIFE', 'masculino', 'img/duvidas.jpg', '1995-10-06', 'duvidas@hotmail.com', '1234pass2', 0.0, FALSE, 2);
-INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(3, 'Joao Bernardo', 'LBAW 4 LIFE', 'masculino', 'img/joao.jpg', '1995-09-06', 'joao@hotmail.com', '1234pass5', 0.0, TRUE, 6);
-INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(4, 'Joao Estrada', 'LBAW 4 LIFE', 'masculino', 'img/estrada.jpg', '1995-08-06', 'estrada@hotmail.com', '1234pass3', 0.0, FALSE, 3);
-INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(5, 'Andre Maia', 'LBAW 4 LIFE', 'masculino', 'img/maia.jpg', '1995-07-06', 'maia@hotmail.com', '1234pas45s', 0.0, FALSE, 2);
-INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(6, 'Ines Santos', 'LBAW 4 LIFE', 'feminino', 'img/memes.jpg', '1995-11-06', 'panados@hotmail.com', '1234pass', 0.0, FALSE, 9);
+INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(0, 'Miguel Botelho', 'LBAW 4 LIFE', 'masculino', 'img/miguel.jpg', '1995-11-06', 'm_botelho8@hotmail.com', md5('1234pass'), 0.0, FALSE, 0);
+INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(1, 'Daniel Reis', 'LBAW 4 LIFE', 'masculino', 'img/reis.jpg', '1995-12-06', 'pigmoth@gmail.com', md5('1234pass1'), 0.0, TRUE, 1);
+INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(2, 'Ricardo Mariz', 'LBAW 4 LIFE', 'masculino', 'img/duvidas.jpg', '1995-10-06', 'duvidas@hotmail.com', md5('1234pass2'), 0.0, FALSE, 2);
+INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(3, 'Joao Bernardo', 'LBAW 4 LIFE', 'masculino', 'img/joao.jpg', '1995-09-06', 'joao@hotmail.com', md5('1234pass5'), 0.0, TRUE, 6);
+INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(4, 'Joao Estrada', 'LBAW 4 LIFE', 'masculino', 'img/estrada.jpg', '1995-08-06', 'estrada@hotmail.com', md5('1234pass3'), 0.0, FALSE, 3);
+INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(5, 'Andre Maia', 'LBAW 4 LIFE', 'masculino', 'img/maia.jpg', '1995-07-06', 'maia@hotmail.com', md5('1234pas45s'), 0.0, FALSE, 2);
+INSERT INTO Utilizador (id_utilizador, nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(6, 'Ines Santos', 'LBAW 4 LIFE', 'feminino', 'img/memes.jpg', '1995-11-06', 'panados@hotmail.com', md5('1234pass'), 0.0, FALSE, 9);
 
 INSERT INTO UtilizadorModerador (id_utilizador) VALUES(4);
 INSERT INTO UtilizadorModerador (id_utilizador) VALUES(5);
@@ -79,16 +79,16 @@ INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, v
 INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(1, 1, 2, '2015-04-11', 200, FALSE);
 INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(2, 1, 1, '2015-04-11', 300, FALSE);
 INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(3, 1, 6, '2015-04-11', 400, TRUE);
-INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(0, 2, 3, '2015-04-11', 100, FALSE);
-INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(1, 2, 2, '2015-04-11', 200, FALSE);
-INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(2, 2, 1, '2015-04-11', 300, FALSE);
-INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(3, 2, 6, '2015-04-11', 400, TRUE);
-INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(0, 0, 3, '2015-04-11', 100, FALSE);
-INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(1, 0, 2, '2015-04-11', 200, FALSE);
-INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(2, 0, 1, '2015-04-11', 300, FALSE);
-INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(3, 0, 6, '2015-04-11', 400, TRUE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(4, 2, 3, '2015-04-11', 100, FALSE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(5, 2, 2, '2015-04-11', 200, FALSE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(6, 2, 1, '2015-04-11', 300, FALSE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(7, 2, 6, '2015-04-11', 400, TRUE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(8, 0, 3, '2015-04-11', 100, FALSE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(9, 0, 2, '2015-04-11', 200, FALSE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(10, 0, 1, '2015-04-11', 300, FALSE);
+INSERT INTO Licitacao (id_licitacao, id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(11, 0, 6, '2015-04-11', 400, TRUE);
 
 
 INSERT INTO Pagamento (id_pagamento, quantia, token_confirmacao, token_pagamento, data_pagamento, morada_envio, id_leilao, id_utilizador) VALUES(0, 400, 'adka sdk', 'adnasndkas', '2016-04-12', 'Rua Alfredo Costa Nº 25', 1, 6);
-INSERT INTO Pagamento (id_pagamento, quantia, token_confirmacao, token_pagamento, data_pagamento, morada_envio, id_leilao, id_utilizador) VALUES(0, 400, 'adka sdk', 'adnasndkas', '2016-04-12', 'Rua Alfredo Costa Nº 25', 2, 6);
-INSERT INTO Pagamento (id_pagamento, quantia, token_confirmacao, token_pagamento, data_pagamento, morada_envio, id_leilao, id_utilizador) VALUES(0, 400, 'adka sdk', 'adnasndkas', '2016-04-12', 'Rua Alfredo Costa Nº 25', 0, 6);
+INSERT INTO Pagamento (id_pagamento, quantia, token_confirmacao, token_pagamento, data_pagamento, morada_envio, id_leilao, id_utilizador) VALUES(1, 400, 'adka sdk', 'adnasndkas', '2016-04-12', 'Rua Alfredo Costa Nº 25', 2, 6);
+INSERT INTO Pagamento (id_pagamento, quantia, token_confirmacao, token_pagamento, data_pagamento, morada_envio, id_leilao, id_utilizador) VALUES(2, 400, 'adka sdk', 'adnasndkas', '2016-04-12', 'Rua Alfredo Costa Nº 25', 0, 6);

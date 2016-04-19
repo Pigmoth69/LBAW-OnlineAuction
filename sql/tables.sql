@@ -241,11 +241,13 @@ ALTER TABLE Categoria
 /* Inicio dos indexs */
 CREATE UNIQUE INDEX Index_e_mail ON Utilizador USING btree (e_mail);
 
-CREATE UNIQUE INDEX Index_pais ON Pais USING hashtree (nome_pais);
+CREATE UNIQUE INDEX Index_pais ON Pais USING btree (nome_pais);
 
 CREATE INDEX leilao_text ON Leilao USING gin(to_tsvector('portuguese', descricao));
 
-CREATE INDEX utilizador_nome ON Leilao USING gin(to_tsvector('portuguese', nome));
+CREATE INDEX Leilao_nome ON Leilao USING gin(to_tsvector('portuguese', nome_produto));
+
+CREATE INDEX Utilizador_nome ON Utilizador USING gin(to_tsvector('portuguese', nome));
 
 CREATE INDEX leilao_id_cat ON Leilao USING btree(id_categoria);
 /* Fim dos indexs */

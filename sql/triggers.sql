@@ -132,7 +132,7 @@ CREATE FUNCTION update_winning_auction RETURNS TRIGGER
 		THEN
 			UPDATE Licitacao SET vencedor = TRUE WHERE (Licitacao.valor_licitacao AND Licitacao.id_leilao = Leilao.id_leilao) = (SELECT MAX(valor_licitacao) FROM Licitacao WHERE Licitacao.id_leilao = Leilao.id_leilao) 
 		END;
-$update_winning_auction$
+$update_winning_auction$;
  
 CREATE TRIGGER can_cancel_auction BEFORE INSERT ON Leilao FOR EACH ROW EXECUTE PROCEDURE can_cancel_auction();
 
