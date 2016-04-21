@@ -39,9 +39,9 @@ SELECT id_leilao FROM Leilao WHERE Leilao.nome_produto LIKE '%iphone6%' OR Leila
 		 Leilao.id_categoria IN ( SELECT id_categoria FROM Categoria WHERE ( Categoria.id_categoria IN ( SELECT id_categoria FROM Categoria WHERE Categoria.descricao LIKE '%telemoveis%') ) ) ;
 
 -- 10 leilões com licitações mais baixas
-SELECT id_leilao FROM Leilao WHERE Leilao.valor_base = SELECT MIN(valor_base) FROM Leilao
+SELECT id_leilao, nome_produto, valor_base, data_fim FROM Leilao WHERE Leilao.valor_base = SELECT MIN(valor_base) FROM Leilao
 LIMIT 10;
 
 -- 10 leilões a acabar hoje
-SELECT id_leilao FROM Leilao WHERE Leilao.data_fim = Now()::DATE
+SELECT id_leilao, nome_produto, valor_base, data_fim FROM Leilao WHERE Leilao.data_fim = Now()::DATE
 LIMIT 10;
