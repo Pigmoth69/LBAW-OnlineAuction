@@ -160,7 +160,7 @@
                     <h2 class="panel-title" id="sign_title">Sign up</h2>
                 </div>
                 <div class="panel-body">
-                    <form method="POST" action="actions/register.php">
+                    <form method="POST" id="registo_form" action="actions/register.php">
                         <div class="form-group">
                             <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
                         </div>

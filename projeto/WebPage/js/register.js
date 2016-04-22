@@ -1,3 +1,7 @@
+$("#registo_form").submit(function(event) {
+	return checkValidity();
+});
+
 function checkPasswords() {
 	var password = $("#password").val();
 	var password_conf = $("#password_confirmation").val();
@@ -57,14 +61,29 @@ function checkDate() {
 		return true;
 	}
 }
+
+function checkEmptyFields() {
+	if ($("#first_name").val() == "" || $("#last_name").val() == "" || $("#birthdate").val() == "" || $("#email").val() == "" || $("#password").val() == "" || $("#password_confirmation").val() == "") {
+		return false;
+	}
+	else return true;
+}
 	
 function checkValidity() {
-	if (!(checkPasswords()))
+	if (!(checkPasswords())) {
 		alert("Passwords don't match.");
+		return false;
+	}
 		
-	if (!checkDate())
+	if (!checkDate()) {
 		alert("You have to be 18 years or older.");
+		return false;
+	}
+		
+	if (!checkEmptyFields()) {
+		alert("No empty fields allowed");	
+		return false;
+	}
 	
-	if (!checkEmptyFields())
-		alert("No empty fields allowed");		
+	return true;	
 }
