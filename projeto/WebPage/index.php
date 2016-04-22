@@ -36,42 +36,26 @@
          <div class="col-md-3">
             <p class="lead">Total items:</p>
             <ul class="list-group">
-               <a href="#" class="list-group-item"><span class="badge">2</span>All Categories</a>
-               <a href="#" class="list-group-item"><span class="badge">132</span>Antiques</a>
-               <a href="#" class="list-group-item"><span class="badge">24</span>Art</a>
-               <a href="#" class="list-group-item"><span class="badge">121</span>Baby</a>
-               <a href="#" class="list-group-item"><span class="badge">56</span>Books</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>Business &amp; Industrial</a>
-               <a href="#" class="list-group-item"><span class="badge">45</span>Cameras &amp; Photo</a>
-               <a href="#" class="list-group-item"><span class="badge">0</span>Cell Phones &amp; Accessories</a>
-               <a href="#" class="list-group-item"><span class="badge">1</span>Clothing, Shoes &amp; Accessories</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>Coins &amp; Paper Money</a>
-               <a href="#" class="list-group-item"><span class="badge">34</span>Collectibles</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>Computers/Tablets &amp; Networking</a>
-               <a href="#" class="list-group-item"><span class="badge">0</span>Consumer Electronics</a>
-               <a href="#" class="list-group-item"><span class="badge">11</span>Crafts</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>Dolls &amp; Bears</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>DVDs &amp; Movies</a>
-               <a href="#" class="list-group-item"><span class="badge">98</span>eBay Motors</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>Entertainment Memorabilia</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>Gift Cards &amp; Coupons</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>Health &amp; Beauty</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>Home &amp; Garden</a>
-               <a href="#" class="list-group-item"><span class="badge">46</span>Jewelry &amp; Watches</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>Music</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>Musical Instruments &amp; Gear</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>Pet Supplies</a>
-               <a href="#" class="list-group-item"><span class="badge">12</span>Pottery &amp; Glass</a>
-               <a href="#" class="list-group-item"><span class="badge">11</span>Real Estate</a>
-               <a href="#" class="list-group-item"><span class="badge">10</span>Specialty Services</a>
-               <a href="#" class="list-group-item"><span class="badge">98</span>Sporting Goods</a>
-               <a href="#" class="list-group-item"><span class="badge">85</span>Sports Mem, Cards &amp; Fan Shop</a>
-               <a href="#" class="list-group-item"><span class="badge">1662</span>Stamps</a>
-               <a href="#" class="list-group-item"><span class="badge">122</span>Tickets &amp; Experiences</a>
-               <a href="#" class="list-group-item"><span class="badge">324</span>Toys &amp; Hobbies</a>
-               <a href="#" class="list-group-item"><span class="badge">2000</span>Travel</a>
-               <a href="#" class="list-group-item"><span class="badge">400</span>Video Games &amp; Consoles</a>
-               <a href="#" class="list-group-item"><span class="badge">100</span>Everything Else</a>
+              
+              <?php
+                $categorias = getAllCategories();
+                $html = "";
+                $first_line = "<a href=\"#\" class=\"list-group-item\"><span class=\"badge\">";
+                $total_no = 0;
+                foreach($categorias as $categoria) {
+                    $no = getNoElementsOfCategory($categoria['id_categoria']);
+                    $total_no += $no;
+                    $html .= "<a href=\"#\" class=\"list-group-item\"><span class=\"badge\">";
+                    $html .= $no;
+                    $html .= "</span>";
+                    $html .= $categoria['descricao'];
+                    $html .= "</a>";
+                }
+                $first_line .= $total_no . "</span>All Categories</a>";
+                echo $first_line;
+                echo $html;
+              ?>
+
             </ul>
          </div>
          <div class="col-md-9">
