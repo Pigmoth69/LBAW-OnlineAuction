@@ -168,7 +168,7 @@
                             <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
                         </div>
                         <div class="form-group">
-                            <input type="date" name="birthdate" id="birthdate" class="form-control input-sm" placeholder="Date Of Birth">
+                            <input type="date" name="birthdate" id="birthdate" class="form-control input-sm" placeholder="Date Of Birth" onChange="checkDate()">
                         </div>
                         <div class="form-group">
                             <label class="radio-inline"><input type="radio" name="gender">Male</label>
@@ -430,12 +430,12 @@
                             <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+                            <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password" onChange="checkPasswords()">
                         </div>
                         <div class="form-group">
                             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password" onChange="checkPasswords()">
                         </div>
-                        <input type="submit" value="Register" class="btn btn-block" id="registo">
+                        <input type="submit" value="Register" class="btn btn-block" id="registo" onclick="checkValidity()">
                     </form>
                 </div>
             </div>
@@ -460,6 +460,8 @@
     <script src="js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    
+    <script src="js/register.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
     <!-- (Optional) Latest compiled and minified JavaScript translation files -->
