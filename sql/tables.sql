@@ -18,8 +18,8 @@ DROP TABLE IF EXISTS UtilizadorModerador CASCADE;
 DROP TABLE IF EXISTS AssociacaoBanidos CASCADE;
 
 CREATE TYPE gender AS ENUM (
-    'masculino',
-    'feminino'
+    'male',
+    'female'
 );
 
 CREATE TYPE state_auction AS ENUM (
@@ -37,7 +37,7 @@ CREATE TABLE Utilizador (
     id_utilizador SERIAL,
     nome CHARACTER(256) NOT NULL,
     descricao CHARACTER(256),
-    genero gender DEFAULT 'masculino'::gender,
+    genero gender DEFAULT 'male'::gender,
     imagem_utilizador CHARACTER(256) DEFAULT 'img\default_user.png',
     datanasc DATE NOT NULL,
     e_mail CHARACTER(256) NOT NULL,
