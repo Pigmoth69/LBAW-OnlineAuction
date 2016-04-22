@@ -41,7 +41,7 @@
         else return -1;
     }
     
-    function register($name, $date, $gender, $mail, $password) {
+    function register($name, $date, $gender, $mail, $password, $pais) {
         global $conn;
 		$stmt = $conn->prepare('SELECT * FROM Utilizador WHERE e_mail = :mail');
 		$stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
@@ -50,7 +50,6 @@
 		if (count($result) > 0) {
 			return false;
 		}
-        else $pais = $result[0]['id_pais'];
         
         $stmt = $conn->prepare('SELECT id_pais FROM Pais WHERE nome_pais = :pais');
         $stmt->bindParam(':pais', $pais, PDO::PARAM_STR);
@@ -59,6 +58,7 @@
         if (count($result) === 0) {
             return false;
         }
+        else $id_pais = $result[0]['id_pais'];
         
         $empty = "";
         $zero = 0;
@@ -74,7 +74,7 @@
         $stmt->bindParam(':password', $pass, PDO::PARAM_STR);
         $stmt->bindParam(':classificaco', $zero, PDO::PARAM_INT);
         $stmt->bindParam(':banido', false, PDO::PARAM_BOOL);
-        $stmt->bindParam(':id_pais', $pais, PDO::PARAM_INT);
+        $stmt->bindParam(':id_pais', $id_pais, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll();
         
