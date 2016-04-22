@@ -1,5 +1,15 @@
 <?php
-    include_once('../config/init.php');
+    $path = '../config/init.php';
+
+    if(!file_exists($path))
+            $path = 'config/init.php';
+    try {
+        include_once($path);
+    }
+    catch(PDOException $e) {
+		echo $e;
+		return -1;
+	}
 
     function compareLogin($mail, $pass_given) {
         global $conn;

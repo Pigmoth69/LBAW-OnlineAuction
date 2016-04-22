@@ -1,3 +1,27 @@
+<?php
+      $path = '../database/categories.php';
+      if(!file_exists($path))
+            $path = 'database/categories.php';
+      try {
+            include_once($path);
+      }
+      catch(PDOException $e) {
+            echo $e;
+            return -1;
+      }
+      
+      $path = '../actions/login.php';
+      if(!file_exists($path))
+            $path = 'actions/login.php';
+      try {
+            include_once($path);
+      }
+      catch(PDOException $e) {
+            echo $e;
+            return -1;
+      }
+?>
+
 <nav class="navbar navbar-default" role="navigation">
          <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -28,41 +52,16 @@
                         <div class="form-group">
                            <select class="selectpicker" data-live-search="true" >
                               <option selected="selected">All Categories</option>
-                              <option>Antiques</option>
-                              <option>Art</option>
-                              <option>Baby</option>
-                              <option>Books</option>
-                              <option>Business &amp; Industrial</option>
-                              <option>Cameras &amp; Photo</option>
-                              <option>Cell Phones &amp; Accessories</option>
-                              <option>Clothing, Shoes &amp; Accessories</option>
-                              <option>Coins &amp; Paper Money</option>
-                              <option>Collectibles</option>
-                              <option>Computers/Tablets &amp; Networking</option>
-                              <option>Consumer Electronics</option>
-                              <option>Crafts</option>
-                              <option>Dolls &amp; Bears</option>
-                              <option>DVDs &amp; Movies</option>
-                              <option>eBay Motors</option>
-                              <option>Entertainment Memorabilia</option>
-                              <option>Gift Cards &amp; Coupons</option>
-                              <option>Health &amp; Beauty</option>
-                              <option>Home &amp; Garden</option>
-                              <option>Jewelry &amp; Watches</option>
-                              <option>Music</option>
-                              <option>Musical Instruments &amp; Gear</option>
-                              <option>Pet Supplies</option>
-                              <option>Pottery &amp; Glass</option>
-                              <option>Real Estate</option>
-                              <option>Specialty Services</option>
-                              <option>Sporting Goods</option>
-                              <option>Sports Mem, Cards &amp; Fan Shop</option>
-                              <option>Stamps</option>
-                              <option>Tickets &amp; Experiences</option>
-                              <option>Toys &amp; Hobbies</option>
-                              <option>Travel</option>
-                              <option>Video Games &amp; Consoles</option>
-                              <option>Everything Else</option>
+                              
+                              <?php
+                                    $categorias = getAllCategories();
+                                    $html = "";
+                                    foreach($categorias as $categoria) {
+                                        $html .= "<option>";
+                                        $html .= $categoria['descricao'] . "</option>";
+                                    }
+                                    echo $html;
+                              ?>
                            </select>
                         </div>
                         <button type="submit" class="btn btn-default">Make Search!</button>

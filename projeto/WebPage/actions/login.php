@@ -1,7 +1,27 @@
 <?php
 	session_start();
-	include_once '../config/init.php';
-	include_once '../database/user.php';
+	$path = '../config/init.php';
+
+    if(!file_exists($path))
+            $path = 'config/init.php';
+    try {
+        include_once($path);
+    }
+    catch(PDOException $e) {
+		echo $e;
+		return -1;
+	}
+	$path = '../database/user.php';
+
+    if(!file_exists($path))
+            $path = 'database/user.php';
+    try {
+        include_once($path);
+    }
+    catch(PDOException $e) {
+		echo $e;
+		return -1;
+	}
 	
 	$params = [ 'username', 'password' ];
 	foreach ($params as $param) {
