@@ -1,7 +1,8 @@
 <?php
     include_once '../config/init.php';
+	include_once '../database/user.php';
     
-    $params = [ 'first_name', 'last_name', 'date', 'gender', 'e_mail', 'pass', 'pais'];
+    $params = [ 'first_name', 'last_name', 'birthdate', 'gender', 'email', 'password', 'country'];
 	foreach ($params as $param) {
 		if (isset($_POST[$param])) {
 			$params[$param] = $_POST[$param];
@@ -9,7 +10,7 @@
 		}
 	}
     
-    if (register($params['first_name'] . " " . $params['last_name'], $params['date'], $params['gender'], $params['e_mail'], $params['pass'], $params['pais']))
-        header('Location: index.php');
-    else //DEU ERRO
+    if (register($params['first_name'] . " " . $params['last_name'], $params['birthdate'], $params['gender'], $params['email'], $params['password'], $params['country']))
+        header('Location: ../index.php');
+    else header('Location: ../RegisterPage.php');
 ?>

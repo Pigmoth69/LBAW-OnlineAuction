@@ -62,18 +62,19 @@
         
         $empty = "";
         $zero = 0;
+        $false = false;
         $pass = hashPassword($password, 10);
         
-        $stmt = $conn->prepare('INSERT INTO Utilizador(name, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(:name, :descricao, :genero, :imagem_utilizador, :datanasc, :e_mail, :password, :classificacao, :banido, :id_pais)');
-        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt = $conn->prepare('INSERT INTO Utilizador(nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(:nome, :descricao, :genero, :imagem_utilizador, :datanasc, :e_mail, :password, :classificacao, :banido, :id_pais)');
+        $stmt->bindParam(':nome', $name, PDO::PARAM_STR);
         $stmt->bindParam(':descricao', $empty, PDO::PARAM_STR);
         $stmt->bindParam(':genero', $gender, PDO::PARAM_STR);
         $stmt->bindParam(':imagem_utilizador', $empty, PDO::PARAM_STR);
         $stmt->bindParam(':datanasc', $date, PDO::PARAM_STR);
         $stmt->bindParam(':e_mail', $mail, PDO::PARAM_STR);
         $stmt->bindParam(':password', $pass, PDO::PARAM_STR);
-        $stmt->bindParam(':classificaco', $zero, PDO::PARAM_INT);
-        $stmt->bindParam(':banido', false, PDO::PARAM_BOOL);
+        $stmt->bindParam(':classificacao', $zero, PDO::PARAM_INT);
+        $stmt->bindParam(':banido', $false, PDO::PARAM_BOOL);
         $stmt->bindParam(':id_pais', $id_pais, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll();

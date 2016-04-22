@@ -171,8 +171,8 @@
                             <input type="date" name="birthdate" id="birthdate" class="form-control input-sm" placeholder="Date Of Birth">
                         </div>
                         <div class="form-group">
-                            <label class="radio-inline"><input type="radio" name="gender">Male</label>
-                            <label class="radio-inline"><input type="radio" name="gender">Female</label>
+                            <label class="radio-inline"><input type="radio" name="gender" value="male">Male</label>
+                            <label class="radio-inline"><input type="radio" name="gender" value="female">Female</label>
                         </div>
                         <div class="form-group">
                             <select name="country">
