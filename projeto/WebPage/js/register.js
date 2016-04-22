@@ -9,11 +9,15 @@ function checkPasswords() {
 	if (password != password_conf){
 		$("#password").css('color','red');
 		$("#password_confirmation").css('color','red');
+		$("#password").css('border-color', '#red');
+		$("#password_confirmation").css('border-color', '#red');
 		return false;	
 	}
 	else {
-		$("#password").css('color','black');
-		$("#password_confirmation").css('color','black');
+		$("#password").css('color','ccc');
+		$("#password_confirmation").css('color','ccc');
+		$("#password").css('border-color', '#ccc');
+		$("#password_confirmation").css('border-color', '#ccc');
 		return true;
 	}
 }
@@ -50,14 +54,14 @@ function checkDate() {
 
 	years = yyyy+'/'+mm+'/'+dd;
 	
-	console.log("ano: " + $("#birthdate").val());
-	
 	if ($("#birthdate").val() > today || $("#birthdate").val() < years) {
 		$("#birthdate").css('color', 'red');
+		$("#birthdate").css('border-color', 'red');
 		return false;
 	}
 	else {
-		$("#birthdate").css('color', 'black');
+		$("#birthdate").css('color', '#ccc');
+		$("#birthdate").css('border-color', '#ccc');
 		return true;
 	}
 }
