@@ -7,7 +7,7 @@
          exit();
      }
      if (is_admin($_SESSION['user']))
-        header("Location: AdminPage.php");;
+        header("Location: AdminPage.php");
 }
 ?>
 
