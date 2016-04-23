@@ -106,7 +106,7 @@
                                  </form>
                               </div>
                               <div class="bottom text-center">
-                                 New here ? <a href="#"><b>Join Us</b></a>
+                                 New here ? <a href="RegisterPage.php"><b>Join Us</b></a>
                               </div>
                            </div>
                         </li>
