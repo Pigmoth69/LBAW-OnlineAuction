@@ -27,7 +27,6 @@ $path = '../config/init.php';
         $stmt->execute();
         $result = $stmt->fetchAll();
        
-        
         return count($result);
     }
 ?>

@@ -23,20 +23,20 @@
 		return -1;
 	}
 	
-	if (!($_POST['username'] || $_POST['password'])) {
-		$_SESSION['error_messages'][] = 'Error!';
-		//header("Location: $BASE_URL");
-    	exit;
-  	}
+	$params = [ 'functionName','username', 'password' ];
+	foreach ($params as $param) {
+		if (isset($_POST[$param])) {
+			$params[$param] = $_POST[$param];
+			continue;
+		}
+	}
+	$id = compareLogin($params['username'], $params['password']);
 	
-	$return = compareLogin($_POST['username'], $_POST['password']);
-	if ($return == -1) {
-		//printResponse("wrong_login");
-		return false;
+	if ($id == -1) {
+		printResponse("wrong_login", "login");
 	}
 	else {
-		$_SESSION['user'] = $return;
-		//printResponse("success");
-		return true;
+		$_SESSION['user'] = $id;
+		printResponse("success", "login");
 	}
 ?>

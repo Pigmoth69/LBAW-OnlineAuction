@@ -106,10 +106,8 @@
                             <?php
                                 include_once 'database/user.php';
                                 session_start();
-                                print_r($_SESSION);
                                 $infos = getInfoByID($_SESSION['user']);
-                                print_r($infos);
-                                $html = "<img src= \"" . $infos['imagem_utilizador'] . "\" alt= \"" . $infos['imagem_utilizador'] . "\" style=\"width:120px;height:120px;\">";
+                                $html = "<img src= \"" . $infos[0]['imagem_utilizador'] . "\" alt= \"" . $infos[0]['imagem_utilizador'] . "\" style=\"width:120px;height:120px;\">";
                                 echo $html;
                             ?>
                         </div>

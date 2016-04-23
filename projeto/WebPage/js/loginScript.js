@@ -7,7 +7,6 @@ function onReady() {
 };
 
 function login() {
-	console.log("login!");
 	var username = $('#emailInput').val();
 	var password = $('#passwordInput').val();
 	
@@ -18,10 +17,19 @@ function login() {
 		"username": username,
 		"password": password
 	}, 
-	function (data) {
-		window.location="UserPage.php";	
-	})
-    .fail(function (error) {
+	function(data) {
+		var response = data['login'];
+		switch(response) {
+			case 'wrong_login':
+				break;
+			case 'success':
+				window.location = "UserPage.php";
+				break;
+			default:
+				//displayError("Error while processing the login...");
+				break;
+		}
+	}).fail(function (error) {
         alert("Error: " + error);
     });
 

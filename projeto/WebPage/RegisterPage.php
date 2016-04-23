@@ -59,7 +59,8 @@
                                     $paises = getAllCountries();
                                     $html = "";
                                     foreach($paises as $pais) {
-                                        $html .= "<option value=\"" . $pais['nome_pais'] . "\">" . $pais['nome_pais'] . "</option>";
+                                        $html .= "<option value=\"";
+                                        $html .= $pais['nome_pais'] . "\">" . $pais['nome_pais'] . "</option>";
                                     }
                                     echo $html;
                                 ?>
@@ -69,7 +70,7 @@
                             <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password"onChange="checkPasswords()">
+                            <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password" onChange="checkPasswords()">
                         </div>
                         <div class="form-group">
                             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password" onChange="checkPasswords()">
@@ -95,7 +96,6 @@
         </footer>
     </div>
     <!-- /.container -->
-    <!-- jQuery -->
     <script src="js/register.js"></script>
 </body>
 

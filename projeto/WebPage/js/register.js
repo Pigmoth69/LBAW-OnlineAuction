@@ -118,10 +118,22 @@ function makePOST(){
 		'password':password,
 		'email': email
 	},function(data){
-		//window.location = "index.php";
+		var response = data['register'];
+			switch(response) {
+				case 'user_exists':
+					window.location = "RegisterPage.php";
+					break;
+				case 'success':
+					window.location = "index.php";
+					break;
+				default:
+					//displayError("Error while processing the login...");
+					break;
+			}
+		
 	})
     .fail(function (error) {
-		//window.location = "RegisterPage.php";
+		window.location = "RegisterPage.php";
         alert("Error: " + error);
     });
 }

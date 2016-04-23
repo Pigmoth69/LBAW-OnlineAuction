@@ -1,4 +1,5 @@
 <?php
+	session_start();
     $path = '../config/init.php';
 
     if(!file_exists($path))
@@ -22,18 +23,15 @@
 		return -1;
 	}
     
-    if (!($_POST['first_name'] || $_POST['last_name'] || $_POST['birthdate'] || $_POST['gender'] || $_POST['email'] || $_POST['password'] || $_POST['country'])) {
-		$_SESSION['error_messages'][] = 'Error!';
-		//header("Location: $BASE_URL");
-    	//exit;
-  	}
+    $params = [ 'first_name', 'last_name', 'birthdate', 'gender', 'email', 'password', 'country'];
+	foreach ($params as $param) {
+		if (isset($_POST[$param])) {
+			$params[$param] = $_POST[$param];
+			continue;
+		}
+	}
     
-    if (register($_POST['first_name'] . " " . $_POST['last_name'], $_POST['birthdate'], $_POST['gender'], $_POST['email'], $_POST['password'], $_POST['country'])) {
-        //sleep(20)
-        return true;
-    }
-    else {
-        //sleep(10);
-        return false;
-    }
+    if (register($params['first_name'] . " " . $params['last_name'], $params['birthdate'], $params['gender'], $params['email'], $params['password'], $params['country']))
+        printResponse("success", "register");
+    else printResponse("user_exists", "register");
 ?>
