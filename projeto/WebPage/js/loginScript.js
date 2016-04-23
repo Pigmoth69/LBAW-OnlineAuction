@@ -21,6 +21,7 @@ function login() {
 		var response = data['login'];
 		switch(response) {
 			case 'wrong_login':
+				header("Location : " . $_SERVER['HTTP_REFERER']);
 				break;
 			case 'success':
 				window.location = "UserPage.php";

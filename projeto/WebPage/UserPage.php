@@ -113,11 +113,16 @@
                         </div>
                         <div class="col-sm-4">
                            <h4> <b> Name </b></h4>
-                           <p> user_name <p>
+                           <p> <?php echo $infos[0]['nome'];?> <p>
                            <h4> <b> Country </b> </h4>
-                           <p> country </p>
-                           <h4> <b> Signing year </b> </h4>
-                           <p> 2010</p>
+                           <p> <?php
+                                include_once 'database/countries.php';
+                                $pais = getNameCountryByID($infos[0]['id_pais']);
+                                echo $pais[0]['nome_pais'];
+                                ?>
+                           </p>
+                           <h4> <b> Birthdate </b> </h4>
+                           <p> <?php echo $infos[0]['datanasc'];?> <p>
                         </div>
                      </div>
                      <hr>
@@ -131,31 +136,30 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <tr>
-                                 <td> <b> 1. iphone </b></td>
-                                 <td>70</td>
-                                 <td>sold</td>
-                              </tr>
-                              <tr>
-                                 <td> <b> 2. ps3 slim </b> </td>
-                                 <td>56</td>
-                                 <td>sold</td>
-                              </tr>
-                              <tr>
-                                 <td> <b> 3. pineapple </b> </td>
-                                 <td>4</td>
-                                 <td>not sold</td>
-                              </tr>
-                              <tr>
-                                 <td>..</td>
-                                 <td>..</td>
-                                 <td>..</td>
-                              </tr>
-                              <tr>
-                                 <td>..</td>
-                                 <td>..</td>
-                                 <td>..</td>
-                              </tr>
+                              <?php
+                              echo 'wtf';
+                                include_once 'database/auctions.php';
+                                echo 'wtf0';
+                                $auctions = getAuctionsByUserID($_SESSION['user']);
+                                echo 'wtf1';
+                                $no = getNoLiciteesOnAuction($auctions[0]['id_leilao']);
+                                echo 'wtf2';
+                                print_r($auctions);
+                                echo $no;
+                                $html = '';
+                                foreach($auctions as $auction) {
+                                    $html .= '<tr> <td> <b>';
+                                    $html .= $auctions[0]['nome_produto'];
+                                    $html .= '</b></td><td>';
+                                    $html .= $no;
+                                    $html .= '</td><td>';
+                                    $sold = isAuctionSold($auctions[0]['id_leilao']);
+                                    if ($sold)
+                                        $html .= 'Sold';
+                                    else $html .= 'Not sold';
+                                    $html .= '</td></tr>';
+                                }
+                              ?>
                            </tbody>
                         </table>
                      </div>

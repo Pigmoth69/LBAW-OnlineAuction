@@ -1,6 +1,6 @@
 <?php
 
-$path = '../config/init.php';
+    $path = '../config/init.php';
 
     if(!file_exists($path))
             $path = 'config/init.php';

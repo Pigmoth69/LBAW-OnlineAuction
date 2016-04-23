@@ -1,0 +1,42 @@
+<?php
+    $path = '../config/init.php';
+
+    if(!file_exists($path))
+            $path = 'config/init.php';
+    try {
+        include_once($path);
+    }
+    catch(PDOException $e) {
+		echo $e;
+		return -1;
+	}
+
+    function getAuctionsByUserID($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_vendedor = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    
+    function getNoLiciteesOnAuction($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $result = $stmt->fetchAll();
+        return count($result);
+    }
+    
+    function isAuctionSold($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $result = $stmt->fetchAll();
+        
+        foreach($result as $res) {
+            if ($res['vencedor'])
+                return true;
+        }
+        return false;
+    }
+?>
