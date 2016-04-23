@@ -1,23 +1,26 @@
-$("#registo_form").submit(function(event) {
-	return checkValidity();
-});
+$(document).ready(onReady);
+
+function onReady() {
+	$("#password_confirmation").keyup(checkPasswords);
+	$("#registo_form").submit(function(event) {
+		return checkValidity();
+	});
+}
+
+
 
 function checkPasswords() {
 	var password = $("#password").val();
 	var password_conf = $("#password_confirmation").val();
-
-	if (password != password_conf){
-		$("#password").css('color','red');
-		$("#password_confirmation").css('color','red');
-		$("#password").css('border-color', '#red');
-		$("#password_confirmation").css('border-color', '#red');
+	//falta meter aqui a segurança do número mínimo de caracteres
+	if (password != password_conf || password.length==0){
+		$("#password").css('background-color', '#ff9a9a');
+		$("#password_confirmation").css('background-color', '#ff9a9a');
 		return false;	
 	}
 	else {
-		$("#password").css('color','ccc');
-		$("#password_confirmation").css('color','ccc');
-		$("#password").css('border-color', '#ccc');
-		$("#password_confirmation").css('border-color', '#ccc');
+		$("#password").css('background-color', '#a6f1a6');
+		$("#password_confirmation").css('background-color', '#a6f1a6');
 		return true;
 	}
 }
@@ -60,14 +63,16 @@ function checkDate() {
 		return false;
 	}
 	else {
-		$("#birthdate").css('color', '#ccc');
+		$("#birthdate").css('color', 'black');
 		$("#birthdate").css('border-color', '#ccc');
 		return true;
 	}
 }
 
 function checkEmptyFields() {
-	if ($("#first_name").val() == "" || $("#last_name").val() == "" || $("#birthdate").val() == "" || $("#email").val() == "" || $("#password").val() == "" || $("#password_confirmation").val() == "") {
+	if ($("#first_name").val() == "" || $("#last_name").val() == "" ||
+	 $("#birthdate").val() == "" || $("#email").val() == "" || $("#password").val() == "" ||
+	  $("#password_confirmation").val() == "") {
 		return false;
 	}
 	else return true;
@@ -83,11 +88,40 @@ function checkValidity() {
 		alert("You have to be 18 years or older.");
 		return false;
 	}
-		
 	if (!checkEmptyFields()) {
 		alert("No empty fields allowed");	
 		return false;
 	}
-	
+	//alert("Register successfull!!");
+	makePOST();
 	return true;	
+}
+
+function makePOST(){
+
+	var first_name = $("#first_name").val();
+	var last_name = $("#last_name").val();
+	var birthdate =$("#birthdate").val();
+	var gender = $('input[name="gender"]:checked').val();
+	var country = $('#countryOptions').find(":selected").text();
+	var password =$("#password").val();
+	var email =$("#email").val();
+	$.post(
+    'actions/register.php',
+	{
+		'functionName': 'register', 
+		'first_name': first_name,
+		'last_name': last_name,
+		'birthdate':birthdate,
+		'gender':gender,
+		'country':country,
+		'password':password,
+		'email': email
+	},function(data){
+		//window.location = "index.php";
+	})
+    .fail(function (error) {
+		//window.location = "RegisterPage.php";
+        alert("Error: " + error);
+    });
 }

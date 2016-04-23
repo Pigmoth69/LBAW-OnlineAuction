@@ -1,3 +1,13 @@
+<?php
+    if(session_id() == '') {
+        session_start();
+     if (count($_SESSION) === 0) {
+         header("Location: index.php");
+         exit();
+     }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -93,7 +103,15 @@
                            <h3>My information</h3>
                         </div>
                         <div class="col-sm-4">
-                           <img src="images/bidme.png" alt="BidMeLogo" style="width:120px;height:120px;">
+                            <?php
+                                include_once 'database/user.php';
+                                session_start();
+                                print_r($_SESSION);
+                                $infos = getInfoByID($_SESSION['user']);
+                                print_r($infos);
+                                $html = "<img src= \"" . $infos['imagem_utilizador'] . "\" alt= \"" . $infos['imagem_utilizador'] . "\" style=\"width:120px;height:120px;\">";
+                                echo $html;
+                            ?>
                         </div>
                         <div class="col-sm-4">
                            <h4> <b> Name </b></h4>
@@ -165,15 +183,5 @@
       </div>
       <!-- /Main -->
       <!-- /.modal -->
-      <!-- script references -->
-      <script src="js/scripts.js"></script> 
-      <!-- jQuery -->
-      <script src="js/jquery.js"></script>
-      <!-- Bootstrap Core JavaScript -->
-      <script src="js/bootstrap.min.js"></script>
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-      <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
    </body>
 </html>

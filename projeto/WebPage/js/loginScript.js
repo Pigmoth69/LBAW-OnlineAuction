@@ -19,8 +19,7 @@ function login() {
 		"password": password
 	}, 
 	function (data) {
-		alert(data);
-			
+		window.location="UserPage.php";	
 	})
     .fail(function (error) {
         alert("Error: " + error);

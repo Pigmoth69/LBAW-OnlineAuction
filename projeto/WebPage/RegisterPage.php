@@ -38,7 +38,7 @@
                     <h2 class="panel-title" id="sign_title">Sign up</h2>
                 </div>
                 <div class="panel-body">
-                    <form method="POST" id="registo_form" action="actions/register.php">
+                    <form method="POST" id="registo_form">
                         <div class="form-group">
                             <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
                         </div>
@@ -53,14 +53,13 @@
                             <label class="radio-inline"><input type="radio" name="gender" value="female">Female</label>
                         </div>
                         <div class="form-group">
-                            <select name="country" label="Country">
+                            <select id="countryOptions" name="country" label="Country">
                                 <?php
                                     include_once 'database/countries.php';
                                     $paises = getAllCountries();
                                     $html = "";
                                     foreach($paises as $pais) {
-                                        $html .= "<option value=\"";
-                                        $html .= $pais['nome_pais'] . "\">" . $pais['nome_pais'] . "</option>";
+                                        $html .= "<option value=\"" . $pais['nome_pais'] . "\">" . $pais['nome_pais'] . "</option>";
                                     }
                                     echo $html;
                                 ?>
@@ -70,7 +69,7 @@
                             <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password" onChange="checkPasswords()">
+                            <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password"onChange="checkPasswords()">
                         </div>
                         <div class="form-group">
                             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password" onChange="checkPasswords()">
@@ -97,15 +96,7 @@
     </div>
     <!-- /.container -->
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    
     <script src="js/register.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
 </body>
 
 </html>

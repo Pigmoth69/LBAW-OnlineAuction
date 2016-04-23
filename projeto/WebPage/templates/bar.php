@@ -9,19 +9,49 @@
             echo $e;
             return -1;
       }
-      
+      /*
       $path = '../actions/login.php';
       if(!file_exists($path))
             $path = 'actions/login.php';
       try {
-            include_once($path);
+            if (!file_exists($path))
+                  include_once($path);
       }
       catch(PDOException $e) {
             echo $e;
             return -1;
       }
-?>
+      */
 
+?>
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>Online Auction- Where business happens!</title>
+      <!-- Bootstrap Core CSS -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom CSS -->
+      <link href="css/OnlineAuctionHomepage.css" rel="stylesheet">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+      <link rel="icon" href="images/bidme.png"/>
+       <!-- jQuery -->
+      <script src="js/jquery.js"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="js/bootstrap.min.js"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+      <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>-->
+	  <script src="js/imageFit.js"></script>
+        <script src="js/loginScript.js"></script>
+      
+   </head>
 <nav class="navbar navbar-default" role="navigation">
          <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -42,7 +72,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav">
                   <li>
-                     <img src="images/bidme.png" alt="BidMeLogo" style="width:120px;height:50px;">
+                        <a href="index.php">
+                              <img src="images/bidme.png" alt="BidMeLogo" style="width:120px;height:50px;">
+                              </a>
                   </li>
                   <li>
                      <form class="navbar-form navbar-left" role="search" id="cenas">
@@ -67,6 +99,10 @@
                         <button type="submit" class="btn btn-default">Make Search!</button>
                      </form>
                   </li>
+                  <?php
+                        //
+                  ?>
+                  <!-- start log -->
                   <li>
                      <p class="navbar-text">Already have an account?</p>
                   </li>
@@ -95,7 +131,7 @@
                                        <input type="password" class="form-control" id="passwordInput" placeholder="Password" required>
                                        <div class="help-block text-right"><a href="">Forget the password ?</a></div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" onsubmit="js/loginScript.js">
                                        <button method="post"type="submit" class="btn btn-primary btn-block" id="loginButton">Sign in</button>
                                     </div>
                                     <div class="checkbox">
@@ -112,6 +148,7 @@
                         </li>
                      </ul>
                   </li>
+                  <!-- end log -->
                </ul>
             </div>
             <!-- /.navbar-collapse -->
