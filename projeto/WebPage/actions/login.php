@@ -3,7 +3,7 @@
 	include_once '../config/init.php';
 	include_once '../database/user.php';
 	
-	$params = [ 'username', 'password' ];
+	$params = [ 'functionName','username', 'password' ];
 	foreach ($params as $param) {
 		if (isset($_POST[$param])) {
 			$params[$param] = $_POST[$param];
