@@ -81,4 +81,15 @@
         $result = $stmt->fetchAll();
         return $result;
     }
+    
+    function isAdmin($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM UtilizadorAdministrador WHERE id_utilizador = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        if (count($result) == 0)
+            return false;
+        else return true;
+    }
 ?>

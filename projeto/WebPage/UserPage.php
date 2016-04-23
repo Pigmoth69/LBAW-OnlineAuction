@@ -1,10 +1,13 @@
 <?php
+    include_once 'database/users.php';
     if(session_id() == '') {
         session_start();
      if (count($_SESSION) === 0) {
          header("Location: index.php");
          exit();
      }
+     if (is_admin($_SESSION['user']))
+        header("Location: AdminPage.php");;
 }
 ?>
 
