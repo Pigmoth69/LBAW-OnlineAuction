@@ -47,12 +47,11 @@
                <a href="#"><strong><i class="glyphicon glyphicon-list" id="opt" ></i> Options </strong></a>
                <ul class="nav nav-stacked collapse in" id="userMenu">
                   <!-- <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li> -->
-                  <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
+                  <li><a href="MessagePage.php"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
                   <!-- <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Shoutbox</a></li> -->
                   <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
                   <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
-                  <li><a href="#"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
-                  <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                  <li><a href="FAQ.php"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
                </ul>
                </ul>
             </div>
@@ -137,28 +136,23 @@
                            </thead>
                            <tbody>
                               <?php
-                              echo 'wtf';
                                 include_once 'database/auctions.php';
-                                echo 'wtf0';
                                 $auctions = getAuctionsByUserID($_SESSION['user']);
-                                echo 'wtf1';
-                                $no = getNoLiciteesOnAuction($auctions[0]['id_leilao']);
-                                echo 'wtf2';
-                                print_r($auctions);
-                                echo $no;
                                 $html = '';
                                 foreach($auctions as $auction) {
+                                    $no = getNoLiciteesOnAuction($auction['id_leilao']);
                                     $html .= '<tr> <td> <b>';
-                                    $html .= $auctions[0]['nome_produto'];
+                                    $html .= $auction['nome_produto'];
                                     $html .= '</b></td><td>';
                                     $html .= $no;
                                     $html .= '</td><td>';
-                                    $sold = isAuctionSold($auctions[0]['id_leilao']);
+                                    $sold = isAuctionSold($auction['id_leilao']);
                                     if ($sold)
                                         $html .= 'Sold';
                                     else $html .= 'Not sold';
                                     $html .= '</td></tr>';
                                 }
+                                echo $html;
                               ?>
                            </tbody>
                         </table>

@@ -11,27 +11,30 @@
 		return -1;
 	}
 
-    function getAuctionsByUserID($id) {
+    function getAuctionsByUserID($id) {        
         global $conn;
-        $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_vendedor = :id');
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $result = $stmt->fetchAll();
+		$stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_vendedor = :id');
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
         return $result;
     }
     
     function getNoLiciteesOnAuction($id) {
         global $conn;
-        $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id');
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $result = $stmt->fetchAll();
+		$stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id');
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
         return count($result);
     }
     
     function isAuctionSold($id) {
         global $conn;
-        $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id');
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $result = $stmt->fetchAll();
+		$stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id');
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
         
         foreach($result as $res) {
             if ($res['vencedor'])
