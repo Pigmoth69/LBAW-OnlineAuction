@@ -22,7 +22,6 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
       <!-- (Optional) Latest compiled and minified JavaScript translation files -->
     <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>-->
-	  <script src="../js/imageFit.js"></script>
     <script src="../js/loginScript.js"></script>
       
    </head>

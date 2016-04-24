@@ -18,9 +18,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav">
                   <li>
-                        <a href="../index.php">
+                        <a href="../index.php" style="padding:0;">
                               <img src="../images/bidme.png" alt="BidMeLogo" style="width:120px;height:50px;">
-                              </a>
+                        </a>
                   </li>
                   <li>
                      <form class="navbar-form navbar-left" role="search" id="cenas">
@@ -75,7 +75,7 @@
                                  </form>
                               </div>
                               <div class="bottom text-center">
-                                 New here ? <a href="pages/RegisterPage.php"><b>Join Us</b></a>
+                                 New here ? <a href="RegisterPage.php"><b>Join Us</b></a>
                               </div>
                            </div>
                         </li>
