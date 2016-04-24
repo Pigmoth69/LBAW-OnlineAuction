@@ -107,7 +107,7 @@ function makePOST(){
 	var password =$("#password").val();
 	var email =$("#email").val();
 	$.post(
-    'actions/register.php',
+    '../actions/register.php',
 	{
 		'functionName': 'register', 
 		'first_name': first_name,
@@ -121,7 +121,7 @@ function makePOST(){
 		var response = data['register'];
 			switch(response) {
 				case 'user_exists':
-					window.location = "RegisterPage.php";
+					window.location = "pages/RegisterPage.php";
 					break;
 				case 'success':
 					window.location = "index.php";
@@ -133,7 +133,7 @@ function makePOST(){
 		
 	})
     .fail(function (error) {
-		window.location = "RegisterPage.php";
+		window.location = "pages/RegisterPage.php";
         alert("Error: " + error);
     });
 }

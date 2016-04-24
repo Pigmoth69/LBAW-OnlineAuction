@@ -2,7 +2,11 @@
     $path = '../config/init.php';
 
     if(!file_exists($path))
-            $path = 'config/init.php';
+        $path = 'config/init.php';
+    if(!file_exists($path))
+        $path = '../../config/init.php';
+    if(!file_exists($path))
+        $path = '../../../config/init.php';     
     try {
         include_once($path);
     }
@@ -41,5 +45,13 @@
                 return true;
         }
         return false;
+    }
+    
+    function bestAuctions() {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Leilao ORDER BY valor_base DESC');
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
     }
 ?>

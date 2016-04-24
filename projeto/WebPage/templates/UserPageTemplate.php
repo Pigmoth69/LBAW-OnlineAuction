@@ -1,45 +1,8 @@
-<?php
-    include_once 'database/users.php';
-    if(session_id() == '') {
-        session_start();
-     if (count($_SESSION) === 0) {
-         header("Location: index.php");
-         exit();
-     }
-     if (is_admin($_SESSION['user']))
-        header("Location: AdminPage.php");
-}
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <title>Online Auction- Where business happens!</title>
-      <!-- Bootstrap Core CSS -->
-      <link href="css/bootstrap.min.css" rel="stylesheet">
-      <!-- Custom CSS -->
-      <link href="css/OnlineAuctionUserPage.css" rel="stylesheet">
-      <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
-      <link rel="icon" href="images/bidme.png"/>
-      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
-      <style>
-      </style>
-   </head>
    <body>
       <!-- Navigation -->
      <?php
-        include 'templates/bar.php';
+        include 'common/head.php';
+        include 'common/bar.php';
      ?>
       <!-- Main -->
       <div class="container">
@@ -86,15 +49,27 @@
                         </div>
                      </div>
                      <div class="panel-body">
-                        <div class="col-xs-4 text-center"><img src="http://thumbs.buscape.com.br/celular-e-smartphone/smartphone-apple-iphone-5s-16gb-desbloqueado_200x200-PU85fdd_1.jpg" class="img-circle img-responsive" alt="Error">
-                        <label> iphone </label>
-                        </div>
-                        
-                        <div class="col-xs-4 text-center"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSQvtC5fy47I3QvTGmTCf_Ihhpi2mAYw6ZwOfZylFrfc4nu-vxr" class="img-circle img-responsive" alt="Error">
-
-                        <label> ps3 slim </label> </div>
-                        <div class="col-xs-4 text-center"><img src="http://i57.tinypic.com/35i6n3o.png" class="img-circle img-responsive" alt="Error"> 
-                        <label> pineapple </label> </div>
+                         <?php
+                            include_once '../database/auctions.php';
+                            $best_auctions = bestAuctions();
+                            $html = "<div class=\"col-xs-4 text-center\"><img src=../";
+                            $html .= $best_auctions[0]['imagem_produto'];
+                            $html .= "class=\"img-circle img-responsive alt=\"Error\">";
+                            $html .= "<label>" . $best_auctions[0]['nome_produto'] . "</label></div>";
+                            echo $html;
+                            
+                            $html = "<div class=\"col-xs-4 text-center\"><img src=../";
+                            $html .= $best_auctions[1]['imagem_produto'];
+                            $html .= "class=\"img-circle img-responsive alt=\"Error\">";
+                            $html .= "<label>" . $best_auctions[1]['nome_produto'] . "</label></div>";
+                            echo $html;
+                            
+                            $html = "<div class=\"col-xs-4 text-center\"><img src=../";
+                            $html .= $best_auctions[2]['imagem_produto'];
+                            $html .= "class=\"img-circle img-responsive alt=\"Error\">";
+                            $html .= "<label>" . $best_auctions[2]['nome_produto'] . "</label></div>";
+                            echo $html;
+                         ?>
                      </div>
                      <!--/tabs-->
                   </div>
@@ -106,10 +81,10 @@
                         </div>
                         <div class="col-sm-4">
                             <?php
-                                include_once 'database/user.php';
+                                include_once '../database/user.php';
                                 session_start();
                                 $infos = getInfoByID($_SESSION['user']);
-                                $html = "<img src= \"" . $infos[0]['imagem_utilizador'] . "\" alt= \"" . $infos[0]['imagem_utilizador'] . "\" style=\"width:120px;height:120px;\">";
+                                $html = "<img src= \"../" . $infos[0]['imagem_utilizador'] . "\" alt= \"" . $infos[0]['imagem_utilizador'] . "\" style=\"width:120px;height:120px;\">";
                                 echo $html;
                             ?>
                         </div>
@@ -118,7 +93,7 @@
                            <p> <?php echo $infos[0]['nome'];?> <p>
                            <h4> <b> Country </b> </h4>
                            <p> <?php
-                                include_once 'database/countries.php';
+                                include_once '../database/countries.php';
                                 $pais = getNameCountryByID($infos[0]['id_pais']);
                                 echo $pais[0]['nome_pais'];
                                 ?>
@@ -139,7 +114,7 @@
                            </thead>
                            <tbody>
                               <?php
-                                include_once 'database/auctions.php';
+                                include_once '../database/auctions.php';
                                 $auctions = getAuctionsByUserID($_SESSION['user']);
                                 $html = '';
                                 foreach($auctions as $auction) {
@@ -169,18 +144,8 @@
          </div>
       </div>
       
-      <div class="container">
-         <hr>
-         <!-- Footer -->
-         <footer>
-            <div class="row">
-               <div class="col-lg-12">
-                  <p>Copyright &copy; BidMe-OnlineAuction Limited &reg; </p>
-               </div>
-            </div>
-         </footer>
-      </div>
-      <!-- /Main -->
-      <!-- /.modal -->
+      <?php
+        include_once 'common/foot.php';
+      ?>
    </body>
 </html>

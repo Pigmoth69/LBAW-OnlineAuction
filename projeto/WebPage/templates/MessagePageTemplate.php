@@ -1,47 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <title>Online Auction- Where business happens!</title>
-      <!-- Bootstrap Core CSS -->
-      <link href="css/bootstrap.min.css" rel="stylesheet">
-      <!-- Custom CSS -->
-      <link href="css/OnlineAuctionUserPage.css" rel="stylesheet">
-      <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
-      <link rel="icon" href="images/bidme.png"/>
-      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
-   </head>
    <body>
       <!-- Navigation -->
       <?php
-        include 'templates/bar.php';
-    ?>
+        include 'common/head.php';
+        include 'common/bar.php';
+      ?>
       <!-- Main -->
       <div class="container">
          <div class="row">
             <div class="col-md-3">
                <hr>
                <ul class="nav nav-stacked">
-               <a href="#"><strong><i class="glyphicon glyphicon-list"></i> Options </strong></a>
                <ul class="nav nav-stacked collapse in" id="userMenu">
                   <!-- <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li> -->
-                  <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
-                  <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Options</a></li>
-                  <!-- <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Shoutbox</a></li> -->
+                  <li><a href="MessagePage.php"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
                   <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
                   <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
-                  <li><a href="#"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
-                  <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                  <li><a href="FAQ.php"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
                </ul>
                </ul>
             </div>
@@ -181,18 +155,8 @@
          </div>
       </div>
       
-      <div class="container">
-         <hr>
-         <!-- Footer -->
-         <footer>
-            <div class="row">
-               <div class="col-lg-12">
-                  <p>Copyright &copy; BidMe-OnlineAuction Limited &reg; </p>
-               </div>
-            </div>
-         </footer>
-      </div>
-      <!-- /Main -->
-      <!-- /.modal -->
+      <?php
+        include_once 'common/foot.php';
+      ?>
    </body>
 </html>

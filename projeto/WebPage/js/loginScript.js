@@ -11,7 +11,7 @@ function login() {
 	var password = $('#passwordInput').val();
 	
 	$.post(
-    'actions/login.php',
+    '../actions/login.php',
 	{
 		"functionName": 'login', 
 		"username": username,

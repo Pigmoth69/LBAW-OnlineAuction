@@ -8,9 +8,9 @@
       <meta name="author" content="">
       <title>Online Auction- Where business happens!</title>
       <!-- Bootstrap Core CSS -->
-      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="../css/bootstrap.min.css" rel="stylesheet">
       <!-- Custom CSS -->
-      <link href="css/OnlineAuctionItemPageBidder.css" rel="stylesheet">
+      <link href="../css/OnlineAuctionItemPageSeller.css" rel="stylesheet">
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
       <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -21,7 +21,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
       <!-- jQuery -->
-      <script src="js/jquery.js"></script>
+      <script src="../js/jquery.js"></script>
       <script>
          var i = 0;
          
@@ -41,7 +41,7 @@
         if( i<=100){
             if(i >= 90 && i <=94){
                 $("#AlertStyle").removeClass("panel panel-success").addClass("panel panel-warning");
-				$(".panel-body").css('background-color','#fdfaee');}
+				$("#auctionStatus .panel-body").css('background-color','#fdfaee');}
          minutes = parseInt(timer / 60, 10)
          seconds = parseInt(timer % 60, 10);
          
@@ -57,8 +57,7 @@
         i = 105; //codigo todo trolha mas depois vai ser mudado! ;)
         $("#AlertStyle").removeClass("panel panel-warning").addClass("panel panel-danger");
         $(".panel-heading").text("Auction closed!");
-		$(".panel-body").css('background-color','#f7ebeb');
-		$("#bidAction").css('display','none');
+		$("#auctionStatus .panel-body").css('background-color','#f7ebeb');
      }
          }, 1000);
          }
@@ -70,12 +69,14 @@
          });
          
       </script>
+
    </head>
    <body>
       <!-- Navigation -->
-     <?php
-        include 'templates/bar.php';
-     ?>
+      <?php
+        //include 'common/head.php';
+        include 'common/bar.php';
+      ?>
       <!-- Page Content -->
       <div class="container">
          <div class="row">
@@ -84,7 +85,7 @@
                   <p class="lead">André Fagotinho Maia</p>
                </div>
                <div class="thumbnail">
-                  <img src="images/users/maia.jpg" style="width:500px;height:360px" alt="iphone6s">
+                  <img src="../images/users/maia.jpg" style="width:500px;height:360px" alt="iphone6s">
                </div>
                <div class="list-group">
                   <a href="#" class="list-group-item">
@@ -143,15 +144,15 @@
                      <div class="carousel-inner" role="listbox">
                         <div
                            class="item active">                            <img
-                           src="images/ProductsImages/iphone6s-1.jpg" alt="iphone6s"></div>
+                           src="../images/ProductsImages/iphone6s-1.jpg" alt="iphone6s"></div>
                         <div class="item">
-                           <img src="images/ProductsImages/iphone6s-2.jpg" alt="iphone6s">
+                           <img src="../images/ProductsImages/iphone6s-2.jpg" alt="iphone6s">
                         </div>
                         <div class="item">
-                           <img src="images/ProductsImages/iphone6s-3.jpg" alt="iphone6s">
+                           <img src="../images/ProductsImages/iphone6s-3.jpg" alt="iphone6s">
                         </div>
                         <div class="item">
-                           <img src="images/ProductsImages/iphone6s-4.jpg" alt="iphone6s">
+                           <img src="../images/ProductsImages/iphone6s-4.jpg" alt="iphone6s">
                         </div>
                      </div>
                      <!-- Left and right controls -->
@@ -172,8 +173,7 @@
                      </p>
                   </div> 
             </div>
-
-			<div class="panel-group">
+			<div class="panel-group" id="auctionStatus">
 					<div class="panel panel-success " id="AlertStyle">
 					<div class="panel-heading">
 						<div class="inline-form">
@@ -187,46 +187,173 @@
 								<p id="ProgressStatus">0</p><!-- Auction closes in <span id="time">00:30</span> minutes!-->
 							</div>
 						</div>
-                            <!-- Código para fazer as bids-->
-                  <div class="text-center" id="bidAction">
-                    <form class="form-inline">
-                    <div class="pull-left">
-                    </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="AmountInput">Amount</label>
-                            <div class="input-group input-group-lg">
-                                <span class="input-group-addon" id="sizing-addon1">Current bid: 98.75€</span>
-                                <input type="text" class="form-control" id="AmountInput" aria-describedby="sizing-addon1" placeholder="Amount e.g 2.56">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-lg">Make Bid!</button>
-                    </form>
-                 </div>
-
-							
-							
-							
                         </div>
 					</div>
 				</div>
-				  
-				  
-				 
                </div>
+               <div class="container-fluid" id="auctionInfo">
+    <div class="row">
+        <div class="col-lg-5">
+            <div  id="latestUsers">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i>Latest Bidders: </h3>
+         </div>
+         <div class="panel-body">
+            <div class="list-group">
+               <a href="#" class="list-group-item">
+               <span class="badge">just now</span>
+               <i class="fa fa-fw fa-user"></i> Daniel Reis
+               </a>
+               <a href="#" class="list-group-item">
+               <span class="badge">4 minutes ago</span>
+               <i class="fa fa-fw fa-user"></i> Ricardo Lopes
+               </a>
+               <a href="#" class="list-group-item">
+               <span class="badge">23 minutes ago</span>
+               <i class="fa fa-fw fa-user"></i> Daniel Reis
+               </a>
+               <a href="#" class="list-group-item">
+               <span class="badge">46 minutes ago</span>
+               <i class="fa fa-fw fa-user"></i> Ricardo Lopes
+               </a>
+               <a href="#" class="list-group-item">
+               <span class="badge">1 hour ago</span>
+               <i class="fa fa-fw fa-user"></i> Daniel Reis
+               </a>
+               <a href="#" class="list-group-item">
+               <span class="badge">2 hours ago</span>
+               <i class="fa fa-fw fa-user"></i> João Bernardo
+               </a>
+               <a href="#" class="list-group-item">
+               <span class="badge">yesterday</span>
+               <i class="fa fa-fw fa-user"></i> Miguel Botelho
+               </a>
+               <a href="#" class="list-group-item">
+               <span class="badge">two days ago</span>
+               <i class="fa fa-fw fa-user"></i> Daniel Reis
+               </a>
+               <a href="#" class="list-group-item">
+               <span class="badge">three days ago</span>
+               <i class="fa fa-fw fa-user"></i> Miguel Botelho
+               </a>
+               <a href="#" class="list-group-item">
+               <span class="badge">three days ago</span>
+               <i class="fa fa-fw fa-user"></i> João Bernardo
+               </a>
+            </div>
+            <div class="text-right">
+               <a href="http://blackrockdigital.github.io/startbootstrap-sb-admin/#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
          </div>
       </div>
-      <!-- /.container -->
-      <div class="container">
-         <hr>
-         <!-- Footer -->
-         <footer>
-            <div class="row">
-               <div class="col-lg-12">
-                  <p>Copyright &copy; Your Website 2014</p>
-               </div>
+   </div>
+        </div>
+        <div class="col-lg-7">
+            <div id="biddersTable">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Transactions Panel</h3>
+         </div>
+         <div class="panel-body">
+            <div class="table-responsive">
+               <table class="table table-bordered table-hover table-striped">
+                  <thead>
+                     <tr>
+                        <th>Position</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>EUR</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>1</td>
+                        <th>Daniel Reis</th>
+                        <td>10/21/2013</td>
+                        <td>3:29 PM</td>
+                        <td>€98.75</td>
+                     </tr>
+                     <tr>
+                        <td>2</td>
+                        <th>Ricardo Lopes</th>
+                        <td>10/21/2013</td>
+                        <td>3:20 PM</td>
+                        <td>€90.12</td>
+                     </tr>
+                     <tr>
+                        <td>3</td>
+                        <th>João Bernardo</th>
+                        <td>10/21/2013</td>
+                        <td>3:03 PM</td>
+                        <td>€80.99</td>
+                     </tr>
+                     <tr>
+                        <td>4</td>
+                        <th>Miguel Botelho</th>
+                        <td>10/21/2013</td>
+                        <td>3:00 PM</td>
+                        <td>€78.29</td>
+                     </tr>
+                     <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                     </tr>
+                     <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                     </tr>
+                     <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                     </tr>
+                     <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                     </tr>
+                     <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                     </tr>
+                     <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                     </tr>
+                  </tbody>
+               </table>
             </div>
-         </footer>
+            <div class="text-right">
+               <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+         </div>
       </div>
-      <!-- /.container -->
+   </div>
+        </div>
+    </div>
+</div>
+         </div>
+      </div>
+      <?php
+        include_once 'common/foot.php';
+      ?>
    </body>
 </html>
