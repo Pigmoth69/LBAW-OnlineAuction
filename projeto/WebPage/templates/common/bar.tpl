@@ -39,10 +39,6 @@
                      </form>
                   </li>
                   <!-- start log -->
-                  <!--
-                  {if (isLoggedIn())}
-                        
-                  {elseif}
                       <li>
                      <p class="navbar-text">Already have an account?</p>
                   </li>
@@ -83,7 +79,6 @@
                         </li>
                      </ul>
                   </li>  
-                  {/if}
                   
                   <!-- end log -->
                   <li><a href="../actions/logout.php"><i class="glyphicon glyphicon-off"></i> Logout</a></li>

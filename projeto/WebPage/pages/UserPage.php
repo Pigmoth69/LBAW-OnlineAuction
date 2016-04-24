@@ -5,12 +5,13 @@
     include_once '../database/categories.php';
     include_once '../utils/utils.php';
     
-    if (!isLoggedIn()) {
+    session_start();
+    if (count($_SESSION) === 0) {
         header("Location: ../index.php");
         exit;
     }
     if (isAdmin($_SESSION['user']))
-       header("Location: pages/AdminPage.php");
+       header("Location: AdminPage.php");
        
     $categorias = getAllCategories();
     $infos = getInfoByID($_SESSION['user']);
