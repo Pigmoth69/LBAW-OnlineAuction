@@ -1,9 +1,6 @@
-   <body>
-      <!-- Navigation -->
-      <?php
-        include 'common/head.php';
-        include 'common/bar.php';
-      ?>
+ {include file='common/head.tpl'}
+{include file='common/bar.tpl'}  
+ <body>
       <!-- Main -->
       <div class="container">
          <div class="row">
@@ -154,9 +151,6 @@
             <!--/col-span-9-->
          </div>
       </div>
-      
-      <?php
-        include_once 'common/foot.php';
-      ?>
    </body>
+   {include file='common/foot.tpl'}
 </html>

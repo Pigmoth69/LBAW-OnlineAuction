@@ -1,9 +1,6 @@
+{include file='common/head.tpl'}
+{include file='common/bar.tpl'}
 <body>
-      <!-- Navigation -->
-      <?php
-        include 'common/head.php';
-        include 'common/bar.php';
-      ?>
     <div class="container">
         <div class="panel-group" id="accordion">
             <div class="faqHeader">Questões Gerais</div>
@@ -101,10 +98,7 @@
             
         </div>
     </div>
-
-    <?php
-        include_once 'common/foot.php';
-      ?>
         <!-- /.container -->
     </body>
+    {include file='common/foot.tpl'}
 </html>

@@ -1,10 +1,7 @@
-<body>
+{include file='common/head.tpl'}
+{include file='common/bar.tpl'}
 
-    <!-- Navigation -->
-    <?php
-        include 'common/head.php';
-        include 'common/bar.php';
-    ?>
+<body>
       
       <div class="container">
         <div class="row">
@@ -79,9 +76,6 @@
                 </table>
         </div>
       </div>
-      <?php
-        include_once 'common/foot.php';
-      ?>
       </body>
-
+      {include file='common/foot.tpl'}
 </html>

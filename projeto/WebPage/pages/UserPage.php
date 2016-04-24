@@ -2,19 +2,7 @@
     include_once '../database/user.php';
     include_once '../database/auctions.php';
     include_once '../database/countries.php';
-    
-    $path = '../database/categories.php';
-      if(!file_exists($path))
-            $path = 'database/categories.php';
-      if (!file_exists($path))
-            $path = '../../database/categories.php';
-      try {
-            include_once($path);
-      }
-      catch(PDOException $e) {
-            echo $e;
-            return -1;
-      }
+    include_once '../database/categories.php';
     
     session_start();
     if (count($_SESSION) === 0) {

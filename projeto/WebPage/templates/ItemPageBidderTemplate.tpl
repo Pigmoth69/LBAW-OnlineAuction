@@ -71,12 +71,9 @@
          
       </script>
    </head>
+   {include file='common/bar.tpl'}
    <body>
-      <!-- Navigation -->
-     <?php
-        //include 'common/head.php';
-        include 'common/bar.php';
-     ?>
+      
       <!-- Page Content -->
       <div class="container">
          <div class="row">
@@ -216,10 +213,6 @@
                </div>
          </div>
       </div>
-      <!-- /.container -->
-      <?php
-        include_once 'common/foot.php';
-      ?>
-      <!-- /.container -->
    </body>
+   {include file='common/foot.tpl'}
 </html>

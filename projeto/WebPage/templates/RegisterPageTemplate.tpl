@@ -1,9 +1,6 @@
+{include file='common/head.tpl'}
+{include file='common/bar.tpl'}
 <body>
-    <!-- Navigation -->
-    <?php
-        include 'common/head.php';
-        include 'common/bar.php';
-    ?>
     <!-- Page Content -->
     <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
@@ -28,16 +25,9 @@
                         </div>
                         <div class="form-group">
                             <select id="countryOptions" name="country" label="Country">
-                                <?php
-                                    include_once '../database/countries.php';
-                                    $paises = getAllCountries();
-                                    $html = "";
-                                    foreach($paises as $pais) {
-                                        $html .= "<option value=\"";
-                                        $html .= $pais['nome_pais'] . "\">" . $pais['nome_pais'] . "</option>";
-                                    }
-                                    echo $html;
-                                ?>
+                                {foreach $paises as $pais}
+                                    <option value="{$pais.nome_pais}">{$pais.nome_pais}</option>
+                                {/foreach}
                             </select>
                         </div>
                         <div class="form-group">
@@ -56,11 +46,9 @@
         </div>
     </div>
 
-    <?php
-        include_once 'common/foot.php';
-      ?>
     <!-- /.container -->
     <script src="../js/register.js"></script>
 </body>
+{include file='common/foot.tpl'}
 
 </html>

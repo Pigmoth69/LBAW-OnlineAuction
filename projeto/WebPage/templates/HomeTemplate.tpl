@@ -1,9 +1,6 @@
+{include file='common/head.tpl'}
+{include file='common/bar.tpl'}
 <body>
-      <!-- Navigation -->
-      <?php
-        include 'common/head.php';
-        include 'common/bar.php';
-      ?>
 
       <!-- Page Content -->
       <div class="container">
@@ -11,26 +8,18 @@
          <div class="col-md-3">
             <p class="lead">Total items:</p>
             <ul class="list-group">
-              
-              <?php
-                $categorias = getAllCategories();
-                $html = "";
-                $first_line = "<a href=\"#\" class=\"list-group-item\"><span class=\"badge\">";
-                $total_no = 0;
-                foreach($categorias as $categoria) {
-                    $no = getNoElementsOfCategory($categoria['id_categoria']);
-                    $total_no += $no;
-                    $html .= "<a href=\"#\" class=\"list-group-item\"><span class=\"badge\">";
-                    $html .= $no;
-                    $html .= "</span>";
-                    $html .= $categoria['descricao'];
-                    $html .= "</a>";
-                }
-                $first_line .= $total_no . "</span>All Categories</a>";
-                echo $first_line;
-                echo $html;
-              ?>
-
+                <a href="" class="list-group-item"><span class="badge">
+              {$total_no = 0}
+              {foreach $categorias as $categoria}
+                {$no = getNoElementsOfCategory($categoria.id_categoria)}
+                {$total_no = $total_no + $no}
+              {/foreach}
+              {$total_no}</span>All Categories</a>
+              {foreach $categorias as $categoria}
+                {$no = getNoElementsOfCategory($categoria.id_categoria)}
+                {$total_no = $total_no + $no}
+                <a href="" class="list-group-item"><span class="badge">{$no}</span>{$categoria.descricao}</a>
+              {/foreach}
             </ul>
          </div>
          <div class="col-md-9">
@@ -409,10 +398,6 @@
             </div>
          </div>
       </div>
-      <!-- /.container -->
-      <?php
-        include_once 'common/foot.php';
-      ?>
-      <!-- /.container -->
    </body>
+   {include file='common/foot.tpl'}
 </html>

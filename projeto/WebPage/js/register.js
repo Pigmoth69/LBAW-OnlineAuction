@@ -121,7 +121,7 @@ function makePOST(){
 		var response = data['register'];
 			switch(response) {
 				case 'user_exists':
-					window.location = "pages/RegisterPage.php";
+					window.location = "RegisterPage.php";
 					break;
 				case 'success':
 					window.location = "index.php";
