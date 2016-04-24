@@ -124,7 +124,7 @@ function makePOST(){
 					window.location = "RegisterPage.php";
 					break;
 				case 'success':
-					window.location = "index.php";
+					window.location = "../index.php";
 					break;
 				default:
 					//displayError("Error while processing the login...");
@@ -133,7 +133,7 @@ function makePOST(){
 		
 	})
     .fail(function (error) {
-		window.location = "pages/RegisterPage.php";
+		window.location = "RegisterPage.php";
         alert("Error: " + error);
     });
 }

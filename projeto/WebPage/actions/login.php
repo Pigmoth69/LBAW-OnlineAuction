@@ -1,5 +1,4 @@
 <?php
-
 	$path = '../config/init.php';
 
     if(!file_exists($path))
@@ -40,12 +39,14 @@
 	}
 	
 	$id = compareLogin($params['username'], $params['password']);
-	
 	if ($id == -1) {
 		printResponse("wrong_login", "login");
 	}
-	else {
+	else if ($id > 0){
 		$_SESSION['user'] = $id;
 		printResponse("success", "login");
+	}
+	else {
+		printResponse("WTF", "login");
 	}
 ?>
