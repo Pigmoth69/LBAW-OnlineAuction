@@ -69,6 +69,8 @@
                            <p> {$pais[0].nome_pais}</p>
                            <h4> <b> Birthdate </b> </h4>
                            <p> {$infos.datanasc}<p>
+                           <h4> <b> E-mail </b> </h4>
+                           <p> {$infos.e_mail}</p>
                         </div>
                      </div>
                      <hr>

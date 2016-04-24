@@ -6,17 +6,18 @@
         <div class="row">
             <div class="col-md-3">
                <div class="thumbnail">
-                  <img src="{$info_admin[0].imagem_utilizador}" style="width:500px;height:360px" alt="Maia">
+                  <img src="{$user[0].imagem_utilizador}" style="width:500px;height:360px" alt="Maia">
                </div>
                <div class="list-group">
                   <a href="#" class="list-group-item">
                      <p class="glyphicon glyphicon-user"> {$user[0].nome}</p>
                   </a>
                   <a href="#" class="list-group-item">
-                     <p class="fa fa-venus-mars"> {$user[0].gender}</p>
+                     <p class="fa fa-venus-mars">
+                         {$user[0].datanasc}</p>
                   </a>
                   <a href="#" class="list-group-item">
-                     <p class="glyphicon glyphicon-envelope">{$user[0].e_mail}</p>
+                     <p class="glyphicon glyphicon-envelope"> {$user[0].e_mail}</p>
                   </a>
                </div>
                <!--<div class="list-group">

@@ -13,7 +13,6 @@
     if (isAdmin($_SESSION['user']))
        header("Location: AdminPage.php");
     
-    print_r($_SESSION);
     $categorias = getAllCategories();
     $infos = getInfoByID($_SESSION['user']);
     $pais = getNameCountryByID($infos[0]['id_pais']);
