@@ -1,9 +1,8 @@
+{include file='common/head.tpl'}
+{include file='common/bar.tpl'}
    <body>
       <!-- Navigation -->
-     <?php
-        include 'common/head.php';
-        include 'common/bar.php';
-     ?>
+     
       <!-- Main -->
       <div class="container">
          <div class="row">
@@ -45,31 +44,12 @@
                      <hr>
                      <div class="panel-heading">
                         <div class="panel-title">
-                           <h4> <b> Featured auctions </b> </h4>
+                           <h4> <b> Description </b> </h4>
+                           <h5> {$infos.descricao}</h5>
                         </div>
                      </div>
                      <div class="panel-body">
-                         <?php
-                            include_once '../database/auctions.php';
-                            $best_auctions = bestAuctions();
-                            $html = "<div class=\"col-xs-4 text-center\"><img src=../";
-                            $html .= $best_auctions[0]['imagem_produto'];
-                            $html .= "class=\"img-circle img-responsive alt=\"Error\">";
-                            $html .= "<label>" . $best_auctions[0]['nome_produto'] . "</label></div>";
-                            echo $html;
-                            
-                            $html = "<div class=\"col-xs-4 text-center\"><img src=../";
-                            $html .= $best_auctions[1]['imagem_produto'];
-                            $html .= "class=\"img-circle img-responsive alt=\"Error\">";
-                            $html .= "<label>" . $best_auctions[1]['nome_produto'] . "</label></div>";
-                            echo $html;
-                            
-                            $html = "<div class=\"col-xs-4 text-center\"><img src=../";
-                            $html .= $best_auctions[2]['imagem_produto'];
-                            $html .= "class=\"img-circle img-responsive alt=\"Error\">";
-                            $html .= "<label>" . $best_auctions[2]['nome_produto'] . "</label></div>";
-                            echo $html;
-                         ?>
+                         
                      </div>
                      <!--/tabs-->
                   </div>
@@ -80,26 +60,15 @@
                            <h3>My information</h3>
                         </div>
                         <div class="col-sm-4">
-                            <?php
-                                include_once '../database/user.php';
-                                session_start();
-                                $infos = getInfoByID($_SESSION['user']);
-                                $html = "<img src= \"../" . $infos[0]['imagem_utilizador'] . "\" alt= \"" . $infos[0]['imagem_utilizador'] . "\" style=\"width:120px;height:120px;\">";
-                                echo $html;
-                            ?>
+                            <img src="{$infos.imagem_utilizador}" alt="Error" style="width:120px;height:120px">
                         </div>
                         <div class="col-sm-4">
                            <h4> <b> Name </b></h4>
-                           <p> <?php echo $infos[0]['nome'];?> <p>
+                           <p> {$infos.nome} <p>
                            <h4> <b> Country </b> </h4>
-                           <p> <?php
-                                include_once '../database/countries.php';
-                                $pais = getNameCountryByID($infos[0]['id_pais']);
-                                echo $pais[0]['nome_pais'];
-                                ?>
-                           </p>
+                           <p> {$pais[0].nome_pais}</p>
                            <h4> <b> Birthdate </b> </h4>
-                           <p> <?php echo $infos[0]['datanasc'];?> <p>
+                           <p> {$infos.datanasc}<p>
                         </div>
                      </div>
                      <hr>
@@ -113,25 +82,21 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <?php
-                                include_once '../database/auctions.php';
-                                $auctions = getAuctionsByUserID($_SESSION['user']);
-                                $html = '';
-                                foreach($auctions as $auction) {
-                                    $no = getNoLiciteesOnAuction($auction['id_leilao']);
-                                    $html .= '<tr> <td> <b>';
-                                    $html .= $auction['nome_produto'];
-                                    $html .= '</b></td><td>';
-                                    $html .= $no;
-                                    $html .= '</td><td>';
-                                    $sold = isAuctionSold($auction['id_leilao']);
-                                    if ($sold)
-                                        $html .= 'Sold';
-                                    else $html .= 'Not sold';
-                                    $html .= '</td></tr>';
-                                }
-                                echo $html;
-                              ?>
+                               {foreach $auctions as $auction}
+                                <tr>
+                                    <td><b>{$auction.nome_produto}</b></td>
+                                    <td> {$no = getNoLiciteesOnAuction($auction.id_leilao)}
+                                        {$no} </td>
+                                    <td>
+                                        {if (isAuctionSold($auction.id_leilao))}
+                                            Sold
+                                        {else}
+                                            Not Sold
+                                        {/if}
+                                        
+                                    </td>
+                                </tr>
+                               {/foreach}
                            </tbody>
                         </table>
                      </div>
@@ -144,8 +109,7 @@
          </div>
       </div>
       
-      <?php
-        include_once 'common/foot.php';
-      ?>
+      
    </body>
 </html>
+{include file='common/foot.tpl'}

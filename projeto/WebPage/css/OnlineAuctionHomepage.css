@@ -44,7 +44,7 @@ body {
     color: #333;
 }
 .price_tag h4{
-	font-size:35px;
+	font-size:150%;
 	font-family:"Arial Black", Gadget, sans-serif;
 	border-radius:5px;
 	background-color:yellow;
@@ -113,17 +113,6 @@ body {
 .teste img{
 	width:99%;	
 }
-
-
-
-
-
-
-
-
-
-
-
 footer {
     margin: 50px 0;
 }

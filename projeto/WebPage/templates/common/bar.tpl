@@ -1,30 +1,3 @@
-<?php
-      $path = '../database/categories.php';
-      if(!file_exists($path))
-            $path = 'database/categories.php';
-      if (!file_exists($path))
-            $path = '../../database/categories.php';
-      try {
-            include_once($path);
-      }
-      catch(PDOException $e) {
-            echo $e;
-            return -1;
-      }
-      /*
-      $path = '../actions/login.php';
-      if(!file_exists($path))
-            $path = 'actions/login.php';
-      try {
-            if (!file_exists($path))
-                  include_once($path);
-      }
-      catch(PDOException $e) {
-            echo $e;
-            return -1;
-      }
-      */
-?>
 <nav class="navbar navbar-default" role="navigation">
          <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -57,24 +30,14 @@
                         <div class="form-group">
                            <select class="selectpicker" data-live-search="true" >
                               <option selected="selected">All Categories</option>
-                              
-                              <?php
-                                    $categorias = getAllCategories();
-                                    $html = "";
-                                    foreach($categorias as $categoria) {
-                                        $html .= "<option>";
-                                        $html .= $categoria['descricao'] . "</option>";
-                                    }
-                                    echo $html;
-                              ?>
+                              {foreach $categorias as $categoria}
+                              <option>{$categoria.descricao}</option>
+                              {/foreach}
                            </select>
                         </div>
                         <button type="submit" class="btn btn-default">Make Search!</button>
                      </form>
                   </li>
-                  <?php
-                        //
-                  ?>
                   <!-- start log -->
                   <li>
                      <p class="navbar-text">Already have an account?</p>
