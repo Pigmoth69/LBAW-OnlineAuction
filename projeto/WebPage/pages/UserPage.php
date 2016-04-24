@@ -3,9 +3,9 @@
     include_once '../database/auctions.php';
     include_once '../database/countries.php';
     include_once '../database/categories.php';
+    include_once '../utils/utils.php';
     
-    session_start();
-    if (count($_SESSION) === 0) {
+    if (!isLoggedIn()) {
         header("Location: ../index.php");
         exit;
     }
