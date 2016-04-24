@@ -6,7 +6,7 @@
     include_once '../database/categories.php';
     include_once '../utils/utils.php';
     
-    if (count($_SESSION) === 0 || $_SESSION['user'] == '-1') {
+    if (count($_SESSION) === 0 || $_SESSION['user'] == '') {
         header("Location: ../index.php");
         exit;
     }

@@ -6,6 +6,20 @@
     include_once '../database/countries.php';
     include_once '../database/categories.php';
     
+    if (count($_SESSION) === 0 || $_SESSION['user'] == '') {
+        header("Location: ../index.php");
+        exit;
+    }
     
+    if (!isAdmin($_SESSION['user'])) {
+        header("Location: UserPage.php");
+        exit;
+    }  
+    
+    $mods = moderators();
+    $user = getInfoByID($_SESSION['user']);
+    
+    $smarty->assign('mods', $mods);
+    $smarty->assign('user', $user);
     $smarty->display('../templates/AdminPageTemplate.tpl');
 ?>

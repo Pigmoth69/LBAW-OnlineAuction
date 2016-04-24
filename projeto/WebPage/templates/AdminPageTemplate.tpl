@@ -2,28 +2,21 @@
 {include file='common/bar.tpl'}
 
 <body>
-      
       <div class="container">
         <div class="row">
             <div class="col-md-3">
-               <div class="text-center">
-                  <p class="lead">André Fagotinho Maia</p>
-               </div>
                <div class="thumbnail">
-                  <img src="../images/users/maia.jpg" style="width:500px;height:360px" alt="Maia">
+                  <img src="{$info_admin[0].imagem_utilizador}" style="width:500px;height:360px" alt="Maia">
                </div>
                <div class="list-group">
                   <a href="#" class="list-group-item">
-                     <p class="glyphicon glyphicon-user"> André Costa Maia</p>
+                     <p class="glyphicon glyphicon-user"> {$user[0].nome}</p>
                   </a>
                   <a href="#" class="list-group-item">
-                     <p class="fa fa-venus-mars"> Male</p>
+                     <p class="fa fa-venus-mars"> {$user[0].gender}</p>
                   </a>
                   <a href="#" class="list-group-item">
-                     <p class="glyphicon glyphicon-envelope"> andrefagotinhomaia@gmail.com</p>
-                  </a>
-                  <a href="#" class="list-group-item">
-                     <p class="glyphicon glyphicon-earphone"> 919856475</p>
+                     <p class="glyphicon glyphicon-envelope">{$user[0].e_mail}</p>
                   </a>
                </div>
                <!--<div class="list-group">
@@ -36,42 +29,22 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Row</th>
+                            <th>ID</th>
                             <th>Name</th>
                             <th>E-mail</th>
-                            <th>Cell Phone Number</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
+                        {foreach $mods as $mod}
+                        {$infor = getInfoByID($mod.id_utilizador)}
                         <tr class="info">
-                            <td>1</td>
-                            <td>Daniel Reis</td>
-                            <td>mock@hotmail.com</td>
-                            <td>912345678</td>
+                            <td>{$mod.id_utilizador}</td>
+                            <td>{$infor[0].nome}</td>
+                            <td>{$infor[0].e_mail}</td>
                             <td><a href="#" class="glyphicon glyphicon-remove"></a></td>
                         </tr>
-                        <tr class="info">
-                            <td>2</td>
-                            <td>Ricardo Mariz</td>
-                            <td>mock@gmail.com</td>
-                            <td>913456789</td>
-                            <td><a href="#" class="glyphicon glyphicon-remove"></a></td>
-                        </tr>
-                        <tr class="info">
-                            <td>3</td>
-                            <td>João Bernardo</td>
-                            <td>mock@live.com.pt</td>
-                            <td>912345679</td>
-                            <td><a href="#" class="glyphicon glyphicon-remove"></a></td>
-                        </tr>
-                        <tr class="info">
-                            <td>4</td>
-                            <td>José Mendes</td>
-                            <td>mock@portugalmail.pt</td>
-                            <td>912345677</td>
-                            <td><a href="#" class="glyphicon glyphicon-remove"></a></td>
-                        </tr>
+                        {/foreach}
                     </tbody>
                 </table>
         </div>

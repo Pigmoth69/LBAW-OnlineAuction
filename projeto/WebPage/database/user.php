@@ -96,4 +96,12 @@
             return false;
         else return true;
     }
+    
+    function moderators() {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM UtilizadorModerador');
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 ?>
