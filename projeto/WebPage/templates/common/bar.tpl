@@ -39,7 +39,7 @@
                      </form>
                   </li>
                   <!-- start log -->
-                  <li>
+                      <li>
                      <p class="navbar-text">Already have an account?</p>
                   </li>
                   <li class="dropdown">
@@ -78,7 +78,8 @@
                            </div>
                         </li>
                      </ul>
-                  </li>
+                  </li>  
+                  
                   <!-- end log -->
                   <li><a href="../actions/logout.php"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
                </ul>
