@@ -1,5 +1,5 @@
 <?php
-	session_start();
+
 	$path = '../config/init.php';
 
     if(!file_exists($path))
@@ -38,6 +38,10 @@
 			continue;
 		}
 	}
+	
+	if (count($_SESSION) > 0 && $_SESSION['user'] != '')
+		printResponse("already_logged", "login");
+	
 	$id = compareLogin($params['username'], $params['password']);
 	
 	if ($id == -1) {

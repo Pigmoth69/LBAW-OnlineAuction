@@ -38,8 +38,10 @@
                         <button type="submit" class="btn btn-default">Make Search!</button>
                      </form>
                   </li>
-                  <!-- start log -->
-                      <li>
+                  {if isLoggedIn()}
+                  
+                  {else}
+                        <li>
                      <p class="navbar-text">Already have an account?</p>
                   </li>
                   <li class="dropdown">
@@ -79,9 +81,11 @@
                         </li>
                      </ul>
                   </li>  
-                  
-                  <!-- end log -->
-                  <li><a href="../actions/logout.php"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                  {/if}
+                  <!-- start log -->
+                  {if isLoggedIn()}
+                        <li><a href="../actions/logout.php"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                  {/if}
                </ul>
             </div>
             <!-- /.navbar-collapse -->
