@@ -39,6 +39,11 @@
 			continue;
 		}
 	}
+
+	if (count($_SESSION) > 0) {
+		printResponse("already logged", "login");
+		return false;
+	}
 	
 	$id = compareLogin($params['username'], $params['password']);
 	if ($id == -1) {
