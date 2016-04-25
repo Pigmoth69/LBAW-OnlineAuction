@@ -41,12 +41,15 @@
 	$id = compareLogin($params['username'], $params['password']);
 	if ($id == -1) {
 		printResponse("wrong_login", "login");
+		return false;
 	}
 	else if ($id > 0){
 		$_SESSION['user'] = $id;
 		printResponse("success", "login");
+		return false;
 	}
 	else {
 		printResponse("WTF", "login");
+		return true;
 	}
 ?>

@@ -38,7 +38,12 @@
 		}
 	}
     
-    if (register($params['first_name'] . " " . $params['last_name'], $params['birthdate'], $params['gender'], $params['email'], $params['password'], $params['country']))
+    if (register($params['first_name'] . " " . $params['last_name'], $params['birthdate'], $params['gender'], $params['email'], $params['password'], $params['country'])) {
         printResponse("success", "register");
-    else printResponse("user_exists", "register");
+        return true;
+    }
+    else {
+        printResponse("user_exists", "register");
+        return false;
+    } 
 ?>
