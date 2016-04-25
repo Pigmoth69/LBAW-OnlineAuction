@@ -1,5 +1,5 @@
 <?php
-    $path = '../config/init.php';
+   /* $path = '../config/init.php';
 
     if(!file_exists($path))
         $path = 'config/init.php';
@@ -13,7 +13,7 @@
     catch(PDOException $e) {
 		echo $e;
 		return -1;
-	}
+	}*/
 	$path = '../database/user.php';
 
     if(!file_exists($path))
@@ -22,6 +22,7 @@
         $path = '../../database/user.php';
     if(!file_exists($path))
         $path = '../../../database/user.php';
+
     try {
         include_once($path);
     }
@@ -44,6 +45,6 @@
     }
     else {
         printResponse("user_exists", "register");
-        return false;
+        return true;
     } 
 ?>

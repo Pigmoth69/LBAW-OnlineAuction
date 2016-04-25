@@ -118,6 +118,7 @@ function makePOST(){
 		'password':password,
 		'email': email
 	},function(data){
+		console.log(data);
 		var response = data['register'];
 			switch(response) {
 				case 'user_exists':
@@ -134,6 +135,7 @@ function makePOST(){
 	})
     .fail(function (error) {
 		window.location = "RegisterPage.php";
+		console.log(error);
         alert("Error: " + error);
     });
 }

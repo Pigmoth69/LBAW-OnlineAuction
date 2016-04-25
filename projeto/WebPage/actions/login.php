@@ -1,4 +1,5 @@
 <?php
+	/*
 	$path = '../config/init.php';
 
     if(!file_exists($path))
@@ -14,6 +15,7 @@
 		echo $e;
 		return -1;
 	}
+	*/
 	$path = '../database/user.php';
 
     if(!file_exists($path))
