@@ -13,7 +13,7 @@
     
     if (isAdmin($_SESSION['user'])) {
         if (deleteMod($params['id'])) {
-            printReponse("mod deleted", "delete_mod");
+            printResponse("mod deleted", "delete_mod");
             return true;
         }
         else {

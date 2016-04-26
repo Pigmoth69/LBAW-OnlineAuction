@@ -5,6 +5,7 @@
     include_once '../database/auctions.php';
     include_once '../database/countries.php';
     include_once '../database/categories.php';
+    include_once '../database/moderate.php';
     
     if (count($_SESSION) === 0 || $_SESSION['user'] == '') {
         header("Location: ../index.php");
