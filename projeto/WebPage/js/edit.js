@@ -10,7 +10,8 @@ function editUser() {
     var email = $('#emailInput').val();
 	var password = $('#passwordInput').val();
 	var birthdate = $('#birthdateInput').val();
-	var name = $('#nameInput').val();
+	var first_name = $("#first_name").val();
+	var last_name = $("#last_name").val();
 	var description = $('#descriptionInput').val();
     var gender = $('input[name="gender"]:checked').val();
 	var country = $('#countryOptions').find(":selected").text();
@@ -59,9 +60,12 @@ function editUser() {
 
 function editAdmin() {
     var email = $('#emailInput').val();
+	var previous_password = $('#previous_password').val();
 	var password = $('#passwordInput').val();
+	var password_confirmation = $('#confirmation_password').val();
 	var birthdate = $('#birthdateInput').val();
-	var name = $('#nameInput').val();
+	var first_name = $("#first_name").val();
+	var last_name = $("#last_name").val();
 	var image = $('#imageInput').val();
     
 	$.post(

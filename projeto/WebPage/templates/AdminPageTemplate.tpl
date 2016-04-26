@@ -55,10 +55,13 @@
                                         <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+                                        <input type="password" name="previous_password" id="previous_password" class="form-control input-sm" placeholder="Old Password">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+                                        <input type="password" name="password" id="password" class="form-control input-sm" placeholder="New Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm New Password">
                                     </div>
 
                                     <input type="submit" value="Save changes" class="btn btn-block">
