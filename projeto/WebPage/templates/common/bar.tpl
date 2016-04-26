@@ -64,7 +64,7 @@
                                        <input type="password" class="form-control" id="passwordInput" placeholder="Password" required>
                                        <div class="help-block text-right"><a href="">Forget the password ?</a></div>
                                     </div>
-                                    <div class="form-group" onsubmit="js/loginScript.js">
+                                    <div class="form-group">
                                        <button method="post"type="submit" class="btn btn-primary btn-block" id="loginButton">Sign in</button>
                                     </div>
                                     <div class="checkbox">
@@ -84,7 +84,9 @@
                   {/if}
                   <!-- start log -->
                   {if isLoggedIn()}
-                        <li><a href="../actions/logout.php"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                  <li>
+                  <a href="../actions/logout.php"><i class="glyphicon glyphicon-off"></i> Logout</a>
+                  </li>
                   {/if}
                </ul>
             </div>

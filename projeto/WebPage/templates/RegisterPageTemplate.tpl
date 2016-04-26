@@ -2,6 +2,7 @@
 {include file='common/bar.tpl'}
 <body>
     <!-- Page Content -->
+    <div id="registerStatus"></div>
     <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="modal-dialog modal-md">

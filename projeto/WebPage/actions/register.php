@@ -1,35 +1,6 @@
 <?php
-   /* $path = '../config/init.php';
-
-    if(!file_exists($path))
-        $path = 'config/init.php';
-    if(!file_exists($path))
-        $path = '../../config/init.php';
-    if(!file_exists($path))
-        $path = '../../../config/init.php';     
-    try {
-        include_once($path);
-    }
-    catch(PDOException $e) {
-		echo $e;
-		return -1;
-	}*/
-	$path = '../database/user.php';
-
-    if(!file_exists($path))
-        $path = 'database/user.php';
-    if(!file_exists($path))
-        $path = '../../database/user.php';
-    if(!file_exists($path))
-        $path = '../../../database/user.php';
-
-    try {
-        include_once($path);
-    }
-    catch(PDOException $e) {
-		echo $e;
-		return -1;
-	}
+    include_once("../config/init.php");
+    include_once("../database/user.php");
     
     $params = [ 'first_name', 'last_name', 'birthdate', 'gender', 'email', 'password', 'country'];
 	foreach ($params as $param) {

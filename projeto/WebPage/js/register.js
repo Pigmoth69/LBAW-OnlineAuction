@@ -94,7 +94,7 @@ function checkValidity() {
 	}
 	//alert("Register successfull!!");
 	makePOST();
-	return true;	
+	return false;	
 }
 
 function makePOST(){
@@ -122,20 +122,23 @@ function makePOST(){
 		var response = data['register'];
 			switch(response) {
 				case 'user_exists':
-					window.location = "RegisterPage.php";
+					document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-danger\"><strong>Error!</strong> User already exists...</div>";
+					//window.location = "RegisterPage.php";
 					break;
 				case 'success':
+					document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Success!</strong> Account created successfully!</div>";
 					window.location = "../index.php";
 					break;
 				default:
 					//displayError("Error while processing the login...");
 					break;
 			}
-		
+			return true;		
 	})
     .fail(function (error) {
 		window.location = "RegisterPage.php";
 		console.log(error);
-        alert("Error: " + error);
+        //alert("Error: " + error);
     });
+    return false;
 }
