@@ -26,7 +26,7 @@ function deleteMod($id) {
                 document.getElementById("adminStatus").innerHTML ="<div class=\"alert alert-warning\"><strong>Error!</strong> You are not an administrator!</div>";
                 break;
 			default:
-			    document.getElementById("adminStatus").innerHTML = "<div class=\"alert alert-danger\"><strong>Error!</strong>Fail.</div>";
+			    document.getElementById("adminStatus").innerHTML = "<div class=\"alert alert-danger\"><strong>Error!</strong> Fail.</div>";
 				//displayError("Error while processing the login...");
 				break;
 		}

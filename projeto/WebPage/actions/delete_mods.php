@@ -13,16 +13,16 @@
     
     if (isAdmin($_SESSION['user'])) {
         if (deleteMod($params['id'])) {
-            printResponse("mod deleted", "delete_mod");
+            printResponse("mod deleted", "deleteMod");
             return true;
         }
         else {
-            printResponse("mod not deleted", "delete_mode");
+            printResponse("mod not deleted", "deleteMod");
             return false;
         }
     }
     else {
-        printResponse("user not admin", "delete_mod");
+        printResponse("user not admin", "deleteMod");
         return false;
     }
 ?>
