@@ -2,6 +2,7 @@
 {include file='common/bar.tpl'}
 
 <body>
+      <div id="adminStatus"></div>
       <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -43,7 +44,7 @@
                             <td>{$mod.id_utilizador}</td>
                             <td>{$infor[0].nome}</td>
                             <td>{$infor[0].e_mail}</td>
-                            <td><a href="" click="deleteMod({$mod.id_utilizador})" class="glyphicon glyphicon-remove"></a></td>
+                            <td><a href="" onclick='deleteMod({$mod.id_utilizador});'class="glyphicon glyphicon-remove"></a></td>
                         </tr>
                         {/foreach}
                     </tbody>

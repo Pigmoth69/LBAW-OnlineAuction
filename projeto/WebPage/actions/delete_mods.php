@@ -3,7 +3,7 @@
     include_once("../database/user.php");
     include_once("../database/moderate.php");
 
-    $params = [ 'functionName','email', 'id'];
+    $params = [ 'functionName', 'id'];
 	foreach ($params as $param) {
 		if (isset($_POST[$param])) {
 			$params[$param] = $_POST[$param];
@@ -12,7 +12,7 @@
 	}
     
     if (isAdmin($_SESSION['user'])) {
-        if (deleteMod($params['id'], $params['email'])) {
+        if (deleteMod($params['id'])) {
             printReponse("mod deleted", "delete_mod");
             return true;
         }
