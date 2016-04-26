@@ -31,7 +31,7 @@
                         <i class="glyphicon glyphicon-plus"></i>
                         <br> New auction
                         </a>
-                        <a  href="#editProfile" class="btn btn-primary col-sm-3">
+                        <a  href="#editProfile" class="btn btn-primary col-sm-3" data-toggle="modal" data-target="#modalEdit">
                         <i class="glyphicon glyphicon-cog"></i>
                         <br> Edit profile
                         </a>
