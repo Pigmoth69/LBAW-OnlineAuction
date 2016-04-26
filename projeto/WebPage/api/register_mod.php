@@ -1,6 +1,7 @@
 <?php
     include_once("../config/init.php");
     include_once("../database/user.php");
+    include_once("../database/moderate.php");
     
     $params = [ 'first_name', 'last_name', 'birthdate', 'gender', 'email', 'password', 'password_confirmation', 'country'];
 	foreach ($params as $param) {
@@ -11,16 +12,16 @@
 	}
     
     if ($params['password'] != $params['password_confirmation']) {
-        printResponse("error on js", "register");
+        printResponse("error on js", "registerMod");
         return false;
     }
     
-    if (register($params['first_name'] . " " . $params['last_name'], $params['birthdate'], $params['gender'], $params['email'], $params['password'], $params['country'])) {
-        printResponse("success", "register");
+    if (registerMod($params['first_name'] . " " . $params['last_name'], $params['birthdate'], $params['gender'], $params['email'], $params['password'], $params['country'])) {
+        printResponse("success", "registerMod");
         return true;
     }
     else {
-        printResponse("user_exists", "register");
+        printResponse("user_exists", "registerMod");
         return false;
     } 
 ?>

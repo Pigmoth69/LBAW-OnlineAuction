@@ -1,16 +1,108 @@
 $(document).ready(onReady);
 
 function onReady() {
-    $("#editAdmin").click(function(){editMod();return false;});
+	$("#password_confirmationEdit").keyup(checkPasswords);
+    /*$("#editAdmin").submit(function(event) {
+		return checkValidity();
+	});*/
 	$("#editUser").click(function(){editUser();return false;});
 	$("#editAuction").click(function(){editAuction();return false;});
 };
+
+function checkPasswords() {
+	var password = $("#passwordEdit").val();
+	var password_conf = $("#password_confirmationEdit").val();
+	//falta meter aqui a segurança do número mínimo de caracteres
+	if (password != password_conf || password.length==0){
+		$("#passwordEdit").css('background-color', '#ff9a9a');
+		$("#password_confirmationEdit").css('background-color', '#ff9a9a');
+		return false;	
+	}
+	else {
+		$("#passwordEdit").css('background-color', '#a6f1a6');
+		$("#password_confirmationEdit").css('background-color', '#a6f1a6');
+		return true;
+	}
+}
+
+function checkDate() {
+	
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear() - 18;
+
+	if(dd<10) {
+		dd='0'+dd;
+	} 
+
+	if(mm<10) {
+		mm='0'+mm;
+	} 
+
+	today = yyyy+'/'+mm+'/'+dd;
+	
+	var years = new Date();
+	var dd = years.getDate();
+	var mm = years.getMonth()+1; //January is 0!
+	var yyyy = years.getFullYear() - 150;
+
+	if(dd<10) {
+		dd='0'+dd;
+	} 
+
+	if(mm<10) {
+		mm='0'+mm;
+	} 
+
+	years = yyyy+'/'+mm+'/'+dd;
+	
+	if ($("#birthdateEdit").val() > today || $("#birthdateEdit").val() < years) {
+		$("#birthdateEdit").css('color', 'red');
+		$("#birthdateEdit").css('border-color', 'red');
+		return false;
+	}
+	else {
+		$("#birthdateEdit").css('color', 'black');
+		$("#birthdateEdit").css('border-color', '#ccc');
+		return true;
+	}
+}
+
+function checkEmptyFields() {
+	if ($("#first_nameEdit").val() == "" || $("#last_nameEdit").val() == "" ||
+	 $("#birthdateEdit").val() == "" || $("#emailEdit").val() == "" || $("#passwordEdit").val() == "" ||
+	  $("#password_confirmationEdit").val() == "") {
+		return false;
+	}
+	else return true;
+}
+	
+function checkValidity() {
+	if (!(checkPasswords())) {
+		alert("Passwords don't match.");
+		return false;
+	}
+		
+	if (!checkDate()) {
+		alert("You have to be 18 years or older.");
+		return false;
+	}
+	if (!checkEmptyFields()) {
+		alert("No empty fields allowed");	
+		return false;
+	}
+	//alert("Register successfull!!");
+	editAdmin();
+	return false;	
+}
 
 function editUser() {
     var email = $('#emailInput').val();
 	var password = $('#passwordInput').val();
 	var birthdate = $('#birthdateInput').val();
-	var name = $('#nameInput').val();
+	var first_name = $("#first_name").val();
+	var last_name = $("#last_name").val();
 	var description = $('#descriptionInput').val();
     var gender = $('input[name="gender"]:checked').val();
 	var country = $('#countryOptions').find(":selected").text();
@@ -58,21 +150,27 @@ function editUser() {
 }
 
 function editAdmin() {
-    var email = $('#emailInput').val();
-	var password = $('#passwordInput').val();
-	var birthdate = $('#birthdateInput').val();
-	var name = $('#nameInput').val();
-	var image = $('#imageInput').val();
+    var email = $('#emailEdit').val();
+	var previous_password = $('#previous_passwordEdit').val();
+	var password = $('#passwordEdit').val();
+	var password_confirmation = $('#password_confirmationEdit').val();
+	var gender = $('input[name="genderEdit"]:checked').val();
+	var birthdate = $('#birthdateEdit').val();
+	var first_name = $("#first_nameEdit").val();
+	var last_name = $("#last_nameEdit").val();
     
 	$.post(
-    '../actions/editAdmin.php',
+    '../api/edit_admin.php',
 	{
-		"functionName": 'editUser', 
+		"functionName": 'editAdmin', 
 		"email": email,
+		"previous_password": previous_password,
 		"password": password,
+		"password_confirmation": password_confirmation,
+		"gender": gender,
         "birthdate": birthdate,
-        "name": name,
-        "image": image,
+        "first_name": first_name,
+		"last_name": last_name,
 	}, 
 	function(data) {
 		var response = data['editAdmin'];

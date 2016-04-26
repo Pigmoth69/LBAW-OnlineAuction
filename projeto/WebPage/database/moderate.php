@@ -54,5 +54,52 @@
         $retorno = $stmt->execute();
         return $retorno;
     }
-
+    
+    function registerMod($name, $date, $gender, $mail, $password, $pais) {
+        global $conn;
+		$stmt = $conn->prepare('SELECT * FROM Utilizador WHERE e_mail = :mail');
+		$stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+		if (count($result) > 0) {
+			return false;
+		}
+        
+        $stmt = $conn->prepare('SELECT id_pais FROM Pais WHERE nome_pais = :pais');
+        $stmt->bindParam(':pais', $pais, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        if (count($result) === 0) {
+            return false;
+        }
+        else $id_pais = $result[0]['id_pais'];
+        
+        $empty = "";
+        $zero = 0;
+        $false = false;
+        $pass = hash("sha256", $password);
+        
+        $stmt = $conn->prepare('INSERT INTO Utilizador(nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(:nome, :descricao, :genero, :imagem_utilizador, :datanasc, :e_mail, :password, :classificacao, :banido, :id_pais)');
+        $stmt->bindParam(':nome', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':descricao', $empty, PDO::PARAM_STR);
+        $stmt->bindParam(':genero', $gender, PDO::PARAM_STR);
+        $stmt->bindParam(':imagem_utilizador', $empty, PDO::PARAM_STR);
+        $stmt->bindParam(':datanasc', $date, PDO::PARAM_STR);
+        $stmt->bindParam(':e_mail', $mail, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $pass, PDO::PARAM_STR);
+        $stmt->bindParam(':classificacao', $zero, PDO::PARAM_INT);
+        $stmt->bindParam(':banido', $false, PDO::PARAM_BOOL);
+        $stmt->bindParam(':id_pais', $id_pais, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $stmt = $conn->prepare('SELECT * FROM Utilizador WHERE e_mail = :mail');
+        $stmt->bindParam('mail', $mail, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $id = $result[0]['id_utilizador'];
+        
+        $stmt = $conn->prepare('INSERT INTO UtilizadorModerador(id_utilizador) VALUES(:id)');
+        $stmt->bindParam('id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 ?>

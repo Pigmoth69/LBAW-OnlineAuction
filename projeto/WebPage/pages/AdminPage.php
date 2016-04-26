@@ -18,10 +18,12 @@
     }  
     
     $mods = moderators();
+    $paises = getAllCountries();
     $user = getInfoByID($_SESSION['user']);
     $categorias = getAllCategories();
     
     $smarty->assign('categorias', $categorias);
+    $smarty->assign('paises', $paises);
     $smarty->assign('mods', $mods);
     $smarty->assign('user', $user);
     $smarty->display('../templates/AdminPageTemplate.tpl');

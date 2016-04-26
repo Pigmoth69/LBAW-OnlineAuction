@@ -36,32 +36,39 @@
                             <h4 class="modal-title">Edit profile</h4>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="demoform.asp">
+                            <form method="POST" id="editAdmin" action="../api/edit_admin.php" enctype="multipart/form-data">
                                 <form>
                                     <div class="form-group">
-                                        <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                        <input type="text" name="first_nameEdit" id="first_nameEdit" class="form-control input-sm" placeholder="First Name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                        <input type="text" name="last_nameEdit" id="last_nameEdit" class="form-control input-sm" placeholder="Last Name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="date" name="birthdate" id="birthdate" class="form-control input-sm" placeholder="Date Of Birth">
+                                        <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" placeholder="Date Of Birth" onChange="checkDate()">
                                     </div>
                                     <div class="form-group">
-                                        <label class="radio-inline"><input type="radio" name="gender">Male</label>
-                                        <label class="radio-inline"><input type="radio" name="gender">Female</label>
+                                        <label class="radio-inline"><input type="radio" name="genderEdit" value="male">Male</label>
+                                        <label class="radio-inline"><input type="radio" name="genderEdit" value="female">Female</label>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+                                        <input type="email" name="emailEdit" id="emailEdit" class="form-control input-sm" placeholder="Email Address">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+                                        <label for="image">Image: </label>
+		                                <input type="file" id="image" name="image">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+                                        <input type="password" name="previous_passwordEdit" id="previous_passwordEdit" class="form-control input-sm" placeholder="Old Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="passwordEdit" id="passwordEdit" class="form-control input-sm" placeholder="New Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password_confirmationEdit" id="password_confirmationEdit" class="form-control input-sm" placeholder="Confirm New Password">
                                     </div>
 
-                                    <input type="submit" value="Save changes" class="btn btn-block">
+                                    <input type="submit" value="Save changes" id="RegistoEdit" class="btn btn-block">
                                 </form>
                         </div>
                         <div class="modal-footer">
@@ -120,7 +127,7 @@
                                             <div class="form-group">
                                                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password" onChange="checkPasswords()">
                                             </div>
-                                            <input type="submit" value="Register" class="btn btn-block" id="registo" onclick="checkValidity()">
+                                            <input type="submit" value="Register" class="btn btn-block" id="registo">
                                         </form>
                                     </div>
                                 </div>
@@ -163,6 +170,8 @@
 
 </body>
 <script src="../js/delete.js"></script>
+<script src="../js/register.js"></script>
+<script src="../js/edit.js"></script>
 {include file='common/foot.tpl'}
 
 </html>
