@@ -11,7 +11,7 @@
 	}
     
     if ($params['password'] != $params['password_confirmation']) {
-        printResponse("error on js", "registerMod");
+        printResponse("error on js", "register");
         return false;
     }
     

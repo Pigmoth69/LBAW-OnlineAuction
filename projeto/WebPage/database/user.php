@@ -70,6 +70,34 @@
         return true;
     }
     
+    function editAdmin($id, $name, $date, $gender, $mail, $password, $image, $previous) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Utilizador WHERE id_utilizador = :id');
+        $pass = hash("sha256", $previous);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        
+        if (!($result[0]['id_utilizador'] == $id)) {
+            return false;
+            if (!($result[0]['password'] == $pass)) {
+                return false;
+            }
+        }
+        
+        $stmt = $conn->prepare('UPDATE Utilizador SET (nome, genero, imagem_utilizador, datanasc , e_mail, password) = (:name, :gender, :image, :date, :mail, :password) WHERE id_utilizador = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+        $stmt->bindParam(':gender', $gender, PDO::PARAM_STR);
+        $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $pass_t = hash("sha256", $password);
+        $stmt->bindParam(':password', $pass_t, PDO::PARAM_STR);
+        $stmt->bindParam(':image', $image, PDO::PARAM_STR);
+        $stmt->execute();
+        return true;
+    }
+    
     function printResponse($value, $reg) {
 		$param = ''.$reg;
 	    $data = [ $param => $value];
