@@ -36,32 +36,32 @@
                             <h4 class="modal-title">Edit profile</h4>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="demoform.asp">
+                            <form method="POST" id="edit_profile_form" action="demoform.asp">
                                 <form>
                                     <div class="form-group">
-                                        <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                        <input type="text" name="first_nameEdit" id="first_nameEdit" class="form-control input-sm" placeholder="First Name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                        <input type="text" name="last_nameEdit" id="last_nameEdit" class="form-control input-sm" placeholder="Last Name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="date" name="birthdate" id="birthdate" class="form-control input-sm" placeholder="Date Of Birth">
+                                        <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" placeholder="Date Of Birth">
                                     </div>
                                     <div class="form-group">
-                                        <label class="radio-inline"><input type="radio" name="gender">Male</label>
-                                        <label class="radio-inline"><input type="radio" name="gender">Female</label>
+                                        <label class="radio-inline"><input type="radio" name="genderEdit">Male</label>
+                                        <label class="radio-inline"><input type="radio" name="genderEdit">Female</label>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+                                        <input type="email" name="emailEdit" id="emailEdit" class="form-control input-sm" placeholder="Email Address">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="previous_password" id="previous_password" class="form-control input-sm" placeholder="Old Password">
+                                        <input type="password" name="previous_passwordEdit" id="previous_passwordEdit" class="form-control input-sm" placeholder="Old Password">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" id="password" class="form-control input-sm" placeholder="New Password">
+                                        <input type="password" name="passwordEdit" id="passwordEdit" class="form-control input-sm" placeholder="New Password">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm New Password">
+                                        <input type="password" name="password_confirmationEdit" id="password_confirmationEdit" class="form-control input-sm" placeholder="Confirm New Password">
                                     </div>
 
                                     <input type="submit" value="Save changes" class="btn btn-block">
@@ -166,6 +166,7 @@
 
 </body>
 <script src="../js/delete.js"></script>
+<script src="../js/register.js"></script>
 {include file='common/foot.tpl'}
 
 </html>

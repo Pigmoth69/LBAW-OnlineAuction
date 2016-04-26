@@ -5,6 +5,9 @@ function onReady() {
 	$("#registo_form").submit(function(event) {
 		return checkValidity();
 	});
+	$("#registo_mod").submit(function(event) {
+		return checkValidityMod();
+	});
 }
 
 
@@ -97,6 +100,26 @@ function checkValidity() {
 	return false;	
 }
 
+function checkValidityMod() {
+	if (!(checkPasswords())) {
+		alert("Passwords don't match.");
+		return false;
+	}
+		
+	if (!checkDate()) {
+		alert("You have to be 18 years or older.");
+		return false;
+	}
+	if (!checkEmptyFields()) {
+		alert("No empty fields allowed");	
+		return false;
+	}
+	//alert("Register successfull!!");
+	makePOSTMod();
+	return false;	
+}
+
+
 function makePOST(){
 
 	var first_name = $("#first_name").val();
@@ -133,6 +156,57 @@ function makePOST(){
 					break;
 				case 'error on js':
 					document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Error!</strong> Stop cracking the site!</div>";
+					break;
+				default:
+					//displayError("Error while processing the login...");
+					break;
+			}
+			return true;		
+	})
+    .fail(function (error) {
+		console.log(error);
+        //alert("Error: " + error);
+    });
+    return false;
+}
+
+function makePOSTMod(){
+
+	var first_name = $("#first_name").val();
+	var last_name = $("#last_name").val();
+	var birthdate =$("#birthdate").val();
+	var gender = $('input[name="gender"]:checked').val();
+	var country = $('#countryOptions').find(":selected").text();
+	var password =$("#password").val();
+	var password_confirmation = $("#password_confirmation").val();
+	var email =$("#email").val();
+	$.post(
+    '../api/register_mod.php',
+	{
+		'functionName': 'register', 
+		'first_name': first_name,
+		'last_name': last_name,
+		'birthdate':birthdate,
+		'gender':gender,
+		'country':country,
+		'password':password,
+		'password_confirmation':password_confirmation,
+		'email': email
+	},function(data){
+		console.log(data);
+		var response = data['registerMod'];
+			switch(response) {
+				case 'user_exists':
+					//document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-danger\"><strong>Error!</strong> User already exists...</div>";
+					//window.location = "RegisterPage.php";
+					break;
+				case 'success':
+					//document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Success!</strong> Account created successfully!</div>";
+					//window.location = "../index.php";
+					break;
+				case 'error on js':
+					//document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Error!</strong> Stop cracking the site!</div>";
+					break;
 				default:
 					//displayError("Error while processing the login...");
 					break;
