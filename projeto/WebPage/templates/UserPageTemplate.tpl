@@ -9,7 +9,7 @@
             <div class="col-md-3">
                <hr>
                <ul class="nav nav-stacked">
-               <a href="#"><strong><i class="glyphicon glyphicon-list" id="opt" ></i> Options </strong></a>
+               <strong><i class="glyphicon glyphicon-list" id="opt" ></i> Options </strong>
                <ul class="nav nav-stacked collapse in" id="userMenu">
                   <!-- <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li> -->
                   <li><a href="MessagePage.php"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
@@ -45,7 +45,7 @@
                      <div class="panel-heading">
                         <div class="panel-title">
                            <h4> <b> Description </b> </h4>
-                           <h5> {$infos.descricao}</h5>
+                           <h5> {$infos.descricao|escape}</h5>
                         </div>
                      </div>
                      <div class="panel-body">
@@ -64,13 +64,13 @@
                         </div>
                         <div class="col-sm-4">
                            <h4> <b> Name </b></h4>
-                           <p> {$infos.nome} <p>
+                           <p> {$infos.nome|escape} <p>
                            <h4> <b> Country </b> </h4>
-                           <p> {$pais[0].nome_pais}</p>
+                           <p> {$pais[0].nome_pais|escape}</p>
                            <h4> <b> Birthdate </b> </h4>
-                           <p> {$infos.datanasc}<p>
+                           <p> {$infos.datanasc|escape}<p>
                            <h4> <b> E-mail </b> </h4>
-                           <p> {$infos.e_mail}</p>
+                           <p> {$infos.e_mail|escape}</p>
                         </div>
                      </div>
                      <hr>
@@ -86,7 +86,7 @@
                            <tbody>
                                {foreach $auctions as $auction}
                                 <tr>
-                                    <td><b>{$auction.nome_produto}</b></td>
+                                    <td><b>{$auction.nome_produto|escape}</b></td>
                                     <td> {$no = getNoLiciteesOnAuction($auction.id_leilao)}
                                         {$no} </td>
                                     <td>

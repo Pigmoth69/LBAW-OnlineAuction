@@ -19,7 +19,7 @@
               {foreach $categorias as $categoria}
                 {$no = getNoElementsOfCategory($categoria.id_categoria)}
                 {$total_no = $total_no + $no}
-                <a href="" class="list-group-item"><span class="badge">{$no}</span>{$categoria.descricao}</a>
+                <a href="" class="list-group-item"><span class="badge">{$no}</span>{$categoria.descricao|escape}</a>
               {/foreach}
             </ul>
          </div>

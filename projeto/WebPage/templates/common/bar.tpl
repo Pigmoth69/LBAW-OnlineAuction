@@ -31,7 +31,7 @@
                            <select class="selectpicker" data-live-search="true" >
                               <option selected="selected">All Categories</option>
                               {foreach $categorias as $categoria}
-                              <option>{$categoria.descricao}</option>
+                              <option>{$categoria.descricao|escape}</option>
                               {/foreach}
                            </select>
                         </div>

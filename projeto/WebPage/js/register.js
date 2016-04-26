@@ -105,6 +105,7 @@ function makePOST(){
 	var gender = $('input[name="gender"]:checked').val();
 	var country = $('#countryOptions').find(":selected").text();
 	var password =$("#password").val();
+	var password_confirmation = $("#password_confirmation").val();
 	var email =$("#email").val();
 	$.post(
     '../actions/register.php',
@@ -116,6 +117,7 @@ function makePOST(){
 		'gender':gender,
 		'country':country,
 		'password':password,
+		'password_confirmation':password_confirmation,
 		'email': email
 	},function(data){
 		console.log(data);
@@ -129,6 +131,8 @@ function makePOST(){
 					document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Success!</strong> Account created successfully!</div>";
 					window.location = "../index.php";
 					break;
+				case 'error on js':
+					document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Error!</strong> Stop cracking the site!</div>";
 				default:
 					//displayError("Error while processing the login...");
 					break;

@@ -11,20 +11,16 @@
 	
 	if(count($_SESSION) > 0) {
 		printResponse("already logged", "login");
-		return true;
+		return false;
 	}
 	$id = compareLogin($params['username'], $params['password']);
 	if ($id == -1) {
 		printResponse("wrong_login", "login");
-		return true;
+		return false;
 	}
 	else if ($id > 0){
 		$_SESSION['user'] = $id;
 		printResponse("success", "login");
-		return true;
-	}
-	else {
-		printResponse("WTF", "login");
 		return true;
 	}
 ?>

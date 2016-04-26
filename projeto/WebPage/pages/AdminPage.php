@@ -5,6 +5,7 @@
     include_once '../database/auctions.php';
     include_once '../database/countries.php';
     include_once '../database/categories.php';
+    include_once '../database/moderate.php';
     
     if (count($_SESSION) === 0 || $_SESSION['user'] == '') {
         header("Location: ../index.php");
@@ -18,7 +19,9 @@
     
     $mods = moderators();
     $user = getInfoByID($_SESSION['user']);
+    $categorias = getAllCategories();
     
+    $smarty->assign('categorias', $categorias);
     $smarty->assign('mods', $mods);
     $smarty->assign('user', $user);
     $smarty->display('../templates/AdminPageTemplate.tpl');
