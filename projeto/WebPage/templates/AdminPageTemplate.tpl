@@ -43,7 +43,7 @@
                             <td>{$mod.id_utilizador}</td>
                             <td>{$infor[0].nome}</td>
                             <td>{$infor[0].e_mail}</td>
-                            <td><a href="#" class="glyphicon glyphicon-remove"></a></td>
+                            <td><a href="" click="deleteMod({$mod.id_utilizador})" class="glyphicon glyphicon-remove"></a></td>
                         </tr>
                         {/foreach}
                     </tbody>
@@ -51,5 +51,6 @@
         </div>
       </div>
       </body>
+      <script src="../js/delete.js"></script>
       {include file='common/foot.tpl'}
 </html>

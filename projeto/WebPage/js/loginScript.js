@@ -4,9 +4,6 @@ function onReady() {
 	$("#loginButton").click(function(){login();return false;});
 };
 
-
-
-
 function login() {
 	var username = $('#emailInput').val();
 	var password = $('#passwordInput').val();
