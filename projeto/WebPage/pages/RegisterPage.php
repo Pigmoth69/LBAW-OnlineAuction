@@ -7,7 +7,9 @@
     include_once '../utils/utils.php';
     
     $paises = getAllCountries();
+    $categorias = getAllCategories();
     
     $smarty->assign('paises', $paises);
+    $smarty->assign('categorias', $categorias);
     $smarty->display('../templates/RegisterPageTemplate.tpl');
 ?>

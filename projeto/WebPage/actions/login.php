@@ -23,8 +23,4 @@
 		printResponse("success", "login");
 		return true;
 	}
-	else {
-		printResponse("WTF", "login");
-		return true;
-	}
 ?>

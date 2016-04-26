@@ -10,7 +10,7 @@
     try {
         include_once($path);
     }
-    catch(PDOException $e) {
+    catch(Exception $e) {
 		echo $e;
 		return -1;
 	}

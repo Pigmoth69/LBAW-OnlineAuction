@@ -6,5 +6,8 @@
     include_once '../database/categories.php';
     include_once '../utils/utils.php';
     
+    $categorias = getAllCategories();
+    
+    $smarty->assign('categorias', $categorias);
     $smarty->display('../templates/ItemPageBidderTemplate.tpl');
 ?>

@@ -19,6 +19,7 @@
     $auctions = getAuctionsByUserID($_SESSION['user']);
     $best_auctions = bestAuctions();
     
+    $smarty->assign('categorias', $categorias);
     $smarty->assign('infos', $infos[0]);
     $smarty->assign('pais', $pais);
     $smarty->assign('auctions', $auctions);

@@ -18,7 +18,9 @@
     
     $mods = moderators();
     $user = getInfoByID($_SESSION['user']);
+    $categorias = getAllCategories();
     
+    $smarty->assign('categorias', $categorias);
     $smarty->assign('mods', $mods);
     $smarty->assign('user', $user);
     $smarty->display('../templates/AdminPageTemplate.tpl');
