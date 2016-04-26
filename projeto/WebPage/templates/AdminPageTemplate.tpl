@@ -11,14 +11,14 @@
                </div>
                <div class="list-group">
                   <a href="#" class="list-group-item">
-                     <p class="glyphicon glyphicon-user"> {$user[0].nome}</p>
+                     <p class="glyphicon glyphicon-user"> {$user[0].nome|escape}</p>
                   </a>
                   <a href="#" class="list-group-item">
                      <p class="fa fa-venus-mars">
-                         {$user[0].datanasc}</p>
+                         {$user[0].datanasc|escape}</p>
                   </a>
                   <a href="#" class="list-group-item">
-                     <p class="glyphicon glyphicon-envelope"> {$user[0].e_mail}</p>
+                     <p class="glyphicon glyphicon-envelope"> {$user[0].e_mail|escape}</p>
                   </a>
                </div>
                <!--<div class="list-group">
@@ -41,9 +41,9 @@
                         {foreach $mods as $mod}
                         {$infor = getInfoByID($mod.id_utilizador)}
                         <tr class="info">
-                            <td>{$mod.id_utilizador}</td>
-                            <td>{$infor[0].nome}</td>
-                            <td>{$infor[0].e_mail}</td>
+                            <td>{$mod.id_utilizador|escape}</td>
+                            <td>{$infor[0].nome|escape}</td>
+                            <td>{$infor[0].e_mail|escape}</td>
                             <td><a href="" onclick='deleteMod({$mod.id_utilizador});'class="glyphicon glyphicon-remove"></a></td>
                         </tr>
                         {/foreach}

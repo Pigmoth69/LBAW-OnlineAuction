@@ -8,6 +8,7 @@
                <hr>
                <ul class="nav nav-stacked">
                <ul class="nav nav-stacked collapse in" id="userMenu">
+                  <strong><i class="glyphicon glyphicon-list" id="opt" ></i> Options </strong>
                   <!-- <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li> -->
                   <li><a href="MessagePage.php"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
                   <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>

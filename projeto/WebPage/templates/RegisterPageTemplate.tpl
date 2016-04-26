@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <select id="countryOptions" name="country" label="Country">
                                 {foreach $paises as $pais}
-                                    <option value="{$pais.nome_pais}">{$pais.nome_pais}</option>
+                                    <option value="{$pais.nome_pais|escape}">{$pais.nome_pais|escape}</option>
                                 {/foreach}
                             </select>
                         </div>

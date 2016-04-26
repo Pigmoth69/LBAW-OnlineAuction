@@ -6,7 +6,7 @@ function onReady() {
 
 function deleteMod($id) {
 	$.post(
-    '../actions/delete_mods.php',
+    '../api/delete_mods.php',
 	{
 		"functionName": 'deleteMod', 
 		"id": $id
