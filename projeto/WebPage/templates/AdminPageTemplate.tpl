@@ -19,14 +19,14 @@
                     <a href="#" class="list-group-item">
                         <p class="glyphicon glyphicon-envelope"> {$user[0].e_mail}</p>
                     </a>
-                    <a href="#editProfile" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#myModal">
+                    <a href="#editProfile" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#modalEdit">
                         <i class="glyphicon glyphicon-cog"></i> Edit profile
                     </a>
                 </div>
 
             </div>
 
-            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal fade" id="modalEdit" role="dialog">
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
@@ -76,10 +76,10 @@
                 <p class="lead col-md-8">Moderators</p>
                 <div class="container col-md-3">
                     <!-- Trigger the modal with a button -->
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Moderator</button>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalAdd">Add Moderator</button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal fade" id="modalAdd" role="dialog">
                         <div class="modal-dialog">
 
                             <!-- Modal content-->
