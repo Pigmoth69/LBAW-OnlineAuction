@@ -31,7 +31,7 @@
                         <i class="glyphicon glyphicon-plus"></i>
                         <br> New auction
                         </a>
-                        <a href="#" class="btn btn-primary col-sm-3">
+                        <a  href="#editProfile" class="btn btn-primary col-sm-3">
                         <i class="glyphicon glyphicon-cog"></i>
                         <br> Edit profile
                         </a>
@@ -53,6 +53,56 @@
                      </div>
                      <!--/tabs-->
                   </div>
+
+                  <div class="modal fade" id="myModal" role="dialog">
+				    <div class="modal-dialog">
+				    
+				      <!-- Modal content-->
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">Edit profile</h4>
+				        </div>
+				        <div class="modal-body">
+				           <form method="POST" id="registo_form">
+                        <div class="form-group">
+                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="date" name="birthdate" id="birthdate" class="form-control input-sm" placeholder="Date Of Birth" onChange="checkDate()">
+                        </div>
+                        <div class="form-group">
+                            <label class="radio-inline"><input type="radio" name="gender" value="male">Male</label>
+                            <label class="radio-inline"><input type="radio" name="gender" value="female">Female</label>
+                        </div>
+                        <div class="form-group">
+                            <select id="countryOptions" name="country" label="Country">
+                                {foreach $paises as $pais}
+                                    <option value="{$pais.nome_pais}">{$pais.nome_pais}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password" onChange="checkPasswords()">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password" onChange="checkPasswords()">
+                        </div>
+                        <input type="submit" value="Register" class="btn btn-block" id="registo" onclick="checkValidity()">		        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        </div>
+				      </div>
+				      
+				    </div>
+				  </div>
+				  
                   <!--/col-->
                   <div class="col-md-6">
                      <div class="row">
