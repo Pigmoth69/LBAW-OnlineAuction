@@ -8,6 +8,10 @@
     
     $paises = getAllCountries();
     $categorias = getAllCategories();
+    if (count($_SESSION) > 0) {
+        $user = getInfoByID($_SESSION['user']);
+        $smarty->assign('user', $user);
+    }
     
     $smarty->assign('paises', $paises);
     $smarty->assign('categorias', $categorias);

@@ -39,7 +39,9 @@
                      </form>
                   </li>
                   {if isLoggedIn()}
-                  
+                  <li>
+                     <a href="UserPage.php">{$infos[0].e_mail}</a>
+                  </li>
                   {else}
                         <li>
                      <p class="navbar-text">Already have an account?</p>

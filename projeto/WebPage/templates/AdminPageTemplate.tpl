@@ -6,18 +6,18 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="thumbnail">
-                    <img src="{$user[0].imagem_utilizador}" style="width:500px;height:360px" alt="Maia">
+                    <img src="{$infos[0].imagem_utilizador}" style="width:500px;height:360px" alt="Maia">
                 </div>
                 <div class="list-group">
                     <a href="#" class="list-group-item">
-                        <p class="glyphicon glyphicon-user"> {$user[0].nome}</p>
+                        <p class="glyphicon glyphicon-user"> {$infos[0].nome}</p>
                     </a>
                     <a href="#" class="list-group-item">
                         <p class="fa fa-venus-mars">
-                            {$user[0].datanasc}</p>
+                            {$infos[0].datanasc}</p>
                     </a>
                     <a href="#" class="list-group-item">
-                        <p class="glyphicon glyphicon-envelope"> {$user[0].e_mail}</p>
+                        <p class="glyphicon glyphicon-envelope"> {$infos[0].e_mail}</p>
                     </a>
                     <a href="#editProfile" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#modalEdit">
                         <i class="glyphicon glyphicon-cog"></i> Edit profile
