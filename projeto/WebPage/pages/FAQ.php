@@ -7,6 +7,10 @@
     include_once '../utils/utils.php';
     
     $categorias = getAllCategories();
+    iif (count($_SESSION) > 0) {
+        $infos = getInfoByID($_SESSION['user']);
+        $smarty->assign('infos', $infos);
+    }
     
     $smarty->assign('categorias', $categorias);
     $smarty->display('../templates/FAQTemplate.tpl');

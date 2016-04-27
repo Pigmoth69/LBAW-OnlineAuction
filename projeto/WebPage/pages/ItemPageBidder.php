@@ -7,6 +7,10 @@
     include_once '../utils/utils.php';
     
     $categorias = getAllCategories();
+    if (count($_SESSION) > 0) {
+        $infos = getInfoByID($_SESSION['user']);
+        $smarty->assign('infos', $infos);
+    }
     
     $smarty->assign('categorias', $categorias);
     $smarty->display('../templates/ItemPageBidderTemplate.tpl');
