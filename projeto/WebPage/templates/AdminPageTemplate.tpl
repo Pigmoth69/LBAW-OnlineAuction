@@ -45,7 +45,7 @@
                                         <input type="text" name="last_nameEdit" id="last_nameEdit" class="form-control input-sm" placeholder="Last Name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" placeholder="Date Of Birth" onChange="checkDate()">
+                                        <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" placeholder="Date Of Birth" onChange="checkDateEdit()">
                                     </div>
                                     <div class="form-group">
                                         <label class="radio-inline"><input type="radio" name="genderEdit" value="male">Male</label>
@@ -62,10 +62,10 @@
                                         <input type="password" name="previous_passwordEdit" id="previous_passwordEdit" class="form-control input-sm" placeholder="Old Password">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="passwordEdit" id="passwordEdit" class="form-control input-sm" placeholder="New Password">
+                                        <input type="password" name="passwordEdit" id="passwordEdit" class="form-control input-sm" placeholder="New Password" onChange="checkPasswordsEdit()">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password_confirmationEdit" id="password_confirmationEdit" class="form-control input-sm" placeholder="Confirm New Password">
+                                        <input type="password" name="password_confirmationEdit" id="password_confirmationEdit" class="form-control input-sm" placeholder="Confirm New Password" onChange="checkPasswordsEdit()">
                                     </div>
 
                                     <input type="submit" value="Save changes" id="RegistoEdit" class="btn btn-block">
@@ -127,7 +127,7 @@
                                             <div class="form-group">
                                                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password" onChange="checkPasswords()">
                                             </div>
-                                            <input type="submit" value="Register" class="btn btn-block" id="registo">
+                                            <input type="submit" value="Register" class="btn btn-block"  id="registo">
                                         </form>
                                     </div>
                                 </div>

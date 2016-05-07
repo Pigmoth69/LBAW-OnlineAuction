@@ -11,15 +11,18 @@
 	}
     
     if ($params['password'] != $params['password_confirmation']) {
+        $_SESSION['error_messages'][] = 'Passwords don\'t match';
         printResponse("error on js", "register");
         return false;
     }
     
     if (register($params['first_name'] . " " . $params['last_name'], $params['birthdate'], $params['gender'], $params['email'], $params['password'], $params['country'])) {
+        $_SESSION['success_messages'][] = 'Register successful';
         printResponse("success", "register");
         return true;
     }
     else {
+        $_SESSION['error_messages'][] = 'That user already exists';
         printResponse("user_exists", "register");
         return false;
     } 

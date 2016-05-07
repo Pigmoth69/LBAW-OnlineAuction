@@ -16,13 +16,17 @@
     $categorias = getAllCategories();
     $infos = getInfoByID($_SESSION['user']);
     $pais = getNameCountryByID($infos[0]['id_pais']);
+    $paises = getAllCountries();
     $auctions = getAuctionsByUserID($_SESSION['user']);
+    $auctions_seller = getAuctionsByLiciteedID($_SESSION['user']);
     $best_auctions = bestAuctions();
     
     $smarty->assign('categorias', $categorias);
     $smarty->assign('infos', $infos[0]);
-    $smarty->assign('pais', $pais);
+    $smarty->assign('country', $pais[0]);
+    $smarty->assign('paises', $paises);
     $smarty->assign('auctions', $auctions);
+    $smarty->assign('auctions_seller', $auctions_seller);
     $smarty->assign('best_auctions', $best_auctions);
     $smarty->display('../templates/UserPageTemplate.tpl');
 ?>

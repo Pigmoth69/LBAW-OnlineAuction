@@ -17,7 +17,8 @@
     
     if ( ($_FILES["image"]["type"] == "image/gif") || ($_FILES["image"]["type"] == "image/jpeg") || ($_FILES["image"]["type"] == "image/jpg") || ($_FILES["image"]["type"] == "image/png")  || ($_FILES["image"]["type"] == "image/pjpeg")) {
         if (file_exists($_FILES["image"]["name"])) {
-            printResponse("file name exists", "editAdmin");
+            $_SESSION['error_messages'][] = 'File already exists';
+            //printResponse("file name exists", "editAdmin");
             return false;
         }
         else {
@@ -25,25 +26,29 @@
         }
     }
     else {
-        printResponse("invalid type of file", "editAdmin");
+        $_SESSION['error_messages'][] = 'Invalid type of file';
+        //printResponse("invalid type of file", "editAdmin");
         return false;
     }
     
     $img = "../images/users/" . $filename;
     
     if ($params['password'] != $params['password_confirmation']) {
-        printResponse("error on js", "editAdmin");
+        $_SESSION['error_messages'][] = 'Passwords don\'t match';
+        //printResponse("error on js", "editAdmin");
         header('Location : AdminPage.php');
         return false;
     }
 
     if (editAdmin($_SESSION['user'], $params['first_nameEdit'] . " " . $params['last_nameEdit'], $params['birthdateEdit'], $params['genderEdit'], $params['emailEdit'], $params['passwordEdit'], $img, $params['previous_passwordEdit'])) {
-        printResponse("success", "editAdmin");
+        $_SESSION['success_messages'][] = 'Profile edited successfully';
+        //printResponse("success", "editAdmin");
         header('Location : AdminPage.php');
         return true;
     }
     else {
-        printResponse("wrong password", "editAdmin");
+        $_SESSION['error_messages'][] = 'Password incorrect';
+        //printResponse("wrong password", "editAdmin");
         header('Location : AdminPage.php');
         return false;
     }

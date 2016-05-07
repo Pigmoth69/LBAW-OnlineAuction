@@ -25,7 +25,7 @@
                         <a class="nav-link active" id="inbox-tab" data-toggle="tab" href="#inbox" role="tab" aria-controls="inbox" aria-expanded="true">Inbox</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="sent" aria-expanded="false">Sent Messages</a>
+                        <a class="nav-link" id="sent-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="sent" aria-expanded="false">Sent Messages</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" id="compose-tab" data-toggle="tab" href="#compose" role="tab" aria-controls="composeMessage" aria-expanded="false">Compose Message</a>
@@ -36,13 +36,20 @@
                         <table class="table">
                           <thead>
                               <tr>
-                                  <th>Seen</th>
                                   <th>Title</th>
                                   <th>Email</th>
                                   <th>Time</th>
                               </tr>
                           </thead>
                           <tbody>
+                              {foreach $recetor as $rec}
+                              <tr class="info">
+                                  <td><span class="glyphicon glyphicon-stop"></span></td>
+                                  <td>Product Size</td>
+                                  <td>mock@hotmail.com</td>
+                                  <td>14:34h</td>
+                              </tr>
+                              {/foreach}
                               <tr class="info">
                                   <td><span class="glyphicon glyphicon-stop"></span></td>
                                   <td>Product Size</td>

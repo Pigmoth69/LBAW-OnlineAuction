@@ -1,7 +1,7 @@
 $(document).ready(onReady);
 
 function onReady() {
-	$("#password_confirmationEdit").keyup(checkPasswords);
+	$("#password_confirmationEdit").keyup(checkPasswordsEdit);
     /*$("#editAdmin").submit(function(event) {
 		return checkValidity();
 	});*/
@@ -9,7 +9,7 @@ function onReady() {
 	$("#editAuction").click(function(){editAuction();return false;});
 };
 
-function checkPasswords() {
+function checkPasswordsEdit() {
 	var password = $("#passwordEdit").val();
 	var password_conf = $("#password_confirmationEdit").val();
 	//falta meter aqui a segurança do número mínimo de caracteres
@@ -25,7 +25,7 @@ function checkPasswords() {
 	}
 }
 
-function checkDate() {
+function checkDateEdit() {
 	
 	var today = new Date();
 	var dd = today.getDate();
@@ -69,7 +69,7 @@ function checkDate() {
 	}
 }
 
-function checkEmptyFields() {
+function checkEmptyFieldsEdit() {
 	if ($("#first_nameEdit").val() == "" || $("#last_nameEdit").val() == "" ||
 	 $("#birthdateEdit").val() == "" || $("#emailEdit").val() == "" || $("#passwordEdit").val() == "" ||
 	  $("#password_confirmationEdit").val() == "") {
@@ -78,7 +78,7 @@ function checkEmptyFields() {
 	else return true;
 }
 	
-function checkValidity() {
+function checkValidityEdit() {
 	if (!(checkPasswords())) {
 		alert("Passwords don't match.");
 		return false;
