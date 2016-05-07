@@ -17,7 +17,6 @@
     $emissor = getMessagesByEmissor($_SESSION['user']);
     $recetor = getMessagesByReceptor($_SESSION['user']);
     
-    
     $smarty->assign('infos', $infos);
     $smarty->assign('categorias', $categorias);
     $smarty->assign('emissor', $emissor);

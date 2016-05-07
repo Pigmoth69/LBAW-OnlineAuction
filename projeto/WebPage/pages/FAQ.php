@@ -7,7 +7,7 @@
     include_once '../utils/utils.php';
     
     $categorias = getAllCategories();
-    iif (count($_SESSION) > 0) {
+    if (count($_SESSION) > 0) {
         $infos = getInfoByID($_SESSION['user']);
         $smarty->assign('infos', $infos);
     }

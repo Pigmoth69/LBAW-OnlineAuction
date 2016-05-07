@@ -44,48 +44,11 @@
                           <tbody>
                               {foreach $recetor as $rec}
                               <tr class="info">
-                                  <td><span class="glyphicon glyphicon-stop"></span></td>
-                                  <td>Product Size</td>
-                                  <td>mock@hotmail.com</td>
-                                  <td>14:34h</td>
+                                  <td>{$rec.titulo}</td>
+                                  <td>{$mail = getInfoByID($rec.id_emissor)} {$mail[0].e_mail}</td>
+                                  <td>{$rec.data_mensagem}</td>
                               </tr>
                               {/foreach}
-                              <tr class="info">
-                                  <td><span class="glyphicon glyphicon-stop"></span></td>
-                                  <td>Product Size</td>
-                                  <td>mock@hotmail.com</td>
-                                  <td>14:34h</td>
-                              </tr>
-                              <tr class="info">
-                                  <td><span class="glyphicon glyphicon-stop"></span></td>
-                                  <td>More Info</td>
-                                  <td>assaf@hotmail.com</td>
-                                  <td>14:30h</td>
-                              </tr>
-                              <tr class="info">
-                                  <td><span class="glyphicon glyphicon-stop"></span></td>
-                                  <td>Shipping info</td>
-                                  <td>agasg@hotmail.com</td>
-                                  <td>12:14h</td>
-                              </tr>
-                              <tr class="info">
-                                  <td><span class="glyphicon glyphicon-stop"></span></td>
-                                  <td>Product condition</td>
-                                  <td>jnsad8hudh@hotmail.com</td>
-                                  <td>10:01h</td>
-                              </tr>
-                              <tr class="info">
-                                  <td><span class="glyphicon glyphicon-check"></span></td>
-                                  <td>My Items</td>
-                                  <td>sajf1k3@hotmail.com</td>
-                                  <td>09:04h</td>
-                              </tr>
-                              <tr class="info">
-                                  <td><span class="glyphicon glyphicon-check"></span></td>
-                                  <td>(No title)</td>
-                                  <td>isgv2@hotmail.com</td>
-                                  <td>04:16h</td>
-                              </tr>
                           </tbody>
                       </table>
                      </div>
@@ -93,49 +56,19 @@
                        <table class="table">
                          <thead>
                               <tr>
-                                  <th>Seen</th>
                                   <th>Title</th>
                                   <th>Email</th>
                                   <th>Time</th>
                               </tr>
                           </thead>
                           <tbody>
+                              {foreach $emissor as $emi}
                               <tr class="info">
-                                  <td><span class="glyphicon glyphicon-stop"></span></td>
-                                  <td>Product Size</td>
-                                  <td>mock@hotmail.com</td>
-                                  <td>14:34h</td>
+                                  <td>{$emi.titulo}</td>
+                                  <td>{$mail = getInfoByID($emi.id_recetor)} {$mail[0].e_mail}</td>
+                                  <td>{$emi.data_mensagem}</td>
                               </tr>
-                              <tr class="info">
-                                  <td><span class="glyphicon glyphicon-stop"></span></td>
-                                  <td>More Info</td>
-                                  <td>assaf@hotmail.com</td>
-                                  <td>14:30h</td>
-                              </tr>
-                              <tr class="info">
-                                  <td><span class="glyphicon glyphicon-stop"></span></td>
-                                  <td>Shipping info</td>
-                                  <td>agasg@hotmail.com</td>
-                                  <td>12:14h</td>
-                              </tr>
-                              <tr class="info">
-                                  <td><span class="glyphicon glyphicon-stop"></span></td>
-                                  <td>Product condition</td>
-                                  <td>jnsad8hudh@hotmail.com</td>
-                                  <td>10:01h</td>
-                              </tr>
-                              <tr class="info">
-                                  <td><span class="glyphicon glyphicon-check"></span></td>
-                                  <td>My Items</td>
-                                  <td>sajf1k3@hotmail.com</td>
-                                  <td>09:04h</td>
-                              </tr>
-                              <tr class="info">
-                                  <td><span class="glyphicon glyphicon-check"></span></td>
-                                  <td>(No title)</td>
-                                  <td>isgv2@hotmail.com</td>
-                                  <td>04:16h</td>
-                              </tr>
+                              {/foreach}
                           </tbody>
                       </table>
                      </div>

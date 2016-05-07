@@ -74,6 +74,7 @@ CREATE TABLE Mensagem (
     id_mensagem SERIAL,
     id_emissor INTEGER,
     id_recetor INTEGER,
+    titulo CHARACTER(256),
     conteudo CHARACTER(256) NOT NULL,
     data_mensagem DATE NOT NULL DEFAULT (now()::DATE)
 );

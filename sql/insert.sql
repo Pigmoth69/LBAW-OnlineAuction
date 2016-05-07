@@ -26,15 +26,15 @@ INSERT INTO UtilizadorAdministrador (id_utilizador) VALUES(6);
 INSERT INTO HistoricoBanidos (id_utilizador, id_moderador, data_banicao, data_fim, motivo) VALUES (1, 4, '2013-01-01', '2020-01-01', 'e fagote');
 INSERT INTO HistoricoBanidos (id_utilizador, id_moderador, data_banicao, data_fim, motivo) VALUES (3, 4, '2015-01-01', '2020-01-01', 'lbaw');
 
-INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, conteudo, data_mensagem) VALUES (0, 0, 1, 'Vai fazer lbaw', '2016-04-10');
-INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, conteudo, data_mensagem) VALUES (1, 0, 2, 'Vai fazer lbaw', '2016-04-10');
-INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, conteudo, data_mensagem) VALUES (2, 0, 3, 'Vai fazer lbaw', '2016-04-10');
-INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, conteudo, data_mensagem) VALUES (3, 1, 0, 'Vai tu', '2016-04-10');
-INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, conteudo, data_mensagem) VALUES (4, 0, 1, 'Ja fui', '2016-04-10');
-INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, conteudo, data_mensagem) VALUES (5, 1, 0, 'Vai fazer ppin', '2016-04-10');
-INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, conteudo, data_mensagem) VALUES (6, 0, 1, 'Nao tenho pepinos em casa', '2016-04-10');
-INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, conteudo, data_mensagem) VALUES (7, 2, 1, 'E comp?', '2016-04-10');
-INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, conteudo, data_mensagem) VALUES (8, 3, 1, 'E lgp?', '2016-04-10');
+INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, titulo, conteudo, data_mensagem) VALUES (0, 27, 1, 'Teste', 'Vai fazer lbaw', '2016-04-10');
+INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, titulo, conteudo, data_mensagem) VALUES (1, 27, 2, 'Teste1', 'Vai fazer lbaw', '2016-04-10');
+INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, titulo, conteudo, data_mensagem) VALUES (2, 27, 3, 'Teste2', 'Vai fazer lbaw', '2016-04-10');
+INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, titulo, conteudo, data_mensagem) VALUES (3, 1, 27, 'Teste3', 'Vai tu', '2016-04-10');
+INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, titulo, conteudo, data_mensagem) VALUES (4, 27, 1, 'Teste4', 'Ja fui', '2016-04-10');
+INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, titulo, conteudo, data_mensagem) VALUES (5, 1, 27, 'Teste5', 'Vai fazer ppin', '2016-04-10');
+INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, titulo, conteudo, data_mensagem) VALUES (6, 27, 1, 'Teste6', 'Nao tenho pepinos em casa', '2016-04-10');
+INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, titulo, conteudo, data_mensagem) VALUES (7, 2, 1, 'Teste7', 'E comp?', '2016-04-10');
+INSERT INTO Mensagem (id_mensagem, id_emissor, id_recetor, titulo, conteudo, data_mensagem) VALUES (8, 3, 1, 'Teste8', 'E lgp?', '2016-04-10');
 
 INSERT INTO Categoria (id_categoria, descricao) VALUES (0, 'Arte');
 INSERT INTO Categoria (id_categoria, descricao) VALUES (1, 'Lazer');

@@ -103,13 +103,13 @@
                                 <div class="modal-body">
                                     <form method="POST" id="registo_form">
                                         <div class="form-group">
-                                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" value="{$infos.nome}" placeholder="First Name">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                            <input type="text" name="last_name" id="last_name" class="form-control input-sm" value="{$infos.nome}" placeholder="Last Name">
                                         </div>
                                         <div class="form-group">
-                                            <input type="date" name="birthdate" id="birthdate" class="form-control input-sm" placeholder="Date Of Birth" onChange="checkDate()">
+                                            <input type="date" name="birthdate" id="birthdate" class="form-control input-sm" value="{$infos.datanasc}" placeholder="Date Of Birth" onChange="checkDate()">
                                         </div>
                                         <div class="form-group">
                                             <label class="radio-inline"><input type="radio" name="gender" value="male">Male</label>
@@ -123,7 +123,7 @@
                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+                                            <input type="email" name="email" id="email" class="form-control input-sm" value="{$infos.e_mail}" placeholder="Email Address">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password" onChange="checkPasswords()">
