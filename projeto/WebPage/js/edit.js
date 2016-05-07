@@ -5,8 +5,9 @@ function onReady() {
     /*$("#editAdmin").submit(function(event) {
 		return checkValidity();
 	});*/
-	$("#editUser").click(function(){editUser();return false;});
-	$("#editAuction").click(function(){editAuction();return false;});
+	//$("#editUser").submit(function(){checkValidityEditUser();return false;});
+	//$("#editAdmin").submit(function(){checkValidityEdit();return false;});
+	//$("#editAuction").click(function(){checkValidityEdit();return false;});
 };
 
 function checkPasswordsEdit() {
@@ -72,41 +73,60 @@ function checkDateEdit() {
 function checkEmptyFieldsEdit() {
 	if ($("#first_nameEdit").val() == "" || $("#last_nameEdit").val() == "" ||
 	 $("#birthdateEdit").val() == "" || $("#emailEdit").val() == "" || $("#passwordEdit").val() == "" ||
-	  $("#password_confirmationEdit").val() == "") {
+	  $("#password_confirmationEdit").val() == "" || $("#previous_passwordEdit").val() == "") {
 		return false;
 	}
 	else return true;
 }
 	
 function checkValidityEdit() {
-	if (!(checkPasswords())) {
+	if (!(checkPasswordsEdit())) {
 		alert("Passwords don't match.");
 		return false;
 	}
 		
-	if (!checkDate()) {
+	if (!checkDateEdit()) {
 		alert("You have to be 18 years or older.");
 		return false;
 	}
-	if (!checkEmptyFields()) {
+	if (!checkEmptyFieldsEdit()) {
 		alert("No empty fields allowed");	
 		return false;
 	}
 	//alert("Register successfull!!");
-	editAdmin();
-	return false;	
+	//editAdmin();
+	return true;	
 }
 
+function checkValidityEditUser() {
+	if (!(checkPasswordsEdit())) {
+		alert("Passwords don't match.");
+		return false;
+	}
+		
+	if (!checkDateEdit()) {
+		alert("You have to be 18 years or older.");
+		return false;
+	}
+	if (!checkEmptyFieldsEdit()) {
+		alert("No empty fields allowed");	
+		return false;
+	}
+	//alert("Register successfull!!");
+	//editUser();
+	return true;	
+}
+/*
 function editUser() {
-    var email = $('#emailInput').val();
-	var password = $('#passwordInput').val();
-	var birthdate = $('#birthdateInput').val();
-	var first_name = $("#first_name").val();
-	var last_name = $("#last_name").val();
-	var description = $('#descriptionInput').val();
-    var gender = $('input[name="gender"]:checked').val();
-	var country = $('#countryOptions').find(":selected").text();
-	var image = $('#imageInput').val();
+    var email = $('#emailEdit').val();
+	var password = $('#passwordEdit').val();
+	var birthdate = $('#birthdateEdit').val();
+	var first_name = $("#first_nameEdit").val();
+	var last_name = $("#last_nameEdit").val();
+	var description = $('#descriptionEdit').val();
+    var gender = $('input[name="genderEdit"]:checked').val();
+	var country = $('#countryOptionsEdit').find(":selected").text();
+	var image = $('#imageInputEdit').val();
     
 	$.post(
     '../actions/editUser.php',
@@ -141,7 +161,7 @@ function editUser() {
 				document.getElementById("loginStatus").innerHTML = "<div class=\"alert alert-danger\"><strong>Error!</strong> Login failed..</div>";
 				//displayError("Error while processing the login...");
 				break;
-                */
+                
 		}
 	}).fail(function (error) {
        // alert("Error: " + error);
@@ -193,3 +213,4 @@ function editAdmin() {
     });
 	return false;
 }
+*/

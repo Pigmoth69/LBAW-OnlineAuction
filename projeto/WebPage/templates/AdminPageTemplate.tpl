@@ -36,23 +36,27 @@
                             <h4 class="modal-title">Edit profile</h4>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" id="editAdmin" action="../api/edit_admin.php" enctype="multipart/form-data">
+                            <form method="POST" id="editAdmin" action="../api/edit_admin.php" onsubmit="return checkValidityEdit()" enctype="multipart/form-data">
                                 <form>
                                     <div class="form-group">
-                                        <input type="text" name="first_nameEdit" id="first_nameEdit" class="form-control input-sm" placeholder="First Name">
+                                        <input type="text" name="first_nameEdit" id="first_nameEdit" class="form-control input-sm" value="{$infos[0].nome|rtrim}" placeholder="First Name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="last_nameEdit" id="last_nameEdit" class="form-control input-sm" placeholder="Last Name">
+                                        <input type="text" name="last_nameEdit" id="last_nameEdit" class="form-control input-sm" value="{$infos[0].nome|rtrim}" placeholder="Last Name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" placeholder="Date Of Birth" onChange="checkDateEdit()">
+                                        <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" value="{$infos[0].datanasc}" placeholder="Date Of Birth" onChange="checkDateEdit()">
                                     </div>
                                     <div class="form-group">
-                                        <label class="radio-inline"><input type="radio" name="genderEdit" value="male">Male</label>
-                                        <label class="radio-inline"><input type="radio" name="genderEdit" value="female">Female</label>
+                                        <label class="radio-inline"><input type="radio" name="genderEdit" value="male" {if $infos[0].genero eq "male"}
+                                                                                                                        checked
+                                                                                                                        {/if}>Male</label>
+                                        <label class="radio-inline"><input type="radio" name="genderEdit" value="female" {if $infos[0].genero eq "female"}
+                                                                                                                        checked
+                                                                                                                        {/if}>Female</label>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="emailEdit" id="emailEdit" class="form-control input-sm" placeholder="Email Address">
+                                        <input type="email" name="emailEdit" id="emailEdit" class="form-control input-sm" value="{$infos[0].e_mail|rtrim}" placeholder="Email Address">
                                     </div>
                                     <div class="form-group">
                                         <label for="image">Image: </label>
@@ -72,7 +76,7 @@
                                 </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-default" onclick="return checkValidityEdit(); return false" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
 

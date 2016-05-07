@@ -125,4 +125,41 @@
         else return true;
     }
     
+    function editUser($id, $name, $date, $country, $gender, $mail, $password, $image, $previous, $description) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Utilizador WHERE id_utilizador = :id');
+        $pass = hash("sha256", $previous);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        
+        if (!($result[0]['id_utilizador'] == $id)) {
+            return false;
+            if (!($result[0]['password'] == $pass)) {
+                return false;
+            }
+        }
+        
+        $stmt = $conn->prepare('SELECT * FROM Pais WHERE nome_pais = :country');
+        $stmt->bindParam(':country', $country, PDO::PARAM_STR);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $id_pais = $res[0]['id_pais'];
+        
+        $stmt = $conn->prepare('UPDATE Utilizador SET (nome, genero, imagem_utilizador, datanasc , e_mail, password, descricao, id_pais) = (:name, :gender, :image, :date, :mail, :password, :description, :id_pais) WHERE id_utilizador = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+        $stmt->bindParam(':gender', $gender, PDO::PARAM_STR);
+        $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $pass_t = hash("sha256", $password);
+        $stmt->bindParam(':password', $pass_t, PDO::PARAM_STR);
+        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $stmt->bindParam(':id_pais', $id_pais, PDO::PARAM_INT);
+        $stmt->bindParam(':image', $image, PDO::PARAM_STR);
+        $stmt->execute();
+        return true;
+        
+    }
+    
 ?>
