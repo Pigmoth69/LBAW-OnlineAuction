@@ -83,7 +83,7 @@
                             </div>
                             <textarea class="form-control" rows="10" id="messageText"></textarea>
                         </div>
-                        <button type="button" class="btn btn-primary">Send</button>
+                        <button type="button" class="btn btn-primary" onclick="return sendMessage()">Send</button>
                         </div>
                      </div>
                   </div>
@@ -93,5 +93,6 @@
          </div>
       </div>
    </body>
+   <script src="../js/message.js"></script>
    {include file='common/foot.tpl'}
 </html>
