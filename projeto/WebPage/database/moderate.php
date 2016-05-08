@@ -38,7 +38,7 @@
         if (count($mods) == 0) {
             return false;
         }
-        
+        $conn->beginTransaction();
         $stmt = $conn->prepare('UPDATE HistoricoBanidos SET id_moderador = :id_mod WHERE id_moderador = :id');
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':id_mod', $mods[0]['id_utilizador']);
@@ -52,6 +52,7 @@
         $stmt = $conn->prepare('DELETE FROM UtilizadorModerador WHERE id_utilizador = :id');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $retorno = $stmt->execute();
+        $conn->commit();
         return $retorno;
     }
     
@@ -79,6 +80,8 @@
         $false = false;
         $pass = hash("sha256", $password);
         
+        $conn->beginTransaction();
+        
         $stmt = $conn->prepare('INSERT INTO Utilizador(nome, descricao, genero, imagem_utilizador, datanasc, e_mail, password, classificacao, banido, id_pais) VALUES(:nome, :descricao, :genero, :imagem_utilizador, :datanasc, :e_mail, :password, :classificacao, :banido, :id_pais)');
         $stmt->bindParam(':nome', $name, PDO::PARAM_STR);
         $stmt->bindParam(':descricao', $empty, PDO::PARAM_STR);
@@ -100,6 +103,8 @@
         
         $stmt = $conn->prepare('INSERT INTO UtilizadorModerador(id_utilizador) VALUES(:id)');
         $stmt->bindParam('id', $id, PDO::PARAM_INT);
-        return $stmt->execute();
+        $retorno = $stmt->execute();
+        $conn->commit();
+        return $retorno;
     }
 ?>
