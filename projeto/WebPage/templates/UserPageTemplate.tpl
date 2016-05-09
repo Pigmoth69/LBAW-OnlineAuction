@@ -12,10 +12,9 @@
                     <strong><i class="glyphicon glyphicon-list" id="opt" ></i> Options </strong>
                     <ul class="nav nav-stacked collapse in" id="userMenu">
                         <!-- <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li> -->
-                        <li><a href="MessagePage.php"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
+                        <li><a href="MessagePage.php"><i class="glyphicon glyphicon-envelope"></i> Messages</a></li>
                         <!-- <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Shoutbox</a></li> -->
                         <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
                         <li><a href="FAQ.php"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
                     </ul>
                 </ul>
@@ -34,10 +33,6 @@
                             <a href="#editProfile" class="btn btn-primary col-sm-3" data-toggle="modal" data-target="#modalEdit">
                                 <i class="glyphicon glyphicon-cog"></i>
                                 <br> Edit profile
-                            </a>
-                            <a href="#" class="btn btn-primary col-sm-3">
-                                <i class="glyphicon glyphicon-question-sign"></i>
-                                <br> Help
                             </a>
                         </div>
                         <!-- <div class="well">Inbox Messages <span class="badge pull-right">3</span></div> -->
@@ -146,9 +141,9 @@
                                         </div>
                                         </form>
                                         <textarea rows="4" cols="50" name="descriptionEdit" form="editUser">{$infos.descricao|rtrim}</textarea>
-                                        <input type="submit" value="Edit User" class="btn btn-block" form="editUser" id="submitUser">
+                                        <input type="submit" value="Edit User Profile" class="btn btn-block" form="editUser" id="submitUser">
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" onclick="return checkValidityEditUser(); return false" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                         </div>
                                         
                                         

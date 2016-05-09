@@ -53,6 +53,9 @@
             
             $stmt = $conn->prepare('DELETE FROM UtilizadorModerador WHERE id_utilizador = :id');
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            
+            $stmt = $conn->prepare('DELETE FROM Utilizador WHERE id_utilizador = :id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $retorno = $stmt->execute();
             $conn->commit();
             return $retorno;

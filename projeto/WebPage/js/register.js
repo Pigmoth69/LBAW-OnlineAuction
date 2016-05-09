@@ -198,11 +198,11 @@ function makePOSTMod(){
 			switch(response) {
 				case 'user_exists':
 					document.getElementById("adminStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Wrror!</strong> That username already exists.</div>";
-					//window.location = "RegisterPage.php";
+					window.location = "AdminPage.php";
 					break;
 				case 'success':
 					document.getElementById("adminStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Success!</strong> Moderator created!</div>";
-					//window.location = "../index.php";
+					window.location = "AdminPage.php";
 					break;
 				case 'error on js':
 					document.getElementById("adminStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Error!</strong> Stop cracking the site!</div>";

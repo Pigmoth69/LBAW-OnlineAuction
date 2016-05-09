@@ -72,11 +72,11 @@
                                         <input type="password" name="password_confirmationEdit" id="password_confirmationEdit" class="form-control input-sm" placeholder="Confirm New Password" onChange="checkPasswordsEdit()">
                                     </div>
 
-                                    <input type="submit" value="Save changes" id="RegistoEdit" class="btn btn-block">
+                                    <input type="submit" value="Edit Admin Profile" id="RegistoEdit" class="btn btn-block">
                                 </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" onclick="return checkValidityEdit(); return false" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
 
@@ -131,7 +131,7 @@
                                             <div class="form-group">
                                                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password" onChange="checkPasswords()">
                                             </div>
-                                            <input type="submit" value="Register" class="btn btn-block"  id="registo">
+                                            <input type="submit" value="Add Moderator" class="btn btn-block"  id="registo">
                                         </form>
                                     </div>
                                 </div>

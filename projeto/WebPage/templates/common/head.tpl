@@ -9,6 +9,8 @@
       <title>Online Auction- Where business happens!</title>
       <!-- Bootstrap Core CSS -->
       <link href="../css/bootstrap.min.css" rel="stylesheet">
+      <!-- Font Awesome CSS -->
+      <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
       <!-- Custom CSS -->
       <link href="../css/OnlineAuctionHomepage.css" rel="stylesheet">
       <!-- Latest compiled and minified CSS -->
