@@ -13,9 +13,14 @@
     //if (isAdmin($_SESSION['user']))
     //   header("Location: AdminPage.php");
     
-    if (!isset($_GET['idPage'])) {
-        header("Location: " . $_SERVER['HTTP_REFERER']);
+    if ((!isset($_GET['idPage'])) || ($_GET['idPage'] == '')) {
+        header("Location: ../index.php");
     }
+    
+    if (($_SESSION['user'] == $_GET['idPage']) && (isAdmin($_SESSION['user']))) {
+        header("Location: AdminPage.php");
+    }
+    
     
     $idPage = $_GET['idPage'];
     $categorias = getAllCategories();
