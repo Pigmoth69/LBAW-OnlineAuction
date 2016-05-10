@@ -25,6 +25,7 @@
     $auctions = getAuctionsByUserID($idPage);
     $auctions_seller = getAuctionsByLiciteedID($idPage);
     $best_auctions = bestAuctions();
+    $not_logged = '';
     
     $smarty->assign('categorias', $categorias);
     $smarty->assign('infos', $infos[0]);
@@ -32,7 +33,10 @@
     $smarty->assign('paises', $paises);
     $smarty->assign('auctions', $auctions);
     $smarty->assign('idPage', $idPage);
-    $smarty->assign('idUser', $_SESSION['user']);
+    
+    if (isset($_SESSION['user']))
+        $smarty->assign('idUser', $_SESSION['user']);
+    else $smarty->assign('idUser', $not_logged);
     $smarty->assign('auctions_seller', $auctions_seller);
     $smarty->assign('best_auctions', $best_auctions);
     $smarty->display('../templates/UserPageTemplate.tpl');

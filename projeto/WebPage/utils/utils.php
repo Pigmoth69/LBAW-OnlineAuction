@@ -37,4 +37,12 @@
 	    header('Content-Type: application/json');
 	    echo json_encode($data);
 	}
+    
+    function printResponse($value, $value1, $reg, $reg1) {
+		$param = ''.$reg;
+        $param1 = ''.$reg1;
+	    $data = [ $param => $value, $param1 => $value1];;
+	    header('Content-Type: application/json');
+	    echo json_encode($data);
+	}
 ?>

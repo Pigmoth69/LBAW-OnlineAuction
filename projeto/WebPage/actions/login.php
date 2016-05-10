@@ -25,7 +25,7 @@
 	else if ($id > 0){
 		$_SESSION['user'] = $id;
 		$_SESSION['success_messages'][] = 'Login successful';
-		printResponse("success", "login");
+		printResponse("success", $id, "login", "id");
 		return true;
 	}
 ?>
