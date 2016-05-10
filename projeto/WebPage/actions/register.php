@@ -1,6 +1,7 @@
 <?php
     include_once("../config/init.php");
     include_once("../database/user.php");
+    include_once("../utils/utils.php");
     
     $params = [ 'first_name', 'last_name', 'birthdate', 'gender', 'email', 'password', 'password_confirmation', 'country'];
 	foreach ($params as $param) {

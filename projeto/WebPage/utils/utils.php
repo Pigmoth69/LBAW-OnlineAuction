@@ -20,4 +20,21 @@
             return false;
         }
     }
+    
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+    
+    function printResponse($value, $reg) {
+		$param = ''.$reg;
+	    $data = [ $param => $value];
+	    header('Content-Type: application/json');
+	    echo json_encode($data);
+	}
 ?>

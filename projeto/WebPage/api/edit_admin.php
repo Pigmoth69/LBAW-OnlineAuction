@@ -3,6 +3,7 @@
     include_once("../database/user.php");
     include_once("../utils/utils.php");
     include_once("../database/moderate.php");
+    include_once("../utils/utils.php");
     
     $params = [ 'first_nameEdit', 'last_nameEdit', 'birthdateEdit', 'genderEdit', 'emailEdit', 'previous_passwordEdit', 'passwordEdit', 'password_confirmationEdit', 'image'];
 	foreach ($params as $param) {

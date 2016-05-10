@@ -3,6 +3,7 @@
     include_once("../database/user.php");
     include_once("../database/moderate.php");
     include_once("../database/messages.php");
+    include_once("../utils/utils.php");
     
     $params = [ 'e_mail', 'title', 'body'];
 	foreach ($params as $param) {

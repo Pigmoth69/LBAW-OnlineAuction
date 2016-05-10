@@ -1,6 +1,8 @@
 <?php	
 	include_once("../config/init.php");
     include_once("../database/user.php");
+    include_once("../utils/utils.php");
+	
 	$params = [ 'functionName','username', 'password' ];
 	foreach ($params as $param) {
 		if (isset($_POST[$param])) {
