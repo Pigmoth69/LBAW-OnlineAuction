@@ -78,6 +78,8 @@
                               </div>
                               <div class="bottom text-center">
                                  New here ? <a href="RegisterPage.php"><b>Join Us</b></a>
+                                 <br>
+                                 Lost your password ? <a href="#"><b>Recover</b></a>
                               </div>
                            </div>
                         </li>
