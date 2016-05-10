@@ -1,104 +1,126 @@
-{include file='common/head.tpl'}
-{include file='common/bar.tpl'}
+ {include file='common/head.tpl'} {include file='common/bar.tpl'}
+
 <body>
+    <!-- Main -->
     <div class="container">
-        <div class="panel-group" id="accordion">
-            <div class="faqHeader">Questões Gerais</div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Login no site</a>
-                    </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Apenas utilizadores autenticados podem criar ou licitar em leilões.
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-md-3">
+                <hr>
+                <ul class="nav nav-stacked">
+                    <ul class="nav nav-stacked collapse in" id="userMenu">
+                        <strong><i class="glyphicon glyphicon-list" id="opt" ></i> Options </strong>
+                        <!-- <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li> -->
+                        <li><a href="MessagePage.php"><i class="glyphicon glyphicon-envelope"></i> Messages</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
+                        <li><a href="FAQ.php"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
+                    </ul>
+                </ul>
             </div>
+            <!-- /col-3 -->
+            <div class="col-sm-9">
+                <div class="bd-example bd-example-tabs" role="tabpanel">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="inbox-tab" data-toggle="tab" href="#inbox" role="tab" aria-controls="inbox" aria-expanded="true">Inbox</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="sent-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="sent" aria-expanded="false">Sent Messages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="compose-tab" data-toggle="tab" href="#compose" role="tab" aria-controls="composeMessage" aria-expanded="false">Compose Message</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div role="tabpanel" class="tab-pane fade active in" id="inbox" aria-labelledby="inbox-tab" aria-expanded="true">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Email</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {foreach $recetor as $rec}
+                                    <tr class="info">
+                                        <td>{$rec.titulo}</td>
+                                        <td>{$mail = getInfoByID($rec.id_emissor)} {$mail[0].e_mail}</td>
+                                        <td>{$rec.data_mensagem}</td>
+                                    </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="sent-tab" aria-expanded="false">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Email</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {foreach $emissor as $emi}
+                                    <tr class="info">
+                                    
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
 
-            <div class="faqHeader">Vendedores</div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Editar Leilões</a>
-                    </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Um vendedor só pode editar o seu leilão até à primeira licitação. Depois disso só um moderador é que pode editar o leilão a pedido do vendedor.
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">Cancelar Leilões</a>
-                    </h4>
-                </div>
-                <div id="collapseSeven" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Um vendedor não pode cancelar um leilão após o término do mesmo.
-                    </div>
-                </div>
-            </div>
+                                            <td>{$emi.titulo}</td>
+                                            <td>{$mail = getInfoByID($emi.id_recetor)} {$mail[0].e_mail}</td>
+                                            <td>{$emi.data_mensagem}</td>
+                                        </a>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                CENAS CENAS CENAS
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- MODAL PARA VER A MSG
+                        <div class="modal fade" id="viewMessage" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title"></h4>
+                                    </div>
+                                    <div class="modal-body">
 
-            <div class="faqHeader">Licitadores</div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Licitação</a>
-                    </h4>
-                </div>
-                <div id="collapseThree" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        O licitador com a licitação de valor mais elevado num determinado leilão é considerado o vencedor do leilão.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                        <div class="tab-pane fade" id="compose" role="tabpanel" aria-labelledby="compose-tab" aria-expanded="false">
+                            <div class="form-group">
+                                <label class="sr-only" for="AmountInput">Email</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">Email</div>
+                                    <input type="text" class="form-control" id="emailInput" placeholder="example@example.com">
+                                    <div class="input-group-addon">Title</div>
+                                    <input type="text" class="form-control" id="emailTitle" placeholder="Example">
+                                </div>
+                                <textarea class="form-control" rows="10" id="messageText"></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="return sendMessage()">Send</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="faqHeader">Leilões</div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Licitação Fora do Tempo</a>
-                    </h4>
-                </div>
-                <div id="collapseFour" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Não são aceites licitações após o leilão terminar.
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Leilão Terminado</a>
-                    </h4>
-                </div>
-                <div id="collapseFive" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        O leilão termina quando o tempo de duração do leilão é ultrapassado.
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">Licitação final</a>
-                    </h4>
-                </div>
-                <div id="collapseSix" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Se nos últimos 30 segundos houver uma licitação superior à anterior, estender o prazo durante mais 1 minuto gerando assim uma nova ronda de licitações.
-                        Só quem tenha licitado na ronda anterior pode voltar a licitar.
-                    </div>
-                </div>
-            </div>
-            
         </div>
+        <!--/col-span-9-->
     </div>
-        <!-- /.container -->
-    </body>
-    {include file='common/foot.tpl'}
+    </div>
+</body>
+<script src="../js/message.js"></script>
+{include file='common/foot.tpl'}
+
 </html>
