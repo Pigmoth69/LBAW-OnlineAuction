@@ -24,7 +24,7 @@ function login() {
 				break;
 			case 'success':
 				document.getElementById("loginStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Success!</strong> Login success!</div>";
-				window.location = "UserPage.php";
+				window.location = "UserPage.php?idPage=<%=Session[\"user\"]%>";
 				break;
 			case 'already_logged':
 				document.getElementById("loginStatus").innerHTML ="<div class=\"alert alert-warning\"><strong>Warning!</strong> Already Logged in!</div>";

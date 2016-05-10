@@ -40,7 +40,7 @@
                   </li>
                   {if isLoggedIn()}
                   <li>
-                     <a href="UserPage.php">{$infos[0].e_mail}</a>
+                     <a href="UserPage.php?idPage={$infos[0].id_utilizador}">{$infos[0].e_mail}</a>
                   </li>
                   {else}
                         <li>

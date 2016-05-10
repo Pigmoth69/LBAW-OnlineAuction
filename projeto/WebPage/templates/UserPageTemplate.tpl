@@ -24,17 +24,19 @@
                 <div class="row">
                     <!-- center left-->
                     <div class="col-md-6">
-                        <hr>
-                        <div class="btn-group btn-group-justified">
-                            <a href="#" class="btn btn-primary col-sm-3">
-                                <i class="glyphicon glyphicon-plus"></i>
-                                <br> New auction
-                            </a>
-                            <a href="#editProfile" class="btn btn-primary col-sm-3" data-toggle="modal" data-target="#modalEdit">
-                                <i class="glyphicon glyphicon-cog"></i>
-                                <br> Edit profile
-                            </a>
-                        </div>
+                        {if $idPage eq $idUser}
+                            <hr>
+                            <div class="btn-group btn-group-justified">
+                                <a href="#" class="btn btn-primary col-sm-3">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <br> New auction
+                                </a>
+                                <a href="#editProfile" class="btn btn-primary col-sm-3" data-toggle="modal" data-target="#modalEdit">
+                                    <i class="glyphicon glyphicon-cog"></i>
+                                    <br> Edit profile
+                                </a>
+                            </div>
+                        {/if}
                         <!-- <div class="well">Inbox Messages <span class="badge pull-right">3</span></div> -->
                         <hr>
                         <div class="table-responsive">

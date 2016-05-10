@@ -6,19 +6,24 @@
     include_once '../database/categories.php';
     include_once '../utils/utils.php';
     
-    if (count($_SESSION) === 0 || $_SESSION['user'] == '') {
-        header("Location: ../index.php");
-        exit;
-    }
-    if (isAdmin($_SESSION['user']))
-       header("Location: AdminPage.php");
+    //if (count($_SESSION) === 0 || $_SESSION['user'] == '') {
+    //    header("Location: ../index.php");
+    //    exit;
+    //}
+    //if (isAdmin($_SESSION['user']))
+    //   header("Location: AdminPage.php");
     
+    if (!isset($_GET['idPage'])) {
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+    }
+    
+    $idPage = $_GET['idPage'];
     $categorias = getAllCategories();
-    $infos = getInfoByID($_SESSION['user']);
+    $infos = getInfoByID($idPage);
     $pais = getNameCountryByID($infos[0]['id_pais']);
     $paises = getAllCountries();
-    $auctions = getAuctionsByUserID($_SESSION['user']);
-    $auctions_seller = getAuctionsByLiciteedID($_SESSION['user']);
+    $auctions = getAuctionsByUserID($idPage);
+    $auctions_seller = getAuctionsByLiciteedID($idPage);
     $best_auctions = bestAuctions();
     
     $smarty->assign('categorias', $categorias);
@@ -26,6 +31,8 @@
     $smarty->assign('country', $pais[0]);
     $smarty->assign('paises', $paises);
     $smarty->assign('auctions', $auctions);
+    $smarty->assign('idPage', $idPage);
+    $smarty->assign('idUser', $_SESSION['user']);
     $smarty->assign('auctions_seller', $auctions_seller);
     $smarty->assign('best_auctions', $best_auctions);
     $smarty->display('../templates/UserPageTemplate.tpl');
