@@ -13,26 +13,32 @@
 		}
 	}
     
+    $param = ''."send_message";
+    
     if ($params['e_mail'] == "") {
         $_SESSION['error_messages'][] = 'E-mail empty';
-        printResponse("error on js", "send_message");
+        $data = [ $param => "error on js"];
+		printResponse($data);
         return false;
     }
     
     if (count($_SESSION) == 0 || $_SESSION['user'] == "") {
         $_SESSION['error_messages'][] = 'Not logged';
-        printResponse("error on js", "send_message");
+        $data = [ $param => "error on js"];
+		printResponse($data);
         return false;
     }
     
     if (sendMessage($_SESSION['user'], $params['e_mail'], $params['title'], $params['body'])) {
         $_SESSION['error_messages'][] = 'Message sent';
-        printResponse("success", "send_message");
+        $data = [ $param => "success"];
+		printResponse($data);
         return true;
     }
     else {
         $_SESSION['error_messages'][] = 'E-mail doesn\'t exist';
-        printResponse("e_mail doesn't exist", "send_message");
+        $data = [ $param => "e_mail doesn't exist"];
+		printResponse($data);
         return false;
     } 
 ?>

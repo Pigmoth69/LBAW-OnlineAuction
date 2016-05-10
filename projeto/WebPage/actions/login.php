@@ -10,22 +10,27 @@
 			continue;
 		}
 	}
+	$param = ''."login";
+	$param2 = ''."id";
 	
 	if(count($_SESSION) > 0) {
 		$_SESSION['error_messages'][] = 'Already logged in';
-		printResponse("already logged", "login");
+		$data = [ $param => "already logged"];
+		printResponse($data);
 		return false;
 	}
 	$id = compareLogin($params['username'], $params['password']);
 	if ($id == -1) {
 		$_SESSION['error_messages'][] = 'Wrong credentials';
-		printResponse("wrong_login", "login");
+		$data = [ $param => "wrong_login"];
+		printResponse($data);
 		return false;
 	}
 	else if ($id > 0){
 		$_SESSION['user'] = $id;
 		$_SESSION['success_messages'][] = 'Login successful';
-		printResponse("success", $id, "login", "id");
+		$data = [ $param => "success", $param2 => $id];
+		printResponse($data);
 		return true;
 	}
 ?>

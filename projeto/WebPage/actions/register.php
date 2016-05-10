@@ -10,21 +10,25 @@
 			continue;
 		}
 	}
+    $param = ''."register";
     
     if ($params['password'] != $params['password_confirmation']) {
         $_SESSION['error_messages'][] = 'Passwords don\'t match';
-        printResponse("error on js", "register");
+        $data = [ $param => "error on js"];
+		printResponse($data);
         return false;
     }
     
     if (register($params['first_name'] . " " . $params['last_name'], $params['birthdate'], $params['gender'], $params['email'], $params['password'], $params['country'])) {
         $_SESSION['success_messages'][] = 'Register successful';
-        printResponse("success", "register");
+        $data = [ $param => "success"];
+		printResponse($data);
         return true;
     }
     else {
         $_SESSION['error_messages'][] = 'That user already exists';
-        printResponse("user_exists", "register");
+        $data = [ $param => "user_exists"];
+		printResponse($data);
         return false;
     } 
 ?>
