@@ -14,6 +14,7 @@
 	}
     
     $param = ''."report_user";
+    $param2 = ''."id_mod";
     
     if (count($_SESSION) == 0 || $_SESSION['user'] == "") {
         $_SESSION['error_messages'][] = 'Not logged';
@@ -22,9 +23,11 @@
         return false;
     }
     
-    if (reportUser($_SESSION['user'], $params['user'], $params['motive'])) {
+    $ret = reportUser($_SESSION['user'], $params['user'], $params['motive']);
+    
+    if ($ret != -1) {
         $_SESSION['error_messages'][] = 'User reported';
-        $data = [ $param => "success"];
+        $data = [ $param => "success", $param2 => $ret];
 		printResponse($data);
         return true;
     }

@@ -22,6 +22,8 @@
       <script src="../js/bootstrap.min.js"></script>
       <!-- Latest compiled and minified JavaScript -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+      <script src="../js/sweetalert.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
       <!-- (Optional) Latest compiled and minified JavaScript translation files -->
     <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>-->
     <script src="../js/loginScript.js"></script>

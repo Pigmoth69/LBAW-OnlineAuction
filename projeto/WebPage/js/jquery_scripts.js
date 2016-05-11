@@ -47,7 +47,7 @@ function updateRate(id) {
 }
 
 function reportUser(id) {
-    var motive = ("#motive").val();
+    var motive = $("#motive").val();
 	$.post(
     '../api/report_user.php',
 	{
@@ -58,10 +58,13 @@ function reportUser(id) {
 		var response = data['report_user'];
 			switch(response) {
 				case 'error':
+                    swal("Couldn't report the user.");
 					break;
 				case 'success':
+                    swal("Reported the user. A moderator has received a message, you can check it on your inbox.");
 					break;
 				case 'error on js':
+                    swal("Don't crack the site.");
 					break;
 				default:
 					//displayError("Error while processing the login...");

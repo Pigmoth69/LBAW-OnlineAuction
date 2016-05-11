@@ -54,7 +54,7 @@
                                     <div class="modal-body">
                                         <textarea rows="4" cols="50" name="motive" id="motive" class="form-control input-sm" placeholder="Write here the motive for your report"></textarea>
                                         <br>
-                                        <input type="submit" value="Report User" class="btn btn-primary" id="reportUser" onsubmit="reportUser({$idPage})">
+                                        <input type="submit" value="Report User" class="btn btn-primary" id="reportUser" onsubmit="reportUser({$idPage})" onclick="reportUser({$idPage})">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
