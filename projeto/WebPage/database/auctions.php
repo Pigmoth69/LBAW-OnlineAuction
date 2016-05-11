@@ -81,9 +81,54 @@
     
     function bestAuctions() {
         global $conn;
-        $stmt = $conn->prepare('SELECT * FROM Leilao ORDER BY valor_base DESC');
+        $stmt = $conn->prepare('SELECT id_leilao, nome_produto, valor_base, data_fim, id_vendedor, descricao, imagem_produto FROM Leilao, EstadoLeilao WHERE Leilao.data_fim > now() AND Leilao.data_fim <= now() + \'365 day\'::INTERVAL AND EstadoLeilao.estado_leilao = \'aberto\' AND Leilao.id_estado_leilao = EstadoLeilao.id_estado_leilao LIMIT 9');
         $stmt->execute();
         $result = $stmt->fetchAll();
         return $result;
+    }
+    
+    function getClassificationAuction($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM ClassificacaoLeilao WHERE id_leilao = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $avg = 0;
+
+        if (count($res) == 0)
+            return $avg;
+        
+        foreach($res as $r) {
+            $avg = $avg + $r['valor_classificacao'];
+        }
+        $avg = $avg / count($res);
+        
+        return $avg;
+    }
+    
+    function getHighestBid($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id ORDER BY valor_licitacao DESC');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        
+        if (count($res) == 0) {
+            $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result[0]['valor_base'];
+        }
+        else return $res[0]['valor_licitacao'];
+    }
+    
+    function timeLeftOnAuction($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        return $res[0]['data_fim'];
     }
 ?>

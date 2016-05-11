@@ -11,7 +11,8 @@
         $infos = getInfoByID($_SESSION['user']);
         $smarty->assign('infos', $infos);
     }
-    
+    $auctions = bestAuctions();
+    $smarty->assign('auctions', $auctions);
     $smarty->assign('categorias', $categorias);
     $smarty->display('../templates/HomeTemplate.tpl');
 ?>
