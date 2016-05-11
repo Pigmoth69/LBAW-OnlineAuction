@@ -43,7 +43,7 @@ function sendMessagePOST(){
 					break;
 				case 'success':
 					//document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Success!</strong> Account created successfully!</div>";
-					window.location = "../index.php";
+					window.location = "MessagePage .php";
 					break;
 				case 'error on js':
 					//document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Error!</strong> Stop cracking the site!</div>";

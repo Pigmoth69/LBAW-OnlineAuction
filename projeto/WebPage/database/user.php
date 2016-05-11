@@ -14,6 +14,22 @@
 		echo $e;
 		return -1;
 	}
+    
+    $path = '../utils/utils.php';
+
+    if(!file_exists($path))
+        $path = 'utils/utils.php';
+    if(!file_exists($path))
+        $path = '../../utils/utils.php';
+    if(!file_exists($path))
+        $path = '../../../utils/utils.php';     
+    try {
+        include_once($path);
+    }
+    catch(Exception $e) {
+		echo $e;
+		return -1;
+	}
 
     function compareLogin($mail, $pass_given) {
         global $conn;
@@ -151,7 +167,38 @@
         $stmt->bindParam(':id_pais', $id_pais, PDO::PARAM_INT);
         $stmt->bindParam(':image', $image, PDO::PARAM_STR);
         $stmt->execute();
-        return true;
+        return true;   
+    }
+    
+    function recoverPassword($e_mail) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Utilizador WHERE e_mail = :mail');
+        $stmt->bindParam(':mail', $e_mail, PDO::PARAM_STR);
+        $stmt->execute();
+        $ret = $stmt->fetchAll();
+        if (count($ret) == 0) {
+            return false;
+        }
+        
+        $pass_not = generateRandomString();
+        $pass = hash("sha256", $pass_not);
+        
+        $stmt = $conn->prepare('UPDATE Utilizador SET (password) = (:pass) WHERE e_mail = :mail');
+        $stmt->bindParam(':mail', $e_mail, PDO::PARAM_STR);
+        $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
+        $stmt->execute();
+        
+        $to = $e_mail;
+        $subject = 'Password Recovery @ BidMe';
+        $message = 'You\'ve lost your password. Your new password is ' . $pass_not . '. Change it the next time you login for security reasons.';
+        $headers = "From: Bid Me<noreply@bidme.xyz>\r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+        
+        if(!mail($to, $subject, $message, $headers)) {
+            return false;
+        }
+        else return true;
         
     }
     

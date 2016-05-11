@@ -69,17 +69,19 @@
                                     <div class="form-group">
                                        <button method="post"type="submit" class="btn btn-primary btn-block" id="loginButton">Sign in</button>
                                     </div>
-                                    <div class="checkbox">
-                                       <label>
-                                       <input type="checkbox"> keep me logged-in
-                                       </label>
-                                    </div>
                                  </form>
                               </div>
                               <div class="bottom text-center">
                                  New here ? <a href="RegisterPage.php"><b>Join Us</b></a>
                                  <br>
-                                 Lost your password ? <a href="#"><b>Recover</b></a>
+                                 Lost your password ? <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseRecover"><b>Recover</b></a>
+                                 <div id="collapseRecover" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                          <input type="email" id="recoverField" placeholder="Write your e-mail here">
+                                          <br>
+                                          <button type="submit" id="recoverPassword">Recover</button>
+                                    </div>
+                                 </div>
                               </div>
                            </div>
                         </li>

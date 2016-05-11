@@ -43,14 +43,25 @@
                                 <tbody>
                                     {foreach $recetor as $rec}
                                     <tr class="info">
-                                        <td>{$rec.titulo}</td>
+                                        <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{$rec.id_mensagem}">{$rec.titulo}</a>
+                                            <div id="collapse{$rec.id_mensagem}" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    {$rec.conteudo}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
                                         <td>{$mail = getInfoByID($rec.id_emissor)} {$mail[0].e_mail}</td>
                                         <td>{$rec.data_mensagem}</td>
-                                    </tr>
+                                    </tr>                                    
                                     {/foreach}
                                 </tbody>
+                                {foreach $recetor as $rec}
+                                    
+                                {/foreach}
                             </table>
                         </div>
+                        
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="sent-tab" aria-expanded="false">
                             <table class="table">
                                 <thead>
@@ -63,7 +74,14 @@
                                 <tbody>
                                     {foreach $emissor as $emi}
                                     <tr class="info">
-                                        <td>{$emi.titulo}</td>
+                                        <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{$emi.id_mensagem}">{$emi.titulo}</a>
+                                            <div id="collapse{$emi.id_mensagem}" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    {$emi.conteudo}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        </td>
                                         <td>{$mail = getInfoByID($emi.id_recetor)} {$mail[0].e_mail}</td>
                                         <td>{$emi.data_mensagem}</td>
                                     </tr>
