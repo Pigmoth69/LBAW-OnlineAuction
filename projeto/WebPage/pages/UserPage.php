@@ -21,6 +21,8 @@
         header("Location: AdminPage.php");
     }
     
+    if (!isUser($_GET['idPage']))
+        header("Location: ../index.php");
     
     $idPage = $_GET['idPage'];
     $categorias = getAllCategories();
@@ -30,7 +32,7 @@
     $auctions = getAuctionsByUserID($idPage);
     $auctions_seller = getAuctionsByLiciteedID($idPage);
     $best_auctions = bestAuctions();
-    //$not_logged = '';
+    $not_logged = '';
     
     $smarty->assign('categorias', $categorias);
     $smarty->assign('infos', $infos[0]);
@@ -39,9 +41,9 @@
     $smarty->assign('auctions', $auctions);
     $smarty->assign('idPage', $idPage);
     
-    //if (isset($_SESSION['user']))
+    if (isset($_SESSION['user']))
         $smarty->assign('idUser', $_SESSION['user']);
-    //else $smarty->assign('idUser', $not_logged);
+    else $smarty->assign('idUser', $not_logged);
     $smarty->assign('auctions_seller', $auctions_seller);
     $smarty->assign('best_auctions', $best_auctions);
     $smarty->display('../templates/UserPageTemplate.tpl');

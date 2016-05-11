@@ -122,4 +122,8 @@
             $conn->rollBack();
         }
     }
+    
+    function reportUser($reporter, $reported, $motive) {
+        
+    }
 ?>
