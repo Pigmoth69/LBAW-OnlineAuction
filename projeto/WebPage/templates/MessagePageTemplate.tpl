@@ -73,6 +73,7 @@
                                 <tbody>
                                     {foreach $emissor as $emi}
                                     <tr class="info">
+<<<<<<< HEAD
                                         <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{$emi.id_mensagem}">{$emi.titulo}</a>
                                             <div id="collapse{$emi.id_mensagem}" class="panel-collapse collapse">
                                                 <div class="panel-body">
@@ -81,8 +82,30 @@
                                             </div>
                                         </td>
                                         </td>
+=======
+                                    
+                                    <div class="panel panel-default">
+						                <div class="panel-heading">
+						                    <h4 class="panel-title">
+						                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+
+                                        <td>{$emi.titulo}</td>
+>>>>>>> d2811f1eee142585242069d9b23616dd575701df
                                         <td>{$mail = getInfoByID($emi.id_recetor)} {$mail[0].e_mail}</td>
                                         <td>{$emi.data_mensagem}</td>
+
+                                        </a>
+
+						                    </h4>
+						                	</div>
+						                	<div id="collapseOne" class="panel-collapse collapse">
+						                    	<div class="panel-body">
+						                        CENAS CENAS CENAS
+						                    	</div>
+						                	</div>
+						            	</div>
+
+                                        
                                     </tr>
                                     {/foreach}
                                 </tbody>
