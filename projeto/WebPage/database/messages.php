@@ -17,7 +17,7 @@
     
     function getMessagesByEmissor($id) {
         global $conn;
-        $stmt = $conn->prepare('SELECT id_mensagem,titulo,id_recetor,data_mensagem FROM Mensagem WHERE Mensagem.id_emissor = :id_utilizador');
+        $stmt = $conn->prepare('SELECT id_mensagem,titulo,id_recetor,data_mensagem, conteudo FROM Mensagem WHERE Mensagem.id_emissor = :id_utilizador');
         $stmt->bindParam(':id_utilizador', $id, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -26,7 +26,7 @@
     
     function getMessagesByReceptor($id) {
         global $conn;
-        $stmt = $conn->prepare('SELECT id_mensagem,titulo,id_emissor,data_mensagem FROM Mensagem WHERE Mensagem.id_recetor = :id_utilizador');
+        $stmt = $conn->prepare('SELECT id_mensagem,titulo,id_emissor,data_mensagem, conteudo FROM Mensagem WHERE Mensagem.id_recetor = :id_utilizador');
         $stmt->bindParam(':id_utilizador', $id, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll();

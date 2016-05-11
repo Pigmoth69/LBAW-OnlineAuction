@@ -1,5 +1,4 @@
 {include file='common/head.tpl'} {include file='common/bar.tpl'}
-
 <body>
     <div id="adminStatus"></div>
     <div class="container">

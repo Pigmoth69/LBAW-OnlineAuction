@@ -1,5 +1,4 @@
 {include file='common/head.tpl'} {include file='common/bar.tpl'}
-
 <body>
     <!-- Navigation -->
 
@@ -36,6 +35,46 @@
                                     <br> Edit profile
                                 </a>
                             </div>
+                        {else}
+                            {if isLoggedIn()}
+                            <div class="btn-group col-md-offset-4">
+                                <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reportModal">
+                                    <i class="fa fa-flag fa-2x"></i>
+                                    <br> Report User
+                                </a>
+                            </div>
+                            <div id="reportModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Report User</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <textarea rows="4" cols="50" name="motive" id="motive" class="form-control input-sm" placeholder="Write here the motive for your report"></textarea>
+                                        <br>
+                                        <input type="submit" value="Report User" class="btn btn-primary" id="reportUser" onsubmit="reportUser({$idPage})" onclick="reportUser({$idPage})">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {/if}
+                            <!--
+                            <hr>
+                            <div class="btn-group btn-group-justified">
+                                <div class="col-sm-9 rating">
+                                    <i class="fa fa-star-o fa-4x" id="1stStar" onclick="updateRate(1)" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o fa-4x" id="2ndStar" onclick="updateRate(2)" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o fa-4x" id="3rdStar" onclick="updateRate(3)" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o fa-4x" id="4thStar" onclick="updateRate(4)" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o fa-4x" id="5thStar" onclick="updateRate(5)" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            -->
                         {/if}
                         <!-- <div class="well">Inbox Messages <span class="badge pull-right">3</span></div> -->
                         <hr>
@@ -188,6 +227,6 @@
     </div>
 </body>
 <script src="../js/edit.js"></script>
-
+<script src="../js/jquery_scripts.js"></script>
 </html>
 {include file='common/foot.tpl'}

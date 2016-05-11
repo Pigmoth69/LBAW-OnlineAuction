@@ -10,7 +10,7 @@
       <!-- Bootstrap Core CSS -->
       <link href="../css/bootstrap.min.css" rel="stylesheet">
       <!-- Font Awesome CSS -->
-      <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="../font-awesome/css/font-awesome.min.css" />
       <!-- Custom CSS -->
       <link href="../css/OnlineAuctionHomepage.css" rel="stylesheet">
       <!-- Latest compiled and minified CSS -->
@@ -22,6 +22,8 @@
       <script src="../js/bootstrap.min.js"></script>
       <!-- Latest compiled and minified JavaScript -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+      <script src="../js/sweetalert.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
       <!-- (Optional) Latest compiled and minified JavaScript translation files -->
     <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>-->
     <script src="../js/loginScript.js"></script>

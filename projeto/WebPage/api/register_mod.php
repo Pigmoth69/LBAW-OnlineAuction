@@ -11,21 +11,25 @@
 			continue;
 		}
 	}
+    $param = ''."registerMod";
     
     if ($params['password'] != $params['password_confirmation']) {
         $_SESSION['error_messages'][] = 'Passwords don\'t match';
-        printResponse("error on js", "registerMod");
+        $data = [ $param => "error on js"];
+		printResponse($data);
         return false;
     }
     
     if (registerMod($params['first_name'] . " " . $params['last_name'], $params['birthdate'], $params['gender'], $params['email'], $params['password'], $params['country'])) {
         $_SESSION['error_messages'][] = 'Moderator added successfully';
-        printResponse("success", "registerMod");
+        $data = [ $param => "success"];
+		printResponse($data);
         return true;
     }
     else {
         $_SESSION['error_messages'][] = 'This user already exists';
-        printResponse("user_exists", "registerMod");
+        $data = [ $param => "user_exists"];
+		printResponse($data);
         return false;
     } 
 ?>

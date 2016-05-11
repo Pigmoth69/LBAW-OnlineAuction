@@ -11,22 +11,26 @@
 			continue;
 		}
 	}
+    $param = ''."deleteMod";
     
     if (isAdmin($_SESSION['user'])) {
         if (deleteMod($params['id'])) {
             $_SESSION['success_messages'][] = 'Moderator deleted successfully';
-            printResponse("mod deleted", "deleteMod");
+            $data = [ $param => "mod deleted"];
+		    printResponse($data);
             return true;
         }
         else {
             $_SESSION['error_messages'][] = 'Moderator not deleted';
-            printResponse("mod not deleted", "deleteMod");
+            $data = [ $param => "mod not deleted"];
+		    printResponse($data);
             return false;
         }
     }
     else {
         $_SESSION['error_messages'][] = 'You don\'t have permissions to do that';
-        printResponse("user not admin", "deleteMod");
+        $data = [ $param => "user not admin"];
+		printResponse($data);
         return false;
     }
 ?>

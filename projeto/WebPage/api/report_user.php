@@ -5,7 +5,7 @@
     include_once("../database/messages.php");
     include_once("../utils/utils.php");
     
-    $params = [ 'e_mail', 'title', 'body'];
+    $params = ['user', 'motive'];
 	foreach ($params as $param) {
 		if (isset($_POST[$param])) {
 			$params[$param] = $_POST[$param];
@@ -13,14 +13,8 @@
 		}
 	}
     
-    $param = ''."send_message";
-    
-    if ($params['e_mail'] == "") {
-        $_SESSION['error_messages'][] = 'E-mail empty';
-        $data = [ $param => "error on js"];
-		printResponse($data);
-        return false;
-    }
+    $param = ''."report_user";
+    $param2 = ''."id_mod";
     
     if (count($_SESSION) == 0 || $_SESSION['user'] == "") {
         $_SESSION['error_messages'][] = 'Not logged';
@@ -29,15 +23,17 @@
         return false;
     }
     
-    if (sendMessage($_SESSION['user'], $params['e_mail'], $params['title'], $params['body'])) {
-        $_SESSION['error_messages'][] = 'Message sent';
-        $data = [ $param => "success"];
+    $ret = reportUser($_SESSION['user'], $params['user'], $params['motive']);
+    
+    if ($ret != -1) {
+        $_SESSION['error_messages'][] = 'User reported';
+        $data = [ $param => "success", $param2 => $ret];
 		printResponse($data);
         return true;
     }
     else {
-        $_SESSION['error_messages'][] = 'E-mail doesn\'t exist';
-        $data = [ $param => "e_mail doesn't exist"];
+        $_SESSION['error_messages'][] = 'User not reported';
+        $data = [ $param => "error"];
 		printResponse($data);
         return false;
     } 

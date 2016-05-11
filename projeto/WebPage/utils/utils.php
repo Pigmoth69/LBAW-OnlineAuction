@@ -11,8 +11,8 @@
             if (file_exists($_FILES["image"]["name"]))
                 echo 'File name exists';
             else {
-            move_uploaded_file($_FILES["image"]["tmp_name"],"../images/users/".$filename);
-            //echo 'Upload successfull';
+                move_uploaded_file($_FILES["image"]["tmp_name"],"../images/users/".$filename);
+                return true;
             }
         }
         else {
@@ -31,9 +31,7 @@
         return $randomString;
     }
     
-    function printResponse($value, $reg) {
-		$param = ''.$reg;
-	    $data = [ $param => $value];
+    function printResponse($data) {
 	    header('Content-Type: application/json');
 	    echo json_encode($data);
 	}
