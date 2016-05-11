@@ -56,15 +56,15 @@ function recoverPassword() {
 		switch(response) {
 			case 'e_mail doesn\'t exist':
 				//document.getElementById("loginStatus").innerHTML = "<div class=\"alert alert-danger\"><strong>Error!</strong> Wrong login..</div>";
-				window.location = "Location : " . $_SERVER['HTTP_REFERER'];
+				swal("The e-mail doesn't exist on our site.");
 				break;
 			case 'success':
 				//document.getElementById("loginStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Success!</strong> Login success!</div>";
-				window.location = "Location : " . $_SERVER['HTTP_REFERER'];
+				swal("Check your e-mail!");
 				break;
 			case 'error':
 				//document.getElementById("loginStatus").innerHTML ="<div class=\"alert alert-warning\"><strong>Warning!</strong> Already Logged in!</div>";
-				window.location = "Location : " . $_SERVER['HTTP_REFERER'];
+				swal("Stop cracking the site");
 				break;
 			default:
 				//document.getElementById("loginStatus").innerHTML = "<div class=\"alert alert-danger\"><strong>Error!</strong> Login failed..</div>";

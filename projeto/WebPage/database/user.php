@@ -182,11 +182,14 @@
         
         $pass_not = generateRandomString();
         $pass = hash("sha256", $pass_not);
+        // A PASS E TESTE
         
-        $stmt = $conn->prepare('UPDATE Utilizador SET (password) = (:pass) WHERE e_mail = :mail');
+        $stmt = $conn->prepare('UPDATE Utilizador SET password = :pass WHERE e_mail = :mail');
         $stmt->bindParam(':mail', $e_mail, PDO::PARAM_STR);
         $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
         $stmt->execute();
+        
+        // MAS QUANDO LOGO ELE DÁ ERRO QUANDO USO ESTA PASS
         
         $to = $e_mail;
         $subject = 'Password Recovery @ BidMe';
