@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="text-center">
                                     <div class="form-inline">
-                                        <a class="btn btn-danger" href="#">More Info</a>
+                                        <a class="btn btn-danger" href="ItemPage.php?idPage={$auction.id_leilao}">More Info</a>
                                     </div>
                                 </div>
                             </div>

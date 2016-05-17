@@ -36,6 +36,20 @@
         }
         else return false;
     }
+    
+    function isOwner($id_vendedor, $id_leilao) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT id_leilao FROM Leilao WHERE id_vendedor = :id_vendedor');
+        $stmt->bindParam(':id_vendedor', $id_vendedor, PDO::PARAM_INT);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        
+        foreach ($res as $r) {
+            if ($id_leilao == $r['id_leilao'])
+                return true;
+        }
+        return false;
+    }
 
     function getAuctionsByUserID($id) {        
         global $conn;
