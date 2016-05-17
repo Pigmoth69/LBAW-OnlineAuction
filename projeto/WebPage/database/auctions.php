@@ -125,10 +125,18 @@
     
     function timeLeftOnAuction($id) {
         global $conn;
-        $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :id');
+        $stmt = $conn->prepare('SELECT data_fim FROM Leilao WHERE id_leilao = :id');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $res = $stmt->fetchAll();
-        return $res[0]['data_fim'];
+        
+        $stmt = $conn->prepare('SELECT age(:data_fim::timestamp, CURRENT_TIMESTAMP)');
+        $stmt->bindParam(':data_fim', $res[0]["data_fim"]);
+        $stmt->execute();
+        $resu = $stmt->fetchAll();
+        
+        return $resu[0]["age"];
     }
+    
+    
 ?>

@@ -60,7 +60,7 @@
                                 <h4 class="text-center"><a href="#">{$auction.nome_produto}</a></h4>
                                 <p>{$auction.descricao}</p>
                                 <div class="ratings">
-                                    <h5>Seller: <a href="#">{$seller = getInfoByID($auction.id_vendedor)}{$seller[0].nome}</a></h5>
+                                    <h5>Seller: <a {$seller = getInfoByID($auction.id_vendedor)} href="UserPage.php?idPage={$seller[0].id_utilizador}">{$seller[0].nome}</a></h5>
                                     <p>
                                         {$class = getClassificationAuction($auction.id_leilao)}
                                         {for $temp = 1 to $class|ceil}
