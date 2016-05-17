@@ -57,7 +57,7 @@
                                 <div class="teste">
                                     <img src="{$auction.imagem_produto}" alt="">
                                 </div>
-                                <h4 class="text-center"><a href="#">{$auction.nome_produto}</a></h4>
+                                <h3 class="text-center"><b>{$auction.nome_produto}</b></h3>
                                 <p>{$auction.descricao}</p>
                                 <div class="ratings">
                                     <h5>Seller: <a {$seller = getInfoByID($auction.id_vendedor)} href="UserPage.php?idPage={$seller[0].id_utilizador}">{$seller[0].nome}</a></h5>
@@ -72,7 +72,7 @@
                                     </p>
                                 </div>
                                 <div class="price_tag">
-                                    <h4 class="text-center"> {$bid = getHighestBid($auction.id_leilao)}{$bid}</h4>
+                                    <h4 class="text-center"> {$bid = getHighestBid($auction.id_leilao)}{$bid} $</h4>
                                     <p class="text-center">Time left: {$time = timeLeftOnAuction($auction.id_leilao)}{$time}</p>
                                     <p class="text-center">Number of bids: {$nr = getNoLiciteesOnAuction($auction.id_leilao)}{$nr}</p>
                                 </div>
