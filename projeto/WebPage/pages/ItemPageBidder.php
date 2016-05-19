@@ -6,6 +6,10 @@
     include_once '../database/categories.php';
     include_once '../utils/utils.php';
     
+    if (isOwner($_SESSION['user'], $GET['idPage'])) {
+        header("Location: ItemPageSeller.php?idPage=" . $_GET['idPage']);
+    }
+    
     $categorias = getAllCategories();
     if (count($_SESSION) > 0) {
         $infos = getInfoByID($_SESSION['user']);

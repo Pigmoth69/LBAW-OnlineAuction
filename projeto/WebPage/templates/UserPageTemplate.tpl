@@ -91,7 +91,7 @@
                                 <tbody>
                                     {foreach $auctions as $auction}
                                     <tr>
-                                        <td><b><a href="#">{$auction.nome_produto|escape}</a></b></td>
+                                        <td><b><a href="ItemPage.php?idPage={$auction.id_leilao}">{$auction.nome_produto|escape}</a></b></td>
                                         <td> {$no = getNoLiciteesOnAuction($auction.id_leilao)} {$no} </td>
                                         <td>
                                             {if (isAuctionSold($auction.id_leilao))} Sold {else} Not Sold {/if}
@@ -114,7 +114,7 @@
                                 <tbody>
                                     {foreach $auctions_seller as $auction_seller}
                                     <tr>
-                                        <td><b><a href="#">{$leilao = getAuctionByID($auction_seller.id_leilao)} {$leilao[0].nome_produto|escape}</a></b></td>
+                                        <td><b><a href="ItemPage.php?idPage={$auction.id_leilao}">{$leilao = getAuctionByID($auction_seller.id_leilao)} {$leilao[0].nome_produto|escape}</a></b></td>
                                         <td> {$auction_seller.valor_licitacao} </td>
                                         <td>
                                             {if (isHighestBid($auction_seller.id_leilao, $auction_seller.id_licitacao))} Highest {else} Not Highest {/if}
