@@ -60,6 +60,22 @@
         return $result;
     }
     
+    function getTotalSales($id) {
+        global $conn;
+        $contador = 0;
+        $auctions = getAuctionsByUserID($id);
+        foreach($auctions as $auction) {
+            $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id AND vencedor = TRUE');
+            $stmt->bindParam(':id', $auction['id_leilao'], PDO::PARAM_INT);
+            $stmt->execute();
+            $res = $stmt->fetchAll();
+            if (count($res) > 0) {
+                $contador = $contador + 1;
+            }
+        }
+        return $contador;
+    }
+    
     function getAuctionsByLiciteedID($id) {
         global $conn;
         $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_utilizador = :id');

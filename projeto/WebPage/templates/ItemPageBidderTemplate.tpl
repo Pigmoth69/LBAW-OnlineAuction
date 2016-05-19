@@ -9,6 +9,8 @@
       <title>Online Auction- Where business happens!</title>
       <!-- Bootstrap Core CSS -->
       <link href="../css/bootstrap.min.css" rel="stylesheet">
+      <!-- Font Awesome CSS -->
+      <link rel="stylesheet" type="text/css" href="../font-awesome/css/font-awesome.min.css" />
       <!-- Custom CSS -->
       <link href="../css/OnlineAuctionItemPageBidder.css" rel="stylesheet">
       <!-- Latest compiled and minified CSS -->
@@ -21,7 +23,15 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
       <!-- jQuery -->
+      <link rel="icon" href="../images/bidme.png"/>
       <script src="../js/jquery.js"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="../js/bootstrap.min.js"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+      <script src="../js/sweetalert.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
+      <script src="../js/loginScript.js"></script>
       <script>
          var i = 0;
          
@@ -78,40 +88,39 @@
       <div class="container">
          <div class="row">
             <div class="col-md-3">
-               <div class="text-center">
-                  <p class="lead">André Fagotinho Maia</p>
-               </div>
                <div class="thumbnail">
-                  <img src="../images/users/maia.jpg" style="width:500px;height:360px" alt="iphone6s">
+                  <img src="{$seller.imagem_utilizador}" style="width:500px;height:360px" alt="{$seller.nome}">
                </div>
                <div class="list-group">
                   <a href="#" class="list-group-item">
                      <p class="text-center">User rating:</p>
-                     <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
+                     <div class="ratings text-center">
                         <p>
-                           <span class="glyphicon glyphicon-star"></span>
-                           <span class="glyphicon glyphicon-star"></span>
-                           <span class="glyphicon glyphicon-star"></span>
-                           <span class="glyphicon glyphicon-star"></span>
-                           <span class="glyphicon glyphicon-star-empty"></span>
+                            {for $temp = 1 to $seller.classificacao|ceil}
+                            <span class="glyphicon glyphicon-star"></span>
+                            {/for}
+                            {for $temp = $seller.classificacao|ceil to 4}
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            {/for}
                         </p>
                      </div>
                   </a>
                   <a href="#" class="list-group-item">
-                     <p class="glyphicon glyphicon-user"> André Costa Maia</p>
+                     <p class="glyphicon glyphicon-user"> {$seller.nome}</p>
                   </a>
                   <a href="#" class="list-group-item">
-                     <p class="fa fa-venus-mars"> Male</p>
+                     <p class="fa fa-venus-mars"> {if $seller.genero eq 'male'}
+                                                    Male
+                                                  {else}
+                                                    Female
+                                                  {/if}
+                     </p>
                   </a>
                   <a href="#" class="list-group-item">
-                     <p class="glyphicon glyphicon-envelope"> andrefagotinhomaia@gmail.com</p>
+                     <p class="glyphicon glyphicon-envelope"> {$seller.e_mail}</p>
                   </a>
                   <a href="#" class="list-group-item">
-                     <p class="glyphicon glyphicon-earphone"> 919856475</p>
-                  </a>
-                  <a href="#" class="list-group-item">
-                     <p>Total sales: 10</p>
+                     <p>Total sales: {$sales}</p>
                   </a>
                </div>
                <!--<div class="list-group">
@@ -123,7 +132,7 @@
                <div
                   class="thumbnail">
                   <h4 class="text-center"
-                     id="ItemName">iPhone 6s</h4>
+                     id="ItemName">{$auction.nome_produto}</h4>
                </div>
                <div
                   class="thumbnail">
@@ -133,24 +142,12 @@
                      <ol class="carousel-indicators">
                         <li data-
                            target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                        <li data-target="#myCarousel" data-slide-to="3"></li>
                      </ol>
                      <!-- Wrapper for slides -->
                      <div class="carousel-inner" role="listbox">
                         <div
                            class="item active">                            <img
-                           src="../images/ProductsImages/iphone6s-1.jpg" alt="iphone6s"></div>
-                        <div class="item">
-                           <img src="../images/ProductsImages/iphone6s-2.jpg" alt="iphone6s">
-                        </div>
-                        <div class="item">
-                           <img src="../images/ProductsImages/iphone6s-3.jpg" alt="iphone6s">
-                        </div>
-                        <div class="item">
-                           <img src="../images/ProductsImages/iphone6s-4.jpg" alt="iphone6s">
-                        </div>
+                           src="{$auction.imagem_produto}" alt="{$auction.nome_produto}"></div>
                      </div>
                      <!-- Left and right controls -->
                         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -166,8 +163,7 @@
                      <!-- <h4 class="pull-
                         right">92.75€</h4> --> 
                     <strong>Item description:</strong><br>                  
-                     <p>The iPhone 6S and iPhone 6S Plus (stylized as iPhone 6s and iPhone 6s Plus) are smartphones designed by Apple Inc. The devices are part of the iPhone series and were announced on September 9, 2015, at the Bill Graham Civic Auditorium in San Francisco by Apple Inc. CEO Tim Cook. The iPhone 6S and iPhone 6S Plus jointly serve as successors to the iPhone 6 and iPhone 6 Plus of 2014. The iPhone 6S and iPhone 6S Plus are the performance versions over their respective predecessors, featuring improved hardware specifications, including 3D Touch, a force-sensitive touchscreen; upgraded rear-facing and front-facing cameras; a faster processor; a new chassis made of a stronger 7000 series aluminium alloy;second-generation fingerprint recognition Touch ID; improved LTE and Wi-Fi connectivity; and a new rose gold finish in addition to the space gray, silver, and gold finishes found on the previous models, while maintaining an identical design. The devices ship with iOS 9 preinstalled. As of September 28, 2015, 13 million iPhone 6S and 6S Plus models have been sold, setting a new first-weekend sales record, up from the 10 million iPhone 6 and 6 Plus units sold the previous year.                      
-                     </p>
+                     <p>{$auction.descricao}</p>
                   </div> 
             </div>
 
@@ -193,23 +189,16 @@
                         <div class="form-group">
                             <label class="sr-only" for="AmountInput">Amount</label>
                             <div class="input-group input-group-lg">
-                                <span class="input-group-addon" id="sizing-addon1">Current bid: 98.75€</span>
+                                <span class="input-group-addon" id="sizing-addon1">Current bid: {$best_bid}</span>
                                 <input type="text" class="form-control" id="AmountInput" aria-describedby="sizing-addon1" placeholder="Amount e.g 2.56">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-lg">Make Bid!</button>
                     </form>
                  </div>
-
-							
-							
-							
                         </div>
 					</div>
 				</div>
-				  
-				  
-				 
                </div>
          </div>
       </div>
