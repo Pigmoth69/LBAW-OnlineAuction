@@ -12,9 +12,6 @@
         $smarty->assign('infos', $infos);
     }
     $auctions = bestAuctions();
-    $config['date'] = '%I:%M %p';
-    $config['time'] = '%H:%M:%S';
-    $smarty->assign('config', $config);
     
     $smarty->assign('auctions', $auctions);
     $smarty->assign('categorias', $categorias);

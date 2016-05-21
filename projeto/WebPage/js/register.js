@@ -147,15 +147,18 @@ function makePOST(){
 		var response = data['register'];
 			switch(response) {
 				case 'user_exists':
-					document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-danger\"><strong>Error!</strong> User already exists...</div>";
+					//document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-danger\"><strong>Error!</strong> User already exists...</div>";
 					//window.location = "RegisterPage.php";
+					swal("User already exists!");
 					break;
 				case 'success':
-					document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Success!</strong> Account created successfully!</div>";
+					//document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Success!</strong> Account created successfully!</div>";
+					swal("Account created!");
 					window.location = "../index.php";
 					break;
 				case 'error on js':
-					document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Error!</strong> Stop cracking the site!</div>";
+					//document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Error!</strong> Stop cracking the site!</div>";
+					swal("Stop cracking the site!");
 					break;
 				default:
 					//displayError("Error while processing the login...");
@@ -197,15 +200,18 @@ function makePOSTMod(){
 		var response = data['registerMod'];
 			switch(response) {
 				case 'user_exists':
-					document.getElementById("adminStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Wrror!</strong> That username already exists.</div>";
+					//document.getElementById("adminStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Wrror!</strong> That username already exists.</div>";
+					swal("That user already exists!");
 					window.location = "AdminPage.php";
 					break;
 				case 'success':
-					document.getElementById("adminStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Success!</strong> Moderator created!</div>";
+					//document.getElementById("adminStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Success!</strong> Moderator created!</div>";
+					swal("Moderator created!");
 					window.location = "AdminPage.php";
 					break;
 				case 'error on js':
-					document.getElementById("adminStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Error!</strong> Stop cracking the site!</div>";
+					swal("Stop cracking the site!");
+					//document.getElementById("adminStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Error!</strong> Stop cracking the site!</div>";
 					break;
 				default:
 					//displayError("Error while processing the login...");

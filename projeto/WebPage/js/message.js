@@ -39,13 +39,16 @@ function sendMessagePOST(){
 			switch(response) {
 				case 'e_mail doesn\'t exist':
 					//document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-danger\"><strong>Error!</strong> User already exists...</div>";
+					swal("E'mail doesn't exist!");
 					//window.location = "RegisterPage.php";
 					break;
 				case 'success':
 					//document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Success!</strong> Account created successfully!</div>";
+					swal("Message sent!");
 					window.location = "MessagePage .php";
 					break;
 				case 'error on js':
+					swal("Stop cracking the site!");
 					//document.getElementById("registerStatus").innerHTML = "<div class=\"alert alert-success\"><strong>Error!</strong> Stop cracking the site!</div>";
 					break;
 				default:

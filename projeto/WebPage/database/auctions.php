@@ -50,6 +50,39 @@
         }
         return false;
     }
+    
+    function getLiciteesOnAuction($id) {
+        global $conn;
+        $ret = array();
+		$stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id');
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+        
+        foreach ($result as $r) {
+            $stmt = $conn->prepare('SELECT * FROM Utilizador WHERE id_utilizador = :id');
+            $stmt->bindParam(':id', $r['id_utilizador'], PDO::PARAM_INT);
+            $stmt->execute();
+            $res = $stmt->fetchAll();
+            $t = array_merge($res[0], $r);
+            $ret[] = $t;
+        }
+        return $ret;
+    }
+    
+    function getTimeDiffOnLic($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_licitacao = :id');
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+        
+        $stmt = $conn->prepare('SELECT age(CURRENT_TIMESTAMP, :data_licitacao::timestamp)');
+        $stmt->bindParam(':data_licitacao', $result[0]["data_licitacao"]);
+        $stmt->execute();
+        $resu = $stmt->fetchAll();
+        return $resu[0]["age"];
+    }
 
     function getAuctionsByUserID($id) {        
         global $conn;
