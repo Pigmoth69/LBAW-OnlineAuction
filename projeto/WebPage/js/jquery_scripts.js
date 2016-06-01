@@ -34,9 +34,37 @@ function bid(auction) {
     return false;
 }
 
-function onReady() {
-    //$("#deleteMod").click(function(){deleteMod();return false;});
-};
+function validateAuction(bool, id) {
+     var motive = "";
+     $.post(
+        '../api/validate_auction.php',
+        {
+            'functionName' : 'validateAuction',
+            'validate' : bool,
+            'auction' : id
+        },function(data) {
+            var response = data['validateAuction'];
+            switch (response) {
+                case 'error':
+                    swal("Error validating auction.");
+                    break;
+                case 'success':
+                    var str = "Auction was " + data['validate'] + ".";
+                    swal(str);
+                    break;
+                case 'error on js':
+                    swal("Don't crack the site.");
+					break;
+				default:
+					//displayError("Error while processing the login...");
+					break;
+            }
+            return true;
+        }).fail(function (error) {
+            alert(error);
+        });
+    return false;
+}
 
 function updateRate(id, auction) {
     switch (id) {

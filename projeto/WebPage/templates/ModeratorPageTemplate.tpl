@@ -110,10 +110,10 @@
                                         <td>{$auction.nome_produto|escape}</td>
                                         <td>{$auction.nome|escape}</td>
                                         <td>
-                                            <a href="" onclick='validAuction(true,{$auction.id_leilao});' class="glyphicon glyphicon-ok"></a>
+                                            <a href="" onclick="validateAuction('validate', {$auction.id_leilao}); return false" class="glyphicon glyphicon-ok"></a>
                                         </td>
                                         <td>
-                                            <a href="" onclick='validAuction(false,{$mod.id_leilao});' style="color:red" class="glyphicon glyphicon-remove"></a>
+                                            <a href="" onclick="validateAuction('not validate', {$auction.id_leilao}); return false" style="color:red" class="glyphicon glyphicon-remove"></a>
                                         </td>
                                     </tr>
                                     {/foreach}
@@ -137,7 +137,7 @@
                                         </td>
                                         {if isBanned($user.id_utilizador)}
                                         <td class="text-center">
-                                            <a href="" onclick='validAuction(false,{$user.id_utilizador});' class="fa fa-check" aria-hidden="true"></a>
+                                            <a href="" onclick="" class="fa fa-check" aria-hidden="true"></a>
                                         </td>
                                         <td>
                                         </td>
@@ -145,7 +145,7 @@
                                         <td>
                                         </td>
                                         <td class="text-center">
-                                            <a href="" onclick='validAuction(true,{$user.id_utilizador});' class="fa fa-ban" style="color:red" aria-hidden="true"></a>
+                                            <a href="" onclick="" class="fa fa-ban" style="color:red" aria-hidden="true"></a>
                                         </td>
                                         {/if}
                                     </tr>
@@ -162,6 +162,8 @@
 <script src="../js/delete.js"></script>
 <script src="../js/register.js"></script>
 <script src="../js/edit.js"></script>
+<script src="../js/jquery_scripts.js"></script>
+
 {include file='common/foot.tpl'}
 
 </html>

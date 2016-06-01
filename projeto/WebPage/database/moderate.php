@@ -34,6 +34,33 @@
         else return false;
     }
     
+    function validAuction($id, $validate, $auction) {
+        global $conn;
+        if ($validate == "validate") {
+            $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :id');
+            $stmt->bindParam(':id', $auction, PDO::PARAM_INT);
+            $stmt->execute();
+            $res = $stmt->fetchAll();
+            
+            $stmt = $conn->prepare('UPDATE EstadoLeilao SET estado_leilao=\'aberto\' WHERE EstadoLeilao.id_estado_leilao=:id');
+            $stmt->bindParam(':id', $res[0]['id_estado_leilao']);
+            $stmt->execute();
+            return true;
+        }
+        else if ($validate == "not validate") {
+            $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :id');
+            $stmt->bindParam(':id', $auction, PDO::PARAM_INT);
+            $stmt->execute();
+            $res = $stmt->fetchAll();
+             
+            $stmt = $conn->prepare('UPDATE EstadoLeilao SET estado_leilao=\'invalido\' WHERE EstadoLeilao.id_estado_leilao=:id');
+            $stmt->bindParam(':id', $res[0]['id_estado_leilao']);
+            $stmt->execute(); 
+            return true;
+        }
+        else return false;
+    }
+    
     function getAllModsExcept($id) {
         global $conn;
         $stmt = $conn->prepare('SELECT * FROM UtilizadorModerador WHERE id_utilizador != :id');
