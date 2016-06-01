@@ -34,6 +34,9 @@
     <link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
     <script src="../js/loginScript.js"></script>
     <script>
+    	var my_var = <?php echo 35; ?>;
+    	console.log(my_var);
+
         var i = 0;
 
         var counterBack = setInterval(function() {
@@ -76,7 +79,7 @@
         }
 
         jQuery(function($) {
-            var fiveMinutes = 49,
+            var fiveMinutes = 10,
                 display = $('#time');
             startTimer(fiveMinutes, display);
         });
@@ -163,10 +166,10 @@
                         </div>
                         <div class="panel-body ">
                             <div class="form-group ">
-                                <div class="progress ">
-                                    <div class="progress-bar progress-bar-striped active " role="progressbar " aria-valuenow="0 " aria-valuemin="0 " aria-valuemax="100 " style="width:0% ">
-                                        <p id="ProgressStatus ">0</p>
-                                        <!-- Auction closes in <span id="time ">00:30</span> minutes!-->
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                        <p id="ProgressStatus">0</p>
+                                        <!-- Auction closes in <span id="time">00:30</span> minutes!-->
                                     </div>
                                 </div>
                             </div>

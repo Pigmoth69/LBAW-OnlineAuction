@@ -200,6 +200,24 @@
         
         return $resu[0]["age"];
     }
+
+    function creationDateAuction($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT data_inicio FROM Leilao WHERE id_leilao = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $res = $stmt->fetchAll();     
+        return $res[0]['data_inicio'];
+    }
+
+    function endDateAuction($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT data_fim FROM Leilao WHERE id_leilao = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $res = $stmt->fetchAll();     
+        return $res[0]['data_fim'];
+    }
     
     
 ?>
