@@ -95,7 +95,7 @@
                     <img src="{$seller.imagem_utilizador}" style="width:500px;height:360px" alt="{$seller.nome}">
                 </div>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">
+                    <div class="list-group-item">
                         <p class="text-center">User rating:</p>
                         <div class="ratings text-center">
                             <p>
@@ -104,16 +104,18 @@
                                 <span class="glyphicon glyphicon-star-empty text-center"></span> {/for}
                             </p>
                         </div>
-                    </a>
-                    <p class="text-center">Rate the auction</p>
-                    <div class="ratings text-center list-group-item">
-                        <p>
-                            <i class="fa fa-star-o fa-4x" id="1stStar" onclick="updateRate(1)" aria-hidden="true"></i>
-                            <i class="fa fa-star-o fa-4x" id="2ndStar" onclick="updateRate(2)" aria-hidden="true"></i>
-                            <i class="fa fa-star-o fa-4x" id="3rdStar" onclick="updateRate(3)" aria-hidden="true"></i>
-                            <i class="fa fa-star-o fa-4x" id="4thStar" onclick="updateRate(4)" aria-hidden="true"></i>
-                            <i class="fa fa-star-o fa-4x" id="5thStar" onclick="updateRate(5)" aria-hidden="true"></i>
-                        </p>
+                    </div>
+                    <div class="list-group-item">
+                        <p class="text-center">Rate the auction</p>
+                        <div class="ratings text-center">
+                            <p>
+                                <i class="fa fa-star-o fa-3x" id="1stStar" onclick="updateRate(1)" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="2ndStar" onclick="updateRate(2)" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="3rdStar" onclick="updateRate(3)" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="4thStar" onclick="updateRate(4)" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="5thStar" onclick="updateRate(5)" aria-hidden="true"></i>
+                            </p>
+                        </div>
                     </div>
                     <a href="UserPage.php?idPage={$seller.id_utilizador}" class="list-group-item">
                         <p class="glyphicon glyphicon-user"> {$seller.nome}</p>

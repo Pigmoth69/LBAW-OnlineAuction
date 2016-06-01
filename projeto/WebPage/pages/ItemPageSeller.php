@@ -5,7 +5,7 @@
     include_once '../database/categories.php';
     include_once '../utils/utils.php';
     
-    if (!isOwner($_SESSION['user'], $GET['idPage'])) {
+    if (!isOwner($_SESSION['user'], $_GET['idPage'])) {
         header("Location: ItemPageBidder.php?idPage=" . $_GET['idPage']);
     }
     
