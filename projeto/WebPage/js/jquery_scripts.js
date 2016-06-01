@@ -4,7 +4,7 @@ function onReady() {
     //$("#deleteMod").click(function(){deleteMod();return false;});
 };
 
-function updateRate(id) {
+function updateRate(id, auction) {
     switch (id) {
         case 1:
             $("#1stStar").attr('class', 'fa fa-star fa-3x');
@@ -12,6 +12,7 @@ function updateRate(id) {
             $("#3rdStar").attr('class', 'fa fa-star-o fa-3x');
             $("#4thStar").attr('class', 'fa fa-star-o fa-3x');
             $("#5thStar").attr('class', 'fa fa-star-o fa-3x');
+            classificateAuction(1, auction);
             break;
         case 2:
             $("#1stStar").attr('class', 'fa fa-star fa-3x');
@@ -19,6 +20,7 @@ function updateRate(id) {
             $("#3rdStar").attr('class', 'fa fa-star-o fa-3x');
             $("#4thStar").attr('class', 'fa fa-star-o fa-3x');
             $("#5thStar").attr('class', 'fa fa-star-o fa-3x');
+            classificateAuction(2, auction);
             break;
         case 3:
             $("#1stStar").attr('class', 'fa fa-star fa-3x');
@@ -26,6 +28,7 @@ function updateRate(id) {
             $("#3rdStar").attr('class', 'fa fa-star fa-3x');
             $("#4thStar").attr('class', 'fa fa-star-o fa-3x');
             $("#5thStar").attr('class', 'fa fa-star-o fa-3x');
+            classificateAuction(3, auction);
             break;
         case 4:
             $("#1stStar").attr('class', 'fa fa-star fa-3x');
@@ -33,6 +36,7 @@ function updateRate(id) {
             $("#3rdStar").attr('class', 'fa fa-star fa-3x');
             $("#4thStar").attr('class', 'fa fa-star fa-3x');
             $("#5thStar").attr('class', 'fa fa-star-o fa-3x');
+            classificateAuction(4, auction);
             break;
         case 5:
             $("#1stStar").attr('class', 'fa fa-star fa-3x');
@@ -40,18 +44,21 @@ function updateRate(id) {
             $("#3rdStar").attr('class', 'fa fa-star fa-3x');
             $("#4thStar").attr('class', 'fa fa-star fa-3x');
             $("#5thStar").attr('class', 'fa fa-star fa-3x');
+            classificateAuction(5, auction);
             break;
         default:
             break;
     }
 }
 
-function classificateAuction(classification) {
+function classificateAuction(classification, auction) {
+    
     $.post(
-        '../api/classificateAuction.php',
+        '../api/classificate_auction.php',
         {
             'functionName' : 'classificateAuction',
-            'classification' : classification
+            'classification' : classification,
+            'auction' : auction
         },function(data) {
             var response = data['classificateAuction'];
             switch (response) {
@@ -69,8 +76,11 @@ function classificateAuction(classification) {
 					//displayError("Error while processing the login...");
 					break;
             }
-        }
-    )
+            return true;
+        }).fail(function (error) {
+            alert(error);
+        });
+    return false;
 }
 
 function reportUser(id) {

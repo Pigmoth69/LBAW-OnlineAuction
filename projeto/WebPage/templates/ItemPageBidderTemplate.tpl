@@ -109,11 +109,11 @@
                         <p class="text-center">Rate the auction</p>
                         <div class="ratings text-center">
                             <p>
-                                <i class="fa fa-star-o fa-3x" id="1stStar" onclick="updateRate(1)" aria-hidden="true"></i>
-                                <i class="fa fa-star-o fa-3x" id="2ndStar" onclick="updateRate(2)" aria-hidden="true"></i>
-                                <i class="fa fa-star-o fa-3x" id="3rdStar" onclick="updateRate(3)" aria-hidden="true"></i>
-                                <i class="fa fa-star-o fa-3x" id="4thStar" onclick="updateRate(4)" aria-hidden="true"></i>
-                                <i class="fa fa-star-o fa-3x" id="5thStar" onclick="updateRate(5)" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="1stStar" onclick="updateRate(1, {$auction.id_leilao})" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="2ndStar" onclick="updateRate(2, {$auction.id_leilao})" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="3rdStar" onclick="updateRate(3, {$auction.id_leilao})" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="4thStar" onclick="updateRate(4, {$auction.id_leilao})" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="5thStar" onclick="updateRate(5, {$auction.id_leilao})" aria-hidden="true"></i>
                             </p>
                         </div>
                     </div>

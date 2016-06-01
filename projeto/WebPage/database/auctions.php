@@ -24,6 +24,31 @@
         return $result;
     }
     
+    function classificateAuction($user, $auction, $classification) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM ClassificacaoLeilao WHERE id_licitador = :user AND id_leilao = :auction');
+        $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+        $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        
+        if (count($result) > 0) {
+            $stmt = $conn->prepare('UPDATE ClassificacaoLeilao SET (valor_classificacao) = (:classification) WHERE id_licitador = :user AND id_leilao = :auction');
+            $stmt->bindParam(':classification', $classification, PDO::PARAM_INT);
+            $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+            $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        }   
+        else {
+            $stmt = $conn->prepare('INSERT INTO ClassificacaoLeilao(id_licitador, id_leilao) VALUES(:user, :auction)');
+            $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+            $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        }  
+    }
+    
     function isHighestBid($id_leilao, $id_licitador) {
         global $conn;
         $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id_leilao ORDER BY valor_licitacao DESC');
