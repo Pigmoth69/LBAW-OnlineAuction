@@ -115,3 +115,36 @@ function reportUser(id) {
     });
     return false;
 }
+
+function reportAuction(id) {
+    var motive = $("#motive").val();
+	$.post(
+    '../api/report_auction.php',
+	{
+		'functionName': 'report_auction', 
+		'user': id,
+        'motive': motive
+	},function(data){
+		var response = data['report_auction'];
+			switch(response) {
+				case 'error':
+                    swal("Couldn't report the auction.");
+					break;
+				case 'success':
+                    swal("Reported the auction. A moderator has received a message, you can check it on your inbox.");
+					break;
+				case 'error on js':
+                    swal("Don't crack the site.");
+					break;
+				default:
+					//displayError("Error while processing the login...");
+					break;
+			}
+			return true;		
+	})
+    .fail(function (error) {
+		console.log(error);
+        //alert("Error: " + error);
+    });
+    return false;
+}

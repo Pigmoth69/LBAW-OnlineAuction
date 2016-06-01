@@ -131,10 +131,31 @@
                         <p>Total sales: {$sales}</p>
                     </div>
                 </div>
-                <!--<div class="list-group">
-                  <a href="#" class="list-group-item active">Category 1</a>                   <a
-                  href="#" class="list-group-item">Category 2</a>                   <a href="#"
-                  class="list-group-item">Category 3</a>                   </div>-->
+                <div class="btn center-block">
+                    <a href="#" class="btn btn-danger text-center" data-toggle="modal" data-target="#reportModal">
+                        <i class="fa fa-flag fa-2x"></i>
+                        <br> Report Auction
+                    </a>
+                </div>
+                <div id="reportModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Report Auction</h4>
+                            </div>
+                            <div class="modal-body">
+                                <textarea rows="4" cols="50" name="motive" id="motive" class="form-control input-sm" placeholder="Write here the motive for your report"></textarea>
+                                <br>
+                                <input type="submit" value="Report Auction" class="btn btn-primary" id="reportAuction" onsubmit="reportAuction({$idPage})" onclick="reportAuction({$idPage})">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-9">
                 <div class="thumbnail">
