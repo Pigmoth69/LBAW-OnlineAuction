@@ -4,6 +4,7 @@
     include_once '../database/auctions.php';
     include_once '../database/countries.php';
     include_once '../database/categories.php';
+    include_once '../database/moderate.php';
     include_once '../utils/utils.php';
     
     //if (count($_SESSION) === 0 || $_SESSION['user'] == '') {
@@ -19,6 +20,10 @@
     
     if (($_SESSION['user'] == $_GET['idPage']) && (isAdmin($_SESSION['user']))) {
         header("Location: AdminPage.php");
+    }
+    
+    if (($_SESSION['user'] == $_GET['idPage']) && (isMod($_SESSION['user']))) {
+        header("Location: ModeratorPage.php?idPage=" . $_SESSION['user']);
     }
     
     if (!isUser($_GET['idPage']))

@@ -62,6 +62,16 @@
         else return false;
     }
     
+    function getAuctionsToValidate() {
+        global $conn;
+        $stmt = $conn->prepare('SELECT nome_produto,id_leilao,nome FROM Leilao,Utilizador,EstadoLeilao
+                                WHERE Leilao.id_estado_leilao=EstadoLeilao.id_estado_leilao
+                                AND EstadoLeilao.estado_leilao=\'invalido\' AND Leilao.id_vendedor=Utilizador.id_utilizador');
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    
     function bid($user, $auction, $amount) {
         global $conn;
         $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :auction');

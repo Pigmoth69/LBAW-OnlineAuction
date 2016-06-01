@@ -12,12 +12,14 @@
         exit;
     }
     
-    if (!isAdmin($_SESSION['user'])) {
+    if (!isMod($_SESSION['user'])) {
         header("Location: UserPage.php?idPage=" . $_SESSION['user']);
         exit;
     }  
     
     $mods = moderators();
+    $users = users();
+    $auctionsToValidate = getAuctionsToValidate();
     $paises = getAllCountries();
     $infos = getInfoByID($_SESSION['user']);
     $categorias = getAllCategories();
@@ -25,6 +27,8 @@
     $smarty->assign('categorias', $categorias);
     $smarty->assign('paises', $paises);
     $smarty->assign('mods', $mods);
+    $smarty->assign('auctionsToValidate', $auctionsToValidate);
+    $smarty->assign('users', $users);
     $smarty->assign('infos', $infos);
-    $smarty->display('../templates/AdminPageTemplate.tpl');
+    $smarty->display('../templates/ModeratorPageTemplate.tpl');
 ?>

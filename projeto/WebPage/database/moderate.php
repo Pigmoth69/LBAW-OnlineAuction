@@ -23,6 +23,17 @@
         return $result;
     }
     
+    function isMod($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM UtilizadorModerador WHERE id_utilizador = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        if (count($result) > 0)
+            return true;
+        else return false;
+    }
+    
     function getAllModsExcept($id) {
         global $conn;
         $stmt = $conn->prepare('SELECT * FROM UtilizadorModerador WHERE id_utilizador != :id');

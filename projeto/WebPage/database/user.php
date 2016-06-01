@@ -45,6 +45,25 @@
         else return $result[0]['id_utilizador'];
     }
     
+    function isBanned($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM HistoricoBanidos WHERE id_utilizador = :id AND data_fim > now()::date');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        if (count($result) > 0)
+            return true;
+        else return false;
+    }
+    
+    function users() {
+        global $conn;
+        $stmt = $conn->prepare('SELECT DISTINCT ON (Utilizador.id_utilizador) Utilizador.id_utilizador, nome FROM Utilizador, UtilizadorModerador, UtilizadorAdministrador WHERE Utilizador.id_utilizador != UtilizadorModerador.id_utilizador
+                                AND Utilizador.id_utilizador != UtilizadorAdministrador.id_utilizador');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
     function register($name, $date, $gender, $mail, $password, $pais) {
         global $conn;
 		$stmt = $conn->prepare('SELECT * FROM Utilizador WHERE e_mail = :mail');
