@@ -104,7 +104,7 @@
                                 <label class="sr-only" for="AmountInput">Email</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">Email</div>
-                                    <input type="text" class="form-control" id="emailInput" placeholder="example@example.com">
+                                    <input type="text" class="form-control" id="emailInput" placeholder="example@example.com" value="{$e_mail_to_send|trim}">
                                     <div class="input-group-addon">Title</div>
                                     <input type="text" class="form-control" id="emailTitle" placeholder="Example">
                                 </div>

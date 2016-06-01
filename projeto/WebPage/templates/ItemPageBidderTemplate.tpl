@@ -124,7 +124,7 @@
                         <p class="fa fa-venus-mars"> {if $seller.genero eq 'male'} Male {else} Female {/if}
                         </p>
                     </div>
-                    <a href="#" class="list-group-item">
+                    <a href="MessagePage.php" class="list-group-item">
                         <p class="glyphicon glyphicon-envelope"> {$seller.e_mail}</p>
                     </a>
                     <div class="list-group-item">
