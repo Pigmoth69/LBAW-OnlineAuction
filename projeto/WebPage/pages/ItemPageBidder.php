@@ -23,7 +23,6 @@
     $sales = getTotalSales($auction[0]['id_vendedor']);
     $best_bid = getHighestBid($auction[0]['id_leilao']);
     
-    
     $smarty->assign('auction', $auction[0]);
     $smarty->assign('seller', $seller[0]);
     $smarty->assign('best_bid', $best_bid);

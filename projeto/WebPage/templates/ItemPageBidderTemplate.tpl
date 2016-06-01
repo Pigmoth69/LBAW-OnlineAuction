@@ -217,7 +217,7 @@
                                                 <input type="text" class="form-control" id="AmountInput" aria-describedby="sizing-addon1" placeholder="Amount e.g 2.56">
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-lg">Make Bid!</button>
+                                        <button id="bidding" type="submit" onclick="bid({$idPage});return false" onsubmit="bid({$idPage});return false" class="btn btn-primary btn-lg">Make Bid!</button>
                                     </form>
                                 </div>
                             </div>

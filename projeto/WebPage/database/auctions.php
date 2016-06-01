@@ -62,6 +62,36 @@
         else return false;
     }
     
+    function bid($user, $auction, $amount) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :auction');
+        $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();   
+        $fal = false;
+        
+        if (count($result) == 0)
+            return false;
+        else {
+            $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id_leilao ORDER BY valor_licitacao DESC');
+            $stmt->bindParam(':id_leilao', $auction, PDO::PARAM_INT);
+            $stmt->execute();
+            $res = $stmt->fetchAll();
+            
+            if ($res[0]['valor_licitacao'] >= $amount)
+                return false;
+            else {
+                $stmt = $conn->prepare('INSERT INTO Licitacao(id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(:auction, :user, CURRENT_TIMESTAMP, :amount, :fal)');
+                $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
+                $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+                $stmt->bindParam(':amount', $amount, PDO::PARAM_INT);
+                $stmt->bindParam(':fal', $fal, PDO::PARAM_BOOL);
+                $stmt->execute();
+                return true;
+            }
+        }
+    }
+    
     function isOwner($id_vendedor, $id_leilao) {
         global $conn;
         $stmt = $conn->prepare('SELECT id_leilao FROM Leilao WHERE id_vendedor = :id_vendedor');

@@ -1,4 +1,38 @@
-$(document).ready(onReady);
+$(document).ready(onReady); 
+
+function bid(auction) {
+     var amount = $("#AmountInput").val();
+     $.post(
+         '../api/bid.php',
+         {
+            'functionName' : 'bid',
+            'auction' : auction,
+            'amount' : amount
+         },function(data) {
+            var response = data['bid'];
+            switch (response) {
+                case 'error':
+                    swal("Error bidding on this auction.");
+                    break;
+                case 'success':
+                    var str = "Auction bidded with " + data['amount'] + ".";
+                    swal(str);
+                    var str1 = "Current bid: " + data['amount'];
+                    $("#sizing-addon1").text(str1);
+                    break;
+                case 'error on js':
+                    swal("Don't crack the site.");
+					break;
+				default:
+					//displayError("Error while processing the login...");
+					break;
+            }
+            return true;
+        }).fail(function (error) {
+            alert(error);
+        });
+    return false;
+}
 
 function onReady() {
     //$("#deleteMod").click(function(){deleteMod();return false;});
@@ -52,7 +86,6 @@ function updateRate(id, auction) {
 }
 
 function classificateAuction(classification, auction) {
-    
     $.post(
         '../api/classificate_auction.php',
         {
