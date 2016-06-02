@@ -24,6 +24,19 @@
         return $result;
     }
     
+    function getCategoryByID($id) {
+        global $conn;
+        if ($id != -1) {
+            $stmt = $conn->prepare('SELECT * FROM Categoria WHERE id_categoria = :id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+        else {
+            return -1;
+        }
+    }
+    
     function getNoElementsOfCategory($id_categoria) {
         global $conn;
         $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_categoria = :id_categoria');

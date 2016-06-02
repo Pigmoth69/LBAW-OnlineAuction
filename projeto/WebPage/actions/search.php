@@ -20,6 +20,7 @@
     if ($ret != null) {
         $_SESSION['success_messages'][] = 'Search completed';
         $data = [$param => "success", $param2 => $ret];
+        $_SESSION['searched auctions'] = $ret;
 		printResponse($data);
         return true;
     }

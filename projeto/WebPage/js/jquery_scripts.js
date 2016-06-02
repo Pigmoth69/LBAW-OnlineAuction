@@ -1,14 +1,14 @@
-$(document).ready(onReady); 
+$(document).ready(onReady);
 
 function bid(auction) {
-     var amount = $("#AmountInput").val();
-     $.post(
-         '../api/bid.php',
-         {
-            'functionName' : 'bid',
-            'auction' : auction,
-            'amount' : amount
-         },function(data) {
+    var amount = $("#AmountInput").val();
+    $.post(
+        '../api/bid.php', {
+            'functionName': 'bid',
+            'auction': auction,
+            'amount': amount
+        },
+        function(data) {
             var response = data['bid'];
             switch (response) {
                 case 'error':
@@ -22,48 +22,48 @@ function bid(auction) {
                     break;
                 case 'error on js':
                     swal("Don't crack the site.");
-					break;
-				default:
-					//displayError("Error while processing the login...");
-					break;
+                    break;
+                default:
+                    //displayError("Error while processing the login...");
+                    break;
             }
             return true;
-        }).fail(function (error) {
-            alert(error);
-        });
+        }).fail(function(error) {
+        alert(error);
+    });
     return false;
 }
 
 function validateAuction(bool, id) {
-    var motive = 
-     $.post(
-        '../api/validate_auction.php',
-        {
-            'functionName' : 'validateAuction',
-            'validate' : bool,
-            'auction' : id,
-            'motive' : motive,
-            'date' : date
-            
-        },function(data) {
-            var response = data['validateAuction'];
-            switch (response) {
-                case 'error':
-                    swal("Error validating auction.");
-                    break;
-                case 'success':
-                    var str = "Auction was " + data['validate'] + ".";
-                    swal(str);
-                    break;
-                case 'error on js':
-                    swal("Don't crack the site.");
-					break;
-				default:
-					//displayError("Error while processing the login...");
-					break;
-            }
-            return true;
-        }).fail(function (error) {
+    var motive =
+        $.post(
+            '../api/validate_auction.php', {
+                'functionName': 'validateAuction',
+                'validate': bool,
+                'auction': id,
+                'motive': motive,
+                'date': date
+
+            },
+            function(data) {
+                var response = data['validateAuction'];
+                switch (response) {
+                    case 'error':
+                        swal("Error validating auction.");
+                        break;
+                    case 'success':
+                        var str = "Auction was " + data['validate'] + ".";
+                        swal(str);
+                        break;
+                    case 'error on js':
+                        swal("Don't crack the site.");
+                        break;
+                    default:
+                        //displayError("Error while processing the login...");
+                        break;
+                }
+                return true;
+            }).fail(function(error) {
             alert(error);
         });
     return false;
@@ -71,89 +71,82 @@ function validateAuction(bool, id) {
 
 function checkBanDate() {
     var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
-	var yyyy = today.getFullYear();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
 
-	if(dd<10) {
-		dd='0'+dd;
-	} 
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
 
-	if(mm<10) {
-		mm='0'+mm;
-	} 
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
 
-	today = yyyy+'/'+mm+'/'+dd;
-	
-	if ($("#banDate").val() < today) {
-		$("#banDate").css('color', 'red');
-		$("#banDate").css('border-color', 'red');
-		return false;
-	}
-	else {
-		$("#banDate").css('color', 'black');
-		$("#banDate").css('border-color', '#ccc');
-		return true;
-	}
+    today = yyyy + '/' + mm + '/' + dd;
+
+    if ($("#banDate").val() < today) {
+        $("#banDate").css('color', 'red');
+        $("#banDate").css('border-color', 'red');
+        return false;
+    } else {
+        $("#banDate").css('color', 'black');
+        $("#banDate").css('border-color', '#ccc');
+        return true;
+    }
 }
 
-$("#searchForm").submit(function (event) {
-    event.preventDefault();
-    var description = $("#searchInput").val();
-    $.post(
-        '../api/search.php',
-        {
-            'functionName' : 'search',
-            'description' : description
-        },function(data) {
-            var response = data['search'];
+function auctionsCategory(id) {
+    $.get(
+        '../actions/auctionsCategory.php', {
+            'functionName': 'auctionsCategory',
+            'id': id
+        },
+        function(data) {
+            var response = data['auctionsCategory'];
             switch (response) {
                 case 'error':
-                    swal("Error searching auctions.");
+                    var str = "No auctions with category " + data['category']['descricao'] + ".";
+                    swal(str);
                     break;
                 case 'success':
-                    swal("Auctions updated on homepage.");
-                    var auctions = data['auctions'];
-                    //dar update ao crl da página
+                    var str = "Auctions listed by " + data['category']['descricao'] + ". Homepage updated.";
+                    swal(str);
+                    window.location = "Home.php";
                     break;
                 case 'error on js':
                     swal("Don't crack the site.");
-					break;
-				default:
-					swal("Error!");
-					break;
+                    break;
+                default:
+                    //displayError("Error while processing the login...");
+                    break;
             }
             return true;
-        }).fail(function (error) {
-            alert(error);
-        });
+        }).fail(function(error) {
+        alert(error);
+    });
     return false;
-});
-
-function search() {
-    
 }
 
 function ban(bool, id) {
-     var motive;
-     var date;
-     if (bool == 'banned') {
+    var motive;
+    var date;
+    if (bool == 'banned') {
         motive = $("#motive").val();
         date = $("#banDate").val();
-     }
-     else {
-         motive = "";
-         date = "";
-     }
-     $.post(
-        '../api/ban.php',
-        {
-            'functionName' : 'ban',
-            'ban' : bool,
-            'user' : id,
-            'motive' : motive,
-            'date' : date
-        },function(data) {
+    } else {
+        motive = "";
+        date = "";
+    }
+    $.post(
+        '../api/ban.php', {
+            'functionName': 'ban',
+            'ban': bool,
+            'user': id,
+            'motive': motive,
+            'date': date
+        },
+        function(data) {
             var response = data['ban'];
             switch (response) {
                 case 'error':
@@ -165,15 +158,15 @@ function ban(bool, id) {
                     break;
                 case 'error on js':
                     swal("Don't crack the site.");
-					break;
-				default:
-					//displayError("Error while processing the login...");
-					break;
+                    break;
+                default:
+                    //displayError("Error while processing the login...");
+                    break;
             }
             return true;
-        }).fail(function (error) {
-            alert(error);
-        });
+        }).fail(function(error) {
+        alert(error);
+    });
     return false;
 }
 
@@ -226,12 +219,12 @@ function updateRate(id, auction) {
 
 function classificateAuction(classification, auction) {
     $.post(
-        '../api/classificate_auction.php',
-        {
-            'functionName' : 'classificateAuction',
-            'classification' : classification,
-            'auction' : auction
-        },function(data) {
+        '../api/classificate_auction.php', {
+            'functionName': 'classificateAuction',
+            'classification': classification,
+            'auction': auction
+        },
+        function(data) {
             var response = data['classificateAuction'];
             switch (response) {
                 case 'error':
@@ -243,80 +236,159 @@ function classificateAuction(classification, auction) {
                     break;
                 case 'error on js':
                     swal("Don't crack the site.");
-					break;
-				default:
-					//displayError("Error while processing the login...");
-					break;
+                    break;
+                default:
+                    //displayError("Error while processing the login...");
+                    break;
             }
             return true;
-        }).fail(function (error) {
-            alert(error);
-        });
+        }).fail(function(error) {
+        alert(error);
+    });
     return false;
 }
 
 function reportUser(id) {
     var motive = $("#motive").val();
-	$.post(
-    '../api/report_user.php',
-	{
-		'functionName': 'report_user', 
-		'user': id,
-        'motive': motive
-	},function(data){
-		var response = data['report_user'];
-			switch(response) {
-				case 'error':
-                    swal("Couldn't report the user.");
-					break;
-				case 'success':
-                    swal("Reported the user. A moderator has received a message, you can check it on your inbox.");
-					break;
-				case 'error on js':
-                    swal("Don't crack the site.");
-					break;
-				default:
-					//displayError("Error while processing the login...");
-					break;
-			}
-			return true;		
-	})
-    .fail(function (error) {
-		console.log(error);
-        //alert("Error: " + error);
-    });
+    $.post(
+            '../api/report_user.php', {
+                'functionName': 'report_user',
+                'user': id,
+                'motive': motive
+            },
+            function(data) {
+                var response = data['report_user'];
+                switch (response) {
+                    case 'error':
+                        swal("Couldn't report the user.");
+                        break;
+                    case 'success':
+                        swal("Reported the user. A moderator has received a message, you can check it on your inbox.");
+                        break;
+                    case 'error on js':
+                        swal("Don't crack the site.");
+                        break;
+                    default:
+                        //displayError("Error while processing the login...");
+                        break;
+                }
+                return true;
+            })
+        .fail(function(error) {
+            console.log(error);
+            //alert("Error: " + error);
+        });
     return false;
 }
 
 function reportAuction(id) {
     var motive = $("#motive").val();
-	$.post(
-    '../api/report_auction.php',
-	{
-		'functionName': 'report_auction', 
-		'user': id,
-        'motive': motive
-	},function(data){
-		var response = data['report_auction'];
-			switch(response) {
-				case 'error':
-                    swal("Couldn't report the auction.");
-					break;
-				case 'success':
-                    swal("Reported the auction. A moderator has received a message, you can check it on your inbox.");
-					break;
-				case 'error on js':
-                    swal("Don't crack the site.");
-					break;
-				default:
-					//displayError("Error while processing the login...");
-					break;
-			}
-			return true;		
-	})
-    .fail(function (error) {
-		console.log(error);
-        //alert("Error: " + error);
-    });
+    $.post(
+            '../api/report_auction.php', {
+                'functionName': 'report_auction',
+                'user': id,
+                'motive': motive
+            },
+            function(data) {
+                var response = data['report_auction'];
+                switch (response) {
+                    case 'error':
+                        swal("Couldn't report the auction.");
+                        break;
+                    case 'success':
+                        swal("Reported the auction. A moderator has received a message, you can check it on your inbox.");
+                        break;
+                    case 'error on js':
+                        swal("Don't crack the site.");
+                        break;
+                    default:
+                        //displayError("Error while processing the login...");
+                        break;
+                }
+                return true;
+            })
+        .fail(function(error) {
+            console.log(error);
+            //alert("Error: " + error);
+        });
     return false;
+}
+
+function cancelAuction(id) {
+    var motive = $("#motive").val();
+    $.post(
+            '../api/cancel_auction.php', {
+                'functionName': 'cancel_auction',
+                'user': id,
+                'motive': motive
+            },
+            function(data) {
+                var response = data['cancel_auction'];
+                switch (response) {
+                    case 'error':
+                        swal("Couldn't cancel the auction.");
+                        break;
+                    case 'success':
+                        swal("Cancelled the auction. A moderator has received a message, you can check it on your inbox.");
+                        break;
+                    case 'error on js':
+                        swal("Don't crack the site.");
+                        break;
+                    default:
+                        //displayError("Error while processing the login...");
+                        break;
+                }
+                return true;
+            })
+        .fail(function(error) {
+            console.log(error);
+            //alert("Error: " + error);
+        });
+    return false;
+}
+
+function checkValidityAuction() {
+    if (!checkDateEdit()) {
+        alert("The date has to be superior to the current date");
+        return false;
+    }
+    if (!checkEmptyFieldsEdit()) {
+        alert("No empty fields allowed");
+        return false;
+    }
+    return true;
+}
+
+function checkDateAuction() {
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+
+    today = yyyy + '/' + mm + '/' + dd;
+
+    if ($("#dateAuction").val() < today) {
+        $("#dateAuction").css('color', 'red');
+        $("#dateAuction").css('border-color', 'red');
+        return false;
+    } else {
+        $("#dateAuction").css('color', 'black');
+        $("#dateAuction").css('border-color', '#ccc');
+        return true;
+    }
+}
+
+function checkEmptyFieldsAuction() {
+    if ($("#nameAuction").val() == "" || $("#dateAuction").val() == "" || $("#valorAuction").val() == "") {
+        return false;
+    } else return true;
 }

@@ -87,7 +87,7 @@
                 <div class="bd-example bd-example-tabs" role="tabpanel">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="auctions-tab" data-toggle="tab" href="#auctions" role="tab" aria-controls="auctions" aria-expanded="true">Auctions</a>
+                            <a class="nav-link active" id="auctions-tab" data-toggle="tab" href="#auctions" role="tab" aria-controls="auctions" aria-expanded="true">Auctions To Validate</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="auctionsAll-tab" data-toggle="tab" href="#auctionsAll" role="tab" aria-controls="auctionsAll" aria-expanded="false">All auctions</a>
@@ -133,6 +133,7 @@
                                     <tr>
                                         <th class="text-center">Name</th>
                                         <th class="text-center">Seller</th>
+                                        <th class="text-center">Status</th>
                                         <th class="text-center">Cancel</th>
                                     </tr>
                                 </thead>
@@ -143,9 +144,14 @@
                                             <a href="ItemPageBidder.php?idPage={$auction.id_leilao}">{$auction.nome_produto|escape}</a>
                                         </td>
                                         <td class="text-center">{$auction.nome|escape}</td>
+                                        <td class="text-center">{$status = getStatus($auction.id_leilao)}{$status}</td>
+                                        {if isCancelled($auction.id_leilao)}
+                                        <td></td>
+                                        {else}
                                         <td class="text-center">
                                             <a href="UserPage.php?idPage={$auction.id_utilizador}" onclick="cancelAuction({$auction.id_leilao}); return false" style="color:red" class="glyphicon glyphicon-remove"></a>
                                         </td>
+                                        {/if}
                                     </tr>
                                     {/foreach}
                                 </tbody>

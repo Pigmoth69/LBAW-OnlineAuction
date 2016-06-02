@@ -13,7 +13,11 @@
     }
     $auctions = bestAuctions();
     
-    $smarty->assign('auctions', $auctions);
+    if (isset($_SESSION['searched auctions'])) {
+        $smarty->assign('auctions', $_SESSION['searched auctions']);
+        unset($_SESSION['searched auctions']);
+    }
+    else $smarty->assign('auctions', $auctions);
     $smarty->assign('categorias', $categorias);
     $smarty->display('../templates/HomeTemplate.tpl');
 ?>

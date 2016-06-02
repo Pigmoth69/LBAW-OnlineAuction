@@ -68,6 +68,36 @@
         return $stmt->fetchAll();
     }
     
+    function cancelAuction($reporter, $auction, $motive) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Utilizador WHERE id_utilizador = :id');
+        $stmt->bindParam(':id', $reporter, PDO::PARAM_INT);
+        $stmt->execute();
+        $mail_reporter = $stmt->fetchAll();
+        if (count($mail_reporter) == 0)
+            return -1;
+            
+        $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :id');
+        $stmt->bindParam(':id', $auction, PDO::PARAM_INT);
+        $stmt->execute();
+        $mail_reported = $stmt->fetchAll();
+        if (count($mail_reported) == 0)
+            return -1;
+        
+        $mods = moderators();
+        $mod = $mods[0]['id_utilizador'];
+        
+        $title = 'Cancel Auction';
+        $body = 'Hello, i am user with id ' . $mail_reporter[0]['id_utilizador'] . ' and i want to cancel auction with id ' . $mail_reported[0]['id_leilao'] . ' because: ' . "\n" . $motive;
+        $stmt = $conn->prepare('INSERT INTO Mensagem(id_emissor, id_recetor, titulo, conteudo) VALUES(:id, :id_recetor, :title, :body)');
+        $stmt->bindParam(':id', $reporter, PDO::PARAM_INT);
+        $stmt->bindParam(':id_recetor', $mod, PDO::PARAM_INT);
+        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+        $stmt->bindParam(':body', $body, PDO::PARAM_STR);
+        $stmt->execute();
+        return $mod;
+    }
+    
     function register($name, $date, $gender, $mail, $password, $pais) {
         global $conn;
 		$stmt = $conn->prepare('SELECT * FROM Utilizador WHERE e_mail = :mail');

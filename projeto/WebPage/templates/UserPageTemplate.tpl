@@ -1,4 +1,5 @@
 {include file='common/head.tpl'} {include file='common/bar.tpl'}
+
 <body>
     <!-- Navigation -->
 
@@ -13,7 +14,7 @@
                         <!-- <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li> -->
                         <li><a href="MessagePage.php"><i class="glyphicon glyphicon-envelope"></i> Messages</a></li>
                         <!-- <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Shoutbox</a></li> -->
-                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
+                        <li><a href="ListModerators.php"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
                         <li><a href="FAQ.php"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
                     </ul>
                 </ul>
@@ -24,29 +25,28 @@
                     <!-- center left-->
                     <div class="col-md-6">
                         {if $idPage eq $idUser}
-                            <hr>
-                            <div class="btn-group btn-group-justified">
-                                <a href="#" class="btn btn-primary col-sm-3">
-                                    <i class="glyphicon glyphicon-plus"></i>
-                                    <br> New auction
-                                </a>
-                                <a href="#editProfile" class="btn btn-primary col-sm-3" data-toggle="modal" data-target="#modalEdit">
-                                    <i class="glyphicon glyphicon-cog"></i>
-                                    <br> Edit profile
-                                </a>
-                            </div>
-                        {else}
-                            {if isLoggedIn()}
-                            <div class="btn-group col-md-offset-4">
-                                <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reportModal">
-                                    <i class="fa fa-flag fa-2x"></i>
-                                    <br> Report User
-                                </a>
-                            </div>
-                            <div id="reportModal" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
+                        <hr>
+                        <div class="btn-group btn-group-justified">
+                            <a href="#newAuction" class="btn btn-primary col-sm-3" data-toggle="modal" data-target="#modalAuction">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <br> New auction
+                            </a>
+                            <a href="#editProfile" class="btn btn-primary col-sm-3" data-toggle="modal" data-target="#modalEdit">
+                                <i class="glyphicon glyphicon-cog"></i>
+                                <br> Edit profile
+                            </a>
+                        </div>
+                        {else} {if isLoggedIn()}
+                        <div class="btn-group col-md-offset-4">
+                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#reportModal">
+                                <i class="fa fa-flag fa-2x"></i>
+                                <br> Report User
+                            </a>
+                        </div>
+                        <div id="reportModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title">Report User</h4>
@@ -59,23 +59,10 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
-                                    </div>
                                 </div>
                             </div>
-                            {/if}
-                            <!--
-                            <hr>
-                            <div class="btn-group btn-group-justified">
-                                <div class="col-sm-9 rating">
-                                    <i class="fa fa-star-o fa-4x" id="1stStar" onclick="updateRate(1)" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o fa-4x" id="2ndStar" onclick="updateRate(2)" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o fa-4x" id="3rdStar" onclick="updateRate(3)" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o fa-4x" id="4thStar" onclick="updateRate(4)" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o fa-4x" id="5thStar" onclick="updateRate(5)" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            -->
-                        {/if}
+                        </div>
+                        {/if} {/if}
                         <!-- <div class="well">Inbox Messages <span class="badge pull-right">3</span></div> -->
                         <hr>
                         <div class="table-responsive">
@@ -180,14 +167,59 @@
                                         <div class="form-group">
                                             <input type="password" name="password_confirmationEdit" id="password_confirmationEdit" class="form-control input-sm" placeholder="Confirm Password" onChange="checkPasswordsEdit()">
                                         </div>
-                                        </form>
-                                        <textarea rows="4" cols="50" name="descriptionEdit" form="editUser">{$infos.descricao|rtrim}</textarea>
-                                        <input type="submit" value="Edit User Profile" class="btn btn-block" form="editUser" id="submitUser">
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    </form>
+                                    <textarea rows="4" cols="50" name="descriptionEdit" form="editUser">{$infos.descricao|rtrim}</textarea>
+                                    <input type="submit" value="Edit User Profile" class="btn btn-block" form="editUser" id="submitUser">
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="modalAuction" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Create New Auction</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" id="addAuction" action="../actions/create_auction.php" onsubmit="return checkValidityAuction()" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <input type="text" name="nameAuction" id="nameAuction" class="form-control input-sm" placeholder="Name">
                                         </div>
-                                        
-                                        
+                                        <div class="form-group">
+                                            <input type="date" name="dateAuction" id="dateAuction" class="form-control input-sm" placeholder="Date to end the auction" onChange="checkDateAuction()">
+                                        </div>
+                                        <div class="form-group">
+                                            <select id="categoryOptionsAuction" name="categoryAuction" label="Category">
+                                {foreach $categorias as $categoria}
+                                    <option value="{$categoria.descricao}">{$categoria.descricao}</option>
+                                {/foreach}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="number" min="0" name="valorAuction" id="valorAuction" class="form-control input-sm" placeholder="Minimum Bid">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="image">Image: </label>
+                                            <input type="file" id="image" name="image">
+                                        </div>
+                                    </form>
+                                    <textarea rows="4" cols="50" name="descriptionAuction" form="addAuction"></textarea>
+                                    <input type="submit" value="Create New Auction" class="btn btn-block" form="addAuction" id="submitAuction">
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    </div>
+
+
                                 </div>
 
                             </div>
@@ -228,5 +260,6 @@
 </body>
 <script src="../js/edit.js"></script>
 <script src="../js/jquery_scripts.js"></script>
+
 </html>
 {include file='common/foot.tpl'}

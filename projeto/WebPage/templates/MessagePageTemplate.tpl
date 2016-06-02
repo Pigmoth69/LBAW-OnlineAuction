@@ -1,4 +1,5 @@
  {include file='common/head.tpl'} {include file='common/bar.tpl'}
+
 <body>
     <!-- Main -->
     <div class="container">
@@ -10,7 +11,7 @@
                         <strong><i class="glyphicon glyphicon-list" id="opt" ></i> Options </strong>
                         <!-- <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li> -->
                         <li><a href="MessagePage.php"><i class="glyphicon glyphicon-envelope"></i> Messages</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
+                        <li><a href="ListModerators.php"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
                         <li><a href="FAQ.php"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
                     </ul>
                 </ul>
@@ -49,15 +50,15 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        
+
                                         <td>{$mail = getInfoByID($rec.id_emissor)} {$mail[0].e_mail}</td>
                                         <td>{$rec.data_mensagem}</td>
-                                    </tr>                                    
+                                    </tr>
                                     {/foreach}
                                 </tbody>
                             </table>
                         </div>
-                        
+
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="sent-tab" aria-expanded="false">
                             <table class="table">
                                 <thead>

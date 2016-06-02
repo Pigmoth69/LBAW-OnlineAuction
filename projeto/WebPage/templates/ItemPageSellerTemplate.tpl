@@ -117,6 +117,31 @@
                     <div class="list-group-item">
                         <p>Total sales: {$sales}</p>
                     </div>
+                    <div class="btn center-block">
+                        <a href="#" class="btn btn-danger text-center" data-toggle="modal" data-target="#cancelAuction">
+                            <i class="fa fa-flag fa-2x"></i>
+                            <br> Cancel Auction
+                        </a>
+                    </div>
+                    <div id="cancelAuction" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Cancel Auction</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <textarea rows="4" cols="50" name="motive" id="motive" class="form-control input-sm" placeholder="Write here the motive for cancelling your auction"></textarea>
+                                    <br>
+                                    <input type="submit" value="Cancel Auction" class="btn btn-primary" id="cancelAuction" onsubmit="cancelAuction({$idPage})" onclick="cancelAuction({$idPage})">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!--<div class="list-group">
                   <a href="#" class="list-group-item active">Category 1</a>                   <a
@@ -199,6 +224,7 @@
         </div>
     </div>
 </body>
+<script src="../js/jquery_scripts.js"></script>
 {include file='common/foot.tpl'}
 
 </html>
