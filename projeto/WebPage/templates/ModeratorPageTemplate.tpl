@@ -90,6 +90,9 @@
                             <a class="nav-link active" id="auctions-tab" data-toggle="tab" href="#auctions" role="tab" aria-controls="auctions" aria-expanded="true">Auctions</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" id="auctionsAll-tab" data-toggle="tab" href="#auctionsAll" role="tab" aria-controls="auctionsAll" aria-expanded="false">All auctions</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-expanded="false">Users</a>
                         </li>
                     </ul>
@@ -107,13 +110,41 @@
                                 <tbody>
                                     {foreach $auctionsToValidate as $auction}
                                     <tr class="info">
-                                        <td>{$auction.nome_produto|escape}</td>
-                                        <td>{$auction.nome|escape}</td>
-                                        <td>
+                                        <td class="text-center">
+                                            <a href="ItemPageBidder.php?idPage={$auction.id_leilao}">{$auction.nome_produto|escape}</a>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="UserPage.php?idPage={$auction.id_utilizador}">{$auction.nome|escape}</a>
+                                        </td>
+                                        <td class="text-center">
                                             <a href="" onclick="validateAuction('validate', {$auction.id_leilao}); return false" class="glyphicon glyphicon-ok"></a>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="" onclick="validateAuction('not validate', {$auction.id_leilao}); return false" style="color:red" class="glyphicon glyphicon-remove"></a>
+                                        </td>
+                                    </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="auctionsAll" aria-labelledby="auctionsAll-tab" aria-expanded="true">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Seller</th>
+                                        <th class="text-center">Cancel</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {foreach $auctions as $auction}
+                                    <tr class="info">
+                                        <td class="text-center">
+                                            <a href="ItemPageBidder.php?idPage={$auction.id_leilao}">{$auction.nome_produto|escape}</a>
+                                        </td>
+                                        <td class="text-center">{$auction.nome|escape}</td>
+                                        <td class="text-center">
+                                            <a href="UserPage.php?idPage={$auction.id_utilizador}" onclick="cancelAuction({$auction.id_leilao}); return false" style="color:red" class="glyphicon glyphicon-remove"></a>
                                         </td>
                                     </tr>
                                     {/foreach}

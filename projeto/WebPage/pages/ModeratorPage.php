@@ -18,6 +18,7 @@
     }  
     
     $mods = moderators();
+    $auctions = auctions();
     $users = users();
     $auctionsToValidate = getAuctionsToValidate();
     $paises = getAllCountries();
@@ -27,6 +28,7 @@
     $smarty->assign('categorias', $categorias);
     $smarty->assign('paises', $paises);
     $smarty->assign('mods', $mods);
+    $smarty->assign('auctions', $auctions);
     $smarty->assign('auctionsToValidate', $auctionsToValidate);
     $smarty->assign('users', $users);
     $smarty->assign('infos', $infos);

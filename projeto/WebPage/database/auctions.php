@@ -24,6 +24,14 @@
         return $result;
     }
     
+    function auctions() {
+        global $conn;
+        $stmt = $conn->prepare('SELECT nome, nome_produto FROM Leilao, Utilizador WHERE Leilao.id_vendedor=Utilizador.id_utilizador');
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    
     function classificateAuction($user, $auction, $classification) {
         global $conn;
         $stmt = $conn->prepare('SELECT * FROM ClassificacaoLeilao WHERE id_licitador = :user AND id_leilao = :auction');

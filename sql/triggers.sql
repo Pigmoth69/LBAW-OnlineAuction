@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION time_left_auction(idleilao INTEGER) RETURNS DATE
 	AS $time_left_auction$
 BEGIN
 	SELECT data_fim  FROM Leilao WHERE Leilao.id_leilao = NEW.idleilao;
-	RETURN data_fim - (now())::DATE;
+	RETURN data_fim - CURRENT_TIMESTAMP;
 END;
 $time_left_auction$ LANGUAGE plpgsql;
  
@@ -10,7 +10,7 @@ CREATE FUNCTION can_cancel_auction() RETURNS TRIGGER
     LANGUAGE plpgsql
     AS $can_cancel_auction$
 	BEGIN
-		IF NEW.data_fim - now()::DATE < 1
+		IF NEW.data_fim - CURRENT_TIMESTAMP < 1
 		THEN 
 			RETURN FALSE;
 		END IF;
@@ -29,7 +29,7 @@ CREATE FUNCTION auction_bid_over() RETURNS TRIGGER
 		END IF;
 		IF NEW.valor_licitacao > (SELECT MAX(valor_licitacao) FROM Licitacao WHERE Licitacao.id_leilao = Leilao.id_leilao)
 	    THEN 
-		    INSERT INTO Licitacao VALUES(NEW.id_licitacao,Leilao.id_leilao,New.id_utilizador,now()::DATE,New.valor_licitacao,FALSE);
+		    INSERT INTO Licitacao VALUES(NEW.id_licitacao,Leilao.id_leilao,New.id_utilizador,CURRENT_TIMESTAMP,New.valor_licitacao,FALSE);
 	    ELSE
 	  	    RETURN FALSE;
         END IF;
@@ -116,7 +116,7 @@ CREATE FUNCTION authorize_ban() RETURNS TRIGGER
 		LANGUAGE plpgsql
 		AS $authorize_ban$
 		BEGIN
-		IF (NEW.id_utilizador = id_utilizador) AND (data_fim > NOW()::date)
+		IF (NEW.id_utilizador = id_utilizador) AND (data_fim > CURRENT_TIMESTAMP)
 		THEN
 			RETURN FALSE;
 		ENDIF;
@@ -128,7 +128,7 @@ CREATE FUNCTION update_winning_auction RETURNS TRIGGER
 		LANGUAGE plpgsql
 		AS $update_winning_auction$
 		BEGIN
-		IF (Licitacao.id_leilao = Leilao.id_leilao) AND (SELECT Leilao.data_fim FROM Leilao >= NOW()::date)
+		IF (Licitacao.id_leilao = Leilao.id_leilao) AND (SELECT Leilao.data_fim FROM Leilao >= CURRENT_TIMESTAMP)
 		THEN
 			UPDATE Licitacao SET vencedor = TRUE WHERE (Licitacao.valor_licitacao AND Licitacao.id_leilao = Leilao.id_leilao) = (SELECT MAX(valor_licitacao) FROM Licitacao WHERE Licitacao.id_leilao = Leilao.id_leilao) 
 		END;
