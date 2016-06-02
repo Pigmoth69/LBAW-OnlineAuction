@@ -39,6 +39,10 @@
         $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetchAll();
+        
+        if (isBanned($result[0]['id_utilizador']))
+            return -2;
+        
         if (count($result) === 0) {
             return -1;
         }

@@ -70,6 +70,9 @@ function recoverPassword() {
 				//document.getElementById("loginStatus").innerHTML ="<div class=\"alert alert-warning\"><strong>Warning!</strong> Already Logged in!</div>";
 				swal("Stop cracking the site");
 				break;
+			case 'banned':
+				swal("You are banned from this site.");
+				break;
 			default:
 				//document.getElementById("loginStatus").innerHTML = "<div class=\"alert alert-danger\"><strong>Error!</strong> Login failed..</div>";
 				//displayError("Error while processing the login...");

@@ -35,13 +35,16 @@ function bid(auction) {
 }
 
 function validateAuction(bool, id) {
-     var motive = "";
+    var motive = 
      $.post(
         '../api/validate_auction.php',
         {
             'functionName' : 'validateAuction',
             'validate' : bool,
-            'auction' : id
+            'auction' : id,
+            'motive' : motive,
+            'date' : date
+            
         },function(data) {
             var response = data['validateAuction'];
             switch (response) {
@@ -50,6 +53,77 @@ function validateAuction(bool, id) {
                     break;
                 case 'success':
                     var str = "Auction was " + data['validate'] + ".";
+                    swal(str);
+                    break;
+                case 'error on js':
+                    swal("Don't crack the site.");
+					break;
+				default:
+					//displayError("Error while processing the login...");
+					break;
+            }
+            return true;
+        }).fail(function (error) {
+            alert(error);
+        });
+    return false;
+}
+
+function checkBanDate() {
+    var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+		dd='0'+dd;
+	} 
+
+	if(mm<10) {
+		mm='0'+mm;
+	} 
+
+	today = yyyy+'/'+mm+'/'+dd;
+	
+	if ($("#banDate").val() < today) {
+		$("#banDate").css('color', 'red');
+		$("#banDate").css('border-color', 'red');
+		return false;
+	}
+	else {
+		$("#banDate").css('color', 'black');
+		$("#banDate").css('border-color', '#ccc');
+		return true;
+	}
+}
+
+function ban(bool, id) {
+     var motive;
+     var date;
+     if (bool == 'banned') {
+        motive = $("#motive").val();
+        date = $("#banDate").val();
+     }
+     else {
+         motive = "";
+         date = "";
+     }
+     $.post(
+        '../api/ban.php',
+        {
+            'functionName' : 'ban',
+            'ban' : bool,
+            'user' : id,
+            'motive' : motive,
+            'date' : date
+        },function(data) {
+            var response = data['ban'];
+            switch (response) {
+                case 'error':
+                    swal("Error banning user.");
+                    break;
+                case 'success':
+                    var str = "User was " + data['banned'] + ".";
                     swal(str);
                     break;
                 case 'error on js':

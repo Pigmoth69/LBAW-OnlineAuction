@@ -33,4 +33,10 @@
 		printResponse($data);
 		return true;
 	}
+	else if ($id == -2) {
+		$_SESSION['error_messages'][] = 'Banned';
+		$data = [ $param => "banned"];
+		printResponse($data);
+		return false;
+	}
 ?>

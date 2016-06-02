@@ -137,7 +137,7 @@
                                         </td>
                                         {if isBanned($user.id_utilizador)}
                                         <td class="text-center">
-                                            <a href="" onclick="" class="fa fa-check" aria-hidden="true"></a>
+                                            <a href="" onclick="ban('unbanned', {$user.id_utilizador}); return false" class="fa fa-check" aria-hidden="true"></a>
                                         </td>
                                         <td>
                                         </td>
@@ -145,8 +145,29 @@
                                         <td>
                                         </td>
                                         <td class="text-center">
-                                            <a href="" onclick="" class="fa fa-ban" style="color:red" aria-hidden="true"></a>
+                                            <a class="fa fa-ban" style="color:red" aria-hidden="true" data-toggle="modal" data-target="#banModal"></a>
                                         </td>
+                                        <div id="banModal" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Ban User</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <textarea rows="4" cols="50" name="motive" id="motive" class="form-control input-sm" placeholder="Write here the motive for your report"></textarea>
+                                                        <br>
+                                                        <input type="date" name="banDate" id="banDate" class="form-control input-sm" placeholder="Date to ban">
+                                                        <br>
+                                                        <input type="submit" value="Ban User" class="btn btn-primary" id="banUser" onsubmit="ban('banned', {$user.id_utilizador}); return false" onclick="ban('banned', {$user.id_utilizador}); return false">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         {/if}
                                     </tr>
                                     {/foreach}

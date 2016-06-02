@@ -23,6 +23,26 @@
         return $result;
     }
     
+    function ban($ban, $user, $date, $motive, $id_mod) {
+        global $conn;
+        if ($ban == 'banned') {
+            $stmt = $conn->prepare('INSERT INTO HistoricoBanidos(id_utilizador, id_moderador, data_banicao, data_fim, motivo) VALUES(:user, :id_mod, now()::DATE, :date, :motivo)');
+            $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+            $stmt->bindParam(':id_mod', $id_mod, PDO::PARAM_INT);
+            $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+            $stmt->bindParam(':motivo', $motive, PDO::PARAM_STR);
+            $stmt->execute();
+            return true;
+        }
+        else if ($ban == 'unbanned') {
+            $stmt = $conn->prepare('UPDATE HistoricoBanidos SET data_fim = now()::DATE WHERE id_utilizador = :user');
+            $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        }
+        else return false;
+    }
+    
     function isMod($id) {
         global $conn;
         $stmt = $conn->prepare('SELECT * FROM UtilizadorModerador WHERE id_utilizador = :id');
