@@ -20,9 +20,9 @@
     $sales = getTotalSales($auction[0]['id_vendedor']);
     $best_bid = getHighestBid($auction[0]['id_leilao']);
     $licitees = getLiciteesOnAuction($auction[0]['id_leilao']);
-    //$tst = testeeee($_GET['idPage']);
-    //print_r($tst);
-
+    $tst = testeeee($_GET['idPage']);
+    print_r($tst);
+    
     $smarty->assign('auction', $auction[0]);
     $smarty->assign('seller', $seller[0]);
     $smarty->assign('best_bid', $best_bid);

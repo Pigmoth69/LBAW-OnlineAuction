@@ -220,14 +220,33 @@
     }
     function testeeee($id){
         $creationDate = creationDateAuction($id);
-        $endDate = endDateAuction($id);
-        $datetime1 = strtotime($creationDate);
-        $datetime2 = strtotime($endDate);
-        $datetime3 = strtotime(date("m/d/Y h:i:s a", time()));
-        $currentSeconds = $datetime3 - $datetime1
+        $endDate = endDateAuction($id); 
+        print_r($creationDate);
+        print_r("      :::");
+        print_r($endDate);
+        print_r("      :::");
+        $datetime1 = strtotime($creationDate);                 //data inicio
+        $datetime2 = strtotime($endDate);                      //end data
+        $datetime3 = strtotime(date("Y/m/d h:i:s", time())); //current time
+        print_r(date("Y/m/d h:i:s", time()));
+        print_r("      :::");
+        $diff1=date_diff($datetime2,$datetime1);
+        $diff2=date_diff($datetime3,$datetime1);
+        print_r("Date1: ");
+        print_r($diff1);
+        print_r(" Date2: ");
+        print_r($diff2);
+        /*$currentSeconds = $datetime3 - $datetime1;
+        print_r("Current time: ");
+        print_r($currentSeconds);
+        print_r(" Total time: ");
         $totalSeconds = $datetime2 - $datetime1;
-        $totalSeconds -= $currentSeconds;
-        return $totalSeconds;
+        print_r($totalSeconds);
+        $total = $totalSeconds - $currentSeconds;*/
+       /* print_r($datetime1);
+        print_r("-");
+        print_r($datetime3);*/
+        return;
 
     }
     
