@@ -218,36 +218,20 @@
         $res = $stmt->fetchAll();     
         return $res[0]['data_fim'];
     }
-    function testeeee($id){
+    function progressBarData($id){
         $creationDate = creationDateAuction($id);
         $endDate = endDateAuction($id); 
-        print_r($creationDate);
-        print_r("      :::");
-        print_r($endDate);
-        print_r("      :::");
         $datetime1 = strtotime($creationDate);                 //data inicio
         $datetime2 = strtotime($endDate);                      //end data
-        $datetime3 = strtotime(date("Y/m/d h:i:s", time())); //current time
-        print_r(date("Y/m/d h:i:s", time()));
-        print_r("      :::");
-        $diff1=date_diff($datetime2,$datetime1);
-        $diff2=date_diff($datetime3,$datetime1);
-        print_r("Date1: ");
-        print_r($diff1);
-        print_r(" Date2: ");
-        print_r($diff2);
-        /*$currentSeconds = $datetime3 - $datetime1;
-        print_r("Current time: ");
-        print_r($currentSeconds);
-        print_r(" Total time: ");
+        $datetime3 = strtotime(date("Y/m/d h:i:s", time()));   //current time
+        $currentSeconds = $datetime3 - $datetime1;
         $totalSeconds = $datetime2 - $datetime1;
-        print_r($totalSeconds);
-        $total = $totalSeconds - $currentSeconds;*/
-       /* print_r($datetime1);
-        print_r("-");
-        print_r($datetime3);*/
-        return;
-
+        $timeLeft = timeLeftOnAuction($id);
+	    $result = array('totalTime' => $totalSeconds,'currentSeconds' => $currentSeconds,'timeLeft' => $timeLeft);
+	    echo "<script>\n";
+		echo 'var progressBarDATA = ' . json_encode($result, JSON_PRETTY_PRINT) . ';';
+		echo "\n</script>";
+	    return $result;
     }
     
     

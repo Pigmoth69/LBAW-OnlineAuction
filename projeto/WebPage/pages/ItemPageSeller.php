@@ -20,8 +20,7 @@
     $sales = getTotalSales($auction[0]['id_vendedor']);
     $best_bid = getHighestBid($auction[0]['id_leilao']);
     $licitees = getLiciteesOnAuction($auction[0]['id_leilao']);
-    $tst = testeeee($_GET['idPage']);
-    print_r($tst);
+    $progressBarData = progressBarData($_GET['idPage']);
     
     $smarty->assign('auction', $auction[0]);
     $smarty->assign('seller', $seller[0]);

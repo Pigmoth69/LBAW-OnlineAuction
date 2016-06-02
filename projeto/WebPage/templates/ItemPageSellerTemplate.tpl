@@ -33,7 +33,7 @@
     <script src="../js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/sweetalert.css"/>
     <script src="../js/loginScript.js"></script>
-    <script src="../js/progressBar.js"></script>
+    <script type='text/javascript' src="../js/progressBar.js"></script>
 </head>
 {include file='common/bar.tpl'}
 
@@ -91,30 +91,30 @@
                                 <img src="{$auction.imagem_produto}" alt="{$auction.nome_produto}"></div>
                         </div>
                         <!-- Left and right controls -->
-                        <a class=" left carousel-control " href="#myCarousel " role="button " data-slide="prev ">
-                            <span class="glyphicon glyphicon-chevron-left " aria-hidden="true "></span>
-                            <span class="sr-only ">Previous</span>
+                        <a class=" left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true "></span>
+                            <span class="sr-only">Previous</span>
                         </a>
-                        <a class="right carousel-control " href="#myCarousel " role="button " data-slide="next ">
-                            <span class="glyphicon glyphicon-chevron-right " aria-hidden="true "></span>
-                            <span class="sr-only ">Next</span>
+                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
                         </a>
                     </div>
-                    <div class="caption-full ">
+                    <div class="caption-full">
                         <!-- <h4 class="pull- right ">92.75€</h4> -->
                         <strong>Item description:</strong><br>
                         <p>{$auction.descricao}</p>
                     </div>
                 </div>
-                <div class="panel-group " id="auctionStatus ">
-                    <div class="panel panel-success " id="AlertStyle ">
-                        <div class="panel-heading ">
-                            <div class="inline-form ">
+                <div class="panel-group" id="auctionStatus">
+                    <div class="panel panel-success" id="AlertStyle">
+                        <div class="panel-heading">
+                            <div class="inline-form">
                                 <strong>Alert! </strong>Auction closes in <span id="time">00:50</span> minutes!
                             </div>
                         </div>
-                        <div class="panel-body ">
-                            <div class="form-group ">
+                        <div class="panel-body">
+                            <div class="form-group">
 								<div class="progress">
                                     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
                                         <p id="ProgressStatus">0</p>
@@ -125,20 +125,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid " id="auctionInfo ">
-                    <div class="row ">
-                        <div id="latestUsers ">
-                            <div class="panel panel-default ">
-                                <div class="panel-heading ">
-                                    <h3 class="panel-title "><i class="fa fa-clock-o fa-fw "></i>Latest Bidders: </h3>
+                <div class="container-fluid" id="auctionInfo">
+                    <div class="row">
+                        <div id="latestUsers">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i>Latest Bidders: </h3>
                                 </div>
-                                <div class="panel-body ">
-                                    <div class="list-group ">
+                                <div class="panel-body">
+                                    <div class="list-group">
                                         {foreach $licitees as $lic}
-                                        <a href="UserPage.php?idPage={$lic.id_utilizador} " class="list-group-item ">
+                                        <a href="UserPage.php?idPage={$lic.id_utilizador}" class="list-group-item">
                                             <!-- MISSING -->
-                                            <span class="badge ">{$span = getTimeDiffOnLic($lic.id_licitacao)}{$span} ago</span>
-                                            <i class="fa fa-fw fa-user "></i> {$lic.nome}
+                                            <span class="badge">{$span = getTimeDiffOnLic($lic.id_licitacao)}{$span} ago</span>
+                                            <i class="fa fa-fw fa-user"></i> {$lic.nome}
                                         </a>
                                         {/foreach}
                                     </div>

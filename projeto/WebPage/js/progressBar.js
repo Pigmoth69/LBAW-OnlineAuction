@@ -2,6 +2,8 @@ $(document).ready(onReady);
 
 function onReady() {
        var i = 0;
+       var totalTime 
+       console.log(progressBarDATA); // all data refering to auction!
 
         var counterBack = setInterval(function() {
             i += 2;
