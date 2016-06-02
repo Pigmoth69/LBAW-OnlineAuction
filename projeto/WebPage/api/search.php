@@ -13,14 +13,7 @@
 	}
     
     $param = ''."search";
-    $param2 = ''."description";
-    
-    if (count($_SESSION) == 0 || $_SESSION['user'] == "" || !isMod($_SESSION['user'])) {
-        $_SESSION['error_messages'][] = 'Not logged';
-        $data = [$param => "error on js"];
-		printResponse($data);
-        return false;
-    }
+    $param2 = ''."auctions";
     
     $ret = search($params['description']);
     

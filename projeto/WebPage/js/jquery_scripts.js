@@ -113,6 +113,8 @@ $("#searchForm").submit(function (event) {
                     break;
                 case 'success':
                     swal("Auctions updated on homepage.");
+                    var auctions = data['auctions'];
+                    //dar update ao crl da página
                     break;
                 case 'error on js':
                     swal("Don't crack the site.");
