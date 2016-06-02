@@ -31,60 +31,9 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
     <script src="../js/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="../css/sweetalert.css"/>
     <script src="../js/loginScript.js"></script>
-    <script>
-    	var my_var = <?php echo 35; ?>;
-    	console.log(my_var);
-
-        var i = 0;
-
-        var counterBack = setInterval(function() {
-            i += 2;
-            if (i <= 100) {
-                $('.progress-bar').css('width', i + '%');
-                $('#ProgressStatus').text(i + "%");
-            } else {
-                clearTimeout(counterBack);
-            }
-        }, 1000);
-
-        function startTimer(duration, display) {
-            var timer = duration,
-                minutes, seconds;
-            setInterval(function() {
-                if (i <= 100) {
-                    if (i >= 90 && i <= 94) {
-                        $("#AlertStyle").removeClass("panel panel-success").addClass("panel panel-warning");
-                        $("#auctionStatus .panel-body").css('background-color', '#fdfaee');
-                    }
-                    minutes = parseInt(timer / 60, 10)
-                    seconds = parseInt(timer % 60, 10);
-
-                    minutes = minutes < 10 ? "0" + minutes : minutes;
-                    seconds = seconds < 10 ? "0" + seconds : seconds;
-
-                    display.text(minutes + ":" + seconds);
-
-                    if (--timer < 0) {
-                        timer = duration;
-                    }
-                } else if (i > 100 && i <= 104) {
-                    i = 105; //codigo todo trolha mas depois vai ser mudado! ;)
-                    $("#AlertStyle").removeClass("panel panel-warning").addClass("panel panel-danger");
-                    $(".panel-heading").text("Auction closed!");
-                    $("#auctionStatus .panel-body").css('background-color', '#f7ebeb');
-                }
-            }, 1000);
-        }
-
-        jQuery(function($) {
-            var fiveMinutes = 10,
-                display = $('#time');
-            startTimer(fiveMinutes, display);
-        });
-    </script>
-
+    <script src="../js/progressBar.js"></script>
 </head>
 {include file='common/bar.tpl'}
 
@@ -161,12 +110,12 @@
                     <div class="panel panel-success " id="AlertStyle ">
                         <div class="panel-heading ">
                             <div class="inline-form ">
-                                <strong>Alert! </strong>Auction closes in <span id="time ">00:50</span> minutes!
+                                <strong>Alert! </strong>Auction closes in <span id="time">00:50</span> minutes!
                             </div>
                         </div>
                         <div class="panel-body ">
                             <div class="form-group ">
-                                <div class="progress">
+								<div class="progress">
                                     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
                                         <p id="ProgressStatus">0</p>
                                         <!-- Auction closes in <span id="time">00:30</span> minutes!-->

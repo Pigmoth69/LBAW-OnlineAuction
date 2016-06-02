@@ -218,6 +218,18 @@
         $res = $stmt->fetchAll();     
         return $res[0]['data_fim'];
     }
+    function testeeee($id){
+        $creationDate = creationDateAuction($id);
+        $endDate = endDateAuction($id);
+        $datetime1 = strtotime($creationDate);
+        $datetime2 = strtotime($endDate);
+        $datetime3 = strtotime(date("m/d/Y h:i:s a", time()));
+        $currentSeconds = $datetime3 - $datetime1
+        $totalSeconds = $datetime2 - $datetime1;
+        $totalSeconds -= $currentSeconds;
+        return $totalSeconds;
+
+    }
     
     
 ?>
