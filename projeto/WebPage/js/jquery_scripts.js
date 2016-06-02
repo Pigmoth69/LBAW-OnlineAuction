@@ -97,6 +97,41 @@ function checkBanDate() {
 	}
 }
 
+$("#searchForm").submit(function (event) {
+    event.preventDefault();
+    var description = $("#searchInput").val();
+    $.post(
+        '../api/search.php',
+        {
+            'functionName' : 'search',
+            'description' : description
+        },function(data) {
+            var response = data['search'];
+            switch (response) {
+                case 'error':
+                    swal("Error searching auctions.");
+                    break;
+                case 'success':
+                    swal("Auctions updated on homepage.");
+                    break;
+                case 'error on js':
+                    swal("Don't crack the site.");
+					break;
+				default:
+					swal("Error!");
+					break;
+            }
+            return true;
+        }).fail(function (error) {
+            alert(error);
+        });
+    return false;
+});
+
+function search() {
+    
+}
+
 function ban(bool, id) {
      var motive;
      var date;

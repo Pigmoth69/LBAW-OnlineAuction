@@ -70,6 +70,14 @@
         else return false;
     }
     
+    function search($desc) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Leilao WHERE leilao_text @@ to_tsquery(:desc)');
+        $stmt->bindParam(':desc', $desc, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
     function getAuctionsToValidate() {
         global $conn;
         $stmt = $conn->prepare('SELECT nome_produto,id_leilao,nome FROM Leilao,Utilizador,EstadoLeilao
