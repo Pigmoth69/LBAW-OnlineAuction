@@ -210,7 +210,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="image">Image: </label>
-                                            <input type="file" id="image" name="image">
+                                            <input type="file" id="imageAuction" name="imageAuction">
                                         </div>
                                     </form>
                                     <textarea rows="4" cols="50" name="descriptionAuction" form="addAuction"></textarea>

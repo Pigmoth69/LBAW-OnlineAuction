@@ -348,14 +348,20 @@ function cancelAuction(id) {
 }
 
 function checkValidityAuction() {
-    if (!checkDateEdit()) {
+    if (!checkDateAuction()) {
         alert("The date has to be superior to the current date");
         return false;
     }
-    if (!checkEmptyFieldsEdit()) {
+    if (!checkEmptyFieldsAuction()) {
         alert("No empty fields allowed");
         return false;
     }
+
+    $("#valorAuction").val();
+    $("#dateAuction").val();
+    $("#nameAuction").val();
+    $("#descriptionAuction").val();
+    $("#categoryAuction").val();
     return true;
 }
 
@@ -376,7 +382,11 @@ function checkDateAuction() {
 
     today = yyyy + '/' + mm + '/' + dd;
 
-    if ($("#dateAuction").val() < today) {
+    var arr = $("#dateAuction").val().split("-");
+    var d = new Date(yyyy, mm, dd, 0, 0, 0, 0);
+    var d_t = new Date(arr[0], arr[1], arr[2], 0, 0, 0, 0);
+
+    if (d_t < d) {
         $("#dateAuction").css('color', 'red');
         $("#dateAuction").css('border-color', 'red');
         return false;

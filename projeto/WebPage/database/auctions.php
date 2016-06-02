@@ -110,7 +110,7 @@
         $stmt->execute();
         $res = $stmt->fetchAll();
         
-        $id_cat = $res[0]['descricao'];
+        $id_cat = $res[0]['id_categoria'];
         $state = 'invalido';
         $n = null;
         
@@ -129,11 +129,12 @@
         $id_mod = $res[0]['id_utilizador'];
         
         $stmt = $conn->prepare('INSERT INTO Leilao(nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador)
-                                VALUES(:name, :description, :img, CURRENT_TIMESTAMP, :date, :user, :id_est, :id_cat, :id_mod) RETURNING id_leilao');
+                                VALUES(:name, :description, :img, CURRENT_TIMESTAMP, :date, :valor, :user, :id_est, :id_cat, :id_mod) RETURNING id_leilao');
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
         $stmt->bindParam(':description', $description, PDO::PARAM_STR);
         $stmt->bindParam(':img', $img, PDO::PARAM_STR);
         $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+        $stmt->bindParam(':valor', $valor, PDO::PARAM_INT);
         $stmt->bindParam(':user', $user, PDO::PARAM_INT);
         $stmt->bindParam(':id_est', $id_est, PDO::PARAM_INT);
         $stmt->bindParam(':id_cat', $id_cat, PDO::PARAM_INT);

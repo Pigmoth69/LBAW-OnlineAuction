@@ -1,7 +1,7 @@
 <?php
     include_once("../config/init.php");
     include_once("../database/user.php");
-    include_once("../utils/utils.php");
+    include_once("../database/auctions.php");
     include_once("../database/moderate.php");
     include_once("../utils/utils.php");
     
@@ -11,21 +11,23 @@
 			$params[$param] = $_POST[$param];
 			continue;
 		}
-	}
+    }
     
+    $filename =  $_FILES["imageAuction"]["name"];
     
-    $filename =  $_FILES["image"]["name"];
-    
-    if ( ($_FILES["image"]["type"] == "image/gif") || ($_FILES["image"]["type"] == "image/jpeg") || ($_FILES["image"]["type"] == "image/jpg") || ($_FILES["image"]["type"] == "image/png")  || ($_FILES["image"]["type"] == "image/pjpeg")) {
-        if (file_exists($_FILES["image"]["name"])) {
+    if ( ($_FILES["imageAuction"]["type"] == "image/gif") || ($_FILES["imageAuction"]["type"] == "image/jpeg") || ($_FILES["imageAuction"]["type"] == "image/jpg") || ($_FILES["imageAuction"]["type"] == "image/png")  || ($_FILES["imageAuction"]["type"] == "image/pjpeg")) {
+        if (file_exists($_FILES["imageAuction"]["name"])) {
             $_SESSION['error_messages'][] = 'File already exists';
+            echo 0;
             return false;
         }
         else {
-            move_uploaded_file($_FILES["image"]["tmp_name"],"../images/users/".$filename);
+            echo 1;
+            move_uploaded_file($_FILES["imageAuction"]["tmp_name"],"../images/auction/".$filename);
         }
     }
     else {
+        echo 2;
         $_SESSION['error_messages'][] = 'Invalid type of file';
         return false;
     }
