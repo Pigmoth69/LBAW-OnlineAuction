@@ -110,14 +110,14 @@
                     <div class="panel panel-success" id="AlertStyle">
                         <div class="panel-heading">
                             <div class="inline-form">
-                                <strong>Alert! </strong>Auction closes in <span id="time">00:50</span> minutes!
+                                <strong>Alert! </strong>Auction closes in <span id="time"></span>
                             </div>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
 								<div class="progress">
                                     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-                                        <p id="ProgressStatus">0</p>
+                                        <p id="ProgressStatus"></p>
                                         <!-- Auction closes in <span id="time">00:30</span> minutes!-->
                                     </div>
                                 </div>
