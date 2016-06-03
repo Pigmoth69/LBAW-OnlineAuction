@@ -46,7 +46,7 @@
                     <img src="{$seller.imagem_utilizador|escape}" style="width:500px;height:360px" alt="{$seller.imagem_utilizador|escape}">
                 </div>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">
+                    <div class="list-group-item">
                         <p class="text-center">User rating:</p>
                         <div class="ratings">
                             <p>
@@ -55,7 +55,7 @@
                                 <span class="glyphicon glyphicon-star-empty"></span> {/for}
                             </p>
                         </div>
-                    </a>
+                    </div>
                     <a href="UserPage.php?idPage={$seller.id_utilizador}" class="list-group-item">
                         <p class="glyphicon glyphicon-user"> {$seller.nome|escape}</p>
                     </a>
@@ -101,8 +101,53 @@
                   class="list-group-item">Category 3</a>                   </div>-->
             </div>
             <div class="col-md-9">
-                <div class="thumbnail">
-                    <h4 class="text-center" id="ItemName">{$auction.nome_produto|escape}</h4>
+                <div class="row">
+                    <h4 class="text-center" id="ItemName">{$auction.nome_produto|escape}
+                        {if $auction.estado_leilao == 'cancelado'}
+                        <i data-toggle="modal" data-target="#editAuction" class="fa fa-cog fa-2x fa-spin" aria-hidden="true"></i>
+                        {/if}
+                    </h4> {if $auction.estado_leilao == 'cancelado'}
+                    <div id="editAuction" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Create New Auction</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" id="addAuction" action="../actions/edit_auction.php" onsubmit="return checkValidityAuction()" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <input type="text" name="nameAuction" id="nameAuction" value="{$auction.nome_produto|escape}" class="form-control input-sm" placeholder="Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="date" name="dateAuction" id="dateAuction" value="{$auction.data_fim}" class="form-control input-sm" placeholder="Date to end the auction" onChange="checkDateAuction()">
+                                        </div>
+                                        <div class="form-group">
+                                            <select id="categoryOptionsAuction" name="categoryAuction" label="Category">
+                                {foreach $categorias as $categoria}
+                                    <option value="{$categoria.descricao}">{$categoria.descricao|escape}</option>
+                                {/foreach}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="number" min="0" name="valorAuction" id="valorAuction" class="form-control input-sm" placeholder="Minimum Bid">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="image">Image: </label>
+                                            <input type="file" id="imageAuction" name="imageAuction">
+                                        </div>
+                                    </form>
+                                    <textarea rows="4" cols="50" name="descriptionAuction" form="addAuction"></textarea>
+                                    <input type="submit" value="Create New Auction" class="btn btn-block" form="addAuction" id="submitAuction">
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/if}
                 </div>
                 <div class="thumbnail">
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -161,8 +206,8 @@
                                     <div class="list-group">
                                         {foreach $licitees as $lic}
                                         <a href="UserPage.php?idPage={$lic.id_utilizador}" class="list-group-item">
-                                            <!-- MISSING -->
                                             <span class="badge">{$span = getTimeDiffOnLic($lic.id_licitacao)}{$span} ago</span>
+                                            <span class="badge">Bid: {$lic.valor_licitacao}</span>
                                             <i class="fa fa-fw fa-user"></i> {$lic.nome|escape}
                                         </a>
                                         {/foreach}

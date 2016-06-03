@@ -3,6 +3,7 @@
     include_once '../database/user.php';
     include_once '../database/auctions.php';
     include_once '../database/countries.php';
+    include_once '../database/moderate.php';
     include_once '../database/categories.php';
     include_once '../utils/utils.php';
     
@@ -14,8 +15,8 @@
     if (count($_SESSION) > 0) {
         $infos = getInfoByID($_SESSION['user']);
         $smarty->assign('infos', $infos);
-    } 
-    
+    }
+        
     $idPage = $_GET['idPage'];
     $auction = getAuctionByID($_GET['idPage']);
     $seller = getInfoByID($auction[0]['id_vendedor']);

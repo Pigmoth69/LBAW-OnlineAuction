@@ -58,6 +58,7 @@
                             </p>
                         </div>
                     </div>
+                    {if !isMod($infos.id_utilizador)}
                     <div class="list-group-item">
                         <p class="text-center">Rate the auction</p>
                         <div class="ratings text-center">
@@ -70,6 +71,7 @@
                             </p>
                         </div>
                     </div>
+                    {/if}
                     <a href="UserPage.php?idPage={$seller.id_utilizador}" class="list-group-item">
                         <p class="glyphicon glyphicon-user"> {$seller.nome|escape}</p>
                     </a>
@@ -84,6 +86,7 @@
                         <p>Total sales: {$sales}</p>
                     </div>
                 </div>
+                {if !isMod($infos.id_utilizador)}
                 <div class="btn center-block">
                     <a href="#" class="btn btn-danger text-center" data-toggle="modal" data-target="#reportModal">
                         <i class="fa fa-flag fa-2x"></i>
@@ -109,6 +112,7 @@
                         </div>
                     </div>
                 </div>
+                {/if}
             </div>
             <div class="col-md-9">
                 <div class="thumbnail">
@@ -159,6 +163,7 @@
                                     </div>
                                 </div>
                                 <!-- Código para fazer as bids-->
+                                {if $auction.estado_leilao == 'aberto' && isMod($infos.id_utilizador)}
                                 <div class="text-center" id="bidAction">
                                     <form class="form-inline">
                                         <div class="pull-left">
@@ -173,6 +178,7 @@
                                         <button id="bidding" type="submit" onclick="bid({$idPage});return false" onsubmit="bid({$idPage});return false" class="btn btn-primary btn-lg">Make Bid!</button>
                                     </form>
                                 </div>
+                                {/if}
                             </div>
                         </div>
                     </div>

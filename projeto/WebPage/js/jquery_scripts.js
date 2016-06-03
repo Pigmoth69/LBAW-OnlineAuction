@@ -35,37 +35,34 @@ function bid(auction) {
 }
 
 function validateAuction(bool, id) {
-    var motive =
-        $.post(
-            '../api/validate_auction.php', {
-                'functionName': 'validateAuction',
-                'validate': bool,
-                'auction': id,
-                'motive': motive,
-                'date': date
+    $.post(
+        '../api/validate_auction.php', {
+            'functionName': 'validateAuction',
+            'validate': bool,
+            'auction': id
 
-            },
-            function(data) {
-                var response = data['validateAuction'];
-                switch (response) {
-                    case 'error':
-                        swal("Error validating auction.");
-                        break;
-                    case 'success':
-                        var str = "Auction was " + data['validate'] + ".";
-                        swal(str);
-                        break;
-                    case 'error on js':
-                        swal("Don't crack the site.");
-                        break;
-                    default:
-                        //displayError("Error while processing the login...");
-                        break;
-                }
-                return true;
-            }).fail(function(error) {
-            alert(error);
-        });
+        },
+        function(data) {
+            var response = data['validateAuction'];
+            switch (response) {
+                case 'error':
+                    swal("Error validating auction.");
+                    break;
+                case 'success':
+                    var str = "Auction was " + data['validate'] + ".";
+                    swal(str);
+                    break;
+                case 'error on js':
+                    swal("Don't crack the site.");
+                    break;
+                default:
+                    //displayError("Error while processing the login...");
+                    break;
+            }
+            return true;
+        }).fail(function(error) {
+        alert(error);
+    });
     return false;
 }
 

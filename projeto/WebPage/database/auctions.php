@@ -17,7 +17,7 @@
     
     function getAuctionByID($id) {
         global $conn;
-        $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :id');
+        $stmt = $conn->prepare('SELECT * FROM Leilao, EstadoLeilao WHERE id_leilao = :id AND EstadoLeilao.id_estado_leilao = Leilao.id_estado_leilao');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll();

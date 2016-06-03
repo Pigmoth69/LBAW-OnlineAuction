@@ -3,11 +3,12 @@
     include_once '../database/auctions.php';
     include_once '../database/countries.php';
     include_once '../database/categories.php';
+    include_once '../database/moderate.php';
     include_once '../utils/utils.php';
     
-    if (!isOwner($_SESSION['user'], $_GET['idPage'])) {
-        header("Location: ItemPageBidder.php?idPage=" . $_GET['idPage']);
-    }
+    //if (!isOwner($_SESSION['user'], $_GET['idPage']) || isMod($_SESSION['user'])) {
+    //    header("Location: ItemPageBidder.php?idPage=" . $_GET['idPage']);
+    //}
     
     $categorias = getAllCategories();
     if (count($_SESSION) > 0) {

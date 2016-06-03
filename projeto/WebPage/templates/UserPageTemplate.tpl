@@ -183,7 +183,6 @@
 
                     <div class="modal fade" id="modalAuction" role="dialog">
                         <div class="modal-dialog">
-
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -218,10 +217,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                     </div>
-
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
