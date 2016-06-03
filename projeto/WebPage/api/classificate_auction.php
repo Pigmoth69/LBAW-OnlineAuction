@@ -14,7 +14,7 @@
     $param = ''."classificateAuction";
     $param2 = ''."classification";
     
-    if (count($_SESSION) == 0 || $_SESSION['user'] == "") {
+    if (count($_SESSION) == 0 || $_SESSION['user'] == "" || isMod($_SESSION['user']) || isAdmin($_SESSION['user'])) {
         $_SESSION['error_messages'][] = 'Not logged';
         $data = [ $param => "error on js"];
 		printResponse($data);

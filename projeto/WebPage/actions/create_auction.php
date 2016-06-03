@@ -34,7 +34,7 @@
     
     $img = "../images/auction/" . $filename;
     
-    if ($params['nameAuction'] == "" || $params['dateAuction'] == "" || $params['categoryAuction'] == "" || $params['valorAuction'] == "") {
+    if ($params['nameAuction'] == "" || $params['dateAuction'] == "" || $params['categoryAuction'] == "" || $params['valorAuction'] == "" || isMod($_SESSION['user']) || isAdmin($_SESSION['user'])) {
         $_SESSION['error_messages'][] = 'Passwords don\'t match';
         header('Location: ../index.php');
         return false;

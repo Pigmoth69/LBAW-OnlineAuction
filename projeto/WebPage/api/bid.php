@@ -14,7 +14,7 @@
     $param = ''."bid";
     $param2 = ''."amount";
     
-    if (count($_SESSION) == 0 || $_SESSION['user'] == "") {
+    if (count($_SESSION) == 0 || $_SESSION['user'] == "" || isMod($_SESSION['user']) || isAdmin($_SESSION['user']) || isOwner($_SESSION['user'], params['auction'])) {
         $_SESSION['error_messages'][] = 'Not logged';
         $data = [ $param => "error on js"];
 		printResponse($data);

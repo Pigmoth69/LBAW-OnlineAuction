@@ -13,7 +13,7 @@
 	}
     $param = ''."registerMod";
     
-    if ($params['password'] != $params['password_confirmation']) {
+    if (($params['password'] != $params['password_confirmation']) || !isAdmin($_SESSION['user'])) {
         $_SESSION['error_messages'][] = 'Passwords don\'t match';
         $data = [ $param => "error on js"];
 		printResponse($data);

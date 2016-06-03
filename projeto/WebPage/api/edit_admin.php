@@ -34,7 +34,7 @@
     
     $img = "../images/users/" . $filename;
     
-    if ($params['passwordEdit'] != $params['password_confirmationEdit']) {
+    if (($params['passwordEdit'] != $params['password_confirmationEdit']) || !isAdmin($_SESSION['user'])) {
         $_SESSION['error_messages'][] = 'Passwords don\'t match';
         //printResponse("error on js", "editAdmin");
         header('Location: ../pages/AdminPage.php');
