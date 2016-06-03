@@ -1,5 +1,5 @@
 {include file='common/head.tpl'} {include file='common/bar.tpl'}
-
+<!--<script src="../js/"></script>-->
 <body>
 
     <!-- Page Content -->
