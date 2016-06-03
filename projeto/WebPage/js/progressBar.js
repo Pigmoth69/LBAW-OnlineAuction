@@ -1,26 +1,22 @@
 $(document).ready(onReady);
 
 function onReady() {
-    var i = (progressBarDATA['currentSeconds']*100)/progressBarDATA['totalTime'];//total %
-    var increment= 100 / progressBarDATA['totalTime'];
-   
-    //inicializar ao segundo 0
-    var firstTime = getDaysHoursMinutesSeconds(parseInt(progressBarDATA['totalTime'],10)-parseInt(progressBarDATA['currentSeconds'],10));
-    $('#time').text(firstTime[0] +" days "+firstTime[1] + " hours " + firstTime[2] + " minutes " + firstTime[3]+" seconds");
-    progressBarDATA['currentSeconds']++; // para atualizar os segundos logo depois de mostrar!
-    $('.progress-bar').css('width', parseInt(i) + '%');
-    $('#ProgressStatus').text(parseInt(i) + "%");
+    
     if(progressBarDATA['currentSeconds']>progressBarDATA['totalTime']){
-        $("#AlertStyle").removeClass("panel panel-warning").addClass("panel panel-danger");
-        $(".panel-heading").text("Auction closed!");
-        $(".panel-body").css('background-color', '#f7ebeb');
-        $("#bidAction").css('display', 'none');
+       changeLayoutFinish();
     }else{ 
+        var i = (progressBarDATA['currentSeconds']*100)/progressBarDATA['totalTime'];//total %
+        var increment= 100 / progressBarDATA['totalTime'];
 
-        if(i >= 90 && i <= 100) {
-            $("#AlertStyle ").removeClass("panel panel-success").addClass("panel panel-warning");
-            $(".panel-body").css('background-color', '#fdfaee');
-        }
+        var firstTime = getDaysHoursMinutesSeconds(parseInt(progressBarDATA['totalTime'],10)-parseInt(progressBarDATA['currentSeconds'],10));
+        $('#time').text(firstTime[0] +" days "+firstTime[1] + " hours " + firstTime[2] + " minutes " + firstTime[3]+" seconds");
+        progressBarDATA['currentSeconds']++; // para atualizar os segundos logo depois de mostrar!
+        $('.progress-bar').css('width', parseInt(i) + '%');
+        $('#ProgressStatus').text(parseInt(i) + "%");
+
+        if(i >= 90 && i < 100) 
+            changeLayoutAlmostFinished();
+        
         jQuery(function($) {
             var counterBack = setInterval(function() {
             i += increment;
@@ -45,10 +41,9 @@ function startTimer(duration, display) {
             days, hours, minutes, seconds;
         setInterval(function() {
             if (i < 100) {
-                if (i >= 90 && i <= 100) {
-                    $("#AlertStyle ").removeClass("panel panel-success").addClass("panel panel-warning");
-                    $(".panel-body").css('background-color', '#fdfaee');
-                }
+                if (i >= 90 && i <= 100) 
+                    changeLayoutAlmostFinished();
+                
                 var res = getDaysHoursMinutesSeconds(timer);
                 days = res[0];
                 hours = res[1];
@@ -62,10 +57,7 @@ function startTimer(duration, display) {
                 }
             } else if (i > 100 && i <= 104) {
                 i = 105; //codigo todo trolha mas depois vai ser mudado! ;)
-                $("#AlertStyle").removeClass("panel panel-warning").addClass("panel panel-danger");
-                $(".panel-heading").text("Auction closed!");
-                $(".panel-body").css('background-color', '#f7ebeb');
-                $("#bidAction").css('display', 'none');
+                changeLayoutFinish();
             } 
         }, 1000);
     }
@@ -87,5 +79,21 @@ function startTimer(duration, display) {
     var res = [days1,hours1,minutes1,seconds1];
     //console.log("Days: "+days1+" Hours: "+hours1+" Minutes: "+minutes1+" Seconds: "+seconds1);
     return res;
+    }
+
+    function changeLayoutFinish(){
+        $("#AlertStyle").removeClass("panel panel-warning").addClass("panel panel-danger");
+        $(".panel-heading").text("Auction closed!");
+        $(".panel-body").css('background-color', '#f7ebeb');
+        $(".progress").css('background-color', '#f7ebeb');
+        $("#bidAction").css('display', 'none');
+        $('.progress-bar').css('width', 100 + '%');
+        $('#ProgressStatus').text(100 + "%");
+    }
+
+    function changeLayoutAlmostFinished(){
+        $("#AlertStyle ").removeClass("panel panel-success").addClass("panel panel-warning");
+        $(".panel-body").css('background-color', '#fdfaee');
+        $(".progress").css('background-color', '#fdfaee');
     }
 };
