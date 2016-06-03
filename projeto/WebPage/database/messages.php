@@ -43,6 +43,8 @@
             return false;
             
         $id_recetor = $result[0]['id_utilizador'];
+        if ($id_recetor == $id)
+            return false;
 
         $stmt = $conn->prepare('INSERT INTO Mensagem(id_emissor, id_recetor, titulo, conteudo) VALUES(:id, :id_recetor, :title, :body)');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);

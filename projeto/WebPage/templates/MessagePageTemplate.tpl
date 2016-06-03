@@ -111,7 +111,7 @@
                                 </div>
                                 <textarea class="form-control" onresize="false" rows="10" id="messageText"></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary" onclick="return sendMessage()">Send</button>
+                            <button type="button" class="btn btn-primary" onclick="return sendMessage({$infos.e_mail})">Send</button>
                         </div>
                     </div>
                 </div>
