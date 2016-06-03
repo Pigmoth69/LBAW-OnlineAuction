@@ -1,4 +1,8 @@
-$(document).ready(onReady);
+$('document').ready(function() {});
+
+function setModalUser(id) {
+    $("#idToBan").val(id);
+}
 
 function bid(auction) {
     var amount = $("#AmountInput").val();
@@ -131,6 +135,7 @@ function ban(bool, id) {
     if (bool == 'banned') {
         motive = $("#motive").val();
         date = $("#banDate").val();
+        id = $("#idToBan").val();
     } else {
         motive = "";
         date = "";
