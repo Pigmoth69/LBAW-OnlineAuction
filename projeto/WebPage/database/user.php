@@ -39,10 +39,63 @@
         $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetchAll();
+        
+        if (isBanned($result[0]['id_utilizador']))
+            return -2;
+        
         if (count($result) === 0) {
             return -1;
         }
         else return $result[0]['id_utilizador'];
+    }
+    
+    function isBanned($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM HistoricoBanidos WHERE id_utilizador = :id AND data_fim > now()::date');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        if (count($result) > 0)
+            return true;
+        else return false;
+    }
+    
+    function users() {
+        global $conn;
+        $stmt = $conn->prepare('SELECT DISTINCT ON (Utilizador.id_utilizador) Utilizador.id_utilizador, nome FROM Utilizador, UtilizadorModerador, UtilizadorAdministrador WHERE Utilizador.id_utilizador != UtilizadorModerador.id_utilizador
+                                AND Utilizador.id_utilizador != UtilizadorAdministrador.id_utilizador');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
+    function cancelAuction($reporter, $auction, $motive) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Utilizador WHERE id_utilizador = :id');
+        $stmt->bindParam(':id', $reporter, PDO::PARAM_INT);
+        $stmt->execute();
+        $mail_reporter = $stmt->fetchAll();
+        if (count($mail_reporter) == 0)
+            return -1;
+            
+        $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :id');
+        $stmt->bindParam(':id', $auction, PDO::PARAM_INT);
+        $stmt->execute();
+        $mail_reported = $stmt->fetchAll();
+        if (count($mail_reported) == 0)
+            return -1;
+        
+        $mods = moderators();
+        $mod = $mods[0]['id_utilizador'];
+        
+        $title = 'Cancel Auction';
+        $body = 'Hello, i am user with id ' . $mail_reporter[0]['id_utilizador'] . ' and i want to cancel auction with id ' . $mail_reported[0]['id_leilao'] . ' because: ' . "\n" . $motive;
+        $stmt = $conn->prepare('INSERT INTO Mensagem(id_emissor, id_recetor, titulo, conteudo) VALUES(:id, :id_recetor, :title, :body)');
+        $stmt->bindParam(':id', $reporter, PDO::PARAM_INT);
+        $stmt->bindParam(':id_recetor', $mod, PDO::PARAM_INT);
+        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+        $stmt->bindParam(':body', $body, PDO::PARAM_STR);
+        $stmt->execute();
+        return $mod;
     }
     
     function register($name, $date, $gender, $mail, $password, $pais) {

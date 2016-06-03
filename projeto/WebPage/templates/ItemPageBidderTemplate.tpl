@@ -62,11 +62,11 @@
                         <p class="text-center">Rate the auction</p>
                         <div class="ratings text-center">
                             <p>
-                                <i class="fa fa-star-o fa-3x" id="1stStar" onclick="updateRate(1)" aria-hidden="true"></i>
-                                <i class="fa fa-star-o fa-3x" id="2ndStar" onclick="updateRate(2)" aria-hidden="true"></i>
-                                <i class="fa fa-star-o fa-3x" id="3rdStar" onclick="updateRate(3)" aria-hidden="true"></i>
-                                <i class="fa fa-star-o fa-3x" id="4thStar" onclick="updateRate(4)" aria-hidden="true"></i>
-                                <i class="fa fa-star-o fa-3x" id="5thStar" onclick="updateRate(5)" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="1stStar" onclick="updateRate(1, {$auction.id_leilao})" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="2ndStar" onclick="updateRate(2, {$auction.id_leilao})" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="3rdStar" onclick="updateRate(3, {$auction.id_leilao})" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="4thStar" onclick="updateRate(4, {$auction.id_leilao})" aria-hidden="true"></i>
+                                <i class="fa fa-star-o fa-3x" id="5thStar" onclick="updateRate(5, {$auction.id_leilao})" aria-hidden="true"></i>
                             </p>
                         </div>
                     </div>
@@ -77,17 +77,38 @@
                         <p class="fa fa-venus-mars"> {if $seller.genero eq 'male'} Male {else} Female {/if}
                         </p>
                     </div>
-                    <a href="#" class="list-group-item">
+                    <a href="MessagePage.php" class="list-group-item">
                         <p class="glyphicon glyphicon-envelope"> {$seller.e_mail}</p>
                     </a>
                     <div class="list-group-item">
                         <p>Total sales: {$sales}</p>
                     </div>
                 </div>
-                <!--<div class="list-group">
-                  <a href="#" class="list-group-item active">Category 1</a>                   <a
-                  href="#" class="list-group-item">Category 2</a>                   <a href="#"
-                  class="list-group-item">Category 3</a>                   </div>-->
+                <div class="btn center-block">
+                    <a href="#" class="btn btn-danger text-center" data-toggle="modal" data-target="#reportModal">
+                        <i class="fa fa-flag fa-2x"></i>
+                        <br> Report Auction
+                    </a>
+                </div>
+                <div id="reportModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Report Auction</h4>
+                            </div>
+                            <div class="modal-body">
+                                <textarea rows="4" cols="50" name="motive" id="motive" class="form-control input-sm" placeholder="Write here the motive for your report"></textarea>
+                                <br>
+                                <input type="submit" value="Report Auction" class="btn btn-primary" id="reportAuction" onsubmit="reportAuction({$idPage})" onclick="reportAuction({$idPage})">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-9">
                 <div class="thumbnail">
@@ -149,7 +170,7 @@
                                                 <input type="text" class="form-control" id="AmountInput" aria-describedby="sizing-addon1" placeholder="Amount e.g 2.56">
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-lg">Make Bid!</button>
+                                        <button id="bidding" type="submit" onclick="bid({$idPage});return false" onsubmit="bid({$idPage});return false" class="btn btn-primary btn-lg">Make Bid!</button>
                                     </form>
                                 </div>
                             </div>

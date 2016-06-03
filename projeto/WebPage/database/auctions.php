@@ -24,6 +24,39 @@
         return $result;
     }
     
+    function auctions() {
+        global $conn;
+        $stmt = $conn->prepare('SELECT nome, nome_produto, id_leilao FROM Leilao, Utilizador WHERE Leilao.id_vendedor=Utilizador.id_utilizador');
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    
+    function classificateAuction($user, $auction, $classification) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM ClassificacaoLeilao WHERE id_licitador = :user AND id_leilao = :auction');
+        $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+        $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        
+        if (count($result) > 0) {
+            $stmt = $conn->prepare('UPDATE ClassificacaoLeilao SET (valor_classificacao) = (:classification) WHERE id_licitador = :user AND id_leilao = :auction');
+            $stmt->bindParam(':classification', $classification, PDO::PARAM_INT);
+            $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+            $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        }   
+        else {
+            $stmt = $conn->prepare('INSERT INTO ClassificacaoLeilao(id_licitador, id_leilao) VALUES(:user, :auction)');
+            $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+            $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        }  
+    }
+    
     function isHighestBid($id_leilao, $id_licitador) {
         global $conn;
         $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id_leilao ORDER BY valor_licitacao DESC');
@@ -35,6 +68,135 @@
             return true;
         }
         else return false;
+    }
+    
+    function search($desc) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT DISTINCT ON (Leilao.id_leilao) * FROM Leilao WHERE to_tsvector(\'english\', descricao) @@ to_tsquery(\'english\', :desc) OR to_tsvector(\'english\', nome_produto) @@ to_tsquery(\'english\', :desc)');
+        $stmt->bindParam(':desc', $desc, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
+    function getStatus($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Leilao,EstadoLeilao
+                                WHERE Leilao.id_leilao = :id AND Leilao.id_estado_leilao=EstadoLeilao.id_estado_leilao');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        if (count($result) > 0)
+            return $result[0]['estado_leilao'];
+        else return false;
+    }
+    
+    function isCancelled($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Leilao,EstadoLeilao
+                                WHERE Leilao.id_leilao = :id AND Leilao.id_estado_leilao=EstadoLeilao.id_estado_leilao
+                                AND EstadoLeilao.estado_leilao!=\'cancelado\'');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        if (count($result) > 0)
+            return false;
+        else return true;
+    }
+    
+    function newAuction($user, $name, $date, $category, $valor, $description, $img) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Categoria WHERE descricao = :category');
+        $stmt->bindParam(':category', $category, PDO::PARAM_STR);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        
+        $id_cat = $res[0]['id_categoria'];
+        $state = 'invalido';
+        $n = null;
+        
+        $stmt = $conn->prepare('INSERT INTO EstadoLeilao(valor_atual, estado_leilao, motivo) VALUES(:valor, :state, :n) RETURNING id_estado_leilao');
+        $stmt->bindParam(':valor', $valor, PDO::PARAM_INT);
+        $stmt->bindParam(':state', $state, PDO::PARAM_STR);
+        $stmt->bindParam(':n', $n, PDO::PARAM_INT);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        
+        $id_est = $res[0]['id_estado_leilao'];
+        
+        $stmt = $conn->prepare('SELECT * FROM UtilizadorModerador');
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $id_mod = $res[0]['id_utilizador'];
+        
+        $stmt = $conn->prepare('INSERT INTO Leilao(nome_produto, descricao, imagem_produto, data_inicio, data_fim, valor_base, id_vendedor, id_estado_leilao, id_categoria, id_moderador)
+                                VALUES(:name, :description, :img, CURRENT_TIMESTAMP, :date, :valor, :user, :id_est, :id_cat, :id_mod) RETURNING id_leilao');
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $stmt->bindParam(':img', $img, PDO::PARAM_STR);
+        $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+        $stmt->bindParam(':valor', $valor, PDO::PARAM_INT);
+        $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+        $stmt->bindParam(':id_est', $id_est, PDO::PARAM_INT);
+        $stmt->bindParam(':id_cat', $id_cat, PDO::PARAM_INT);
+        $stmt->bindParam(':id_mod', $id_mod, PDO::PARAM_INT);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        return $res[0]['id_leilao'];
+    }
+    
+    function searchCategory($id) {
+        global $conn;
+        if ($id == -1) {
+            $stmt = $conn->prepare('SELECT * FROM Leilao');
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+        else {
+            $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_categoria = :id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();  
+        }
+    }
+    
+    function getAuctionsToValidate() {
+        global $conn;
+        $stmt = $conn->prepare('SELECT nome_produto,id_leilao,nome,id_utilizador FROM Leilao,Utilizador,EstadoLeilao
+                                WHERE Leilao.id_estado_leilao=EstadoLeilao.id_estado_leilao
+                                AND EstadoLeilao.estado_leilao=\'invalido\' AND Leilao.id_vendedor=Utilizador.id_utilizador');
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    
+    function bid($user, $auction, $amount) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :auction');
+        $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();   
+        $fal = false;
+        
+        if (count($result) == 0)
+            return false;
+        else {
+            $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id_leilao ORDER BY valor_licitacao DESC');
+            $stmt->bindParam(':id_leilao', $auction, PDO::PARAM_INT);
+            $stmt->execute();
+            $res = $stmt->fetchAll();
+            
+            if ($res[0]['valor_licitacao'] >= $amount)
+                return false;
+            else {
+                $stmt = $conn->prepare('INSERT INTO Licitacao(id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(:auction, :user, CURRENT_TIMESTAMP, :amount, :fal)');
+                $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
+                $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+                $stmt->bindParam(':amount', $amount, PDO::PARAM_INT);
+                $stmt->bindParam(':fal', $fal, PDO::PARAM_BOOL);
+                $stmt->execute();
+                return true;
+            }
+        }
     }
     
     function isOwner($id_vendedor, $id_leilao) {

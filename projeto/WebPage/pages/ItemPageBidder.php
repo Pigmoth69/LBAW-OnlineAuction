@@ -16,8 +16,10 @@
         $smarty->assign('infos', $infos);
     } 
     
+    $idPage = $_GET['idPage'];
     $auction = getAuctionByID($_GET['idPage']);
-    $seller = getInfoByID($auction[0]['id_vendedor']); 
+    $seller = getInfoByID($auction[0]['id_vendedor']);
+    $_SESSION['e_mail to send'] = $seller[0]['e_mail']; //sou um indiano fdd
     $sales = getTotalSales($auction[0]['id_vendedor']);
     $best_bid = getHighestBid($auction[0]['id_leilao']);
     $progressBarData = progressBarData($_GET['idPage']);
@@ -27,5 +29,6 @@
     $smarty->assign('best_bid', $best_bid);
     $smarty->assign('sales', $sales);
     $smarty->assign('categorias', $categorias);
+    $smarty->assign('idPage', $idPage);
     $smarty->display('../templates/ItemPageBidderTemplate.tpl');
 ?>

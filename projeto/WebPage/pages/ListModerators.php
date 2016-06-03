@@ -12,10 +12,6 @@
         exit;
     }
     
-    if (!isAdmin($_SESSION['user'])) {
-        header("Location: UserPage.php?idPage=" . $_SESSION['user']);
-        exit;
-    }  
     
     $mods = moderators();
     $paises = getAllCountries();
@@ -26,5 +22,5 @@
     $smarty->assign('paises', $paises);
     $smarty->assign('mods', $mods);
     $smarty->assign('infos', $infos);
-    $smarty->display('../templates/AdminPageTemplate.tpl');
+    $smarty->display('../templates/ListModeratorsTemplate.tpl');
 ?>

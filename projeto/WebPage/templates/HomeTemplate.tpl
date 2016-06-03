@@ -9,14 +9,14 @@
             <div class="col-md-3">
                 <p class="lead">Total items:</p>
                 <ul class="list-group">
-                    <a href="" class="list-group-item"><span class="badge">
+                    <a href="" onclick="auctionsCategory(-1); return false" class="list-group-item"><span class="badge">
               {$total_no = 0}
               {foreach $categorias as $categoria}
                 {$no = getNoElementsOfCategory($categoria.id_categoria)}
                 {$total_no = $total_no + $no}
               {/foreach}
               {$total_no}</span>All Categories</a> {foreach $categorias as $categoria} {$no = getNoElementsOfCategory($categoria.id_categoria)} {$total_no = $total_no + $no}
-                    <a href="" class="list-group-item"><span class="badge">{$no}</span>{$categoria.descricao|escape}</a> {/foreach}
+                    <a href="" onclick="auctionsCategory({$categoria.id_categoria}); return false" class="list-group-item"><span class="badge">{$no}</span>{$categoria.descricao|escape}</a> {/foreach}
                 </ul>
             </div>
             <div class="col-md-9">
@@ -62,13 +62,9 @@
                                 <div class="ratings">
                                     <h5>Seller: <a {$seller = getInfoByID($auction.id_vendedor)} href="UserPage.php?idPage={$seller[0].id_utilizador}">{$seller[0].nome}</a></h5>
                                     <p>
-                                        {$class = getClassificationAuction($auction.id_leilao)}
-                                        {for $temp = 1 to $class|ceil}
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        {/for}
-                                        {for $temp = $class|ceil to 4}
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                        {/for}
+                                        {$class = getClassificationAuction($auction.id_leilao)} {for $temp = 1 to $class|ceil}
+                                        <span class="glyphicon glyphicon-star"></span> {/for} {for $temp = $class|ceil to 4}
+                                        <span class="glyphicon glyphicon-star-empty"></span> {/for}
                                     </p>
                                 </div>
                                 <div class="price_tag">
@@ -98,6 +94,7 @@
     </div>
 </body>
 <script src="../js/imageFit.js"></script>
+<script src="../js/jquery_scripts.js"></script>
 {include file='common/foot.tpl'}
 
 </html>

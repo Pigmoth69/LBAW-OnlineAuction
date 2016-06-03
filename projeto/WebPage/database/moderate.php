@@ -23,6 +23,64 @@
         return $result;
     }
     
+    function ban($ban, $user, $date, $motive, $id_mod) {
+        global $conn;
+        if ($ban == 'banned') {
+            $stmt = $conn->prepare('INSERT INTO HistoricoBanidos(id_utilizador, id_moderador, data_banicao, data_fim, motivo) VALUES(:user, :id_mod, now()::DATE, :date, :motivo)');
+            $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+            $stmt->bindParam(':id_mod', $id_mod, PDO::PARAM_INT);
+            $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+            $stmt->bindParam(':motivo', $motive, PDO::PARAM_STR);
+            $stmt->execute();
+            return true;
+        }
+        else if ($ban == 'unbanned') {
+            $stmt = $conn->prepare('UPDATE HistoricoBanidos SET data_fim = now()::DATE WHERE id_utilizador = :user');
+            $stmt->bindParam(':user', $user, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        }
+        else return false;
+    }
+    
+    function isMod($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM UtilizadorModerador WHERE id_utilizador = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        if (count($result) > 0)
+            return true;
+        else return false;
+    }
+    
+    function validAuction($id, $validate, $auction) {
+        global $conn;
+        if ($validate == "validate") {
+            $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :id');
+            $stmt->bindParam(':id', $auction, PDO::PARAM_INT);
+            $stmt->execute();
+            $res = $stmt->fetchAll();
+            
+            $stmt = $conn->prepare('UPDATE EstadoLeilao SET estado_leilao=\'aberto\' WHERE EstadoLeilao.id_estado_leilao=:id');
+            $stmt->bindParam(':id', $res[0]['id_estado_leilao']);
+            $stmt->execute();
+            return true;
+        }
+        else if ($validate == "not validate") {
+            $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :id');
+            $stmt->bindParam(':id', $auction, PDO::PARAM_INT);
+            $stmt->execute();
+            $res = $stmt->fetchAll();
+             
+            $stmt = $conn->prepare('UPDATE EstadoLeilao SET estado_leilao=\'invalido\' WHERE EstadoLeilao.id_estado_leilao=:id');
+            $stmt->bindParam(':id', $res[0]['id_estado_leilao']);
+            $stmt->execute(); 
+            return true;
+        }
+        else return false;
+    }
+    
     function getAllModsExcept($id) {
         global $conn;
         $stmt = $conn->prepare('SELECT * FROM UtilizadorModerador WHERE id_utilizador != :id');
@@ -144,6 +202,36 @@
         
         $title = 'Report On User';
         $body = 'Hello, i am user with id ' . $mail_reporter[0]['id_utilizador'] . ' and i want to report user with id ' . $mail_reported[0]['id_utilizador'] . ' because: ' . "\n" . $motive;
+        $stmt = $conn->prepare('INSERT INTO Mensagem(id_emissor, id_recetor, titulo, conteudo) VALUES(:id, :id_recetor, :title, :body)');
+        $stmt->bindParam(':id', $reporter, PDO::PARAM_INT);
+        $stmt->bindParam(':id_recetor', $mod, PDO::PARAM_INT);
+        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+        $stmt->bindParam(':body', $body, PDO::PARAM_STR);
+        $stmt->execute();
+        return $mod;
+    }
+    
+    function reportAuction($reporter, $auction, $motive) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Utilizador WHERE id_utilizador = :id');
+        $stmt->bindParam(':id', $reporter, PDO::PARAM_INT);
+        $stmt->execute();
+        $mail_reporter = $stmt->fetchAll();
+        if (count($mail_reporter) == 0)
+            return -1;
+            
+        $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :id');
+        $stmt->bindParam(':id', $auction, PDO::PARAM_INT);
+        $stmt->execute();
+        $mail_reported = $stmt->fetchAll();
+        if (count($mail_reported) == 0)
+            return -1;
+        
+        $mods = moderators();
+        $mod = $mods[0]['id_utilizador'];
+        
+        $title = 'Report On Auction';
+        $body = 'Hello, i am user with id ' . $mail_reporter[0]['id_utilizador'] . ' and i want to report auction with id ' . $mail_reported[0]['id_leilao'] . ' because: ' . "\n" . $motive;
         $stmt = $conn->prepare('INSERT INTO Mensagem(id_emissor, id_recetor, titulo, conteudo) VALUES(:id, :id_recetor, :title, :body)');
         $stmt->bindParam(':id', $reporter, PDO::PARAM_INT);
         $stmt->bindParam(':id_recetor', $mod, PDO::PARAM_INT);

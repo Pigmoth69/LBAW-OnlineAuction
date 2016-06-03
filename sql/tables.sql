@@ -25,7 +25,8 @@ CREATE TYPE gender AS ENUM (
 CREATE TYPE state_auction AS ENUM (
     'cancelado',
     'aberto',
-    'fechado'  
+    'fechado',
+    'invalido'
 );
 
 CREATE TABLE Pais (
@@ -59,8 +60,8 @@ CREATE TABLE HistoricoBanidos (
     id_historico_banidos SERIAL,
     id_utilizador INTEGER,
     id_moderador INTEGER,
-    data_banicao DATE NOT NULL DEFAULT (now()::DATE),
-    data_fim DATE NOT NULL,
+    data_banicao TIMESTAMP NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    data_fim TIMESTAMP NOT NULL,
     motivo CHARACTER(256) NOT NULL
 );
 
@@ -89,8 +90,8 @@ CREATE TABLE Leilao (
     nome_produto CHARACTER(256) NOT NULL,
     descricao CHARACTER(256) NOT NULL,
     imagem_produto CHARACTER(256) DEFAULT 'img\default_user.png',
-    data_inicio DATE NOT NULL DEFAULT (now()::DATE),
-    data_fim DATE NOT NULL,
+    data_inicio TIMESTAMP NOT NULL DEFAULT (now()::DATE),
+    data_fim TIMESTAMP NOT NULL,
     valor_base NUMERIC NOT NULL,
     id_vendedor INTEGER,
     id_estado_leilao INTEGER,
@@ -108,7 +109,7 @@ CREATE TABLE Licitacao (
     id_licitacao SERIAL,
     id_leilao INTEGER,
     id_utilizador INTEGER,
-    data_licitacao DATE NOT NULL DEFAULT (now()::DATE),
+    data_licitacao TIMESTAMP NOT NULL DEFAULT (CURRENT_TIMESTAMP),
     valor_licitacao DECIMAL NOT NULL,
     vencedor BOOLEAN
 );
@@ -116,7 +117,7 @@ CREATE TABLE Licitacao (
 CREATE TABLE EstadoLeilao (
     id_estado_leilao SERIAL,
     valor_atual DECIMAL,
-    estado_leilao state_auction DEFAULT 'fechado'::state_auction,
+    estado_leilao state_auction DEFAULT 'invalido'::state_auction,
     motivo CHARACTER(256) DEFAULT NULL
 );
 
