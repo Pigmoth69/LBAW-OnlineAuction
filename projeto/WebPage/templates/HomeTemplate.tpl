@@ -1,5 +1,6 @@
 {include file='common/head.tpl'} {include file='common/bar.tpl'}
 <!--<script src="../js/"></script>-->
+
 <body>
 
     <!-- Page Content -->
@@ -55,12 +56,12 @@
                         <div class="form-inline">
                             <div class="thumbnail">
                                 <div class="teste">
-                                    <img src="{$auction.imagem_produto}" alt="">
+                                    <img src="{$auction.imagem_produto|escape}" alt="">
                                 </div>
-                                <h3 class="text-center"><b>{$auction.nome_produto}</b></h3>
+                                <h3 class="text-center"><b>{$auction.nome_produto|escape}</b></h3>
                                 <p>{$auction.descricao}</p>
                                 <div class="ratings">
-                                    <h5>Seller: <a {$seller = getInfoByID($auction.id_vendedor)} href="UserPage.php?idPage={$seller[0].id_utilizador}">{$seller[0].nome}</a></h5>
+                                    <h5>Seller: <a {$seller = getInfoByID($auction.id_vendedor)} href="UserPage.php?idPage={$seller[0].id_utilizador}">{$seller[0].nome|escape}</a></h5>
                                     <p>
                                         {$class = getClassificationAuction($auction.id_leilao)} {for $temp = 1 to $class|ceil}
                                         <span class="glyphicon glyphicon-star"></span> {/for} {for $temp = $class|ceil to 4}

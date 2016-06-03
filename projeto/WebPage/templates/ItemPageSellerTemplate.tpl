@@ -31,7 +31,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
     <script src="../js/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/sweetalert.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/sweetalert.css" />
     <script src="../js/loginScript.js"></script>
     <script type='text/javascript' src="../js/progressBar.js"></script>
 </head>
@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="thumbnail">
-                    <img src="{$seller.imagem_utilizador}" style="width:500px;height:360px" alt="{$seller.imagem_utilizador}">
+                    <img src="{$seller.imagem_utilizador|escape}" style="width:500px;height:360px" alt="{$seller.imagem_utilizador|escape}">
                 </div>
                 <div class="list-group">
                     <a href="#" class="list-group-item">
@@ -57,14 +57,14 @@
                         </div>
                     </a>
                     <a href="UserPage.php?idPage={$seller.id_utilizador}" class="list-group-item">
-                        <p class="glyphicon glyphicon-user"> {$seller.nome}</p>
+                        <p class="glyphicon glyphicon-user"> {$seller.nome|escape}</p>
                     </a>
                     <div class="list-group-item">
                         <p class="fa fa-venus-mars"> {if $seller.genero eq 'male'} Male {else} Female {/if}
                         </p>
                     </div>
                     <a href="#" class="list-group-item">
-                        <p class="glyphicon glyphicon-envelope"> {$seller.e_mail}</p>
+                        <p class="glyphicon glyphicon-envelope"> {$seller.e_mail|escape}</p>
                     </a>
                     <div class="list-group-item">
                         <p>Total sales: {$sales}</p>
@@ -102,7 +102,7 @@
             </div>
             <div class="col-md-9">
                 <div class="thumbnail">
-                    <h4 class="text-center" id="ItemName">{$auction.nome_produto}</h4>
+                    <h4 class="text-center" id="ItemName">{$auction.nome_produto|escape}</h4>
                 </div>
                 <div class="thumbnail">
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -113,7 +113,7 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
                             <div class="item active">
-                                <img src="{$auction.imagem_produto}" alt="{$auction.nome_produto}"></div>
+                                <img src="{$auction.imagem_produto|escape}" alt="{$auction.nome_produto|escape}"></div>
                         </div>
                         <!-- Left and right controls -->
                         <a class=" left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -128,7 +128,7 @@
                     <div class="caption-full">
                         <!-- <h4 class="pull- right ">92.75€</h4> -->
                         <strong>Item description:</strong><br>
-                        <p>{$auction.descricao}</p>
+                        <p>{$auction.descricao|escape}</p>
                     </div>
                 </div>
                 <div class="panel-group" id="auctionStatus">
@@ -140,7 +140,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-								<div class="progress">
+                                <div class="progress">
                                     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
                                         <p id="ProgressStatus"></p>
                                         <!-- Auction closes in <span id="time">00:30</span> minutes!-->
@@ -163,7 +163,7 @@
                                         <a href="UserPage.php?idPage={$lic.id_utilizador}" class="list-group-item">
                                             <!-- MISSING -->
                                             <span class="badge">{$span = getTimeDiffOnLic($lic.id_licitacao)}{$span} ago</span>
-                                            <i class="fa fa-fw fa-user"></i> {$lic.nome}
+                                            <i class="fa fa-fw fa-user"></i> {$lic.nome|escape}
                                         </a>
                                         {/foreach}
                                     </div>

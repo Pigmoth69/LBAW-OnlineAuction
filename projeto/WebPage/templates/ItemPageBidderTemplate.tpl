@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
     <script src="../js/loginScript.js"></script>
     <script src="../js/progressBar.js"></script>
-    
+
 </head>
 {include file='common/bar.tpl'}
 
@@ -45,7 +45,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="thumbnail">
-                    <img src="{$seller.imagem_utilizador}" style="width:500px;height:360px" alt="{$seller.nome}">
+                    <img src="{$seller.imagem_utilizador|escape}" style="width:500px;height:360px" alt="{$seller.nome|escape}">
                 </div>
                 <div class="list-group">
                     <div class="list-group-item">
@@ -71,14 +71,14 @@
                         </div>
                     </div>
                     <a href="UserPage.php?idPage={$seller.id_utilizador}" class="list-group-item">
-                        <p class="glyphicon glyphicon-user"> {$seller.nome}</p>
+                        <p class="glyphicon glyphicon-user"> {$seller.nome|escape}</p>
                     </a>
                     <div class="list-group-item">
                         <p class="fa fa-venus-mars"> {if $seller.genero eq 'male'} Male {else} Female {/if}
                         </p>
                     </div>
                     <a href="MessagePage.php" class="list-group-item">
-                        <p class="glyphicon glyphicon-envelope"> {$seller.e_mail}</p>
+                        <p class="glyphicon glyphicon-envelope"> {$seller.e_mail|escape}</p>
                     </a>
                     <div class="list-group-item">
                         <p>Total sales: {$sales}</p>
@@ -112,7 +112,7 @@
             </div>
             <div class="col-md-9">
                 <div class="thumbnail">
-                    <h4 class="text-center" id="ItemName">{$auction.nome_produto}</h4>
+                    <h4 class="text-center" id="ItemName">{$auction.nome_produto|escape}</h4>
                 </div>
                 <div class="thumbnail">
                     <div id="myCarousel" class="carousel
@@ -123,7 +123,7 @@
                         </ol>
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
-                            <div class="item active"> <img src="{$auction.imagem_produto}" alt="{$auction.nome_produto}"></div>
+                            <div class="item active"> <img src="{$auction.imagem_produto|escape}" alt="{$auction.nome_produto|escape}"></div>
                         </div>
                         <!-- Left and right controls -->
                         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -139,7 +139,7 @@
                         <!-- <h4 class="pull-
                         right">92.75€</h4> -->
                         <strong>Item description:</strong><br>
-                        <p>{$auction.descricao}</p>
+                        <p>{$auction.descricao|escape}</p>
                     </div>
                 </div>
 

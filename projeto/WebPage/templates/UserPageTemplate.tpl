@@ -101,8 +101,8 @@
                                 <tbody>
                                     {foreach $auctions_seller as $auction_seller}
                                     <tr>
-                                        <td><b><a href="ItemPageBidder.php?idPage={$auction.id_leilao}">{$leilao = getAuctionByID($auction_seller.id_leilao)} {$leilao[0].nome_produto|escape}</a></b></td>
-                                        <td> {$auction_seller.valor_licitacao} </td>
+                                        <td><b><a href="ItemPageBidder.php?idPage={$auction_seller.id_leilao}">{$leilao = getAuctionByID($auction_seller.id_leilao)} {$leilao[0].nome_produto|escape}</a></b></td>
+                                        <td> {$auction_seller.valor_licitacao|escape} </td>
                                         <td>
                                             {if (isHighestBid($auction_seller.id_leilao, $auction_seller.id_licitacao))} Highest {else} Not Highest {/if}
                                         </td>
@@ -126,13 +126,13 @@
                                 <div class="modal-body">
                                     <form method="POST" id="editUser" action="../api/edit_user.php" onsubmit="return checkValidityEditUser()" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <input type="text" name="first_nameEdit" id="first_nameEdit" class="form-control input-sm" value="{$infos.nome|rtrim}" placeholder="First Name">
+                                            <input type="text" name="first_nameEdit" id="first_nameEdit" class="form-control input-sm" value="{$infos.nome|rtrim|escape}" placeholder="First Name">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="last_nameEdit" id="last_nameEdit" class="form-control input-sm" value="{$infos.nome|rtrim}" placeholder="Last Name">
+                                            <input type="text" name="last_nameEdit" id="last_nameEdit" class="form-control input-sm" value="{$infos.nome|rtrim|escape}" placeholder="Last Name">
                                         </div>
                                         <div class="form-group">
-                                            <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" value="{$infos.datanasc}" placeholder="Date Of Birth" onChange="checkDateEdit()">
+                                            <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" value="{$infos.datanasc|escape}" placeholder="Date Of Birth" onChange="checkDateEdit()">
                                         </div>
                                         <div class="form-group">
                                             <label class="radio-inline"><input type="radio" name="genderEdit" value="male" {if $infos.genero eq "male"}
@@ -145,14 +145,14 @@
                                         <div class="form-group">
                                             <select id="countryOptionsEdit" name="countryEdit" label="Country">
                                 {foreach $paises as $pais}
-                                    <option value="{$pais.nome_pais}" {if $infos.id_pais eq $pais.id_pais}
+                                    <option value="{$pais.nome_pais|escape}" {if $infos.id_pais eq $pais.id_pais}
                                                                         selected
                                                                         {/if}>{$pais.nome_pais}</option>
                                 {/foreach}
                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" name="emailEdit" id="emailEdit" class="form-control input-sm" value="{$infos.e_mail|rtrim}" placeholder="Email Address">
+                                            <input type="email" name="emailEdit" id="emailEdit" class="form-control input-sm" value="{$infos.e_mail|rtrim|escape}" placeholder="Email Address">
                                         </div>
                                         <div class="form-group">
                                             <label for="image">Image: </label>
@@ -201,7 +201,7 @@
                                         <div class="form-group">
                                             <select id="categoryOptionsAuction" name="categoryAuction" label="Category">
                                 {foreach $categorias as $categoria}
-                                    <option value="{$categoria.descricao}">{$categoria.descricao}</option>
+                                    <option value="{$categoria.descricao}">{$categoria.descricao|escape}</option>
                                 {/foreach}
                                             </select>
                                         </div>
@@ -232,7 +232,7 @@
                             <h3>My information</h3>
                         </div>
                         <div class="col-md-4">
-                            <img src="{$infos.imagem_utilizador}" alt="Error" style="width:120px;height:120px">
+                            <img src="{$infos.imagem_utilizador|escape}" alt="Error" style="width:120px;height:120px">
                         </div>
                         <div class="col-md-8">
                             <h4> <b> Name </b></h4>

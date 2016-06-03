@@ -1,4 +1,5 @@
 {include file='common/head.tpl'} {include file='common/bar.tpl'}
+
 <body>
     <div id="adminStatus"></div>
     <div class="container">
@@ -9,14 +10,14 @@
                 </div>
                 <div class="list-group">
                     <a href="#" class="list-group-item">
-                        <p class="glyphicon glyphicon-user"> {$infos[0].nome}</p>
+                        <p class="glyphicon glyphicon-user"> {$infos[0].nome|escape}</p>
                     </a>
                     <a href="#" class="list-group-item">
                         <p class="fa fa-venus-mars">
-                            {$infos[0].datanasc}</p>
+                            {$infos[0].datanasc|escape}</p>
                     </a>
                     <a href="#" class="list-group-item">
-                        <p class="glyphicon glyphicon-envelope"> {$infos[0].e_mail}</p>
+                        <p class="glyphicon glyphicon-envelope"> {$infos[0].e_mail|escape}</p>
                     </a>
                     <a href="#editProfile" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#modalEdit">
                         <i class="glyphicon glyphicon-cog"></i> Edit profile
@@ -38,13 +39,13 @@
                             <form method="POST" id="editAdmin" action="../api/edit_admin.php" onsubmit="return checkValidityEdit()" enctype="multipart/form-data">
                                 <form>
                                     <div class="form-group">
-                                        <input type="text" name="first_nameEdit" id="first_nameEdit" class="form-control input-sm" value="{$infos[0].nome|rtrim}" placeholder="First Name">
+                                        <input type="text" name="first_nameEdit" id="first_nameEdit" class="form-control input-sm" value="{$infos[0].nome|rtrim|escape}" placeholder="First Name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="last_nameEdit" id="last_nameEdit" class="form-control input-sm" value="{$infos[0].nome|rtrim}" placeholder="Last Name">
+                                        <input type="text" name="last_nameEdit" id="last_nameEdit" class="form-control input-sm" value="{$infos[0].nome|rtrim|escape}" placeholder="Last Name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" value="{$infos[0].datanasc}" placeholder="Date Of Birth" onChange="checkDateEdit()">
+                                        <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" value="{$infos[0].datanasc|escape}" placeholder="Date Of Birth" onChange="checkDateEdit()">
                                     </div>
                                     <div class="form-group">
                                         <label class="radio-inline"><input type="radio" name="genderEdit" value="male" {if $infos[0].genero eq "male"}
@@ -55,11 +56,11 @@
                                                                                                                         {/if}>Female</label>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="emailEdit" id="emailEdit" class="form-control input-sm" value="{$infos[0].e_mail|rtrim}" placeholder="Email Address">
+                                        <input type="email" name="emailEdit" id="emailEdit" class="form-control input-sm" value="{$infos[0].e_mail|rtrim|escape}" placeholder="Email Address">
                                     </div>
                                     <div class="form-group">
                                         <label for="image">Image: </label>
-		                                <input type="file" id="image" name="image">
+                                        <input type="file" id="image" name="image">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="previous_passwordEdit" id="previous_passwordEdit" class="form-control input-sm" placeholder="Old Password">
@@ -130,7 +131,7 @@
                                             <div class="form-group">
                                                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password" onChange="checkPasswords()">
                                             </div>
-                                            <input type="submit" value="Add Moderator" class="btn btn-block"  id="registo">
+                                            <input type="submit" value="Add Moderator" class="btn btn-block" id="registo">
                                         </form>
                                     </div>
                                 </div>
@@ -168,7 +169,7 @@
 
             </div>
         </div>
-     </div>
+    </div>
 
 
 </body>

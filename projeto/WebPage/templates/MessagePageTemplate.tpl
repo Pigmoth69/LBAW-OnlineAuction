@@ -46,13 +46,13 @@
                                         <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{$rec.id_mensagem}">{$rec.titulo}</a>
                                             <div id="collapse{$rec.id_mensagem}" class="panel-collapse collapse">
                                                 <div class="panel-body">
-                                                    {$rec.conteudo}
+                                                    {$rec.conteudo|escape}
                                                 </div>
                                             </div>
                                         </td>
 
-                                        <td>{$mail = getInfoByID($rec.id_emissor)} {$mail[0].e_mail}</td>
-                                        <td>{$rec.data_mensagem}</td>
+                                        <td>{$mail = getInfoByID($rec.id_emissor)} {$mail[0].e_mail|escape}</td>
+                                        <td>{$rec.data_mensagem|escape}</td>
                                     </tr>
                                     {/foreach}
                                 </tbody>
@@ -74,13 +74,13 @@
                                         <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{$emi.id_mensagem}">{$emi.titulo}</a>
                                             <div id="collapse{$emi.id_mensagem}" class="panel-collapse collapse">
                                                 <div class="panel-body">
-                                                    {$emi.conteudo}
+                                                    {$emi.conteudo|escape}
                                                 </div>
                                             </div>
                                         </td>
                                         </td>
-                                        <td>{$mail = getInfoByID($emi.id_recetor)} {$mail[0].e_mail}</td>
-                                        <td>{$emi.data_mensagem}</td>
+                                        <td>{$mail = getInfoByID($emi.id_recetor)} {$mail[0].e_mail|escape}</td>
+                                        <td>{$emi.data_mensagem|escape}</td>
                                     </tr>
                                     {/foreach}
                                 </tbody>
@@ -109,7 +109,7 @@
                                     <div class="input-group-addon">Title</div>
                                     <input type="text" class="form-control" id="emailTitle" placeholder="Example">
                                 </div>
-                                <textarea class="form-control" rows="10" id="messageText"></textarea>
+                                <textarea class="form-control" onresize="false" rows="10" id="messageText"></textarea>
                             </div>
                             <button type="button" class="btn btn-primary" onclick="return sendMessage()">Send</button>
                         </div>

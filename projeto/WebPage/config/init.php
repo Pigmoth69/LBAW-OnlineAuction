@@ -1,11 +1,11 @@
 <?php
-  session_set_cookie_params(3600, '/~up201304828/LBAW-OnlineAuction/projeto/WebPage'); //FIXME
+  session_set_cookie_params(3600, '/~lbaw1523'); //FIXME
   session_start();
 
   error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
 
-  $BASE_DIR = '/usr/users2/mieic2013/up201304828/public_html/LBAW-OnlineAuction/projeto/WebPage/'; //FIXME
-  $BASE_URL = '/~up201304828/LBAW-OnlineAuction/projeto/WebPage/'; //FIXME
+  $BASE_DIR = '/opt/lbaw/lbaw1523/public_html/final/'; //FIXME
+  $BASE_URL = '/~lbaw1523/final/'; //FIXME
 
   $conn = new PDO('pgsql:host=dbm;dbname=lbaw1523', 'lbaw1523', 'YX18C6X0'); //FIXME
   $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
