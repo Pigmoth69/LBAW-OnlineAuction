@@ -348,7 +348,7 @@
         else return $res[0]['valor_licitacao'];
     }
     
-    function timeLeftOnAuction($id) {
+    /*function timeLeftOnAuction($id) {
         global $conn;
         $stmt = $conn->prepare('SELECT data_fim FROM Leilao WHERE id_leilao = :id');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -361,9 +361,9 @@
         $resu = $stmt->fetchAll();
         
         return $resu[0]["age"];
-    }
+    }*/
 
-    /*function timeLeftOnAuction($id) {
+    function timeLeftOnAuction($id) {
         $creationDate = creationDateAuction($id);
         $endDate = endDateAuction($id);
         $datetime1 = strtotime($creationDate);                 //data inicio
@@ -372,7 +372,7 @@
         $currentSeconds = $datetime3 - $datetime1;
         $totalSeconds = $datetime2 - $datetime1;
         return $totalSeconds - $currentSeconds;
-    }*/
+    }
 
     function creationDateAuction($id) {
         global $conn;

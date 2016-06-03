@@ -1,5 +1,5 @@
 {include file='common/head.tpl'} {include file='common/bar.tpl'}
-<!--<script src="../js/"></script>-->
+<script src="../js/auctionTime.js"></script>
 <body>
 
     <!-- Page Content -->
@@ -69,7 +69,8 @@
                                 </div>
                                 <div class="price_tag">
                                     <h4 class="text-center"> {$bid = getHighestBid($auction.id_leilao)}{$bid} $</h4>
-                                    <p class="text-center">Time left: {$time = timeLeftOnAuction($auction.id_leilao)}{$time}</p>
+                                    <p class="text-center">Time Left:</p>
+                                    <p class="text-center timeLeft">{$time = timeLeftOnAuction($auction.id_leilao)}{$time}</p>
                                     <p class="text-center">Number of bids: {$nr = getNoLiciteesOnAuction($auction.id_leilao)}{$nr}</p>
                                 </div>
                                 <div class="text-center">
