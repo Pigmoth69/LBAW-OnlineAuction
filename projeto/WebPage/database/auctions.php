@@ -103,6 +103,28 @@
         else return true;
     }
     
+    function editAuction($auction, $name, $date, $category, $valor, $description, $img) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Categoria WHERE descricao = :category');
+        $stmt->bindParam(':category', $category, PDO::PARAM_STR);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $id_cat = $res[0]['id_categoria'];
+        
+        $stmt = $conn->prepare('UPDATE Leilao SET(nome_produto, descricao, imagem_produto, data_fim, valor_base, id_categoria)
+                                = (:name, :description, :img, :date, :valor, :id_cat) WHERE id_leilao = :auction');
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $stmt->bindParam(':img', $img, PDO::PARAM_STR);
+        $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+        $stmt->bindParam(':valor', $valor, PDO::PARAM_INT);
+        $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
+        $stmt->bindParam(':id_cat', $id_cat, PDO::PARAM_INT);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        return true;
+    }
+    
     function newAuction($user, $name, $date, $category, $valor, $description, $img) {
         global $conn;
         $stmt = $conn->prepare('SELECT * FROM Categoria WHERE descricao = :category');

@@ -31,7 +31,16 @@
     
     $idPage = $_GET['idPage'];
     $categorias = getAllCategories();
-    $infos = getInfoByID($idPage);
+    
+    if (count($_SESSION) > 0) {
+        $infos = getInfoByID($_SESSION['user']);
+        $smarty->assign('infos', $infos);
+    }
+    else {
+        $infos = getInfoByID($_GET['idPage']);
+        //$smarty->assign('infos', $infos);
+    }
+    
     $pais = getNameCountryByID($infos[0]['id_pais']);
     $paises = getAllCountries();
     $auctions = getAuctionsByUserID($idPage);

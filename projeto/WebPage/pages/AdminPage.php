@@ -15,7 +15,12 @@
     if (!isAdmin($_SESSION['user'])) {
         header("Location: UserPage.php?idPage=" . $_SESSION['user']);
         exit;
-    }  
+    }
+    
+    if (count($_SESSION) > 0) {
+        $infos = getInfoByID($_SESSION['user']);
+        $smarty->assign('infos', $infos);
+    }
     
     $mods = moderators();
     $paises = getAllCountries();

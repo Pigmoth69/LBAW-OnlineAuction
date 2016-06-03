@@ -12,7 +12,6 @@
         exit;
     }
     
-    
     $mods = moderators();
     $paises = getAllCountries();
     $infos = getInfoByID($_SESSION['user']);

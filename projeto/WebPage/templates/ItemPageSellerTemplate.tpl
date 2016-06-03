@@ -103,10 +103,10 @@
             <div class="col-md-9">
                 <div class="row">
                     <h4 class="text-center" id="ItemName">{$auction.nome_produto|escape}
-                        {if $auction.estado_leilao == 'cancelado'}
+                        {if $auction.estado_leilao == 'invalido'}
                         <i data-toggle="modal" data-target="#editAuction" class="fa fa-cog fa-2x fa-spin" aria-hidden="true"></i>
                         {/if}
-                    </h4> {if $auction.estado_leilao == 'cancelado'}
+                    </h4> {if $auction.estado_leilao == 'invalido'}
                     <div id="editAuction" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <!-- Modal content-->
@@ -116,30 +116,34 @@
                                     <h4 class="modal-title">Create New Auction</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" id="addAuction" action="../actions/edit_auction.php" onsubmit="return checkValidityAuction()" enctype="multipart/form-data">
+                                    <form method="POST" id="formEditAuction" action="../actions/edit_auction.php" onsubmit="return checkValidityEditAuction()" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <input type="text" name="nameAuction" id="nameAuction" value="{$auction.nome_produto|escape}" class="form-control input-sm" placeholder="Name">
+                                            <input type="text" name="nameEditAuction" id="nameEditAuction" value="{$auction.nome_produto|escape}" class="form-control input-sm" placeholder="Name">
                                         </div>
                                         <div class="form-group">
-                                            <input type="date" name="dateAuction" id="dateAuction" value="{$auction.data_fim}" class="form-control input-sm" placeholder="Date to end the auction" onChange="checkDateAuction()">
+                                            <input type="datetime" name="dateEditAuction" id="dateEditAuction" value="{$auction.data_fim|escape}" class="form-control input-sm" placeholder="Date to end the auction" onChange="checkDateAuction()">
                                         </div>
                                         <div class="form-group">
-                                            <select id="categoryOptionsAuction" name="categoryAuction" label="Category">
+                                            <select id="categoryOptionsEditAuction" name="categoryEditAuction" label="Category">
                                 {foreach $categorias as $categoria}
-                                    <option value="{$categoria.descricao}">{$categoria.descricao|escape}</option>
+                                    <option value="{$categoria.descricao}" {if $categoria.id_categoria eq $auction.id_categoria}
+                                                                        selected
+                                                                        {/if}>{$categoria.descricao|escape}</option>
                                 {/foreach}
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" min="0" name="valorAuction" id="valorAuction" class="form-control input-sm" placeholder="Minimum Bid">
+                                            <input type="number" min="0" value="{$auction.valor_base|escape}" name="valorEditAuction" id="valorEditAuction" class="form-control input-sm" placeholder="Minimum Bid">
                                         </div>
                                         <div class="form-group">
                                             <label for="image">Image: </label>
-                                            <input type="file" id="imageAuction" name="imageAuction">
+                                            <input type="file" id="imageEditAuction" name="imageEditAuction">
                                         </div>
+                                        <input type="hidden" name="idLeilao" id="idLeilao" value="{$auction.id_leilao}">
                                     </form>
-                                    <textarea rows="4" cols="50" name="descriptionAuction" form="addAuction"></textarea>
-                                    <input type="submit" value="Create New Auction" class="btn btn-block" form="addAuction" id="submitAuction">
+                                    <textarea rows="4" cols="50" onresize="false" value="{$auction.descricao|escape}" name="descriptionEditAuction" form="formEditAuction"></textarea>
+                                    <br>
+                                    <input type="submit" value="Edit Auction" class="btn btn-block" form="formEditAuction" id="submitEditAuction">
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                     </div>

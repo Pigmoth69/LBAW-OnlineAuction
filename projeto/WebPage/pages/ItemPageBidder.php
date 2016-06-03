@@ -16,7 +16,7 @@
         $infos = getInfoByID($_SESSION['user']);
         $smarty->assign('infos', $infos);
     }
-        
+    
     $idPage = $_GET['idPage'];
     $auction = getAuctionByID($_GET['idPage']);
     $seller = getInfoByID($auction[0]['id_vendedor']);
