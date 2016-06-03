@@ -10,28 +10,42 @@ function onReady() {
     progressBarDATA['currentSeconds']++; // para atualizar os segundos logo depois de mostrar!
     $('.progress-bar').css('width', parseInt(i) + '%');
     $('#ProgressStatus').text(parseInt(i) + "%");
+    if(progressBarDATA['currentSeconds']>progressBarDATA['totalTime']){
+        $("#AlertStyle").removeClass("panel panel-warning").addClass("panel panel-danger");
+        $(".panel-heading").text("Auction closed!");
+        $(".panel-body").css('background-color', '#f7ebeb');
+        $("#bidAction").css('display', 'none');
+    }else{ 
 
-    jQuery(function($) {
-        var counterBack = setInterval(function() {
-        i += increment;
-        if (i <= 100) {
-            $('.progress-bar').css('width', parseInt(i) + '%');
-            $('#ProgressStatus').text(parseInt(i) + "%");
-        } else {
-            clearTimeout(counterBack);
+        if(i >= 90 && i <= 100) {
+            $("#AlertStyle ").removeClass("panel panel-success").addClass("panel panel-warning");
+            $(".panel-body").css('background-color', '#fdfaee');
         }
-    }, 1000);
-        var totalTime = parseInt(progressBarDATA['totalTime'],10)-parseInt(progressBarDATA['currentSeconds'],10),
+        jQuery(function($) {
+            var counterBack = setInterval(function() {
+            i += increment;
+                if (i <= 100) {
+                    $('.progress-bar').css('width', parseInt(i) + '%');
+                    $('#ProgressStatus').text(parseInt(i) + "%");
+                } else {
+                    clearTimeout(counterBack);
+                }
+            }, 1000);
+            var totalTime = parseInt(progressBarDATA['totalTime'],10)-parseInt(progressBarDATA['currentSeconds'],10),
             display = $('#time');
         startTimer(totalTime, display);
-    });
+        });
+    }
+
+
+    
 
 function startTimer(duration, display) {
         var timer = duration,
             days, hours, minutes, seconds;
         setInterval(function() {
-            if (i <= 100) {
-                if (i >= 90 && i <= 94) {
+            if (i < 100) {
+                if (i >= 90 && i <= 100) {
                     $("#AlertStyle ").removeClass("panel panel-success").addClass("panel panel-warning");
                     $(".panel-body").css('background-color', '#fdfaee');
                 }

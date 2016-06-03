@@ -221,13 +221,14 @@
     function progressBarData($id){
         $creationDate = creationDateAuction($id);
         $endDate = endDateAuction($id); 
+        date_default_timezone_set('Europe/London');
         $datetime1 = strtotime($creationDate);                 //data inicio
         $datetime2 = strtotime($endDate);                      //end data
         $datetime3 = strtotime(date("Y/m/d h:i:s", time()));   //current time
         $currentSeconds = $datetime3 - $datetime1;
         $totalSeconds = $datetime2 - $datetime1;
-        $timeLeft = timeLeftOnAuction($id);
-	    $result = array('totalTime' => $totalSeconds,'currentSeconds' => $currentSeconds,'timeLeft' => $timeLeft);
+	    $result = array('totalTime' => $totalSeconds,'currentSeconds' => $currentSeconds);
+        print_r(date("Y/m/d h:i:s", time()));
 	    echo "<script>\n";
 		echo 'var progressBarDATA = ' . json_encode($result, JSON_PRETTY_PRINT) . ';';
 		echo "\n</script>";
