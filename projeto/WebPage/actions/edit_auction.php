@@ -13,21 +13,11 @@
 		}
     }
     
-    $filename =  $_FILES["imageEditAuction"]["name"];
+    $filename =  gen_uuid();
     
-    if ( ($_FILES["imageEditAuction"]["type"] == "image/gif") || ($_FILES["imageEditAuction"]["type"] == "image/jpeg") || ($_FILES["imageEditAuction"]["type"] == "image/jpg") || ($_FILES["imageEditAuction"]["type"] == "image/png")  || ($_FILES["imageEditAuction"]["type"] == "image/pjpeg")) {
-        if (file_exists($_FILES["imageEditAuction"]["name"])) {
-            $_SESSION['error_messages'][] = 'File already exists';
-            echo 0;
-            return false;
-        }
-        else {
-            echo 1;
-            move_uploaded_file($_FILES["imageEditAuction"]["tmp_name"],"../images/auction/".$filename);
-        }
-    }
+    if ( ($_FILES["imageAuction"]["type"] == "image/gif") || ($_FILES["imageAuction"]["type"] == "image/jpeg") || ($_FILES["imageAuction"]["type"] == "image/jpg") || ($_FILES["imageAuction"]["type"] == "image/png")  || ($_FILES["imageAuction"]["type"] == "image/pjpeg"))
+            move_uploaded_file($_FILES["imageAuction"]["tmp_name"],"../images/auction/".$filename);
     else {
-        echo 2;
         $_SESSION['error_messages'][] = 'Invalid type of file';
         return false;
     }
