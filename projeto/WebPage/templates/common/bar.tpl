@@ -111,8 +111,8 @@
                             <div class="modal-body">
                                 <h3> HomePage </h3>
                                 <h5> 
-				        In this page you may see a list of featured auctions so that you can have an overview over Bidme's available auctions.
-                        </h5>
+                                In this page you may see a list of featured auctions so that you can have an overview over Bidme's available auctions.
+                                </h5>
                                 <br><br>
                                 <img src="../images/bidme.png" alt="BidMeLogo" style="width:60px;height:25px;"> Bidme icon: By clicking in the icon you will be redirected to the homepage.
                                 <br><br>
@@ -131,10 +131,9 @@
                                 password.
 
                                 <h3> Logged user account </h3>
-
                                 <h5> 
-				        This is your personal page where you can check and edit your information, view statistics about you as seller and/or bidder, create new auctions and manage messages.
-						</h5>
+                                This is your personal page where you can check and edit your information, view statistics about you as seller and/or bidder, create new auctions and manage messages.
+                                </h5>
                                 <br><br>
                                 <p class="glyphicon glyphicon-envelope"></p>
                                 Messages: By clicking in "Messages" you will be redirected to a page where you can check your inbox, view sent messages and send new ones.
@@ -151,6 +150,35 @@
                                 <p class="glyphicon glyphicon-pencil"></p>
                                 Edit Profile: By clicking in "Edit Profile" button you will have a form where you may change your personal information.
 
+                                <h3> Bidder page <h3>
+                                <h5> 
+                                This is also the auction page where you are presented with additional information such as title, description, related images, the actual bid, the remaining time to bid, auction rating, seller information, rating and sales and last but not least you may also report the auction.
+                                </h5>
+                                <br><br>
+                                <p class="glyphicon glyphicon-euro"></p>
+                                Bid: As long as the auction hasn't been closed yet and you place a bid higher than the actual, by clicking in "Make bid!" you start to bid that same auction.
+                                <br><br>
+                                <p class="glyphicon glyphicon-star-empty"></p>
+                                Rate auction: You may rate the auction by choosing between one and five stars.
+                                <br><br>
+                                <p class="glyphicon glyphicon-star-empty"></p>
+                                Rate seller: You may rate the auction's seller by choosing between one and five stars.
+                                <br><br>
+                                <p class="glyphicon glyphicon-flag"></p>
+                                Report auction: By clicking in "Report Auction" button you send the request to report the auction.
+                                
+                                
+                                <h3> Seller page <h3>
+
+                                <h5> 
+                                This is also the auction page from the seller perspective where you are presented with a light version of your personal information and total sales. Relatively to the auction itself you may see the remaining time, the actual bids, related images, title, description and finally the option to cancel de auction.
+                                </h5>
+                                <br><br>
+                                <p class="glyphicon glyphicon-flag"></p>
+                                Cancel auction: By clicking in the "Cancel Auction" button you send the request to cancel the auction.
+                                <br><br>
+                                <p class="glyphicon glyphicon-cog"></p>
+                                Edit auction: By clicking in this icon you may edit the auction information.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

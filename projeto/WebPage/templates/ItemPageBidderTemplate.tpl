@@ -161,7 +161,7 @@
                                 </div>
                             </div>
                             <!-- Código para fazer as bids-->
-                            {if $auction.estado_leilao == 'aberto' && !isMod($infos[0].id_utilizador)}
+                            {if $auction.estado_leilao == 'aberto' && !isMod($infos[0].id_utilizador) && isLoggedIn($infos[0].id_utilizador)}
                             <div class="text-center" id="bidAction">
                                 <form class="form-inline">
                                     <div class="pull-left">
