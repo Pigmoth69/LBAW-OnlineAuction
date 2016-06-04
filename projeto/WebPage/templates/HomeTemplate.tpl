@@ -98,7 +98,7 @@
                         var times = [];
                         var noLicitees = [];
                         var classifications = [];
-                        var infos = [];
+                        var infosAuctions = [];
 
                         /* CREATE REST */
                         {/literal}{for $i = 0 to $auctions|count - 1}{literal}
@@ -122,7 +122,7 @@
                         {/literal}{/for}{literal}
                         
                         {/literal}{for $i = 0 to $auctions|count - 1}{literal}
-                        infos[{/literal}{$i}{literal}] = {/literal}{json_encode($infosAuctions[$i])}{literal};
+                        infosAuctions[{/literal}{$i}{literal}] = {/literal}{json_encode($infosAuctions[$i])}{literal};
                         {/literal}{/for}{literal}
                         
                         var html = "<div class=\"row\" id=\"allAuctions\">";
@@ -147,7 +147,7 @@
                             html = html + "<p>" + temp + "</p>";
                             html = html + "<div class=\"ratings\">"
                             temp = array[i]["id_vendedor"];
-                            temp1 = infos[i];
+                            temp1 = infosAuctions[i][0]["nome"].trim();
                             html = html + "<h5>Seller: <a href=\"UserPage.php?idPage=" + temp + "\">" + temp1 + "</a></h5>";
                             html = html + "</div>";
                             html = html + "<div class=\"price_tag\">";

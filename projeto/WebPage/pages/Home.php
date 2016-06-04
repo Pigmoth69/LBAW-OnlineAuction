@@ -24,7 +24,6 @@
     
     if (isset($_SESSION['searched auctions'])) {
         $smarty->assign('auctions', $_SESSION['searched auctions']);
-        $smarty->assign('js_auctions', json_encode($_SESSION['searched auctions']));
         
         if (count($_SESSION['searched auctions']) < 9) {
             $max = count($_SESSION['searched auctions']) - 1;
@@ -38,20 +37,27 @@
     }
     else {
         $smarty->assign('auctions', $auctions);
-        $smarty->assign('js_auctions', json_encode($auctions));
     }
     
     $highestBids = null;
+    $noLicitees = null;
+    $timeLeft = null;
+    $classifications = null;
+    $infosAuctions = null;
+    
     foreach($auctions as $auction) {
-        $highestBids[] = getHighestBid($auction[id_leilao]);
-        
-        $smarty->assign('timeLeft', timeLeftOnAuction($auction['id_leilao']));
-        $smarty->assign('noLicitees', getNoLiciteesOnAuction($auction['id_leilao']));
-        $smarty->assign('classifications', getClassificationAuction($auction['id_leilao']));
-        $smarty->assign('infosAuctions', getName($auction['id_leilao']));
+        $highestBids[] = getHighestBid($auction['id_leilao']);
+        $timeLeft[] = timeLeftOnAuction($auction['id_leilao']);
+        $noLicitees[] = getNoLiciteesOnAuction($auction['id_leilao']);
+        $classifications[] = getClassificationAuction($auction['id_leilao']);
+        $infosAuctions[] = getInfoByID($auction['id_vendedor']);
     }
     
     $smarty->assign('highestBids', $highestBids);
+    $smarty->assign('timeLeft', $timeLeft);
+    $smarty->assign('noLicitees', $noLicitees);
+    $smarty->assign('classifications', $classifications);
+    $smarty->assign('infosAuctions', $infosAuctions);
     $smarty->assign('max', $max);
     $smarty->assign('auctionsVisited', 2);
     $smarty->assign('exceeded', $exceeded);
