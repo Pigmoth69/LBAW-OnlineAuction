@@ -125,23 +125,28 @@
                             <div class="modal-body">
                                 <form method="POST" id="editUser" action="../api/edit_user.php" onsubmit="return checkValidityEditUser()" enctype="multipart/form-data">
                                     <div class="form-group">
+                                        <label for="first_nameEdit">First Name: </label>
                                         <input type="text" name="first_nameEdit" id="first_nameEdit" class="form-control input-sm" value="{$infos.nome|rtrim|escape}" placeholder="First Name">
                                     </div>
                                     <div class="form-group">
+                                        <label for="last_nameEdit">Last Name: </label>
                                         <input type="text" name="last_nameEdit" id="last_nameEdit" class="form-control input-sm" value="{$infos.nome|rtrim|escape}" placeholder="Last Name">
                                     </div>
                                     <div class="form-group">
+                                        <label for="birthdateEdit">Date of Birth: </label>
                                         <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" value="{$infos.datanasc|escape}" onChange="checkDateEdit()">
                                     </div>
                                     <div class="form-group">
-                                        <label class="radio-inline"><input type="radio" name="genderEdit" value="male" {if $infos.genero eq "male"}
+
+                                        <label for="genderEditMale" class="radio-inline"><input type="radio" name="genderEditMale" value="male" {if $infos.genero eq "male"}
                                                                                                                         checked
                                                                                                                         {/if}>Male</label>
-                                        <label class="radio-inline"><input type="radio" name="genderEdit" value="female" {if $infos[0].genero eq "female"}
+                                        <label for="genderEditFemale" class="radio-inline"><input type="radio" name="genderEditFemale" value="female" {if $infos[0].genero eq "female"}
                                                                                                                         checked
                                                                                                                         {/if}>Female</label>
                                     </div>
                                     <div class="form-group">
+                                        <label for="countryOptionsEdit">Country: </label>
                                         <select id="countryOptionsEdit" name="countryEdit">
                                 {foreach $paises as $pais}
                                     <option value="{$pais.nome_pais|escape}" {if $infos.id_pais eq $pais.id_pais}
@@ -151,6 +156,7 @@
                             </select>
                                     </div>
                                     <div class="form-group">
+                                        <label for="emailEdit">E-mail: </label>
                                         <input type="email" name="emailEdit" id="emailEdit" class="form-control input-sm" value="{$infos.e_mail|rtrim|escape}" placeholder="Email Address">
                                     </div>
                                     <div class="form-group">
@@ -158,15 +164,19 @@
                                         <input type="file" id="image" name="image">
                                     </div>
                                     <div class="form-group">
+                                        <label for="previous_passwordEdit">Previous Password: </label>
                                         <input type="password" name="previous_passwordEdit" id="previous_passwordEdit" class="form-control input-sm" placeholder="Old Password">
                                     </div>
                                     <div class="form-group">
+                                        <label for="passwordEdit">New Password: </label>
                                         <input type="password" name="passwordEdit" id="passwordEdit" class="form-control input-sm" placeholder="Password" onChange="checkPasswordsEdit()">
                                     </div>
                                     <div class="form-group">
+                                        <label for="password_confirmationEdit">Confirm Password: </label>
                                         <input type="password" name="password_confirmationEdit" id="password_confirmationEdit" class="form-control input-sm" placeholder="Confirm Password" onChange="checkPasswordsEdit()">
                                     </div>
                                 </form>
+                                <label for="descriptionEdit">Description: </label>
                                 <textarea rows="4" cols="50" name="descriptionEdit" form="editUser">{$infos.descricao|rtrim}</textarea>
                                 <input type="submit" value="Edit User Profile" class="btn btn-block" form="editUser" id="submitUser">
                                 <div class="modal-footer">
@@ -191,12 +201,15 @@
                             <div class="modal-body">
                                 <form method="POST" id="addAuction" action="../actions/create_auction.php" onsubmit="return checkValidityAuction()" enctype="multipart/form-data">
                                     <div class="form-group">
+                                        <label for="nameAuction">Title: </label>
                                         <input type="text" name="nameAuction" id="nameAuction" class="form-control input-sm" placeholder="Name">
                                     </div>
                                     <div class="form-group">
+                                        <label for="dateAuction">Date to end: </label>
                                         <input type="date" name="dateAuction" id="dateAuction" class="form-control input-sm" onChange="checkDateAuction()">
                                     </div>
                                     <div class="form-group">
+                                        <label for="categoryOptionsAuction">Category: </label>
                                         <select id="categoryOptionsAuction" name="categoryAuction">
                                 {foreach $categorias as $categoria}
                                     <option value="{$categoria.descricao}">{$categoria.descricao|escape}</option>
@@ -204,13 +217,15 @@
                                             </select>
                                     </div>
                                     <div class="form-group">
+                                        <label for="valorAuction">Minimum bid: </label>
                                         <input type="number" min="0" name="valorAuction" id="valorAuction" class="form-control input-sm" placeholder="Minimum Bid">
                                     </div>
                                     <div class="form-group">
-                                        <label for="image">Image: </label>
+                                        <label for="imageAuction">Image: </label>
                                         <input type="file" id="imageAuction" name="imageAuction">
                                     </div>
                                 </form>
+                                <label for="descriptionAuction">Auction: </label>
                                 <textarea rows="4" cols="50" name="descriptionAuction" form="addAuction"></textarea>
                                 <input type="submit" value="Create New Auction" class="btn btn-block" form="addAuction" id="submitAuction">
                                 <div class="modal-footer">

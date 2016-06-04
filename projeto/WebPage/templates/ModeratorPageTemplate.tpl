@@ -37,23 +37,27 @@
                     <div class="modal-body">
                         <form method="POST" id="editAdmin" action="../api/edit_admin.php" onsubmit="return checkValidityEdit()" enctype="multipart/form-data">
                             <div class="form-group">
+                                <label for="first_nameEdit">First Name: </label>
                                 <input type="text" name="first_nameEdit" id="first_nameEdit" class="form-control input-sm" value="{$infos[0].nome|rtrim|escape}" placeholder="First Name">
                             </div>
                             <div class="form-group">
+                                <label for="last_nameEdit">Last Name: </label>
                                 <input type="text" name="last_nameEdit" id="last_nameEdit" class="form-control input-sm" value="{$infos[0].nome|rtrim|escape}" placeholder="Last Name">
                             </div>
                             <div class="form-group">
+                                <label for="birthdateEdit">Date of Birth: </label>
                                 <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" value="{$infos[0].datanasc|escape}" onChange="checkDateEdit()">
                             </div>
                             <div class="form-group">
-                                <label class="radio-inline"><input type="radio" name="genderEdit" value="male" {if $infos[0].genero eq "male"}
+                                <label for="genderEditMale" class="radio-inline"><input type="radio" id="genderEditMale" name="genderEdit" value="male" {if $infos[0].genero eq "male"}
                                                                                                                         checked
                                                                                                                         {/if}>Male</label>
-                                <label class="radio-inline"><input type="radio" name="genderEdit" value="female" {if $infos[0].genero eq "female"}
+                                <label for="genderEditFemale" class="radio-inline"><input type="radio" id="genderEditFemale" name="genderEdit" value="female" {if $infos[0].genero eq "female"}
                                                                                                                         checked
                                                                                                                         {/if}>Female</label>
                             </div>
                             <div class="form-group">
+                                <label for="emailEdit">E-mail: </label>
                                 <input type="email" name="emailEdit" id="emailEdit" class="form-control input-sm" value="{$infos[0].e_mail|rtrim|escape}" placeholder="Email Address">
                             </div>
                             <div class="form-group">
@@ -61,12 +65,15 @@
                                 <input type="file" id="image" name="image">
                             </div>
                             <div class="form-group">
+                                <label for="previous_passwordEdit">Previous Password: </label>
                                 <input type="password" name="previous_passwordEdit" id="previous_passwordEdit" class="form-control input-sm" placeholder="Old Password">
                             </div>
                             <div class="form-group">
+                                <label for="passwordEdit">New Password: </label>
                                 <input type="password" name="passwordEdit" id="passwordEdit" class="form-control input-sm" placeholder="New Password" onChange="checkPasswordsEdit()">
                             </div>
                             <div class="form-group">
+                                <label for="password_confirmationEdit">Confirm Password: </label>
                                 <input type="password" name="password_confirmationEdit" id="password_confirmationEdit" class="form-control input-sm" placeholder="Confirm New Password" onChange="checkPasswordsEdit()">
                             </div>
 

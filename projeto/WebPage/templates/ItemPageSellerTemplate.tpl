@@ -117,12 +117,15 @@
                             <div class="modal-body">
                                 <form method="POST" id="formEditAuction" action="../actions/edit_auction.php" onsubmit="return checkValidityEditAuction()" enctype="multipart/form-data">
                                     <div class="form-group">
+                                        <label for="nameEditAuction">Title: </label>
                                         <input type="text" name="nameEditAuction" id="nameEditAuction" value="{$auction.nome_produto|escape}" class="form-control input-sm" placeholder="Name">
                                     </div>
                                     <div class="form-group">
+                                        <label for="dateEditAuction">Date to end: </label>
                                         <input type="datetime" name="dateEditAuction" id="dateEditAuction" value="{$auction.data_fim|escape}" class="form-control input-sm" placeholder="Date to end the auction" onChange="checkDateAuction()">
                                     </div>
                                     <div class="form-group">
+                                        <label for="categoryOptionsEditAuction">Category: </label>
                                         <select id="categoryOptionsEditAuction" name="categoryEditAuction" label="Category">
                                 {foreach $categorias as $categoria}
                                     <option value="{$categoria.descricao}" {if $categoria.id_categoria eq $auction.id_categoria}
@@ -132,14 +135,16 @@
                                             </select>
                                     </div>
                                     <div class="form-group">
+                                        <label for="valorEditAuction">Minimum bid: </label>
                                         <input type="number" min="0" value="{$auction.valor_base|escape}" name="valorEditAuction" id="valorEditAuction" class="form-control input-sm" placeholder="Minimum Bid">
                                     </div>
                                     <div class="form-group">
-                                        <label for="image">Image: </label>
+                                        <label for="imageEditAuction">Image: </label>
                                         <input type="file" id="imageEditAuction" name="imageEditAuction">
                                     </div>
                                     <input type="hidden" name="idLeilao" id="idLeilao" value="{$auction.id_leilao}">
                                 </form>
+                                <label for="descriptionEditAuction">Title of Auction: </label>
                                 <textarea rows="4" cols="50" onresize="false" value="{$auction.descricao|escape}" name="descriptionEditAuction" form="formEditAuction"></textarea>
                                 <br>
                                 <input type="submit" value="Edit Auction" class="btn btn-block" form="formEditAuction" id="submitEditAuction">
