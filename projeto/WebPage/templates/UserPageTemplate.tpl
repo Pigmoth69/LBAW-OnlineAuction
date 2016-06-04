@@ -225,7 +225,7 @@
                                         <input type="file" id="imageAuction" name="imageAuction">
                                     </div>
                                 </form>
-                                <label for="descriptionAuction">Auction: </label>
+                                <label for="descriptionAuction">Description: </label>
                                 <textarea rows="4" cols="50" name="descriptionAuction" form="addAuction"></textarea>
                                 <input type="submit" value="Create New Auction" class="btn btn-block" form="addAuction" id="submitAuction">
                                 <div class="modal-footer">
