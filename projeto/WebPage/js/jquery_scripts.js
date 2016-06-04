@@ -107,13 +107,14 @@ function auctionsCategory(id) {
             var response = data['auctionsCategory'];
             switch (response) {
                 case 'error':
-                    var str = "No auctions with category " + data['category']['descricao'] + ".";
+                    var str = "No auctions with category " + data['category'] + ".";
                     swal(str);
                     break;
                 case 'success':
-                    var str = "Auctions listed by " + data['category']['descricao'] + ". Homepage updated.";
+                    var str = "Auctions listed by " + data['category'] + ". Homepage updated.";
                     swal(str);
                     window.location = "Home.php";
+                    // ver a cena do show more
                     break;
                 case 'error on js':
                     swal("Don't crack the site.");

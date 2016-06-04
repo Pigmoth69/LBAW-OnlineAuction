@@ -21,7 +21,9 @@
     
     if ($ret != null) {
         $_SESSION['success_messages'][] = 'Search completed';
-        $data = [$param => "success", $param2 => $cat[0]];
+        if ($params['id'] == -1)
+            $data = [$param => "success", $param2 => "Everything"];
+        else $data = [$param => "success", $param2 => $cat[0]['descricao']];
         $_SESSION['searched auctions'] = $ret;
 		printResponse($data);
         return true;

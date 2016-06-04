@@ -176,6 +176,15 @@
         return $result;
     }
     
+    function getName($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Utilizador WHERE id_utilizador = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result[0]['nome'];
+    }
+    
     function isAdmin($id) {
         global $conn;
         $stmt = $conn->prepare('SELECT * FROM UtilizadorAdministrador WHERE id_utilizador = :id');

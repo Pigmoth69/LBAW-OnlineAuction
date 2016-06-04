@@ -55,6 +55,27 @@
 
             // 48 bits for "node"
             mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
-    );
-}
+        );
+    }
+    
+    function assign_to_javascript($params, $template){
+        // validate params values
+        $name = $params['var'];
+        $json_object = json_encode($params['value']);
+        echo "<script type=\"text/javascript\"> var $name = $json_object; </script>";
+    }
+    
+    function jsify($object, $name = 'foo'){
+        $json_object = json_encode($object);
+        return "<script type=\"text/javascript\"> var $name = $json_object; </script>";
+    }
+    
+    function js_str($s) {
+        return '"' . addcslashes($s, "\0..\37\"\\") . '"';
+    }
+
+    function js_array($array) {
+        $temp = array_map('js_str', $array);
+        return '[' . implode(',', $temp) . ']';
+    }
 ?>

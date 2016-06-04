@@ -26,7 +26,7 @@ function onReady() {
                     case 'success':
                         swal("Auctions updated on homepage.");
                         window.location = "Home.php";
-                        //dar update ao crl da página
+                        //ver a cena do show more
                         break;
                     case 'error on js':
                         swal("Don't crack the site.");
