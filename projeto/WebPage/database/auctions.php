@@ -72,7 +72,8 @@
     
     function search($desc) {
         global $conn;
-        $stmt = $conn->prepare('SELECT DISTINCT ON (Leilao.id_leilao) * FROM Leilao WHERE to_tsvector(\'english\', descricao) @@ to_tsquery(\'english\', :desc) OR to_tsvector(\'english\', nome_produto) @@ to_tsquery(\'english\', :desc)');
+        $stmt = $conn->prepare('SELECT DISTINCT ON (Leilao.id_leilao) * FROM Leilao, EstadoLeilao WHERE (to_tsvector(\'english\', descricao) @@ to_tsquery(\'english\', :desc) OR to_tsvector(\'english\', nome_produto) @@ to_tsquery(\'english\', :desc))
+                                AND Leilao.id_estado_leilao = EstadoLeilao.id_estado_leilao AND (estado_leilao = \'aberto\' OR estado_leilao = \'invalido\')');
         $stmt->bindParam(':desc', $desc, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -169,12 +170,12 @@
     function searchCategory($id) {
         global $conn;
         if ($id == -1) {
-            $stmt = $conn->prepare('SELECT * FROM Leilao');
+            $stmt = $conn->prepare('SELECT * FROM Leilao, EstadoLeilao WHERE (Leilao.id_estado_leilao = EstadoLeilao.id_estado_leilao AND (estado_leilao = \'aberto\' OR estado_leilao = \'invalido\'))');
             $stmt->execute();
             return $stmt->fetchAll();
         }
         else {
-            $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_categoria = :id');
+            $stmt = $conn->prepare('SELECT * FROM Leilao, EstadoLeilao WHERE (Leilao.id_estado_leilao = EstadoLeilao.id_estado_leilao AND (estado_leilao = \'aberto\' OR estado_leilao = \'invalido\')) AND id_categoria = :id');
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll();  

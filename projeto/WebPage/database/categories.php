@@ -39,7 +39,7 @@
     
     function getNoElementsOfCategory($id_categoria) {
         global $conn;
-        $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_categoria = :id_categoria');
+        $stmt = $conn->prepare('SELECT * FROM Leilao, EstadoLeilao WHERE (Leilao.id_estado_leilao = EstadoLeilao.id_estado_leilao AND (estado_leilao = \'aberto\' OR estado_leilao = \'invalido\')) AND id_categoria = :id_categoria');
         $stmt->bindParam(':id_categoria', $id_categoria, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll();
