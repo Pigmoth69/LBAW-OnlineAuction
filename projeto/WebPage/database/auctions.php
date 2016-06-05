@@ -197,10 +197,10 @@
         $stmt = $conn->prepare('SELECT * FROM Leilao WHERE id_leilao = :auction');
         $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
         $stmt->execute();
-        $result = $stmt->fetchAll();   
+        $leilao = $stmt->fetchAll();   
         $fal = false;
         
-        if (count($result) == 0)
+        if (count($leilao) == 0)
             return false;
         else {
             $stmt = $conn->prepare('SELECT * FROM Licitacao WHERE id_leilao = :id_leilao ORDER BY valor_licitacao DESC');
@@ -211,6 +211,30 @@
             if ($res[0]['valor_licitacao'] >= $amount)
                 return false;
             else {
+                //notify everyone that liciteed on the auctions
+                
+                $stmt = $conn->prepare('SELECT DISTINCT ON (Licitacao.id_utilizador) * FROM Licitacao WHERE id_leilao = :id_leilao AND Licitacao.id_utilizador != :id');
+                $stmt->bindParam(':id_leilao', $auction, PDO::PARAM_INT);
+                $stmt->bindParam(':id', $user, PDO::PARAM_INT);
+                $stmt->execute();
+                $res1 = $stmt->fetchAll();
+                
+                $stmt = $conn->prepare('SELECT * FROM UtilizadorAdministrador');
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                $admin = $result[0]['id_utilizador'];
+                $cont = 'Someone has matched your bid on auction ' . $auction . ' with title ' . trim($leilao[0]['nome_produto']) . '! :o';
+                $tit = 'Bid on auction ' . trim($leilao[0]['nome_produto']);
+                
+                foreach ($res1 as $r) {
+                    $stmt = $conn->prepare('INSERT INTO Mensagem(id_emissor, id_recetor, titulo, conteudo, data_mensagem) VALUES(:admin, :r, :tit, :cont, now()::DATE)');
+                    $stmt->bindParam(':admin', $admin, PDO::PARAM_INT);
+                    $stmt->bindParam(':r', $r['id_utilizador'], PDO::PARAM_INT);
+                    $stmt->bindParam(':tit', $tit, PDO::PARAM_STR);
+                    $stmt->bindParam(':cont', $cont, PDO::PARAM_STR);
+                    $stmt->execute();
+                }
+                
                 $stmt = $conn->prepare('INSERT INTO Licitacao(id_leilao, id_utilizador, data_licitacao, valor_licitacao, vencedor) VALUES(:auction, :user, CURRENT_TIMESTAMP, :amount, :fal)');
                 $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
                 $stmt->bindParam(':user', $user, PDO::PARAM_INT);

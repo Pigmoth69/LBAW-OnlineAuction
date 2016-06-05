@@ -33,7 +33,7 @@
     $categorias = getAllCategories();
     
     if (count($_SESSION) > 0) {
-        $infos = getInfoByID($_SESSION['user']);
+        $infos = getInfoByID($_GET['idPage']);
         $smarty->assign('infos', $infos);
     }
     else {

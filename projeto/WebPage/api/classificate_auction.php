@@ -1,6 +1,8 @@
 <?php
     include_once("../config/init.php");
     include_once("../database/auctions.php");
+    include_once("../database/moderate.php");
+    include_once("../database/user.php");
     include_once("../utils/utils.php");
     
     $params = ['classification', 'auction'];
