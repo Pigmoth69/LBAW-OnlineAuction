@@ -5,7 +5,7 @@
     include_once("../database/moderate.php");
     include_once("../utils/utils.php");
     
-    $params = [ 'nameAuction', 'dateAuction', 'categoryAuction', 'valorAuction', 'descriptionAuction'];
+    $params = [ 'nameEditAuction', 'idLeilao', 'dateEditAuction', 'categoryEditAuction', 'valorEditAuction', 'descriptionEditAuction'];
 	foreach ($params as $param) {
 		if (isset($_POST[$param])) {
 			$params[$param] = $_POST[$param];
@@ -24,20 +24,21 @@
     
     $img = "../images/auction/" . $filename;
     
-    if ($params['nameAuction'] == "" || $params['dateAuction'] == "" || $params['categoryAuction'] == "" || $params['valorAuction'] == "" || isMod($_SESSION['user']) || isAdmin($_SESSION['user'])) {
+    if ($params['nameEditAuction'] == "" || $params['dateEditAuction'] == "" || $params['categoryEditAuction'] == "" || $params['valorEditAuction'] == "" || isMod($_SESSION['user']) || isAdmin($_SESSION['user']) || !isOwner($_SESSION['user'], $params['idLeilao'])) {
         $_SESSION['error_messages'][] = 'Passwords don\'t match';
         header('Location: ../index.php');
         return false;
     }
     
-    $val = newAuction($_SESSION['user'], $params['nameAuction'], $params['dateAuction'], $params['categoryAuction'], $params['valorAuction'], $params['descriptionAuction'], $img);
-    if ($val > 0) {
-        $_SESSION['success_messages'][] = 'Auction created successfully';
-        header('Location: ../pages/ItemPageSeller.php?idPage=' . $val);
+    $val = editAuction($params['idLeilao'], $params['nameEditAuction'], $params['dateEditAuction'], $params['categoryEditAuction'], $params['valorEditAuction'], $params['descriptionEditAuction'], $img);
+    if ($val) {
+        $_SESSION['success_messages'][] = 'Auction edited successfully';
+        header('Location: ../pages/ItemPageSeller.php?idPage=' . $params['idLeilao']);
         return true;
     }
     else {
-        $_SESSION['error_messages'][] = 'Error creating auction';
+        $_SESSION['error_messages'][] = 'Error editing auction';
+        header("Location: https://www.facebook.com");
         return false;
     }
 ?>

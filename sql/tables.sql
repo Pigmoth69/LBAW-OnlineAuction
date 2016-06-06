@@ -90,7 +90,7 @@ CREATE TABLE Leilao (
     nome_produto CHARACTER(256) NOT NULL,
     descricao CHARACTER(256) NOT NULL,
     imagem_produto CHARACTER(256) DEFAULT 'img\default_user.png',
-    data_inicio TIMESTAMP NOT NULL DEFAULT (now()::DATE),
+    data_inicio TIMESTAMP NOT NULL DEFAULT (CURRENT_TIMESTAMP),
     data_fim TIMESTAMP NOT NULL,
     valor_base NUMERIC NOT NULL,
     id_vendedor INTEGER,

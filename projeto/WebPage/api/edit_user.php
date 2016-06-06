@@ -14,24 +14,12 @@
 	}
     
     
-    $filename =  $_FILES["image"]["name"];
-    //printResponse($_FILES["image"]["name"], "editAdmin");
+    $filename =  gen_uuid();
     
-    if ( ($_FILES["image"]["type"] == "image/gif") || ($_FILES["image"]["type"] == "image/jpeg") || ($_FILES["image"]["type"] == "image/jpg") || ($_FILES["image"]["type"] == "image/png")  || ($_FILES["image"]["type"] == "image/pjpeg")) {
-        if (file_exists($_FILES["image"]["name"])) {
-            $_SESSION['error_messages'][] = 'File already exists';
-            echo 'entrou';
-            //printResponse("file name exists", "editAdmin");
-            return false;
-        }
-        else {
-            move_uploaded_file($_FILES["image"]["tmp_name"],"../images/users/".$filename);
-        }
-    }
+    if ( ($_FILES["imageAuction"]["type"] == "image/gif") || ($_FILES["imageAuction"]["type"] == "image/jpeg") || ($_FILES["imageAuction"]["type"] == "image/jpg") || ($_FILES["imageAuction"]["type"] == "image/png")  || ($_FILES["imageAuction"]["type"] == "image/pjpeg"))
+            move_uploaded_file($_FILES["imageAuction"]["tmp_name"],"../images/auction/".$filename);
     else {
         $_SESSION['error_messages'][] = 'Invalid type of file';
-        echo 'entrou1';
-        //printResponse("invalid type of file", "editAdmin");
         return false;
     }
     

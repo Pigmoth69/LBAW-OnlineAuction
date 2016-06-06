@@ -12,13 +12,15 @@
         header("Location: ../index.php");
         exit;
     }
+    if (count($_SESSION) > 0) {
+        $infos = getInfoByID($_SESSION['user']);
+        $smarty->assign('infos', $infos);
+    }
     
-    $infos = getInfoByID($_SESSION['user']);
     $emissor = getMessagesByEmissor($_SESSION['user']);
     $recetor = getMessagesByReceptor($_SESSION['user']);
     $e_mail_to_send = $_SESSION['e_mail to send'];
     
-    $smarty->assign('infos', $infos);
     $smarty->assign('categorias', $categorias);
     $smarty->assign('emissor', $emissor);
     $smarty->assign('recetor', $recetor);

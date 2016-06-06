@@ -35,4 +35,47 @@
 	    header('Content-Type: application/json');
 	    echo json_encode($data);
 	}
+    
+    function gen_uuid() {
+        return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+            // 32 bits for "time_low"
+            mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+
+            // 16 bits for "time_mid"
+            mt_rand( 0, 0xffff ),
+
+            // 16 bits for "time_hi_and_version",
+            // four most significant bits holds version number 4
+            mt_rand( 0, 0x0fff ) | 0x4000,
+
+            // 16 bits, 8 bits for "clk_seq_hi_res",
+            // 8 bits for "clk_seq_low",
+            // two most significant bits holds zero and one for variant DCE1.1
+            mt_rand( 0, 0x3fff ) | 0x8000,
+
+            // 48 bits for "node"
+            mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
+        );
+    }
+    
+    function assign_to_javascript($params, $template){
+        // validate params values
+        $name = $params['var'];
+        $json_object = json_encode($params['value']);
+        echo "<script type=\"text/javascript\"> var $name = $json_object; </script>";
+    }
+    
+    function jsify($object, $name = 'foo'){
+        $json_object = json_encode($object);
+        return "<script type=\"text/javascript\"> var $name = $json_object; </script>";
+    }
+    
+    function js_str($s) {
+        return '"' . addcslashes($s, "\0..\37\"\\") . '"';
+    }
+
+    function js_array($array) {
+        $temp = array_map('js_str', $array);
+        return '[' . implode(',', $temp) . ']';
+    }
 ?>

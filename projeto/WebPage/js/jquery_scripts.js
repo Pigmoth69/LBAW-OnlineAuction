@@ -1,4 +1,8 @@
-$(document).ready(onReady);
+$('document').ready(function() {});
+
+function setModalUser(id) {
+    $("#idToBan").val(id);
+}
 
 function bid(auction) {
     var amount = $("#AmountInput").val();
@@ -35,37 +39,34 @@ function bid(auction) {
 }
 
 function validateAuction(bool, id) {
-    var motive =
-        $.post(
-            '../api/validate_auction.php', {
-                'functionName': 'validateAuction',
-                'validate': bool,
-                'auction': id,
-                'motive': motive,
-                'date': date
+    $.post(
+        '../api/validate_auction.php', {
+            'functionName': 'validateAuction',
+            'validate': bool,
+            'auction': id
 
-            },
-            function(data) {
-                var response = data['validateAuction'];
-                switch (response) {
-                    case 'error':
-                        swal("Error validating auction.");
-                        break;
-                    case 'success':
-                        var str = "Auction was " + data['validate'] + ".";
-                        swal(str);
-                        break;
-                    case 'error on js':
-                        swal("Don't crack the site.");
-                        break;
-                    default:
-                        //displayError("Error while processing the login...");
-                        break;
-                }
-                return true;
-            }).fail(function(error) {
-            alert(error);
-        });
+        },
+        function(data) {
+            var response = data['validateAuction'];
+            switch (response) {
+                case 'error':
+                    swal("Error validating auction.");
+                    break;
+                case 'success':
+                    var str = "Auction was " + data['validate'] + ".";
+                    swal(str);
+                    break;
+                case 'error on js':
+                    swal("Don't crack the site.");
+                    break;
+                default:
+                    //displayError("Error while processing the login...");
+                    break;
+            }
+            return true;
+        }).fail(function(error) {
+        alert(error);
+    });
     return false;
 }
 
@@ -106,13 +107,14 @@ function auctionsCategory(id) {
             var response = data['auctionsCategory'];
             switch (response) {
                 case 'error':
-                    var str = "No auctions with category " + data['category']['descricao'] + ".";
+                    var str = "No auctions with category " + data['category'] + ".";
                     swal(str);
                     break;
                 case 'success':
-                    var str = "Auctions listed by " + data['category']['descricao'] + ". Homepage updated.";
+                    var str = "Auctions listed by " + data['category'] + ". Homepage updated.";
                     swal(str);
                     window.location = "Home.php";
+                    // ver a cena do show more
                     break;
                 case 'error on js':
                     swal("Don't crack the site.");
@@ -134,6 +136,7 @@ function ban(bool, id) {
     if (bool == 'banned') {
         motive = $("#motive").val();
         date = $("#banDate").val();
+        id = $("#idToBan").val();
     } else {
         motive = "";
         date = "";
