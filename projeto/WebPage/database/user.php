@@ -51,7 +51,7 @@
     
     function isBanned($id) {
         global $conn;
-        $stmt = $conn->prepare('SELECT * FROM HistoricoBanidos WHERE id_utilizador = :id AND data_fim > now()::date');
+        $stmt = $conn->prepare('SELECT * FROM HistoricoBanidos WHERE id_utilizador = :id AND data_fim > CURRENT_TIMESTAMP');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll();

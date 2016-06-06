@@ -161,7 +161,7 @@
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
-                        <li data- target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                     </ol>
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
@@ -184,6 +184,7 @@
                     <p>{$auction.descricao|escape}</p>
                 </div>
             </div>
+            {if !isClosed($auction.id_leilao)}
             <div class="panel-group" id="auctionStatus">
                 <div class="panel panel-success" id="AlertStyle">
                     <div class="panel-heading">
@@ -203,6 +204,7 @@
                     </div>
                 </div>
             </div>
+            {/if}
             <div class="container-fluid" id="auctionInfo">
                 <div class="row">
                     <div id="latestUsers">

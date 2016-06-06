@@ -137,13 +137,10 @@
                                         <input type="date" name="birthdateEdit" id="birthdateEdit" class="form-control input-sm" value="{$infos.datanasc|escape}" onChange="checkDateEdit()">
                                     </div>
                                     <div class="form-group">
-
-                                        <label for="genderEditMale" class="radio-inline"><input type="radio" name="genderEditMale" value="male" {if $infos.genero eq "male"}
-                                                                                                                        checked
-                                                                                                                        {/if}>Male</label>
-                                        <label for="genderEditFemale" class="radio-inline"><input type="radio" name="genderEditFemale" value="female" {if $infos[0].genero eq "female"}
-                                                                                                                        checked
-                                                                                                                        {/if}>Female</label>
+                                        <label for="genderEditMale" class="radio-inline"></label>
+                                        <input type="radio" name="genderEditMale" id="genderEditMale" value="male" {if $infos.genero eq "male"} checked {/if}>Male
+                                        <label for="genderEditFemale" class="radio-inline"></label>
+                                        <input type="radio" name="genderEditFemale" id="genderEditFemale" value="female" {if $infos[0].genero eq "female"} checked {/if}>Female
                                     </div>
                                     <div class="form-group">
                                         <label for="countryOptionsEdit">Country: </label>
@@ -176,7 +173,6 @@
                                         <input type="password" name="password_confirmationEdit" id="password_confirmationEdit" class="form-control input-sm" placeholder="Confirm Password" onChange="checkPasswordsEdit()">
                                     </div>
                                 </form>
-                                <label for="descriptionEdit">Description: </label>
                                 <textarea rows="4" cols="50" name="descriptionEdit" form="editUser">{$infos.descricao|rtrim}</textarea>
                                 <input type="submit" value="Edit User Profile" class="btn btn-block" form="editUser" id="submitUser">
                                 <div class="modal-footer">
@@ -225,7 +221,6 @@
                                         <input type="file" id="imageAuction" name="imageAuction">
                                     </div>
                                 </form>
-                                <label for="descriptionAuction">Description: </label>
                                 <textarea rows="4" cols="50" name="descriptionAuction" form="addAuction"></textarea>
                                 <input type="submit" value="Create New Auction" class="btn btn-block" form="addAuction" id="submitAuction">
                                 <div class="modal-footer">

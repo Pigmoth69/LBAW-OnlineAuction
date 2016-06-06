@@ -167,6 +167,18 @@
         return $res[0]['id_leilao'];
     }
     
+    function isClosed($id) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Leilao, EstadoLeilao WHERE id_leilao = :id AND EstadoLeilao.id_estado_leilao = Leilao.id_estado_leilao AND estado_leilao = \'fechado\'');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        
+        if (count($result) > 0)
+            return true;
+        else return false;
+    }
+    
     function searchCategory($id) {
         global $conn;
         if ($id == -1) {

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-3">
                 <p class="lead">Total items:</p>
-                <ul class="list-group">
+                <div class="list-group">
                     <a href="" onclick="auctionsCategory(-1); return false" class="list-group-item"><span class="badge">
               {$total_no = 0}
               {foreach $categorias as $categoria}
@@ -14,6 +14,7 @@
               {/foreach}
               {$total_no}</span>All Categories</a> {foreach $categorias as $categoria} {$no = getNoElementsOfCategory($categoria.id_categoria)} {$total_no = $total_no + $no}
                 <a href="" onclick="auctionsCategory({$categoria.id_categoria}); return false" class="list-group-item"><span class="badge">{$no}</span>{$categoria.descricao|escape}</a> {/foreach}
+                </div>
             </div>
         <div class="col-md-9">
             <div class="row carousel-holder">
@@ -85,7 +86,7 @@
                 <button type="button" class="fa fa-hand-spock-o fa-3x btn btn-primary" onclick="changeAuctions()" aria-hidden="true" id="showMoreAuctions"> Show More
                 </button>
                 {literal}
-                <script language="javascript">
+                <script>
                     
                     var max = 8;
                     var auctionsVisited = 2;
