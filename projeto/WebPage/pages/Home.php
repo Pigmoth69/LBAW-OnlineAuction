@@ -47,12 +47,13 @@
     
     foreach($auctions as $auction) {
         $highestBids[] = getHighestBid($auction['id_leilao']);
-        $timeLeft[] = timeLeftOnAuction($auction['id_leilao']);
+        $timeLeft[] = timeLeftOnAuction1($auction['id_leilao']);
         $noLicitees[] = getNoLiciteesOnAuction($auction['id_leilao']);
         $classifications[] = getClassificationAuction($auction['id_leilao']);
         $infosAuctions[] = getInfoByID($auction['id_vendedor']);
     }
     
+    print_r($timeLeft);
     $smarty->assign('highestBids', $highestBids);
     $smarty->assign('timeLeft', $timeLeft);
     $smarty->assign('noLicitees', $noLicitees);
