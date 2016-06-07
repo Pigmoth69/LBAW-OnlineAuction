@@ -49,12 +49,13 @@
             return true;
         }   
         else {
-            $stmt = $conn->prepare('INSERT INTO ClassificacaoLeilao(id_licitador, id_leilao) VALUES(:user, :auction)');
+            $stmt = $conn->prepare('INSERT INTO ClassificacaoLeilao(id_licitador, id_leilao,valor_classificacao) VALUES(:user, :auction, :valor_classificacao)');
             $stmt->bindParam(':user', $user, PDO::PARAM_INT);
             $stmt->bindParam(':auction', $auction, PDO::PARAM_INT);
+            $stmt->bindParam(':valor_classificacao', $classification, PDO::PARAM_INT);
             $stmt->execute();
             return true;
-        }  
+        }
     }
     
     function isHighestBid($id_leilao, $id_licitador) {
