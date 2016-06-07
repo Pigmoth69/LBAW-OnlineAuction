@@ -35,7 +35,7 @@
                         <h4 class="modal-title">Edit profile</h4>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" id="editAdmin" action="../api/edit_admin.php" onsubmit="return checkValidityEdit()" enctype="multipart/form-data">
+                        <form method="POST" id="editAdmin" action="../api/edit_mod.php" onsubmit="return checkValidityEdit()" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="first_nameEdit">First Name: </label>
                                 <input type="text" name="first_nameEdit" id="first_nameEdit" class="form-control input-sm" value="{$infos[0].nome|rtrim|escape}" placeholder="First Name">
@@ -154,7 +154,7 @@
                                     <td></td>
                                     {else}
                                     <td class="text-center">
-                                        <a href="UserPage.php?idPage={$auction.id_utilizador}" onclick="cancelAuction({$auction.id_leilao}); return false" style="color:red" class="glyphicon glyphicon-remove"></a>
+                                        <a href="UserPage.php?idPage={$auction.id_utilizador}" onclick="cancelAuctionMod({$auction.id_leilao}); return false" style="color:red" class="glyphicon glyphicon-remove"></a>
                                     </td>
                                     {/if}
                                 </tr>

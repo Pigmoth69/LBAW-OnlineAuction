@@ -23,21 +23,37 @@
         return $result;
     }
     
+    function cancelAuctionMod($auction) {
+        global $conn;
+        $stmt = $conn->prepare('UPDATE EstadoLeilao SET estado_leilao = \'fechado\' WHERE id_estado_leilao = (SELECT id_estado_leilao FROM Leilao WHERE id_leilao = :id)');
+        $stmt->bindParam(':id', $auction, PDO::PARAM_INT);
+        $stmt->execute();
+        return true;
+    }
+    
     function ban($ban, $user, $date, $motive, $id_mod) {
         global $conn;
         if ($ban == 'banned') {
-            $stmt = $conn->prepare('INSERT INTO HistoricoBanidos(id_utilizador, id_moderador, data_banicao, data_fim, motivo) VALUES(:user, :id_mod, now()::DATE, :date, :motivo)');
+            $stmt = $conn->prepare('INSERT INTO HistoricoBanidos(id_utilizador, id_moderador, data_banicao, data_fim, motivo) VALUES(:user, :id_mod, CURRENT_TIMESTAMP, :date, :motivo)');
             $stmt->bindParam(':user', $user, PDO::PARAM_INT);
             $stmt->bindParam(':id_mod', $id_mod, PDO::PARAM_INT);
             $stmt->bindParam(':date', $date, PDO::PARAM_STR);
             $stmt->bindParam(':motivo', $motive, PDO::PARAM_STR);
             $stmt->execute();
+            
+            $stmt = $conn->prepare('UPDATE Utilizador SET banido = TRUE WHERE id_utilizador = :id');
+            $stmt->bindParam(':id', $user, PDO::PARAM_INT);
+            $stmt->execute();
             return true;
         }
         else if ($ban == 'unbanned') {
-            $stmt = $conn->prepare('UPDATE HistoricoBanidos SET data_fim = now()::DATE WHERE id_utilizador = :user');
+            $stmt = $conn->prepare('UPDATE HistoricoBanidos SET data_fim = CURRENT_TIMESTAMP WHERE id_utilizador = :user');
             $stmt->bindParam(':user', $user, PDO::PARAM_INT);
             $stmt->execute();
+            $stmt = $conn->prepare('UPDATE Utilizador SET banido = FALSE WHERE id_utilizador = :id');
+            $stmt->bindParam(':id', $user, PDO::PARAM_INT);
+            $stmt->execute();
+            
             return true;
         }
         else return false;
@@ -111,6 +127,15 @@
             
             $stmt = $conn->prepare('DELETE FROM UtilizadorModerador WHERE id_utilizador = :id');
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            
+            $stmt = $conn->prepare('DELETE FROM Mensagem WHERE id_recetor = :id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            
+            $stmt = $conn->prepare('DELETE FROM Mensagem WHERE id_emissor = :id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
             
             $stmt = $conn->prepare('DELETE FROM Utilizador WHERE id_utilizador = :id');
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);

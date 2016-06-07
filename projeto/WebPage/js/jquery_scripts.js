@@ -350,6 +350,37 @@ function cancelAuction(id) {
     return false;
 }
 
+function cancelAuctionMod(id) {
+    $.post(
+            '../api/mod_cancel_auction.php', {
+                'functionName': 'mod_cancel_auction',
+                'auction': id
+            },
+            function(data) {
+                var response = data['mod_cancel_auction'];
+                switch (response) {
+                    case 'error':
+                        swal("Couldn't cancel the auction.");
+                        break;
+                    case 'success':
+                        swal("Cancelled the auction.");
+                        break;
+                    case 'error on js':
+                        swal("Don't crack the site.");
+                        break;
+                    default:
+                        //displayError("Error while processing the login...");
+                        break;
+                }
+                return true;
+            })
+        .fail(function(error) {
+            console.log(error);
+            //alert("Error: " + error);
+        });
+    return false;
+}
+
 function checkValidityAuction() {
     if (!checkDateAuction()) {
         alert("The date has to be superior to the current date");

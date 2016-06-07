@@ -15,8 +15,8 @@
     
     $filename =  gen_uuid();
     
-    if ( ($_FILES["imageAuction"]["type"] == "image/gif") || ($_FILES["imageAuction"]["type"] == "image/jpeg") || ($_FILES["imageAuction"]["type"] == "image/jpg") || ($_FILES["imageAuction"]["type"] == "image/png")  || ($_FILES["imageAuction"]["type"] == "image/pjpeg"))
-            move_uploaded_file($_FILES["imageAuction"]["tmp_name"],"../images/auction/".$filename);
+    if ( ($_FILES["image"]["type"] == "image/gif") || ($_FILES["image"]["type"] == "image/jpeg") || ($_FILES["image"]["type"] == "image/jpg") || ($_FILES["image"]["type"] == "image/png")  || ($_FILES["image"]["type"] == "image/pjpeg"))
+            move_uploaded_file($_FILES["image"]["tmp_name"],"../images/users/".$filename);
     else {
         $_SESSION['error_messages'][] = 'Invalid type of file';
         return false;

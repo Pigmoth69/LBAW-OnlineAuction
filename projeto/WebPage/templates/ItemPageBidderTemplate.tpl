@@ -144,7 +144,7 @@
                     <p>{$auction.descricao|escape}</p>
                 </div>
             </div>
-
+            {if !isClosed($auction.id_leilao)}
             <div class="panel-group">
                 <div class="panel panel-success" id="AlertStyle">
                     <div class="panel-heading">
@@ -181,6 +181,7 @@
                     </div>
                 </div>
             </div>
+            {/if}
         </div>
     </div>
 </div>

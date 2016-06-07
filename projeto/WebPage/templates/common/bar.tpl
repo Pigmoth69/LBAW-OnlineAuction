@@ -150,7 +150,7 @@
                                 <p class="glyphicon glyphicon-pencil"></p>
                                 Edit Profile: By clicking in "Edit Profile" button you will have a form where you may change your personal information.
 
-                                <h3> Bidder page <h3>
+                                <h3> Bidder page </h3>
                                 <h5> 
                                 This is also the auction page where you are presented with additional information such as title, description, related images, the actual bid, the remaining time to bid, auction rating, seller information, rating and sales and last but not least you may also report the auction.
                                 </h5>
@@ -166,9 +166,9 @@
                                 <br><br>
                                 <p class="glyphicon glyphicon-flag"></p>
                                 Report auction: By clicking in "Report Auction" button you send the request to report the auction.
-                                
-                                
-                                <h3> Seller page <h3>
+
+
+                                <h3> Seller page </h3>
 
                                 <h5> 
                                 This is also the auction page from the seller perspective where you are presented with a light version of your personal information and total sales. Relatively to the auction itself you may see the remaining time, the actual bids, related images, title, description and finally the option to cancel de auction.
