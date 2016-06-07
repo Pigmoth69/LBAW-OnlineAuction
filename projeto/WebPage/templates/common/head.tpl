@@ -25,7 +25,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
     <script src="../js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
-    <link rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css" />
+    <link rel="stylesheet" type="text/css" href="../css/equal-height-columns.css">
+    <!--<link rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css" />-->
     <!-- (Optional) Latest compiled and minified JavaScript translation files -->
     <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>-->
     <script src="../js/loginScript.js"></script>

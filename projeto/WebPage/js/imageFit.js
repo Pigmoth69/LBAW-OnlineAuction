@@ -1,6 +1,7 @@
 window.onload = function (){
 onReady();
-$(window).resize(function(){onReady();})
+console.log("enrt0");
+$(window).resize(function(){onReady();}) 
 }
 function onReady(){
     $('.teste img').each(function(i, item) {
