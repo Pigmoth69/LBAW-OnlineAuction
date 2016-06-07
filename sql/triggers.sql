@@ -3,9 +3,9 @@
 --TRIGGERS ALREADY DONE!
 
 --APENAS TEM O PROBLEMA DE ARREDONDAR A CLASSIFICACAO NÃO SEI PORQUE..
-CREATE FUNCTION auction_classification_update() RETURNS TRIGGER
+CREATE FUNCTION auction_classification_onUpdate() RETURNS TRIGGER
         LANGUAGE plpgsql
-        AS $auction_classification_update$
+        AS $auction_classification_onUpdate$
         DECLARE 
         idUtilizador integer;
         average numeric(5);
@@ -15,9 +15,7 @@ CREATE FUNCTION auction_classification_update() RETURNS TRIGGER
       UPDATE Utilizador SET classificacao = average WHERE Utilizador.id_utilizador=idUtilizador;
       	RETURN NEW;
       END;
-$auction_classification_update$;
-
-CREATE TRIGGER auction_classification_update AFTER INSERT ON ClassificacaoLeilao FOR EACH ROW EXECUTE PROCEDURE auction_classification_update();
+$auction_classification_onUpdate$;
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE FUNCTION authorize_ban() RETURNS TRIGGER
